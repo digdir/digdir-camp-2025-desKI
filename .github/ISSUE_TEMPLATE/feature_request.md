@@ -1,20 +1,29 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
+about: 'Suggest a new feature '
+title: "[Feature] "
 labels: feature
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+<!-- You can remove sections that aren't applicable. -->
+<!-- Please remember to add additional labels as well as related milestone. -->
+## Description
+<!-- Provide a clear and concise description of the issue. Avoid vague language. -->
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+## Proposed Solution
+<!-- Describe the proposed solution or feature. Include details on how it should work. -->
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Screenshots
+<!-- If applicable, add screenshots, logs, or error messages to help explain the issue. -->
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## Prerequisite Issues
+<!-- Link any issues that must be resolved before this one can be worked on. -->
+
+## Additional Context
+<!-- Add any other relevant information, context, or references. -->
+
+## Task Checklist
+<!-- Create a checklist to track what needs to be done to complete the issue. -->
+- [ ]
