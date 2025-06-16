@@ -1,0 +1,13 @@
+{
+  "name": "deski-dev",
+  "dockerComposeFile": [
+    "../docker/environments/development/docker-compose.yml"
+  ],
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "extensions": ["ms-python.python"],
+  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt"
+}
