@@ -10,7 +10,7 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
 
-@router.post("/chat", response_model=ChatResponse)
+@router.post("/", response_model=ChatResponse)
 def chat(req: ChatRequest):
     # Bare returner et statisk svar for testing
     return ChatResponse(answer=f"Ditt spørsmål var: '{req.question}'. Dette er et dummy-svar.")
