@@ -1,0 +1,48 @@
+
+title: "Dokumenttype: eInnsyn-kvittering"
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttypen  består av et standard business document (SBD).
+Dokumenttypen har identifikatoren .
+Dokumenttypen sendes som respons til en publisering.
+Dokumenttypen sendes alltid med prosessen , uavhengig av hvilken prosess
+den opprinnelige publiseringen hadde.
+
+TOC
+{:toc}
+
+Standard business document
+Alle dokumenttyper i eFormidling følger standarden  for adresseringsinformasjon.  består av en header ()
+og en forretningsmelding som brukes for dokumenttype-spesifikk adresseringsinformasjon.
+eFormidlings bruk av standarden  er beskrevet på Standard business document.
+Dokumenttypen  adresseres fra avsenders organisasjonsnummer til Digdirs organisasjonsnummer.
+Forretningsmeldingen
+Forretningsmeldingen  er beskrevet under.
+
+ (påkrevd)
+Identifikator for det publisert dokumentet.
+| Lovlige verdier                 | String       |
+| Standard verdi                  | (ingen)      |
+| Konfigurasjon av standard verdi | Ikke støttet |
+ (påkrevd)
+Status for det publiserte dokumentet.
+Merk at dette feltet er et JSON-objekt enkodet som string. Se beskrivelse på:
+
+Kvittering på publisert data (ekstern lenke)
+
+| Lovlige verdier                 | String       |
+| Standard verdi                  | (ingen)      |
+| Konfigurasjon av standard verdi | Ikke støttet |
+ (påkrevd)
+Referansetype.
+| Lovlige verdier                 |  eller  |
+| Standard verdi                  | (ingen)                           |
+| Konfigurasjon av standard verdi | Ikke støttet                      |
+
+Neste steg
+
+Eksempel på journalpost til eInnsyn
+Eksempel på møte til eInnsyn

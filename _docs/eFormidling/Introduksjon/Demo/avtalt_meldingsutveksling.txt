@@ -1,0 +1,8 @@
+
+title: Demo av avtalt meldingsutveksling
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Avtalt meldingsutveksling forklart på Integrasjon og sikkerhetsforum 2020. (00:26 – 11:31)

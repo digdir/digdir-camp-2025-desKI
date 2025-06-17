@@ -1,0 +1,40 @@
+
+title: Installere sertifikater
+description: 
+summary: ""
+sidebar: krr_dotnet
+product: KRR
+redirect_from: /krr_sertifikater
+
+For å kunne bruke dette biblioteket så trenger du et sertifikat for å kunne autentisere deg mot Oppslagstjenesten. Dette bør installeres på maskinen som skal bruke klientbiblioteket. Grunnen til at vi ønsker å installere det er for å ikke ha passord i klartekst i koden.
+Alle sertifikater har en unik identifikator som kalles thumbprint. Hvis du ikke ønsker å håndtere selv i koden hvordan sertifikatene skal lastes, så kan du følge guiden under, steg for steg. Til slutt gjennomgås det hvordan du kan finne thumbprint til det installerte sertifikatet.
+Installere virksomhetssertifikat
+
+Virksomhetssertifikatet brukes av virksomheten for å signere forespørsler som går til Oppslagstjenesten.
+
+
+Dobbeltklikk på sertifikatet (Sertifikatnavn.p12)
+Velg at sertifikatet skal lagres i Current User eller Local Machine og trykk Next
+Filnavn skal nå være utfylt. Trykk Next
+Skriv inn passord for privatnøkkel og velg Mark this key as exportable ..., trykk Next
+Velg Automatically select the certificate store based on the type of certificate
+Klikk Next og Finish
+Får du spørsmål om å godta sertifikatkjeden så du gjør det.
+Du skal da få en dialog som sier at importeringen var vellykket. Trykk OK.
+
+Finne thumbprint til installert sertifikat
+ tar inn , som igjen tar inn  direkte:
+{% highlight csharp %}
+var konfigurasjon = new OppslagstjenesteKonfigurasjon(Miljø.FunksjoneltTestmiljø, avsendersertifikatThumbprint);
+var klient = OppslagstjenesteKlient(konfigurasjon);
+{% endhighlight %}
+Det er enklest å finne thumbprint gjennom Microsoft Management Console (mmc.exe).
+
+Velg File -> Add/Remove Snap-in... 
+Merk Certificates og trykk Add >
+Hvis sertifikatet ble installert i Current User velges My user account, hvis det er installert på Local Machine velges Computer Account. Klikk Finish og OK
+Ekspander Certificates-noden, velg Personal og åpne Certificates
+Dobbeltklikk på sertifikatet du installerte
+Velg Details, scroll ned til Thumbprint og kopier
+
+Ønsker du å sende inn sertifikater du har allerede har initialisert, kan du bruke konstruktøren .

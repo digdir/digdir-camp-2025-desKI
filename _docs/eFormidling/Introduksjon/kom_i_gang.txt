@@ -1,0 +1,17 @@
+
+title: Kom i gang
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+
+Introduksjon til eFormidling
+Oversikt over funksjonalitet
+Oversikt over egenskaper
+Kom i gang med integrasjonspunktet
+Kom i gang med utvikling
+Kom i gang med testing
+Demoer
+Demonstrasjon av avtalt meldingsutveksling
+Demonstrasjon av automatisk oppgradering (Kosmos)

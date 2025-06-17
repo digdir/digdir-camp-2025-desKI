@@ -1,0 +1,52 @@
+
+title: "id_token from ID-porten"
+description: "This page documents the id_tokens issued by ID-porten ID-porten OIDC Provider"
+summary: 'his page documents the id_tokens issued by ID-porten ID-porten OIDC Provider'
+sidebar: oidc
+product: ID-porten
+redirect_from: /oidc_protocol_id_token
+
+Request
+To request an id_token, use the /token endpoint.
+The id_token
+The id_token is the assertion of the authenticated user identity.  It tells you "who the user is", but not "what the user can access".  The id_token is meant to be consumed and validated by the client, to build a local session at the client.  It is not intended to be passed around to enable API access towards other parties/systems.
+The id_token is a JWT structure, as documented in OIDC Core, 3.1.6.  The client MUST validate the id_token according to OIDC Core, 3.1.7.  
+In addition, the client MUST validate that the security level () is sufficiently high for the given service.
+Example:
+
+
+
+id_token header claims
+| claim | verdi |
+| --- | --- |
+| kid | "Key identifier" - unique identifier for the key and certificate used by ID-porten. The public key and the certificate must be fetched from our .well-known endpoint. |
+| alg | "algorithm" - algorithm used for signing the token. ID-porten only supports  (RSA-SHA256) |
+id_token body claims
+| claim | value |
+| --- | --- |
+| sub | "subject identifier" - an unique identifier for the authenticated user.  The value is pairwise, meaning a given client will always get the same value, whilst different clients do not get equal values for the same user.  |
+| aud | "audience" - The client_id of the client receiving this id_token  |
+| acr | "Authentication Context Class Reference" - The security level of assurance for the authentication. Possible values are  (i.e.  MinID was used) or  (other eIDs). The level must be validated by the client. |
+| auth_time | Timestamp indicating when the authentication was performed.  |
+| amr | "Authentication Method References" - Method of authentication. Possible values can be seen below.  The available values may change over time, so the client should not validate this value. |
+| iss | The identifier of ID-porten as can be verified on the .well-known endpoint|
+| pid | "Personidentifikator" - the Norwegian national ID number (fødselsnummer/d-nummer) of the autenticated end user.   This claim is not included if  scope was requested or pre-registered on the client. |
+| exp | Expire - Timestamp when this token should not be trusted any more.  |
+| iat | Timestamp when this token was issued.  |
+| jti | jwt id - unique identifer for a given token  |
+| locale | The language selected by the user during the authentication in ID-porten |
+| sid | session id - an unique identifier for end user session at ID-porten. May be needed when performing logout |
+|at_hash| A hash of the access_token issued together with this id_token. The client may use this value to protect against access_token injections when using by-reference access tokens. |
+AMR values
+Authentication method can have the following values:
+| value| Description|
+|-|-|
+| | MinID using PIN-codes from letter|
+| | MinID using one-time-code received via SMS|
+| | MinID using notification in the MinID-app on android/iOS |
+|    | BankID using code generator or app|
+| | BankID on mobile |
+|      | Buypass |
+| | Commfides using smartcard |
+|  | A European approved eID through the eIDAS network|
+| |  An eID for testing purposes. NOT USED IN PRODUCTION.  |

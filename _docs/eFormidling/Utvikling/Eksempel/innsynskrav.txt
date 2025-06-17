@@ -1,0 +1,25 @@
+
+title: Eksempel på innsynskrav fra eInnsyn
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden viser et eksempel på innsynskrav fra eInnsyn.
+
+TOC
+{:toc}
+
+Motta meldinger
+Sjekk innkommende meldinger
+
+Last ned melding
+
+Slett melding
+
+Neste steg
+
+Funksjonell beskrivelse av Innsynskrav fra eInnsyn
+Dokumenttypen Innsynskrav
+Grensesnittet eFormidling 2
+Flere Eksempler

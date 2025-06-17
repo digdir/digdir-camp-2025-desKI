@@ -1,0 +1,14 @@
+
+title: Eksempel på informasjon til innbygger
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden viser et eksempel på informasjon til innbygger.
+Tilsvarer Eksempel på vedtak til innbygger dersom en oppgir prosessen
+ istedenfor .
+Neste steg
+
+Funksjonell beskrivelse av Informasjon til innbygger
+Flere Eksempler

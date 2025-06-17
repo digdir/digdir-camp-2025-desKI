@@ -1,0 +1,17 @@
+
+title: Hvordan komme i gang
+description: 
+summary: ""
+sidebar: krr_dotnet
+product: KRR
+redirect_from: /krr_hvordan_komme_i_gang
+
+Klienten er tilgjengelig som en NuGet-pakke. Denne vil oppdateres jevnlig etter hvert som ny funksjonalitet legges til.
+For å installere NuGet-pakken, gjør følgende:
+
+Velg TOOLS -> NuGet Package Manager -> Manage Nuget Packages for Solution...
+Søk etter oppslagstjeneste.
+Ønsker du pre-release, må du sørge for at det står Include Prerelease i drop-down menyen rett over søkeresuløtatene (der det står Stable Only).
+
+
+Velg oppslagstjeneste og trykk Install.

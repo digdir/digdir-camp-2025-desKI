@@ -1,0 +1,47 @@
+
+title: Tillitsrammeverk
+description: Tillitsrammeverk
+sidebar: lommebok
+product: lommebok
+redirect_from: /lommebok_tillitsrammeverk
+
+I sandkassen vil Digdir forvalte den nasjonale tillitslista, som vil innehalde kva aktørar som er godkjent som:
+- PID-utstedere
+- Lommebok-operatørar
+- Kvalifiserte utstedere (QEAA)
+- Offentlige utstedere (Pub-EAA)
+- Brukerstadsertifikat-utstedere
+
+
+graph
+
+subgraph AK [Tillitsliste]
+  TLI[(Register over utstedere)]
+  TLW[(Register over lommbøker)]
+  TLRP[(Register over brukerstads-registrarer)]
+end
+
+  DRPR[(Digdir brukerstad-register)]
+  RPR[(Andre brukerstad-registre)]
+
+TLRP --> DRPR
+TLRP --> RPR
+
+
+Tillitsrammeverket i sandskassen
+
+
+
+Det er verd å merke seg at sjølve brukarstadene (relying parties) ikkje havnar på den sentrale tillitslista, men at det istaden er ein to-nivå struktur: den sentrale tillistlista peikar berre på ein PKI forvalta av godkjente brukerstadsertifikatutstedere. Det kan gjerne vere fleire slike sertifikat-utstedere i eit land. Eit brukarstad må ta kontakt med ein Registrar for å skaffe eit brukarstadssertifikat (Relying Party Access Certificate). Normalt vil Registrar og sertifikat-utsteder vere same organisasjon. 
+I sandkassen vil Digdir tilby ein slik brukarstadsertifikat-utsteder. 
+Teknisk skildring
+Teknisk er tilliten mellom aktørane i lommebok-økosystemet primært basert på PKI, dvs. X.509-sertifikat som skal oppfylle visse eigenskapar og kvaliteter.  
+Hovedaktørane må ha sine signeringssertifikat publisert på ei tillitsliste, sjå figuren øverst i ARF 3.1 samt nærare skildring i ARF kap 3.5.
+Tillitslista er basert på ETSI-standarden 102 231 og er i praksis ei XML-fil som lister opp aktørane og deira signeringssertifikat. 
+For døme på ei ekte produksjons-tillistliste kan du sjå på den norske tillistlista for tilbydarar av kvalifiserte tillitstenester.
+I den endelege produksjonsøkosystemet hjå EU er det berre medlemslanda som har tilgang til og ansvaret for å publisere desse sertifikata på EU si tillitsliste. 
+Praksis
+Ta kontakt med Digdir for å få eit brukarstad-sertifikat.  
+Bruk gjerne innsynstjenesten for å studere kven so er aktørar i sandkassen.
+Digdir 
+Dersom sertifikatet ikkje er lagt inn i tillitslista, skal forsøkt på samhandling verte avvist.  til utstedere, lommebok-leverandørar eller brukarstads-registrarer. 

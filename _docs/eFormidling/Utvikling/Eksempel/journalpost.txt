@@ -1,0 +1,29 @@
+
+title: Eksempel på journalpost til eInnsyn
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden viser et eksempel på journalpost til eInnsyn.
+
+TOC
+{:toc}
+
+Sende meldinger
+Opprett standard business document (SBD) for meldingen
+
+Legg ved filen journalpost.json
+
+Send meldingen fra integrasjonspunktet
+
+Følg med på status for meldingen
+
+Motta og slett kvittering
+
+Neste steg
+
+Funksjonell beskrivelse av Journalpost til eInnsyn
+Dokumenttypen Publisering
+Grensesnittet eFormidling 2
+Flere Eksempler

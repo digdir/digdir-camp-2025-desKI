@@ -1,0 +1,162 @@
+
+title: "Dokumenttype: Print"
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttypen  består av et standard business document (SBD) og et eller flere dokument.
+Dokumenttypen har identifikatoren .
+
+TOC
+{:toc}
+
+Standard business document
+Alle dokumenttyper i eFormidling følger standarden  for adresseringsinformasjon.  består av en header ()
+og en forretningsmelding som brukes for dokumenttype-spesifikk adresseringsinformasjon.
+eFormidlings bruk av standarden  er beskrevet på Standard business document.
+Dokumenttypen  adresseres fra avsenders organisasjonsnummer til mottakers fødselsnummer. Dersom mottakers
+fødselsnummer er ukjent kan dette utelates. I slike tilfeller er det påkrevd å eksplisitt oppgi mottakers postadresse, fordi
+eFormidling ellers ikke har nok opplysninger til å gjøre adresseoppslag. En kan dermed bruke  til å sende fysisk post
+til utenlandske innbyggere og virksomheter.
+Forretningsmeldingen
+Forretningsmeldingen  er beskrevet under.
+
+ (påkrevd)
+Definerer hvilket vedlagt dokument som er hoveddokumentet.
+| Lovlige verdier                 | String        |
+| Standard verdi                  | Ingen         |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (frivillig)
+Brukt for å identifisere en ansvarlig enhet innen for en virksomhet. Ved behov for avsenderidentifikator må dette
+bestilles fra Digdir.
+| Lovlige verdier                 | String        |
+| Standard verdi                  | Ingen         |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (frivillig)
+Betegnelse for hva slags print og utskriftstype som skal velges for dette brevet.
+| Lovlige verdier                 |  eller  |
+| Standard verdi                  |                |
+| Konfigurasjon av standard verdi | Ikke støttet              |
+ (frivillig)
+A-post eller B-post.
+| Lovlige verdier                 |  eller  |
+| Standard verdi                  |                       |
+| Konfigurasjon av standard verdi | Ikke støttet                      |
+ (frivillig)
+Definerer hvordan fysisk post som ikke blir levert til mottaker skal håndteres.
+| Lovlige verdier                 |  eller  |
+| Standard verdi                  |                                 |
+| Konfigurasjon av standard verdi | Ikke støttet                                   |
+ (frivillig)
+Navn for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 1 for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 2 for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 3 for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 4 for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Postnummer for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Poststed for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Land for mottaker av eventuell returpost.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Enhetsregisteret |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Navn for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 1 for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 2 for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 3 for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Adresselinje 4 for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Postnummer for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Poststed for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+ (frivillig)
+Land for mottaker.
+| Lovlige verdier                 | String                      |
+| Standard verdi                  | Hentes fra Folkeregisteret  |
+| Konfigurasjon av standard verdi | Ikke støttet                |
+
+| print.mottaker.navn                | Nei     | Navn for mottaker.                                                                | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.adresselinje1       | Nei     | Adresselinje 1 for mottaker.                                                      | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.adresselinje2       | Nei     | Adresselinje 2 for mottaker.                                                      | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.adresselinje3       | Nei     | Adresselinje 3 for mottaker.                                                      | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.adresselinje4       | Nei     | Adresselinje 4 for mottaker.                                                      | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.postnummer          | Nei     | Postnummer for mottaker.                                                          | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.poststed            | Nei     | Poststed for mottaker.                                                            | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+| print.mottaker.land                | Nei     | Land for mottaker.                                                                | String                                         | Hentes fra Folkeregisteret  | Ikke støttet |
+Et eller flere dokument
+Hvilke typer dokument som støttes avhenger av mottakeren og er ikke kjent på forhånd. Dette medfører at forsøk på å
+sende dokumenter som ikke støttes av mottakeren feiler først ved mottak.
+Filformat som støttes er PDF. Nærmere beskrivelse finnes på:
+
+Utskrifts- og forsendelsestjenesten (ekstern lenke)
+
+Beriking og transformasjon
+Integrasjonspunktet transformerer og beriker meldinger som sendes med Digital Post til Innbyggere.
+
+Transformasjon fra print til Digital Post til Innbyggere
+
+Anbefalinger ved adressering
+For å redusere risikoen for at brevpost ikke skal nå mottaker, har Posten kommet med gode anbefalinger på hvordan man skal adressere riktig, både til mottakere i Norge og i utlandet. Det anbefales at alle avsendervirksomheter følger disse. Les mer på Posten adressering (ekstern lenke)
+Viktige merknader om FEIL-status på utskriftsmeldinger:
+Selv om en utskriftsmelding har fått status LEVERT kan den allikevel feile på et senere tidspunkt. Det kan skje i følgende tilfeller:
+Meldingen feiler under selve utskriftsjobben. Dette vil normalt sett skje innen 24 timer etter at meldingen har fått status LEVERT. Vær oppmerksom på at utskriftstjenesten ikke kjører på helgedager og helligdager! Det kan derfor ta mer enn 24 timer for en melding å feile i dette scenariet. 
+Meldingen feiler som følge av returpost, dvs. at den ikke kan leveres til innbyggers fysiske postadresse. En FEIL-status grunnet returpost vil i de aller fleste tilfeller returneres innen en periode på to uker. I sjeldnere tilfeller kan det ta opp mot fire uker for et brev å gå i retur. Merk at det kun er meldinger med print.retur.returhaandtering satt til MAKULERING_MED_MELDING som vil motta FEIL-status på returpost.
+Avsendere må kunne håndtere at en melding kan feile i etterkant av status LEVERT, og det anbefales derfor å sjekke status en periode etter at den er markert som LEVERT.
+Tips: for å hente ut mer detaljer om hvorfor en melding har feilet, kan man dekode raw receipten som følger med statusmeldingen. Se Hente raw receipt
+Neste steg
+
+Dokumenttype  under Eksempel på vedtak til innbygger

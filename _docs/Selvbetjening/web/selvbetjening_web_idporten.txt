@@ -1,0 +1,59 @@
+
+title: Selvbetjening av ID-porten via Samarbeidsportalen
+description:  Selvbetjening av ID-porten via Samarbeidsportalen
+sidebar: selvbetjening_sidebar
+product: Selvbetjening
+redirect_from: /selvbetjening_web_idporten
+
+Dette dokumentet viser hvordan du kan selvbetjene KRR via Samarbeidsportalen.
+
+
+TOC
+{:toc}
+
+Selvbetjening av ID-porten
+Innnlogging (Integrasjoner)
+For å komme til administrasjonsgrensesnittet for integrasjoner/klienter, gjør følgende:
+
+Logg inn på samarbeidsportalen.
+Trykk på "Virksomhetens tjenester" i venstremenyen.
+Trykk på "Administrasjon av tjenester" i venstremenyen.
+Velg "Integrasjoner" i det miljøet du vil opprette selvbetjene i.
+
+Opprette klient i ID-porten
+
+Fullfør stegene i "Innlogging"
+Trykk på "Ny integrasjon".
+Velg "ID-porten" på "Difi-tjeneste".
+Fullfør registreringen.
+Trykk "Opprett" for å lagre.
+
+Videotutorial: (https://vimeo.com/427689834)
+
+Slette klient
+
+Fullfør stegene i "Innlogging"
+Trykk på klienten du skal slette.
+Trykk på "Endre".
+Trykk på "Deaktiver" og bekreft.
+
+Videotutorial: (https://vimeo.com/427689782)
+
+Vedlikehald av merkantile data
+Vedlikehold av varslingspunkter er viktig for at vi hele tiden skal ha oppdatert informasjon om dette. Varslingspunkt(er) får eposter ved kritiske hendelser i løsningen og om det ikke er registrert noe her, så kan man gå glipp av viktig informasjon.
+I tillegg trenger vi fakturainformasjon i tilfelle tjenesteeieren overstiger 200 000 innlogginger og skal faktureres.
+For å administrere merkantile data:
+
+Logg inn på Samarbeidsportalen
+Trykk på "Virksomhetens tjenester" i venstremenyen
+Finn klienten i listen og trykk på den.
+Trykk på "Rediger integrasjon"
+Legg inn informasjon og trykk "Lagre" når du er ferdig.
+
+Videotutorial: (https://vimeo.com/397388041)
+
+Ofte stillte spørsmål
+"Ny integrasjon" er grået ut i produksjonsmiljøet.
+For å administrere i produksjonsmiljøet, så må man logge inn med ID-porten. Dette forutsetter at vi har lagt inn personnummeret ditt på forhånd. Om "Ny integrasjon" fortsatt er grået ut etter innlogging med ID-porten. Kontakt servicedesk@digdir.no
+Jeg ser integrasjonene til en annen virksomhet enn det jeg forventer.
+Tilgang til Samarbeidsportalen og selvbetjeningsløsningen gis på bakgrunn av epost-domenet ditt, som igjen er koblet til en virksomhet på vår side.  For store virksomheter og selskap, så kan det være at det gjenbrukes epost-domene på tvers av flere virksomheter. Ta kontakt med servicedesk@digdir.no.

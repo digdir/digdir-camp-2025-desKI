@@ -1,0 +1,14 @@
+
+title: Bruk ID-porten for innlogging til webtjenester
+description:
+summary:
+sidebar: main_sidebar
+product: ID-porten
+redirect_from: /idporten_bruksomrader_index
+
+ID-porten støtter følgende tjenester:
+
+Innlogging til web-tjeneste (OpenID Connect/Oauth2- og SAML2-protokollen)
+Innlogging til mobil-app (OpenID Connect/Oauth2-protkollen)
+Innlogging til single-page applikasjon (OpenID Connect/Oauth2-protkollen)
+API-sikring (OpenID Connect/Oauth2-protkollen)
