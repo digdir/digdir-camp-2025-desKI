@@ -8,6 +8,17 @@
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
-  "extensions": ["ms-python.python"],
-  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt"
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  },
+  "postCreateCommand": "./.devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt",
+
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=chroma_data,target=/app/chroma_data,type=volume"
+  ]
 }

@@ -1,10 +1,11 @@
-version: "3.9"
+
 
 services:
   backend:
     build:
       context: ../../.. 
       dockerfile: .devcontainer/Dockerfile
+    command: ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
     container_name: chatbot-api
     volumes:
       - ../../../:/app  # Mount prosjektroten
@@ -13,7 +14,6 @@ services:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     networks:
       - dev
 
