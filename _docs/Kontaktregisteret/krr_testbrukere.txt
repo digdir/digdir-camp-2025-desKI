@@ -1,0 +1,57 @@
+
+title: KRR testbrukere
+description: KRR testbrukere
+summary:
+toc: false
+sidebar: krr_sidebar
+product: KRR
+redirect_from: /krr_testbrukere
+Utfasing av "vanlig" fødselsnummer
+Som et ledd i å bedre informasjonssikkerhet og personvern, så faser Digdir ut bruk av fødselsnummer som følger vanlig syntaks. Vi oppfordrer alle om å gå over til syntetiske fødselsnummer i testing.
+Hva mener vi med syntetisk testbruker?
+Syntetiske testbrukere har en personidentifikator der man som hovedregel har plusset på 80 på fødselsmåneden og kontrollsifferene er regnet ut i fra det.
+Registrer/opprett testbruker i KRR
+MinID testbrukar
+Ved å opprette MinID bruker,vil brukeren samtidig bli registrert i Kontakt- og reservasjonsregisteret (KRR).
+Framgangsmåte:
+
+- Logg inn og hent fødselsnummer på aktuell Tenor testbruker i Tenor testdatasøk.
+- Registrer testbruker i KRR ved å følge oppskriften Opprette testbruker (syntetisk PID) selv i testmiljøet TEST.
+- sjekke om testbruker er registrert i KRR gjennom tjenesten MinProfil i testmiljøet. Du kan logge inn med både TestID og MinID.  
+Testbrukar utanfor Tenor testdatabase
+Ønsker du en testbruker som ikke finnes i Tenor, kan du f.eks bruke tjenesten til Norske testdata (Ekstern tjeneste). 
+Merk! For at disse skal kunne benyttes i ID-porten og KRR, må disse opprettes med +80 i månedsfeltet i fødselsnummeret. 
+Endre kontaktinformasjon på syntetisk testbruker i KRR
+Det er mulig å endre kontaktinformasjon på syntetiske testbrukere ved å logge inn på MinProfil.
+For å endre kontaktinformasjon på syntetiske brukere, velg TestID som innloggingsmetode.
+
+{% include note.html content=" Dersom du legger inn egen kontaktinformasjon på en testbruker, kan du risikere å motta varslinger fra virksomheter som benytter KRR i testmiljøet." %}
+
+KRR testbrukere med ulike attributter i test-Folkeregisteret.
+Vi har et sett med "statiske" brukere. Disse testbrukerene finner du nå i Tenor testdatasøk og er testbrukere med syntetiske fødselsnummer (+80 i mnd). Testbrukerene innehar følgende attributter fra KRR som tilbakestilles hver dag:
+
+Med mobil, e-post og digital postkasse
+Med mobil og e-post
+Kun mobil
+Kun e-post
+Slettet fra KRR
+Utgått på 18mnd regel
+
+Merk! Postkasse må testes ved andre tester/testbrukere.
+Massebestilling av testbrukere i KRR
+Det er mulig å massebestille registrering av Tenor-testbrukere (+80) i KRR for bruk i testmiljø. 
+For å bestille, send en e-post til servicedesk@digdir.no med en CSV-fil som inneholder informasjon om brukerne.
+Format og krav til innhold
+
+Det må være én linje per testbruker.
+Alle feltene må fylles ut.
+Hvis du ikke har behov for reell e-postadresse eller mobilnummer, kan du bruke eksemplene under.
+
+
+Rutine for SMS utsending i testmiljøet
+Bruk av fiktive mobilnummer
+Ein må bruke følgjande fiktive nummerserie: 68050000 - 68059999. Nummer frå denne serien sikrar ein at ingen reelle personar mottek SMS-ar under testing. 
+Bruk av reelle mobilnummer
+For å unngå uønska SMS-ar frå testmiljøet, er det oppretta ei kviteliste. Nummer som skal motta test-SMS må meldast inn til servicedesk@digdir.no for å bli lagt til.
+
+{% include note.html content=" Om ein brukar SMS til å logge seg inn på testbrukarar vil ikkje dette vere mogleg med mindre ein blir lagt til i kvitelista." %}

@@ -1,0 +1,195 @@
+
+title: Integrasjonsguide - Autentisering i ID-porten over OpenID Connect
+description: Integrasjonsguide - Autentisering i ID-porten over OpenID Connect
+sidebar: oidc
+product: ID-porten
+redirect_from: /oidc_guide_idporten
+
+ID-porten tilbyr funksjonalitet for autentisering av sluttbrukere basert på autorisasjonskode-flyten, slik den er spesifisert i OpenID Connect Core 1.0 spesifikasjonen.
+Dette er den foretrukne flyten for de aller fleste tjenester som skal bruke ID-porten som autentiseringstjeneste. Det kan finnes unntak, som for eksempel mobilapp'er eller javascript-applikasjoner, som vil ha en litt annen måte å bruke denne flyten på.
+Overordna beskrivelse av bruksområdet
+ID-porten tilbyr autentisering av brukere til sluttbrukertjenester. Autentiseringen blir utført av en OpenID Connect provider som utsteder ID-token til den aktuelle tjenesten.
+
+graph LR
+  end_user(Sluttbruker)
+  OP(ID-porten)
+  RP(Nett-tjeneste)
+  end_user -. autentiserer seg hos .-> OP
+  OP -. utsteder id_token .-> RP
+  end_user -. logger inn i  .-> RP
+
+Følgende aktører inngår:
+| Aktør | Beskrivelse | Begrep OIDC |
+| -|-|-|
+| Sluttbruker | Ønsker å logge inn til en offentlig tjeneste | End User |
+| Nett-tjeneste | Sluttbruker-tjeneste tilbudt av en offentlig etat | Relying Party (RP) / Client (=klient) |
+| ID-porten | ID-porten sin autentiseringstjeneste som usteder ID-Token til aktuelle tjenesten| OpenID Provider (OP) |
+Beskrivelse av autorisasjonskode-flyten
+
+sequenceDiagram
+  Sluttbruker ->> Relying Party: Klikker login-knapp
+  Relying Party ->> Sluttbruker: Redirect med autentiseringsforespørsel
+  Sluttbruker ->> OpenID Provider: følg redirect...
+  note over Sluttbruker,OpenID Provider: Sluttbruker autentiserer seg (og evt. samtykker til forespurte scopes)
+  OpenID Provider ->> Sluttbruker: Redirect med autorisasjonscode
+  Sluttbruker ->> Relying Party: følg redirect...
+  Relying Party ->> OpenID Provider: forespørre token (/token)
+  OpenID Provider ->> Relying Party: id_token (evt. flere tokens)
+  note over Sluttbruker,Relying Party: Innlogget i tjenesten
+
+
+Flyten starter med at en sluttbruker prøver å aksessere en gitt tjeneste ( Relying Party )
+Tjenesten krever innlogging og en redirect url til OpenID Connect provideren blir generert og returnert til sluttbrukeren. Denne redirecten representerer en autentiseringsforespørsel, og har parametere som identifiserer den aktuelle tjenesten for provideren.
+Sluttbrukers browser kommer til autorisasjonsendepunktet hos provideren hvor forespørselen blir validert (f.eks. gyldig tjeneste og gyldig redirect_uri tilbake til tjenesten).
+Brukeren gjennomfører innlogging i provideren
+Provideren redirect'er brukeren tilbake til tjenestens forhåndsregistrere redirect url med en autorisasjonskode.
+Tjenesten bruker den mottatte autorisasjonskoden til å gjøre et direkteoppslag mot providerens token-endepunkt. Tjenesten må autentisere seg mot token-endepunktet, såkalt klient-autentisering (enten med client_secret eller en signert forespørsel)
+Dersom klient-autentiseringen var velykket, valideres den mottatte autorisasjonskoden og et ID-token blir returnert til tjenesten.
+Tjenesten omsetter normalt ID-tokenet til en egen, lokal sesjon.
+Brukeren er nå autentisert for tjenesten og ønsket handling kan utføres
+
+Merk: OpenID Connect bygger på OAuth2, og denne flyten er derfinert i OAuth2-spesifikasjonen. Siden autentisering ikke er et begrep i OAuth2 vil en ofte se at begrepet autorisasjon blir brukt selv om man egentlig snakker om autentisering
+Sesjonshåndtering
+Merk: Kunde og ID-porten holder egne sesjoner mot sluttbruker som ikke er avhengig av hverandre. Men Digitaliseringsdirektoratet anbefaler at kundene bruker samme sesjonstider som ID-porten.
+Levetid for SSO-sesjonen i ID-porten
+I ID-porten måles maksimum sesjonstid for en brukers SSO-sesjon og denne settes til 120 minutter fra første autentisering.
+Ved inaktivitet over 30 minutter, vil SSO-sesjonen utløpe.  Inaktivet måles som tiden mellom to autentiseringsforespørsler mot ID-porten.
+Merk at ved passivt utløp av sesjon så vil det ikke bli sendt noen kall til kundens tjeneste.
+Merk: id_tokenet returnert fra ID-porten vil inneholde en "expire (exp)" verdi. Denne verdien angir kun levetid for selve tokenet, dvs. en klient skal ikke akseptere et id_token etter at det utløpt. Denne verdien er ikke koblet mot den SSO-sesjonen hos ID-porten og gir ingen indikasjon på levetid på denne.
+Levetid for kundens lokale sesjon
+I en føderasjon skal medlemmene konfigurere systemene slik at sesjoner utløper ved inaktivitet etter høyst 30 minutter.
+Det er valgfritt om timeout-perioden nullstilles hver gang brukerens nettleser forespør en av kundens tjeneste, eller om den er uavhengig av brukeraktivitet (fast timeout periode).
+Etter lokal timeout hos en kunde, skal brukerens nettleser ved neste http-forespørsel sendes over til ID-porten med en autentiseringsforespørsel.
+Det må bemerkes at lokal timeout hos en kunde ikke nødvendigvis medfører at brukeren blir tvunget til å logge på ID-porten. Hvis brukeren har en aktiv SSO-sesjon hos ID-porten, kan denne svare på forespørselen fra kunde uten brukerdialog (dvs. foreta single sign-on). Brukeren vil dermed ikke oppdage at sesjonen blir fornyet (bortsett fra at hans nettleser muligens ”blinker” et kort øyeblikk).
+Tvungen re-autentisering
+Hvis en tjenesteleverandør av sikkerhetsmessige grunner vil sikre seg at brukeren blir tvunget til aktiv pålogging i ID-porten, kan man sette parameteren prompt=login i autentiseringsforespørselen til ID-porten.  
+Det er også mulig å konfigurere tjenesten sin slik at den ikke deltar i felles SSO-sesjon (se Isolert SSO-sesjon).
+Krav til utlogging
+ID-porten tilbyr single signon-funksjonalitet (SSO) mellom alle integrerte tjenester.  Derfor må alle tjenester også implementere støtte for single logout (SLO).
+En feilkonfigurert logout-håndtering hos én kunde kan ødelegge for utlogging hos andre kunder, og gjøre innbygger sårbar for angrep.
+Klienten må håndtere to forskjellige utloggings-scenarier:
+
+
+Brukeren logger ut fra din tjeneste:  Du må redirecte brukeren til /endsession-endepunktet til ID-porten.  ID-porten sørger for å logge brukeren ut av alle andre tjenester, og redirecter til slutt brukeren tilbake til deg.
+
+
+Brukeren logger ut fra annen tjeneste: Du vil motta en front_channel_logout-melding med en sesjonsidentifikator  som du tidligere har mottatt i id_token. Basert på denne må du finne lokal brukersesjon og invalidere denne.
+
+
+Se full dokumentasjon om utlogging her.
+1: Autentiseringsforespørsel til autorisasjons-endepunktet
+Tjenesten/klienten sender en autentiseringsforespørsel ved å redirecte sluttbrukeren til autorisasjonsendepunktet.
+Se detaljert dokumentasjon for autorisasjonsendepunktet for valgmuligheter.
+Klienten må være forhåndsregistrert i ID-porten, se klient-registrering.
+Eksempel på forespørsel
+```
+GET https://login.idporten.no/authorize?
+client_id=min_tjeneste&
+  redirect_uri=https%3A%2F%2Fmin.tjeneste.no%2Flogin_callback&
+scope=openid+profile&
+  acr_values=idporten-loa-substantial&
+  response_type=code&
+  ui_locales=nb&
+state=sV-423vokts9_CZdO9KZSV9xb35mlgzj_7BPTt-_khQ&
+  nonce=S6tRrJ3tWsilRZl7hqySoORosHDDq4l6du3dxDhXoWc&
+  code_challenge=HC9NRzz4QUaVMvl2TUYrWg_L54PBleKON4hapcIOydk
+  code_challenge_method=S256&
+```
+Alle tjenester må bruke PKCE, og blir sterkt anbefalt å bruke state og nonce i kallet.
+For tjenester med høye krav til sikkerhet bør en i tillegg vurdere å bruke PAR til å første POSTe autentiseringsparametrene direkte til ID-porten før en redirecter, slik at disse parametrene ikke blir eksponert for manipulasjon av brukers browser.
+2: Bruker autentiserer seg
+Bruker vil så autentisere seg mot ID-porten.  ID-portens språk prioriteres slik:
+
+Bokmål er standardspråk dersom ingenting er oppgitt
+Dersom klient har oppgitt , så vil dette språket bli brukt
+Dersom cookien IDPORTEN_SELECTED_LANGUAGE-cookien er satt, vil dette overstyre andre valg. Cookien blir satt kun for brukere som aktiv endrer språk i ID-portens GUI.
+
+3: Redirect tilbake til tjenesten
+Etter at brukeren har logget inn vil det sendes en redirect tilbake til klienten til den forhåndsregistrerte .  Redirecten vil vil inneholde et autorisasjonskode-parameter  som  brukes til oppslag for å hente tokens.  Koden er base64-enkoda og URL-safe.
+Eksempel på respons: {#authresponse}
+
+I testmiljø tillater vi redirect tilbake til localhost.
+4: Utstedelse av token fra token-endepunktet
+Token-endepunktet brukes for utstedelse av tokens.
+Bruk av endepunktet varierer litt med hvilken klient-autentiseringsmetode som benyttes. Følgende autentiseringsmetoder fra OIDC kap. 9 støttes:
+
+client_secret_basic / client_secret_post - Klientautentisering basert på client_secret
+private_key_jwt - Klientautentisering basert på JWT'er signert med virksomhetssertifikater
+
+Sistnevnte metode er anbefalt for klienter med høye krav til sikkerhet.
+Eksempel på forespørsel:
+```
+POST /token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic bWluX3RqZW5lc3RlOnBhc3N3b3Jk
+grant_type=authorization_code&
+  redirect_uri=https%3A%2F%2Fmin.tjeneste.no%2Flogin_callback&
+  code=1JzjKYcPh4MIPP9YWxRfL-IivWblfKdiRLJkZtJFMT0%3D&
+  code_verifier=gEVARFlOi5LNYfVGSMHvhZCXoG_TPzdmXQQGqzKJkz0
+```
+Se detaljert dokumentasjon for token-endepunktet for alle valgmuligheter.  
+Dersom forespørselen blir validert som gyldig, vil det returneres et eller flere token:
+
+id_token: Autentiseringsbevis,  "hvem brukeren er"
+access_token: Tilgangs-token, forteller "hva brukeren kan få tilgang til"
+refresh_token: Brukes av klienten til å fornye access_token uten brukerinteraksjon (så lenge som autorisasjonen er gyldig)
+
+
+id_token
+id_tokenet inneholder identiteten til den autentiserte brukeren - det forteller det hvem brukeren er, men ikke hvilke tilganger brukeren har.
+Normal bruker tjenesten id_tokenet kun til å opprette en egen, lokal sesjon.  Id_tokenet har derfor en ganske kort gyldighetsperiode.
+Eksempel:
+
+Korrekt validering av id_token av klienten er kritisk for sikkerheten i løsningen. Det er spesielt viktig å validere at faktisk brukt sikkerhetsnivå  er ihenhold til forespurt nivå.
+Tjenesteleverandører som tar i bruk tjenesten må utføre validering i henhold til kapittel 3.1.3.7 - ID Token Validation i OpenID Connect Core 1.0 spesifikasjonen.
+Klikk her for full dokumentasjon av id_token i ID-porten.
+access_token
+Access_tokenet (tilgangstoken) gir klienten tilgang til APIer hos tredjepart på vegne av den autentiserte brukeren.  
+Levetiden på aksess_tokenet er som oftest relativt kort (typisk 120 sekunder). Dersom tokenet er utløpt, kan klienten forespørre nytt acess_token ved å bruke refresh_tokenet. Det gjennomføres da en klient-autentisering, for å sikre at tokens ikke blir utlevert til feil part.
+Levetider kan også tilpasses per klient. Men merk at dette kan overstyres av API-tilbyder alt etter hvilke oauth2 scopes som er i tokenet. 
+Det er viktig å være klar over at access_token+refresh_token er uavhengig av innlogginga og tilhørende SSO-sesjon i ID-porten.  Selv om brukeren gjennomfører en utlogging, eller sso-sesjonen timer ut, så vil normalt autorisasjonen med tilhørende access_token og refresh_token være gyldige fram til deres levetider utløper.   
+Merk tilslutt at en enkelt bruker bare kan ha en autorisasjon mot samme klient i gangen.  Dersom klienten har en gyldig autorisasjon med gitt scopes, og så utfører en ny autorisasjon med andre scopes, så vil nye access_token bare innehold scopene fra den nyeste autorisasjonen.  ID-porten "husker" altså ikke samtykkede scopes over flere autorisasjoner. 
+Klikk her for full dokumentasjon av access_token-formatet til ID-porten.
+5: Userinfo-endepunkt
+Ved å forespørre scopet profile vil klienttjenesten sammen med id tokenet også få utstedt et access_token (og evnt. refresh_token) som kan benyttes mot providerens userinfo-endepunkt.
+Dette endepunktet kan i henhold til standarden benyttes for å hente ytterligere data om brukeren enn det som blir eksponert via ID tokenet. Da ID-porten generelt har lite data om sluttbrukeren har dette endepunktet begrenset verdi i de fleste tilfeller. Personnummer og valgt språk under innlogging er de
+dataene som vil bli eksponert her.
+```
+GET https://<>/idporten-oidc-provider/userinfo
+Authorization: Bearer eyJA...
+Respons:
+{
+  "sub" : "NR8vTTPrM3T7rWf8dXxeWLZpxEMsug4E7pxqJuh9wIM=",
+  "pid" : "23079421936",
+  "locale" : "nb"
+}
+```
+6: Kontaktopplysninger fra Kontakt- og Reservasjonsregisteret
+Kontakt-opplysninger knyttet til innlogget bruker, er tilgjengelig på et eget endepunkt dersom access_token inneholder -scopet.
+Om OpenID Connect
+OpenID Connect er en protokoll for autentisering basert på OAuth2. Se http://openid.net/connect/faq/ for mer informasjon.
+De implementerte tjenestene bygger på (deler av) følgende standarder og spesifikasjoner:
+
+OpenID Connect Core 1.0 - http://openid.net/specs/openid-connect-core-1_0.html
+
+OpenID Connect Discovery
+http://openid.net/specs/openid-connect-discovery-1_0.html
+
+
+OpenID Connect Session Management
+http://openid.net/specs/openid-connect-session-1_0.html
+
+OpenID Connect Front-Channel Logout
+http://openid.net/specs/openid-connect-frontchannel-1_0.html
+OAuth 2.0 Form Post Response Mode
+http://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html
+OAuth 2.0 Token Introspection
+https://tools.ietf.org/html/rfc7662
+
+Proof Key for Code Exchange by OAuth Public Clients
+https://tools.ietf.org/html/rfc7636
+
+
+IETF RFC6749 The OAuth 2.0 Authorization Framework - https://tools.ietf.org/html/rfc6749
+
+IETF RFC7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants - https://tools.ietf.org/html/rfc7523

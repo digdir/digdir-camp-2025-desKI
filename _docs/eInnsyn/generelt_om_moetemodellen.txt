@@ -1,0 +1,21 @@
+
+title: Generelt om møtemodellen
+description:
+summary:
+sidebar: einnsyn_sidebar
+redirect_from: /einnsyn_generelt_om_moetemodellen
+
+Generelt om møtemodellen
+Møtedatamodellen bygger på slik den er i Noark 5. Denne modellen er veldig forenkla i forhold til tidlegare Noark-versjonar, og bygger på nokre
+klassar som arvar registrering- og mappe-klassane i den generelle Noarkmodellen.
+Det er gjort ei generell tilpassing.  Typen møteregistrering er delt opp i møtedokumentregistrering og møtesaksregistrering. Møtedokumentregistrering er
+typisk forekomstar av innkallingar, protokollar osv. Medan møteasaksregistrering er sjølve saksframlegga
+
+Bruk av modellen
+
+Prioritering av møter ved sending
+(OBS! Egen inn-kø for møter vil opphøre 1.januar 2024)
+I mottak på eInnsyn er det oppretta ein eigen inn-kø for møter. Dette er for å øke gjennomstrømning av for møteavlevering.
+For å ta i bruk denne så må ein ved sending over integrasjonspunktet endre prosesstype til meeting, der det i dag er journalpost.
+
+Verdiar og felt ligg her

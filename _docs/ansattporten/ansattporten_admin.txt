@@ -1,0 +1,10 @@
+
+title: Ansattporten selvbetjening
+description: Ansattporten selvbetjenes på Samarbeidsportalen
+sidebar: ansattporten
+product: Ansattporten
+redirect_from: /ansattporten_admin
+
+Ansattporten administreres på samme måte som ID-porten, dvs via selvbetjening
+Du må lage klientene sine som . 
+Dersom du aldri har brukt selvbejening før, eller din virksomhet ikke er Digdir-kunde, finner du oppskrift her.

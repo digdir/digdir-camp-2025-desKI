@@ -1,0 +1,54 @@
+
+title: Transformasjon fra arkivmelding til KS SvarUt
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Tabellen under viser hvordan integrasjonspunktet transformerer utgående meldinger til kall mot APIet for KS SvarUt.
+Integrasjonspunktet supplerer utgående meldinger med opplysninger fra konfigurasjon, standardverdier og oppslag hos
+tredjeparter.
+| Til KS SvarUt                                                                         | Fra eFormidling  melding                                                    | Fra Konfigurasjon                  | Fra Standardverdi                                       |
+|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|------------------------------------|---------------------------------------------------------|
+| Mottakerens organisasjonsnummer ()                     | Organisasjonsnummer for mottaker som oppgitt i SBD                                        | -                                  | -                                                       |
+| Svarmottakerens organisasjonsnummer ()            | Organisasjonsnummer for avsender som oppgitt i SBD                                        | -                                  | -                                                       |
+| Svarmottakerens navn ()                               |  for korrespondanseparttype avsender som oppgitt i arkivmeldingen | -                                  | Navn for avsender hentes fra Enhetsregisteret           |
+| Svarmottakerens adresselinje 1 ()                 |  for korrespondanseparttype avsender som oppgitt i arkivmeldingen            | -                                  | Postadresse for avsender hentes fra Enhetsregisteret    |
+| Svarmottakerens postnummer ()                       |  for korrespondanseparttype avsender som oppgitt i arkivmeldingen             | -                                  | Postnummer for avsender hentes fra Enhetsregisteret     |
+| Svarmottakerens poststed ()                       |  for korrespondanseparttype avsender som oppgitt i arkivmeldingen               | -                                  | Poststed for avsender hentes fra Enhetsregisteret       |
+| Svarmottakerens land ()                               |  for korrespondanseparttype avsender som oppgitt i arkivmeldingen                   | -                                  | Land for avsender hentes fra Enhetsregisteret           |
+| Identifikator for meldingen ()                                        | Scope  som oppgitt i SBD, ellers meldingsindentifikator som oppgitt i SBD     | -                                  | -                                                       |
+| Type melding ()                                                    |  som oppgitt i SBD                                     | -                                  | -                                                       |
+| Ekstern identifikator for meldingen                                                   | Meldingsidentifikator som oppgitt i SBD                                                   | -                                  | -                                                       |
+| Identifikator for meldingen dette er et svar på ()                 | Scope  som oppgitt i SBD                                                    | -                                  | -                                                       |
+| Meldingen krever nivå 4-innlogging for å kunne lastes ned ()     |  som oppgitt i SBD                                          | -                                  |                                                  |
+| Tittel for meldingen ()                                                       |  som oppgitt i arkivmeldingen                                            | -                                  | -                                                       |
+| Avsenders sakssekvensnummer ()         |  som oppgitt i arkivmeldingen                                          | -                                  | -                                                       |
+| Avsenders saksår ()                             |  som oppgitt i arkivmeldingen                                                    | -                                  | -                                                       |
+| Avsenders journalår ()                       |  som oppgitt i arkivmeldingen                                                 | -                                  | -                                                       |
+| Avsenders journalsekvensnummer () |  som oppgitt i arkivmeldingen                                      | -                                  | -                                                       |
+| Avsenders journalpostnummer ()        |  som oppgitt i arkivmeldingen                                          | -                                  | -                                                       |
+| Avsenders journalposttype ()            |  som oppgitt i arkivmeldingen                                            | -                                  | Inngående dokument ()                                |
+| Avsenders journalstatus ()                |  som oppgitt i arkivmeldingen                                              | -                                  | Ferdigstilt fra saksbehandler ()                     |
+| Avsenders journaldato ()                    |  som oppgitt i arkivmeldingen                                                | -                                  | -                                                       |
+| Avsenders dokumentdato ()               |  som oppgitt i arkivmeldingen                                            | -                                  | -                                                       |
+| Avsenders tittel ()                              |  som oppgitt i arkivmeldingen                                            | -                                  | -                                                       |
+| Avssenders saksbehandler ()               |  for korrespondanseparttype avsender som oppgitt i arkivmeldingen          | -                                  | -                                                       |
+| Filnavn for vedlegget ()                                        | Filnavn som oppgitt ved opplasting til integrasjonspunktet                                | -                                  | -                                                       |
+| Mime-type for vedlegget ()                                     | Mime-Type som oppgitt ved opplasting til integrasjonspunktet                              | -                                  | -                                                       |
+| Selve vedlegget (binært dokument) ()                               | Binært dokument som oppgitt ved opplasting til integrasjonspunktet                        | -                                  | -                                                       |
+| Hvilket system som sendte meldingen ()                               | -                                                                                         |        | -                                                       |
+| Faktureringskonto for meldingen ()                                    | -                                                                                         |  | -                                                       |
+| Indikerer om meldingen er kryptert til KS SvarUt ()                         | -                                                                                         |           |                                                   |
+| Mottakerens navn ()                                        | -                                                                                         | -                                  | Navn for mottaker hentes fra Enhetsregisteret           |
+| Mottakerens adresselinje 1 ()                          | -                                                                                         | -                                  | Adresselinje 1 for mottaker hentes fra Enhetsregisteret |
+| Mottakerens postnummer ()                                | -                                                                                         | -                                  | Postnummer for mottaker hentes fra Enhetsregisteret     |
+| Mottakerens poststed ()                                | -                                                                                         | -                                  | Poststed for mottaker hentes fra Enhetsregisteret       |
+| Mottakerens land (                                         | -                                                                                         | -                                  | Land for mottaker hentes fra Enhetsregisteret           |
+| Bestemmer om tosidig utskrift skal brukes ()              | -                                                                                         | -                                  |                                                   |
+| Bestemmer om fargeutskrift skal brukes ()              | -                                                                                         | -                                  |                                                  |
+| Bestemmer hvilken postutsending som skal brukes ()       | -                                                                                         | -                                  | B-post                                                  |
+| Bestemmer om meldingen bare skal kunne leveres digitalt ()        | -                                                                                         | -                                  |                                                  |
+Nærmere beskrivelse av funksjonaliteten i KS SvarUt finnes på:
+
+Teknisk dokumentasjon for KS SvarUt (ekstern lenke)

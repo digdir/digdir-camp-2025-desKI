@@ -1,0 +1,110 @@
+
+title: Status
+description: Statuspage for Elma
+summary: "Elma status"
+product: elma
+sidebar: elma_sidebar
+redirect_from: /elma_status
+
+ELMA update 30.09.2024 (3.28.0)
+Tasks
+
+
+ELMA update 23.09.2024 (3.27.0)
+Tasks
+
+
+ELMA update 20.08.2024 (3.26.0)
+Tasks
+
+
+ELMA update 24.05.2024 (3.25.0)
+Tasks
+
+
+ELMA update 08.02.2024 (3.24.0)
+Tasks
+
+
+ELMA update 30.01.2024 (3.23.1)
+Bug fix
+
+
+ELMA update 04.01.2024 (3.23.0)
+Tasks
+
+
+ELMA update 18.09.2023 (3.22.3)
+Tasks
+
+
+ELMA update 22.08.2023 (3.21.1)
+Tasks
+
+
+ELMA update 27.06.2023 (3.20.0)
+Tasks
+
+
+ELMA update 06.06.2023 (3.19.0)
+Tasks
+
+
+ELMA update 10.05.2023 (3.17.1)
+Bug fix
+
+
+ELMA update 05.12.2022 (3.17.0)
+Tasks
+
+
+ELMA update 04.10.2022 (3.16.2)
+Bug fix
+
+
+ELMA update 13.09.2022 (3.16.1)
+Bug fix
+
+
+ELMA update 22.08.2022 (3.16.0)
+Bug fix
+
+
+ELMA update 21.06.2022 (3.15.2)
+Bug fix
+
+ELMA update 16.06.2022 (3.15.1)
+Bug fix
+
+ELMA update 09.06.2022 (3.15.0)
+
+
+Generelle ytelsesforbedringer
+
+ELMA update 03.05.2022 (3.14.5)
+Bug fix
+
+ELMA update 11.03.2022 (3.14.1)
+Tasks
+
+ELMA update 05.01.2022 (3.12.0)
+Tasks
+
+ELMA update 01.12.2021 (3.11.1)
+Tasks
+
+Elma update 16.09.2021 (3.10.0)
+Tasks
+
+Elma update 21.06.2021 (3.9.0)
+Tasks
+
+Bugs
+
+Elma update 19.05.2021 (3.8.2)
+Tasks
+
+Bugs
+
+Elma update 08.03.2021 (3.7.0)
+Tasks

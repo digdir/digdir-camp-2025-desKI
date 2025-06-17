@@ -1,0 +1,96 @@
+
+title: "Dokumenttype: Digital"
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttypen  består av et standard business document (SBD), et eller flere dokument og eventuelt en eller flere
+utvidelser.
+Dokumenttypen har identifikatoren .
+
+TOC
+{:toc}
+
+Standard business document
+Alle dokumenttyper i eFormidling følger standarden  for adresseringsinformasjon.  består av en header ()
+og en forretningsmelding som brukes for dokumenttype-spesifikk adresseringsinformasjon.
+eFormidlings bruk av standarden  er beskrevet på Standard business document.
+Dokumenttypen  adresseres fra avsenders organisasjonsnummer til mottakers fødselsnummer.
+Forretningsmeldingen
+Forretningsmeldingen  er beskrevet under.
+
+ (påkrevd)
+Definerer hvilket autentiseringsnivå som kreves for at dokumentet skal åpnes.
+| Lovlige verdier                 |  eller  |
+| Standard verdi                  | Ingen         |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (påkrevd)
+Instruksjonen definerer hvilket dokument som skal være hoveddokument.
+| Lovlige verdier                 | String som matcher filnavnet for ett av dokumentene i meldingen |
+| Standard verdi                  | Ingen                                                           |
+| Konfigurasjon av standard verdi | Ikke støttet                                                    |
+ (frivillig)
+Brukt for å identifisere en ansvarlig enhet innen for en virksomhet. I Digital Post til Innbyggere tildeles
+avsenderidentifikator ved tilkobling til tjenesten.
+| Lovlige verdier                 | String        |
+| Standard verdi                  | Ingen         |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (påkrevd)
+Vil vises til Innbygger og brukes i varslinger/påminnelser på e-post og sms til Innbygger. Skal ikke inneholde
+sensitiv informasjon. Kan brukes på lavere sikkerhetsnivå enn det selve dokumentet er klassifisert på.
+| Lovlige verdier                 | String                       |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+ (påkrevd)
+Språkkode ihht. ISO-639-1 (2 bokstaver).
+| Lovlige verdier                 | String                       |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+ (påkrevd)
+Dato for når en melding skal tilgjengeliggjøres for Innbygger i Innbygger sin postkasse.
+| Lovlige verdier                 | Dato |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+ (påkrevd)
+Dersom Dataansvarlig ønsker å at Innbygger aktivt skal bli bedt om å sende tilbake en Åpningskvittering ved åpning av Digital Post kan det spesifiseres med dette attributtet.
+| Lovlige verdier                 |  eller          |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+ (frivillig)
+Tekst som skal inkluderes i epost-varsel til sluttbruker etter at posten er tilgjengeliggjort.
+| Lovlige verdier                 | String                       |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+ (frivillig)
+Tekst som skal inkluderes i SMS-varsel til sluttbruker etter at posten er tilgjengeliggjort.
+| Lovlige verdier                 | String                       |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+ (frivillig)
+Metadatafiler brukes for å ta i bruk tilleggsfunksjonalitet som lenke utenfor brev i Digital Post til Innbyggere.
+| Lovlige verdier                 | Objekt med feltnavn som tilsvarer et filnavn for et av vedleggene og verdi som tilsvarer filnavn for metadatafil for denne. |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+
+Et eller flere dokument
+Hvilke typer dokument som støttes avhenger av mottakeren og er ikke kjent på forhånd. Dette medfører at forsøk på å
+sende dokumenter som ikke støttes av mottakeren feiler først ved mottak.
+Filformat som støttes inkluderer PDF, HTML, TXT og flere. Nærmere beskrivelse finnes på:
+
+Dokumenttyper for Digital Post til Innbygger (ekstern lenke)
+
+En eller flere utvidelser
+Metadatafiler brukes for å ta i bruk tilleggsfunksjonalitet som lenke utenfor brev i Digital Post til Innbyggere.
+Nærmere beskrivelse av tilleggsfunksjonalitet inkludert format for metadatafiler finnes på:
+
+Utvidelser for Digital Post til Innbyggere (ekstern lenke)
+
+Beriking og transformasjon
+Integrasjonspunktet transformerer og beriker meldinger som sendes med Digital Post til Innbyggere.
+
+Transformasjon fra digital til Digital Post til Innbyggere
+
+Neste steg
+
+Dokumenttype  under Eksempel på vedtak til innbygger

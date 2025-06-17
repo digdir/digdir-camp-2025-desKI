@@ -1,0 +1,42 @@
+
+title: Automatisert testing med ID-porten
+description: Automatisert testing med ID-porten
+toc: false
+sidebar: oidc
+product: ID-porten
+redirect_from: /oidc_func_apitesting
+ID-porten i testmiljøer tilbyr "headless login"/automatisk innlogging der tokens kan utstedes uten brukerinteraksjon til syntetiske testbrukere.  Denne funksjonaliteten skal kun brukes til å forenkle testing av API'er beskyttet av access_token fra ID-porten.
+Dette er "fullverdige" tokens som da kan introspectes, refreshes eller revokeres.
+Flyt:
+
+sequenceDiagram
+  Klient ->> ID-porten: HTTP GET autentiseringsforespørsel (/authorize)
+  note over ID-porten: Automatisk autentisering basert på login_hint og implisitt samtykke til scopes
+  ID-porten ->> Klient: HTTP response med location header med autorisasjonscode
+  Klient ->> ID-porten: HTTP token-forespørsel (/token)
+  ID-porten ->> Klient: id_token + access_token (evt. refresh_token)
+  Klient ->> API: bruke API med access_token
+  API ->> ID-porten: validere token
+  ID-porten ->> API: token informasjon
+  API->>Klient: Resultat av API-operasjon
+
+1: Modifisert /authorize-request
+I denne forenklede flyten kan en syntetisk testbruker logges inn automatisk ved å sende inn et  og liste over  samt øvrige vanlige parametre i en authorization request til ID-porten.
+Parameter | Beskrivelse | Eksempel
+ -|-|-|
+  | Angir hvilken syntetisk personidentifikator som skal brukes samt sikkerhetsnivå som ønskes | 
+       | Angir hvilke scope som skal automatisk samtykkes til | 
+2: Håndtering av /authorize-respons
+Klienten leser authorization response fra location header og plukker ut code (og verifiserer state).  Klienten kaller deretter token-endepunktet på vanlig måte.
+ som utstedes vil ha .
+Eksempel
+Under er et eksempel med bruk av Curl.  Det kuttes litt i output for å tydeliggjøre relevant informasjon.
+Redirected authorization request simuleres med GET og authorization response finnes i response header location.  Innsending request - bruk egen  og  og  som er registrert på klient, genererer egen , ,  osv:
+
+Relevant fra response:
+
+Plukk ut  og lag standard token request med verdier tilpasset egen klient og verdier som korresponderer mot valg i authorization request.  I eksempelet brukes  som metode for klientautentisering.
+
+Hent ut access_token fra response.
+
+Bruk  mot API som skal testes.

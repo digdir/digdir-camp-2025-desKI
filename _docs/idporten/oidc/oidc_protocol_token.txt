@@ -1,0 +1,98 @@
+
+title: "/token endpoint"
+description: "This page summarizes the protocol options available for on the /token endpoint for ID-porten OIDC Provider"
+summary: 'This page summarizes the protocol options available for on the /token endpoint for ID-porten OIDC Provider'
+sidebar: oidc
+product: ID-porten
+redirect_from: /oidc_protocol_token
+
+About
+The  endpoint is thoroughly documented in OpenID Connect Core, chapter 3.1.3
+Request
+The client requests a token by passing the authorization grant (normally a 'code' value) to the /token endpoint.
+There are different parameters available for the request, depending on grant type and client authentication method.   The following always apply:
+| Parameter  | Value |
+| --- | --- |
+| Http method | POST |
+| Content-type | application/x-www-form-urlencoded |
+Request parameters when using  grant
+The following request parameters are available when using the authorization code grant
+| Parameter  | Requirement | Description |
+| --- | --- | --- |
+| client_id | required | The identifier of the client  |
+| grant_type | required | Type of grant the client is sending, ie.  |
+| code | required  | The authorization code received in the authorization response.  |
+| redirect_uri | required | The desired redirect uri.  Must be the same value as was used in the corresponding authentication request. |
+| code_verifier | required | The PKCE code verifier. Mandatory for public clients. Between 43 and 128 characters (ASCII). |
+The following request parameters are available when using the authorization code grant
+| Parameter  | Requirement | Description |
+| --- | --- | --- |
+| client_assertion_type | optional | If using certificate / asymmetric key for client authentication (recommended), this parameter must be set to   |
+| client_assertion   | optional   | A JWT identifing the client, mandatory if client_assertion_type is set  |
+Request parameters when using  grant
+The following request parameters are available when using the refresh_token grant
+| Parameter  | Requirement | Description |
+| --- | --- | --- |
+| grant_type | required | Type of grant the client is sending, ie.   |
+| refresh_token | required   | The refresh token  |
+Client authentication must be used with this grant.  Client authentication methods client_secret_post or private_key_jwt adds parameters to the request.  Client authentication method client_secret_basic uses the Authorization header.  Client authentication method none cannot be used for the refresh_token grant.
+Client authentication
+ID-porten supports four client authentication methods:
+
+client_secret_basic
+client_secret_post
+private_key_jwt
+none
+
+Client authentication using client secret basic
+A previously exchanged out-of-band static secret is used for standard HTTP bacic authentication header comprised of base64 encoded concatenation of client_id + colon + secret.
+```
+POST /token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic dGVzdF9ycF95dDI6cGFzc3dvcmQ=
+grant_type=authorization_code&
+  redirect_uri=https%3A%2F%2Feid-exttest.difi.no%2Fidporten-oidc-client%2Fauthorize%2Fresponse&
+  code=1JzjKYcPh4MIPP9YWxRfL-IivWblfKdiRLJkZtJFMT0%3D
+```
+Client authentication using client secret post
+A previously exchanged out-of-band static secret is used for authentication.  The secret is added as a parameter  to the payload of the POST request.
+Client authentication using JWT token (private_key_jwt)
+The client generates a JWT as specified in RFC7523 chapter 2.2, and signs this using a valid business certificate conforming to Rammeverk for autentisering og uavviselighet i elektronisk kommunikasjon med og i offentlig sektor.
+The request is extended with the attributes 'client_assertion_type' and 'client_assertion', see example below.
+The 'sub' field of the JWT must be set equal to your client_id
+The 'aud' field of th JWT must be set equal to the issuer identifier of ID-porten and must only contain a single value.  Using the token-endpoint url as audience is no longer valid.
+Example:
+```
+POST /token
+Content-Type: application/x-www-form-urlencoded
+grant_type=authorization_code&
+   code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
+   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&
+   client_assertion=< jwt >
+```
+Example JWT client_assertion
+The final JWT client_assertion may look like this:
+
+No client authentication
+Mobile apps and single-page applications are clients which cannot protect a secret/certificate and thus should be pre-registered to use no client authentication.
+Use of PKCE and the  parameter will be required when using no client authentication.
+Response
+The response is a set of tokens and associated metadata, and will depend upon what was requested.
+| Claim | Description|
+| - |-|
+|access_token   | An Oauth2 access token, either by reference or as a JWT depending on which scopes was requested and/or client registration properties. |
+|expires_in  | Number of seconds until this access_token is no longer valid   |
+| id_token   | An OpenID Connect id_token. Only returned if 'openid' scope was requested.  |
+| refresh_token  | Issued to confidential clients  |
+| refresh_token_expires_in  | Non-standard claim. Shows how many seconds until refresh_token expires. Will be reset if refreshed within the refresh token expiration time and overall authorization lifetime  |
+| scope   | The list of scopes issued in the access token. Included for convenience only, and should not be trusted for access control decisions.  |
+Example:
+
+The id_token
+The id_token asserts the identity of the authenticated user.  It tells you "who the user is", but not "what the user can access".
+The id_token is documented here.
+The access token
+The access_token enables the client to access APIs on behalf of the authenticated user.  
+The access_token is documented here.
+DPoP-bound tokens
+DPoP adds an extra layer of security. DPoP in ID-Porten is documented here.

@@ -1,0 +1,32 @@
+
+title: Last ned
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+redirect_from: /eformidling_download_ip
+
+Last ned Integrasjonspunktet som .jar-fil eller Docker image. Last ned KOSMOS som .jar-fil.
+Integrasjonspunktet
+
+Integrasjonspunktet 2.28.5 (JAR)
+Signaturen finn du her
+Integrasjonspunktet 2.28.5 (Docker container image) 
+
+
+Endringslogg finner du her.
+KOSMOS
+
+KOSMOS 1.2.0 (JAR)
+Signaturen finn du her
+
+eFormidlings offentlige kodesigneringsnøkkel
+
+Last ned offentlig nøkkel
+
+Neste steg
+Første gang du installerer integrasjonspunktet? Her finner du informasjon om hvordan installere eller oppgradere eksisterende integrasjonspunkt.
+
+Kom i gang med integrasjonspunktet
+Installasjon
+Oppgradering

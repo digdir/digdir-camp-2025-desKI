@@ -1,0 +1,8 @@
+
+title: Demo av automatisk oppgradering (Kosmos)
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Demo som viser KOSMOS startes opp og oppdaterer integrasjonspunktet.
