@@ -1,7 +1,7 @@
 # DC2025
 Prototype for en AI-assistent som hjelper kundeservice med å svare på henvendelser basert på dokumentasjon fra Digdir og interne rutiner.
 
-# 🚀 Project Setup – Dev Container Enabled
+## 🚀 Project Setup – Dev Container Enabled
 
 Welcome to the project! This repository is set up for **fast onboarding** using **Visual Studio Code Remote - Containers (Dev Containers)**. Follow the steps below to get started.
 
@@ -59,4 +59,6 @@ http://localhost:8000/docs
 
 
 This opens the **interactive API documentation** powered by **FastAPI (Swagger UI)**, where you can explore and test all available endpoints. 
+
+
 
