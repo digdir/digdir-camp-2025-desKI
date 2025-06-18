@@ -30,7 +30,7 @@ WORKDIR /app
 
 # Kopier kravfil og installer Python-avhengigheter
 COPY requirements.txt .
-Run pip install -no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Kopier resten av prosjektet inn i containeren
 COPY . .
