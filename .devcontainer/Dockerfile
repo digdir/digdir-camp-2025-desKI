@@ -30,7 +30,8 @@ WORKDIR /app
 
 # Kopier kravfil og installer Python-avhengigheter
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir ruff
 
 # Kopier resten av prosjektet inn i containeren
 COPY . .
