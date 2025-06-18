@@ -1,0 +1,15 @@
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = ["venv", "__pycache__"]
+
+[tool.ruff.format]
+quote-style = "single"
+line-ending = "lf"
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I"]  # Common: pycodestyle, pyflakes, bugbear, isort
+ignore = ["E501"]  # Ignore line length if formatting handles it
+
+[tool.ruff.lint.isort]
+length-sort = true

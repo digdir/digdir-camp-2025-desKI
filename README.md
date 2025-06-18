@@ -60,5 +60,16 @@ http://localhost:8000/docs
 
 This opens the **interactive API documentation** powered by **FastAPI (Swagger UI)**, where you can explore and test all available endpoints. 
 
+---
 
+## 🧹 Ruff
+Ruff is a fast, all-in-one Python linter, formatter, and import sorter.
+### Basic Commands
+
+```bash
+ruff check . # Lint the codebase
+ruff check . --fix # Auto-fix lint issues
+ruff format . # Format the code
+ruff format --check . # Check formatting
+```
 
