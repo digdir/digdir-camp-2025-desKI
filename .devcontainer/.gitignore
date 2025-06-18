@@ -78,6 +78,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+!.env.template
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -137,3 +138,42 @@ dist
 
 __pycache__/
 *.py[cod]
+
+# Python virtual environments
+.env/
+.venv/
+venv/
+ENV/
+env.bak/
+
+# VS Code settings (hvis du ikke deler dem eksplisitt)
+.vscode/
+
+# Devcontainers
+.devcontainer/local.env
+
+# Docker artefakter
+*.db
+*.sqlite3
+docker-compose.override.yml
+chroma_data/
+
+# Pytest/mypy/cache
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Logs and temp
+*.log
+*.tmp
+*.bak
+
+# Coverage reports
+htmlcov/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+.DS_Store
+.idea/
