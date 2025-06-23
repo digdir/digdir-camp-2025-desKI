@@ -4,12 +4,17 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - .:/app
       - chroma_data:/app/chroma_data
-    command: sleep infinity
+    ports:
+      - "8000:8000"
+    command: sleep infinity  
     user: vscode
+    environment:
+      - PYTHONUNBUFFERED=1
+    container_name: chatbot-api
 
 volumes:
   chroma_data:
