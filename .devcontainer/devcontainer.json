@@ -19,6 +19,6 @@
       ]
     }
   },
-  "postCreateCommand": "bash -c '[ -f .env ] || cp .env.template .env && git config core.fileMode false && chmod +x ./.devcontainer/setup-env.sh && ./.devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt'",
+  "postCreateCommand": "git config core.fileMode false && chmod +x .devcontainer/setup-env.sh && .devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt",
   "remoteUser": "vscode"
 }
