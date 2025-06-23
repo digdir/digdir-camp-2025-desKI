@@ -19,7 +19,6 @@
       ]
     }
   },
-  "postCreateCommand": "sudo chown -R vscode:vscode /app && sh /app/.devcontainer/setup-env.sh && pip install --no-cache-dir -r /app/requirements.txt",
-
+  "postCreateCommand": "chown -R vscode:vscode /app && bash /app/.devcontainer/setup-env.sh && pip install --no-cache-dir -r /app/requirements.txt",
   "remoteUser": "vscode"
 }
