@@ -8,7 +8,7 @@
     "../docker-compose.yml"
   ],
   "service": "backend",
-  "workspaceFolder": "${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/app",
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
