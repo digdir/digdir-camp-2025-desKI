@@ -19,6 +19,6 @@
       ]
     }
   },
-  "postCreateCommand": "./.devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt",
+  "postCreateCommand": "./.devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt","postCreateCommand": "[ -f .env ] || cp .env.template .env && git config core.fileMode false && ./.devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt",
   "remoteUser": "vscode"
 }
