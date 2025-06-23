@@ -1,5 +1,9 @@
 {
   "name": "deski-dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
   "dockerComposeFile": [
     "../docker-compose.yml"
   ],
