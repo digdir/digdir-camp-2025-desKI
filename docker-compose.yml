@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   backend:
+    container_name: desKI-backend
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
@@ -11,10 +12,10 @@ services:
     ports:
       - "8000:8000"
     command: sleep infinity  
-    user: vscode
+    user: root
     environment:
       - PYTHONUNBUFFERED=1
-    container_name: chatbot-api
+    
 
 volumes:
   chroma_data:

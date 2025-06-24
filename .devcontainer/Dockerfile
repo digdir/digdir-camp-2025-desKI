@@ -35,6 +35,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Kopier resten av prosjektet inn i containeren
 COPY . .
 
+# Gi alt eierskap til `vscode` før bytte av bruker
+RUN chown -R vscode:vscode /app
+
 
 USER vscode
 RUN echo "\
