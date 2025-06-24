@@ -1,7 +1,7 @@
 import os
 import re
-import argparse
 import csv
+import argparse
 from datetime import datetime
 
 # Configuration dictionary storing settings like file paths and terminal colors

@@ -1,7 +1,9 @@
+import json
 import tkinter as tk
 from tkinter import filedialog
+
 import PyPDF2
-import json
+
 
 # Function to convert PDF to text and append to vault.txt
 def convert_pdf_to_text():
@@ -16,7 +18,7 @@ def convert_pdf_to_text():
                     text += page_text + "\n"
         with open("vault.txt", "a", encoding="utf-8") as vault_file:
             vault_file.write(text + "\n")
-        print(f" Innhold fra PDF lagt til vault.txt uten endringer.")
+        print(" Innhold fra PDF lagt til vault.txt uten endringer.")
 
 # Function to upload a text file and append to vault.txt
 def upload_txtfile():
@@ -26,7 +28,7 @@ def upload_txtfile():
             text = txt_file.read()
         with open("vault.txt", "a", encoding="utf-8") as vault_file:
             vault_file.write(text + "\n")
-        print(f" Innhold fra tekstfil lagt til vault.txt uten endringer.")
+        print(" Innhold fra tekstfil lagt til vault.txt uten endringer.")
 
 # Function to upload a JSON file and append to vault.txt
 def upload_jsonfile():
@@ -37,7 +39,7 @@ def upload_jsonfile():
         text = json.dumps(data, ensure_ascii=False, indent=2)  # formater som lesbar tekst
         with open("vault.txt", "a", encoding="utf-8") as vault_file:
             vault_file.write(text + "\n")
-        print(f" Innhold fra JSON-fil lagt til vault.txt uten endringer.")
+        print(" Innhold fra JSON-fil lagt til vault.txt uten endringer.")
 
 # Create the main window
 root = tk.Tk()
