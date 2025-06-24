@@ -56,10 +56,10 @@ jobs:
 
       - name: Start container (test Uvicorn)
         run: |
-          docker compose -f docker/environments/development/docker-compose.yml up backend -d
+          docker compose -f docker-compose.yml up backend -d
           sleep 5
           docker ps
           docker logs chatbot-api || true
 
       - name: Shut down
-        run: docker compose -f docker/environments/development/docker-compose.yml down
+        run: docker compose -f docker-compose.yml down
