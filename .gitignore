@@ -137,3 +137,10 @@ dist
 
 __pycache__/
 *.py[cod]
+
+# Other files
+vault.txt
+resultat_full.csv
+resultat.csv
+error_log.txt
+dataFromServiceDesk
