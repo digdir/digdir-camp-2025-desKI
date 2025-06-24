@@ -1,7 +1,7 @@
 {
   "name": "deski-dev",
   "dockerComposeFile": [
-    "../docker/environments/development/docker-compose.yml"
+    "../docker-compose.yml"
   ],
   "service": "backend",
   "workspaceFolder": "/app",
@@ -15,10 +15,7 @@
       ]
     }
   },
-  "postCreateCommand": "./.devcontainer/setup-env.sh && pip install --no-cache-dir -r requirements.txt",
+  "postCreateCommand": "git config --global --add safe.directory /app && bash /app/.devcontainer/setup-env.sh && pip install --no-cache-dir -r /app/requirements.txt",
 
-  "remoteUser": "vscode",
-  "mounts": [
-    "source=chroma_data,target=/app/chroma_data,type=volume"
-  ]
+  "remoteUser": "root"
 }
