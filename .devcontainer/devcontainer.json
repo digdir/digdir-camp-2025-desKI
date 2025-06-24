@@ -15,9 +15,7 @@
       ]
     }
   },
-  "postCreateCommand": "chown -R vscode:vscode /app && git config --global --add safe.directory /app && bash /app/.devcontainer/setup-env.sh && pip install --no-cache-dir -r /app/requirements.txt",
+  "postCreateCommand": "git config --global --add safe.directory /app && bash /app/.devcontainer/setup-env.sh && pip install --no-cache-dir -r /app/requirements.txt",
 
-
-
-  "remoteUser": "vscode"
+  "remoteUser": "root"
 }
