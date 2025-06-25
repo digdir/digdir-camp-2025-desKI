@@ -10,6 +10,5 @@ pypdf
 azure-ai-inference
 langchain_huggingface
 azure-core-credentials
-azure-ai-inference
 langchain_text_splitters
 langchain_community
