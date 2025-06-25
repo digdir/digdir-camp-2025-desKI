@@ -2,3 +2,8 @@ fastapi
 uvicorn[standard]
 chromadb
 ruff==0.4.4
+openai
+python-dotenv
+langchain_chroma
+langchain_text_splitters
+pypdf
