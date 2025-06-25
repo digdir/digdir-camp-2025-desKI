@@ -1,10 +1,11 @@
 import os
+
 from dotenv import load_dotenv
-from azure.ai.inference import ChatCompletionsClient
-from azure.ai.inference.models import SystemMessage, UserMessage
-from azure.core.credentials import AzureKeyCredential
 from langchain_chroma import Chroma
+from azure.ai.inference import ChatCompletionsClient
 from langchain_huggingface import HuggingFaceEmbeddings
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.inference.models import UserMessage, SystemMessage
 
 #  Last inn miljøvariabler fra .env
 load_dotenv()
@@ -37,7 +38,7 @@ if not results:
 combined_chunks = []
 used_sources = set()
 
-for doc, score in results:
+for doc, _score in results:
     source = doc.metadata.get("source", "ukjent fil")
     page = doc.metadata.get("page", "ukjent side")
     used_sources.add(f"{source}, side {page}")
