@@ -14,6 +14,7 @@ SENSITIVE_PATTERNS = {
     r'\b[\wæøåÆØÅ.\- ]{2,},?\s+\d{4,5}\s+[A-ZÆØÅ][\wæøåÆØÅ]+': 'ADDRESS',  # Simplified address
 }
 
+
 def detect_sensitive_data(text: str) -> list[str]:
     """Detect types of sensitive data in the input text."""
     found = set()
@@ -21,6 +22,7 @@ def detect_sensitive_data(text: str) -> list[str]:
         if re.search(pattern, text, re.IGNORECASE):
             found.add(label)
     return list(found)
+
 
 def remove_sensitive_data(text: str) -> str:
     """Replace sensitive data in the input text with redacted labels."""
