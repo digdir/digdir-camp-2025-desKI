@@ -4,3 +4,12 @@ torch==2.1.2
 chromadb
 numpy==1.24.4
 ruff==0.4.4
+openai
+python-dotenv
+langchain_chroma
+langchain_text_splitters
+pypdf
+azure-ai-inference
+langchain_huggingface
+langchain_text_splitters
+langchain_community
