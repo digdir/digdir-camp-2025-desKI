@@ -1,11 +1,22 @@
 from fastapi import FastAPI
+from pydantic import ValidationError
+from fastapi.exceptions import RequestValidationError
 
-#from app.api.routes import router
+from app.exceptions import (
+    validation_exception_handler,
+    pydantic_validation_exception_handler,
+)
+from app.api.chatbot import router as chatbot
+from app.api.copilot import router as copilot
+from app.api.servicedesk import router as servicedesk
+from app.api.customersupport import router as customersupport
 
-#app = FastAPI()
-#app.include_router(router, prefix='/chat')
-from app.services.log_query_service import LogQueryService
+app = FastAPI()
 
-logQueryService = LogQueryService()
+app.include_router(customersupport, prefix='/customersupport')
+app.include_router(chatbot, prefix='/chatbot')
+app.include_router(copilot, prefix='/copilot')
+app.include_router(servicedesk, prefix='/servicedesk')
 
-print(logQueryService.get_logs('{service_name=~"sample-app"} |= "traceID=a1b2c3d4-e5f6-7890-abcd-ef1234567890"'))
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(ValidationError, pydantic_validation_exception_handler)

@@ -19,5 +19,8 @@
     }
   },
   "postCreateCommand": "git config --global --add safe.directory /app && bash /app/.devcontainer/setup-env.sh && pip install --no-cache-dir -r /app/requirements.txt",
+  "postStartCommand": "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
+  "forwardPorts": [8000],
+
   "remoteUser": "root"
 }
