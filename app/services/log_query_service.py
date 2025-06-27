@@ -47,7 +47,7 @@ class LogQueryService:
                 f'Failed to fetch logs: {response.status_code} - {response.text}'
             )
 
-        print(response.json())
+        logger.debug("API response: %s", response.json())
         return response.json()
 
     def format_logs(self, logs):
