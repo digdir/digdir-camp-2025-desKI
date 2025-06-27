@@ -1,6 +1,8 @@
-import requests
-from app.utils import api_help_util
 from urllib.parse import urlparse, urlunparse
+
+import requests
+
+from app.utils import api_help_util
 
 
 class LogQueryService:
@@ -9,20 +11,19 @@ class LogQueryService:
     def __init__(self, api_base_url: str):
         """
         Initialize the service with an API connection.
-        
+
         Args:
             api_base_url (str): The base URL for the Loki API.
             If not provided, defaults to a local instance.
-        
+
         Raises:
             ValueError: If the API base URL is unreachable.
         """
 
-        self.api_base_url = api_base_url or "loki-api:3100/loki/api/v1/"
+        self.api_base_url = api_base_url or 'loki-api:3100/loki/api/v1/'
         health_url = self._get_health_url(self.api_base_url)
         if not api_help_util.ping(health_url):
-            raise ValueError(f"Could not connect to API at {self.api_base_url}")
-
+            raise ValueError(f'Could not connect to API at {self.api_base_url}')
 
     def get_logs(self, query_params: str):
         """
@@ -40,13 +41,12 @@ class LogQueryService:
         """
         # TODO: Validate query_params before making the request
 
-        response = requests.get(
-            f"{self.api_base_url}",
-            params=query_params
-        )
+        response = requests.get(f'{self.api_base_url}', params=query_params)
         if response.status_code != 200:
-            raise Exception(f"Failed to fetch logs: {response.status_code} - {response.text}")
-        
+            raise Exception(
+                f'Failed to fetch logs: {response.status_code} - {response.text}'
+            )
+
         print(response.json())
         return response.json()
 
@@ -57,4 +57,4 @@ class LogQueryService:
     def _get_health_url(api_base_url: str) -> str:
         parsed = urlparse(api_base_url)
         netloc = parsed.netloc or parsed.path  # handle if url without scheme
-        return urlunparse((parsed.scheme or "http", netloc, "/ready", "", "", ""))
+        return urlunparse((parsed.scheme or 'http', netloc, '/ready', '', '', ''))
