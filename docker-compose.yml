@@ -22,6 +22,4 @@ volumes:
   chroma_data:
 
 networks:
-  logging:
-    external:
-      name: loki-logs_logging
+  logging: 
