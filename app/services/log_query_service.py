@@ -5,7 +5,8 @@ import requests
 
 from app.utils import api_help_util
 
-logger = logging.getLogger(__name__) 
+logger = logging.getLogger(__name__)
+
 
 class LogQueryService:
     """Service for querying logs from the database."""
@@ -49,7 +50,7 @@ class LogQueryService:
                 f'Failed to fetch logs: {response.status_code} - {response.text}'
             )
 
-        logger.debug("API response: %s", response.json())
+        logger.debug('API response: %s', response.json())
         return response.json()
 
     def format_logs(self, logs):
