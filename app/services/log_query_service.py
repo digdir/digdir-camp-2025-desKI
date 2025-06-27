@@ -1,9 +1,11 @@
+import logging
 from urllib.parse import urlparse, urlunparse
 
 import requests
 
 from app.utils import api_help_util
 
+logger = logging.getLogger(__name__) 
 
 class LogQueryService:
     """Service for querying logs from the database."""
