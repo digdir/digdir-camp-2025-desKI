@@ -8,7 +8,7 @@ def ping(url: str) -> bool:
     Private method to ping the specified host to check if it is reachable.
 
     Args:
-        host (str): The hostname or IP address to ping.
+        url (str): The hostname or IP address to ping.
 
     Returns:
         bool: True if the host is reachable, False otherwise.

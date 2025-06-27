@@ -25,12 +25,12 @@ class LogQueryService:
         if not api_help_util.ping(health_url):
             raise ValueError(f'Could not connect to API at {self.api_base_url}')
 
-    def get_logs(self, query_params: str):
+    def get_logs(self, query_params: dict[str, any]):
         """
         Fetch logs from the API based on the provided query parameters.
 
         Args:
-            query_params (string): A query to filter logs.
+            query_params (dictionary): parameters to filter logs.
 
         Returns:
 
