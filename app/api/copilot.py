@@ -5,12 +5,10 @@ from app.models.response_models import BaseChatResponse
 
 router = APIRouter(tags=['Copilot'])
 
-
+# Endpoint for handling copilot queries
 @router.post('/', response_model=BaseChatResponse)
 def ask_copilot(req: BaseChatRequest):
-    # kalle på embedder
-
-    # ta med ekstrakontekst fra nettsiden
-
-    ##kalle på LLM?
+    # Call embedder
+    # Include extra context from the website
+    # Call language model if needed
     return BaseChatResponse(answer='Hei! fra copiliot', source=None)
