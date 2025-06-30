@@ -2,7 +2,7 @@
 FROM python:3.11-slim
 
 # Installer bash, git, nano, bash-completion og curl
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
     git \
     nano \
@@ -14,16 +14,14 @@ RUN apt-get update && apt-get install -y \
 RUN curl -Lo /etc/bash_completion.d/git-prompt \
   https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
+# Create dev user
+RUN useradd -m -s /bin/bash vscode
 
 # Konfigurer Bash-prompt for å vise Git-branch
 RUN echo "\
 source /etc/bash_completion.d/git-prompt.sh\n\
-PS1='\\u@\\h:\\w\$(__git_ps1 \" (%s)\")\\$ '\n" \
->> /root/.bashrc
-
-RUN useradd -m -s /bin/bash vscode
-
-
+PS1='\\u@\\h:\\w\$(__git_ps1 \" (%s)\")\\$ '\n" \ 
+| tee -a /root/.bashrc /home/vscode/.bashrc
 
 # Sett arbeidsmappe i containeren
 WORKDIR /app
@@ -37,14 +35,7 @@ COPY . .
 
 # Gi alt eierskap til `vscode` før bytte av bruker
 RUN chown -R vscode:vscode /app
-
-
 USER vscode
-RUN echo "\
-source /etc/bash_completion.d/git-prompt.sh\n\
-PS1='\\u@\\h:\\w\$(__git_ps1 \" (%s)\")\\$ '\n" \
->> /home/vscode/.bashrc
-
 
 # Start applikasjonen
 CMD ["sleep", "infinity"]
