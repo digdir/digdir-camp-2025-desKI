@@ -12,7 +12,7 @@ class StrictChatRequest(BaseChatRequest):
     @field_validator('question')
     def check_for_sensitive_input(cls, v):
         if detect_sensitive_data(v):
-            # Pydantic fanger ValueError som en validation error på feltet 'question'
+            # Pydantic captures ValueError as a validation error on the 'question' field
             raise ValueError(
                 'Spørsmålet inneholder sensitiv informasjon. '
                 'Vennligst fjern den eller kontakt kundeservice.'
