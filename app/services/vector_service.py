@@ -9,9 +9,11 @@ client = chromadb.Client(
 # Get or create a collection named 'docs'
 collection = client.get_or_create_collection(name='docs')
 
+
 # Search the collection for the most similar embeddings
 def search(embedding: list[float], k: int = 1):
     return collection.query(query_embeddings=[embedding], n_results=k)
+
 
 # Add a document with its embedding to the collection
 def add_doc(doc_id: str, text: str, embedding: list[float]):

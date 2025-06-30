@@ -7,9 +7,9 @@ from app.utils import api_help_util
 
 logger = logging.getLogger(__name__)
 
+
 # Service for querying logs from the database
 class LogQueryService:
-
     def __init__(self, api_base_url: str):
         # Initialize the service with an API connection
         self.api_base_url = api_base_url or 'loki-api:3100/loki/api/v1/'
@@ -24,8 +24,8 @@ class LogQueryService:
     # Raises: Exception: If the API request fails or returns an error.
     def get_logs(self, query_params: dict[str, any]):
         """
-            TODO: ValueError: If the query parameters are invalid or empty.
-            TODO: Validate query_params before making the request
+        TODO: ValueError: If the query parameters are invalid or empty.
+        TODO: Validate query_params before making the request
         """
         response = requests.get(f'{self.api_base_url}', params=query_params)
         if response.status_code != 200:

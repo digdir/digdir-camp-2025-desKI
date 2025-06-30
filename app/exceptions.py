@@ -11,6 +11,7 @@ from app.utils.desensitize import remove_sensitive_data
 
 logger = logging.getLogger('uvicorn.error')
 
+
 # Handle validation errors from FastAPI request parsing
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     # Read and sanitize the raw request body
@@ -41,6 +42,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
             'errors': formatted,
         },
     )
+
 
 # Handle validation errors raised by Pydantic models directly
 async def pydantic_validation_exception_handler(

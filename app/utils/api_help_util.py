@@ -2,6 +2,7 @@ from urllib.parse import urlparse
 
 import requests
 
+
 # Ping the specified host to check if it is reachable
 def ping(url: str) -> bool:
     parsed = urlparse(url)

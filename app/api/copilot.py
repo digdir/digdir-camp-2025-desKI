@@ -5,6 +5,7 @@ from app.models.response_models import BaseChatResponse
 
 router = APIRouter(tags=['Copilot'])
 
+
 # Endpoint for handling copilot queries
 @router.post('/', response_model=BaseChatResponse)
 def ask_copilot(req: BaseChatRequest):
