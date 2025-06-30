@@ -13,3 +13,4 @@ azure-ai-inference
 langchain_huggingface
 langchain_text_splitters
 langchain_community
+requests

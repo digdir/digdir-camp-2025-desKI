@@ -1,10 +1,13 @@
+
 {
   "name": "deski-dev",
   "dockerComposeFile": [
     "../docker-compose.yml"
   ],
-  "service": "backend",
-  "workspaceFolder": "/app",
+  "service": "backend",                // Must match your service name in compose
+  "workspaceFolder": "/app",           // Should match WORKDIR in Dockerfile
+  "shutdownAction": "stopCompose",     // Optional: stops containers when you close
+
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },

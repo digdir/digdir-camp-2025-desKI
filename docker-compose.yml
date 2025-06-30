@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   backend:
-    container_name: desKI-backend
+    container_name: deski-backend
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
@@ -11,11 +11,15 @@ services:
       - chroma_data:/app/chroma_data
     ports:
       - "8000:8000"
-    command: sleep infinity  
+    command: sleep infinity
     user: root
     environment:
       - PYTHONUNBUFFERED=1
-    
+    networks:
+      - logging
 
 volumes:
   chroma_data:
+
+networks:
+  logging: 
