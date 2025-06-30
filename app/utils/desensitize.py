@@ -1,5 +1,6 @@
 import re
 
+# Patterns to detect different types of sensitive data
 SENSITIVE_PATTERNS = {
     r'\b\d{11}\b': 'FNR',  # Norwegian national ID
     r'\b\d{6}[- ]?\d{5}\b': 'DNR',  # D-number
@@ -14,7 +15,7 @@ SENSITIVE_PATTERNS = {
     r'\b[\wæøåÆØÅ.\- ]{2,},?\s+\d{4,5}\s+[A-ZÆØÅ][\wæøåÆØÅ]+': 'ADDRESS',  # Simplified address
 }
 
-
+# Detect types of sensitive data in the input text
 def detect_sensitive_data(text: str) -> list[str]:
     """Detect types of sensitive data in the input text."""
     found = set()
@@ -23,7 +24,7 @@ def detect_sensitive_data(text: str) -> list[str]:
             found.add(label)
     return list(found)
 
-
+# Replace sensitive data in the input text with redacted labels
 def remove_sensitive_data(text: str) -> str:
     """Replace sensitive data in the input text with redacted labels."""
     for pattern, label in SENSITIVE_PATTERNS.items():
