@@ -5,12 +5,10 @@ from app.models.response_models import BaseChatResponse
 
 router = APIRouter(tags=['Chatbot'])
 
-
+# Endpoint for handling chatbot queries
 @router.post('/', response_model=BaseChatResponse)
 def ask_chatbot(req: BaseChatRequest):
-    # kalle på embedder
-
-    # kalle på vektordb
-
-    ##kalle på LLM?
+    # Call embedder
+    # Query vector database
+    # Call language model if needed
     return BaseChatResponse(answer='Hei fra chatbot!', source=None)
