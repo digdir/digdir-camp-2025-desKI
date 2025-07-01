@@ -28,7 +28,7 @@ WORKDIR /app
 
 # Kopier kravfil og installer Python-avhengigheter
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --prefer-binary -r requirements.txt
 
 # Kopier resten av prosjektet inn i containeren
 COPY . .
@@ -38,4 +38,5 @@ RUN chown -R vscode:vscode /app
 USER vscode
 
 # Start applikasjonen
-CMD ["sleep", "infinity"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+

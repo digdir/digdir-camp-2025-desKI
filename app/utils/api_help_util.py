@@ -1,5 +1,3 @@
-from urllib.parse import urlparse
-
 import requests
 
 
@@ -13,11 +11,10 @@ def ping(url: str) -> bool:
     Returns:
         bool: True if the host is reachable, False otherwise.
     """
-    parsed = urlparse(url)
-    host = parsed.hostname
-    port = parsed.port
+    print(f'Pinging {url}...')
+        
     try:
-        response = requests.get(f'{host}:{port}/ready', timeout=3)
+        response = requests.get(url, timeout=3)
         return response.status_code < 400
     except requests.RequestException:
         return False
