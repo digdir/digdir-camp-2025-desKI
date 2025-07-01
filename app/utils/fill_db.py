@@ -5,14 +5,14 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import TextLoader
 
-# Stier
+# Paths
 DATA_PATH = r'_docs'
 CHROMA_PATH = r'app/db/chroma_db'
 
-# 1. Definer embedderen
+# 1. Define the embedding model
 embedding_model = HuggingFaceEmbeddings(model_name='intfloat/multilingual-e5-base')
 
-# 2. Finn alle .txt-filer rekursivt
+# 2. Recursively find all .txt files
 txt_files = []
 for root, files in os.walk(DATA_PATH):
     for file in files:
@@ -21,7 +21,7 @@ for root, files in os.walk(DATA_PATH):
 
 print(f" Fant {len(txt_files)} .txt-filer i '{DATA_PATH}'")
 
-# 3. Last inn og legg til metadata
+# 3. Load files and attach metadata
 documents = []
 for idx, filepath in enumerate(txt_files, start=1):
     print(
@@ -36,12 +36,12 @@ for idx, filepath in enumerate(txt_files, start=1):
 
 print(f' Ferdig med innlasting av {len(documents)} dokumentobjekter.')
 
-# 4. Del opp i tekstbiter
+# 4. Split into text chunks
 print(' Deler opp i tekstbiter...')
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 chunks = text_splitter.split_documents(documents)
 
-# 5. Lagre til ChromaDB med embedder
+# 5. Save to ChromaDB with embeddings
 print(f' Lagrer {len(chunks)} tekstbiter til vektorbasen...')
 vectordb = Chroma.from_documents(
     documents=chunks,

@@ -12,11 +12,13 @@ from app.utils.desensitize import remove_sensitive_data
 logger = logging.getLogger('uvicorn.error')
 
 
+# Handle validation errors from FastAPI request parsing
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    # Read and sanitize the raw request body
     raw = await request.body()
     sanitized = remove_sensitive_data(raw.decode('utf-8', errors='ignore'))
 
-    # Først sjekk om vi har en enkel ValueError fra felt-validator:
+    # First, check if this is a simple ValueError from a field validator
     for err in exc.errors():
         if err.get('type') == 'value_error':
             return JSONResponse(
@@ -24,7 +26,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
                 content={'detail': err['msg']},
             )
 
-    # Ellers bygg en JSON-vennlig errors-liste:
+    # Otherwise, build a JSON-friendly error list
     formatted = []
     for err in exc.errors():
         fe = {'type': err['type'], 'loc': err['loc'], 'msg': err['msg']}
@@ -42,9 +44,11 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
+# Handle validation errors raised by Pydantic models directly
 async def pydantic_validation_exception_handler(
     request: Request, exc: PydanticValidationError
 ):
+    # Read and sanitize the raw request body
     raw = await request.body()
     sanitized = remove_sensitive_data(raw.decode('utf-8', errors='ignore'))
 
