@@ -7,19 +7,15 @@ services:
       context: .
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - .:/app
+      - ../digdir-camp-2025-desKI:/app
       - chroma_data:/app/chroma_data
     ports:
       - "8000:8000"
-    command: sleep infinity
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     user: root
     environment:
       - PYTHONUNBUFFERED=1
-    networks:
-      - logging
-
+      - PYTHONPATH=/app
 volumes:
   chroma_data:
-
-networks:
-  logging: 
+  
