@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - .:/app
+      - ../digdir-camp-2025-desKI:/app
       - chroma_data:/app/chroma_data
     ports:
       - "8000:8000"

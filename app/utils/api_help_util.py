@@ -12,7 +12,7 @@ def ping(url: str) -> bool:
         bool: True if the host is reachable, False otherwise.
     """
     print(f'Pinging {url}...')
-        
+
     try:
         response = requests.get(url, timeout=3)
         return response.status_code < 400

@@ -1164,7 +1164,7 @@ def initialize_error_log() -> None:
         try:
             with open(CONFIG['files']['error_log'], 'w', encoding='utf-8') as f:
                 f.write(
-                    f"# Error log created {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+                    f'# Error log created {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n\n'
                 )
         except IOError as e:
             print(f'Could not create error log: {e}')
