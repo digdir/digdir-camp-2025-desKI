@@ -3,7 +3,7 @@ import requests
 
 def ping(url: str) -> bool:
     """
-    Private method to ping the specified host to check if it is reachable.
+    Help-method to ping the specified host to check if it is reachable.
 
     Args:
         url (str): The hostname or IP address to ping.

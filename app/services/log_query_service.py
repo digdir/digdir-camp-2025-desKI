@@ -103,7 +103,6 @@ class LogQueryService:
             str: The health check URL for the API.
         """
         
-        
         parsed = urlparse(api_base_url)
         netloc = parsed.netloc or parsed.path  # handle if url without scheme
         return urlunparse((parsed.scheme or 'http', netloc, '/ready', '', '', ''))
