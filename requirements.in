@@ -1,0 +1,20 @@
+#
+# This file is used to specify the dependencies for the project.
+#
+# Update this manually with HIGH LEVEL LIBRARIES, then run `pip-compile` to generate requirements.txt.
+#
+
+requests
+fastapi
+uvicorn
+pydantic
+dotenv
+langchain-chroma
+azure-ai-inference
+langchain-huggingface
+azure-core
+azure-identity
+langchain-community
+langchain-text-splitters
+requests-mock
+pytest

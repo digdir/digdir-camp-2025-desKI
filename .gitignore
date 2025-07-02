@@ -144,5 +144,4 @@ resultat_full.csv
 resultat.csv
 error_log.txt
 dataFromServiceDesk
-requirements.in
 docker-compose.logging.yml
