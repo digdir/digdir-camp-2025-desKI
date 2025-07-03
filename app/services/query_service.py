@@ -26,6 +26,15 @@ class QueryService:
     --------
         run_query(user_query: str, limit: int = 5) -> str:
             Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
+            
+    Usage:
+    ------
+        from app.services.query_service import QueryService
+        qs = QueryService()
+        answer = qs.run_query("Hva tilbyr Digdir?")
+        print(answer)
+
+
     """
 
     def __init__(

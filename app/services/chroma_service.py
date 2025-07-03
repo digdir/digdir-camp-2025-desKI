@@ -33,6 +33,13 @@ class ChromaService:
 
         add_documents(documents: list) -> bool:
             Adds a list of documents to the ChromaDB.
+            
+    Usage:
+    ------
+        from app.services.chroma_service import ChromaService
+        chroma = ChromaService()
+        result = chroma.search("Hvordan søker jeg støtte?")
+        print(result)
     """
 
     def __init__(

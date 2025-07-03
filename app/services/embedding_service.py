@@ -12,6 +12,19 @@ class EmbeddingService:
 
     Attributes:
         model (HuggingFaceEmbeddings): The HuggingFace model instance used for generating embeddings.
+        
+    Methods:
+        get_model() -> HuggingFaceEmbeddings:
+            Returns the embedding model instance.
+        embed(text: str) -> list[float]:
+            Generates an embedding for the given text using the HuggingFace model.
+            Returns a list of floats representing the embedding vector for the text.
+
+    Usage:
+        from app.services.embedding_service import EmbeddingService
+        embedding_service = EmbeddingService()
+        embedding = embedding_service.embed("Hva er Digdir?")
+        print(embedding)
     """
 
     def __init__(self, model_name: str = 'intfloat/multilingual-e5-base'):

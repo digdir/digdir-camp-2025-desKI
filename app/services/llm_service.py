@@ -16,6 +16,25 @@ class LLMService:
 
     This service initializes the embedding model, connects to ChromaDB, retrieves relevant document chunks,
     and sends a prompt to an Azure AI model to generate a response based on the retrieved context.
+    
+    Attributes:
+    -----------
+        model_name (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
+        max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
+        temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
+        azure_endpoint (str): The Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
+    
+    Methods:
+    --------
+        generate_response_azure(user_query: str, retrieved_context: dict) -> str:
+            Generates a response from the language model based on the user's query and retrieved context.
+    
+    Usage:
+    ------
+        from app.services.llm_service import LLMService
+        llm = LLMService()
+        response = llm.generate_response("Hva er Digdir?", "Noe dokumentasjon her")
+        print(response)
     """
 
     def __init__(
@@ -50,7 +69,7 @@ class LLMService:
         self.max_tokens = max_tokens
         self.temperature = temperature
 
-    def generate_response(self, user_query: str, retrieved_context: dict) -> str:
+    def generate_response_azure(self, user_query: str, retrieved_context: dict) -> str:
         """
         Generates a response from the language model based on the user's query and retrieved context.
 
@@ -69,6 +88,10 @@ class LLMService:
         Svar:
         """
 
+        if not user_query.strip():
+            logger.warning('Empty user query provided.')
+            return 'Please provide a valid question.'
+        
         try:
             response = self.client.complete(
                 messages=[
@@ -89,3 +112,5 @@ class LLMService:
             return 'There was an error generating the response. Please try again later.'
 
         return response.choices[0].message.content
+
+        # TODO: Add support for self-created models
