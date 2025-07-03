@@ -17,12 +17,12 @@ def ask_copilot(req: BaseChatRequest):
     if client_info.get('client_name'):
         answer = (
             f"Hello! I can help you with client '{client_info.get('client_name')}'. "
-            f"This client has {len(client_info.get('scopes', []))} scopes, "
-            f"{context.get('jwkCount', 0)} JWK keys, and {context.get('onBehalfOfCount', 0)} OnBehalfOf configurations. "
-            f"Available scopes: {available_scopes.get('accessibleForAll', 0)} accessible for all, "
-            f"{available_scopes.get('withDelegationSource', 0)} with delegation source, "
-            f"{available_scopes.get('availableToOrganization', 0)} available to organization. "
-            f"Question: {req.question}"
+            f'This client has {len(client_info.get("scopes", []))} scopes, '
+            f'{context.get("jwkCount", 0)} JWK keys, and {context.get("onBehalfOfCount", 0)} OnBehalfOf configurations. '
+            f'Available scopes: {available_scopes.get("accessibleForAll", 0)} accessible for all, '
+            f'{available_scopes.get("withDelegationSource", 0)} with delegation source, '
+            f'{available_scopes.get("availableToOrganization", 0)} available to organization. '
+            f'Question: {req.question}'
         )
     else:
         answer = f'Hello from DesKI Copilot! I can help you with client management. Question: {req.question}'
