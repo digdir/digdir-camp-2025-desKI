@@ -2,6 +2,7 @@ import os
 import logging
 import re
 
+from app.config import AZURE_ENDPOINT, AZURE_MODEL
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
@@ -60,9 +61,9 @@ class LLMService:
         # Load environment variables from .env file
         load_dotenv()
 
-        self.azure_endpoint = azure_endpoint or os.getenv('AZURE_ENDPOINT')
+        self.azure_endpoint = azure_endpoint or AZURE_ENDPOINT
         self.azure_api_key = os.getenv('AZURE_API_KEY')
-        self.model_name = model_name or os.getenv('AZURE_MODEL')
+        self.model_name = model_name or AZURE_MODEL
 
         self.client = ChatCompletionsClient(
             endpoint=self.azure_endpoint,
@@ -86,12 +87,12 @@ class LLMService:
         """
 
         prompt = f"""
-        Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen og ingenting annet.
-                        Svar på norsk om spørsmålet er på norsk, svar på engelsk om svaret er på engelsk. Om du ikke vet svaret, skriv: "Eg hakje peiling".
-                        Svar konsist, men med relevante detaljer fra kildene. Ikke gjett. Ikke legg til informasjon som ikke står i dokumentasjonen.
-                        Du er en chatbot som skal svare presist og effektivt, ikkje noe "jeg" eller "hmm".
+        Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom digdir sin dokumentasjon er tom må du være hyggelig å si at du ikke vet.
+                        Svar på norsk om spørsmålet er på norsk, svar på engelsk om svaret er på engelsk.
+                        Svar konsist, men med relevante detaljer fra kildene. Ikke gjett. Dersom det ikke står noe i dokumentasjonen kan du prøve fritt.
+                        Vær hyggelig og serviceinnstillt. Dersom løsningen krever en handling fra Digdir, si at en av de ansatte må fikse det.
         
-        Dokumentasjon: {retrieved_context}
+        Digdir-dokumentasjon: {retrieved_context}
     
         Spørsmål: {user_query}
         Svar:

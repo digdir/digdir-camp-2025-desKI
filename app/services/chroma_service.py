@@ -2,6 +2,7 @@ import os
 import logging
 from typing import Optional
 
+from app.config import CHROMA_PATH, COLLECTION_NAME
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -13,10 +14,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
 )
 logger = logging.getLogger(__name__)
-
-CHROMA_PATH = os.getenv('CHROMA_PATH')
-COLLECTION_NAME = os.getenv('COLLECTION_NAME')
-
 
 class ChromaService:
     """
@@ -52,8 +49,8 @@ class ChromaService:
 
     def __init__(
         self,
-        persist_directory: str = os.getenv('CHROMA_PATH'),
-        collection_name: str = os.getenv('COLLECTION_NAME'),
+        persist_directory: str = CHROMA_PATH,
+        collection_name: str = COLLECTION_NAME,
         embedding_model: Optional[HuggingFaceEmbeddings] = None,
     ):
         self.embedding_model = embedding_model or HuggingFaceEmbeddings(

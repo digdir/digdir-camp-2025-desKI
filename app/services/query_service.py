@@ -2,6 +2,7 @@ import os
 import logging
 
 from dotenv import load_dotenv
+from app.config import CHROMA_PATH, COLLECTION_NAME, AZURE_ENDPOINT, AZURE_MODEL
 
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
@@ -76,16 +77,16 @@ class QueryService:
         # Connect to local ChromaDB
         self.chroma_service = ChromaService(
             embedding_model=self.embedding_model,
-            persist_directory=chroma_path or os.getenv('CHROMA_PATH'),
-            collection_name=chroma_collection or os.getenv('COLLECTION_NAME'),
+            persist_directory=chroma_path or CHROMA_PATH,
+            collection_name=chroma_collection or COLLECTION_NAME,
         )
 
         # Initialize the LLMService
         self.llm_service = LLMService(
-            model_name=llm_model_name or os.getenv('AZURE_MODEL'),
+            model_name=llm_model_name or AZURE_MODEL,
             max_tokens=max_tokens or 1024,
             temperature=temperature or 0.7,
-            azure_endpoint=azure_endpoint or os.getenv('AZURE_ENDPOINT'),
+            azure_endpoint=azure_endpoint or AZURE_ENDPOINT,
         )
 
     def run_query(self, user_query: str, limit: int = 5) -> str:
