@@ -5,6 +5,7 @@ from app.models.response_models import BaseChatResponse
 
 router = APIRouter(tags=['Copilot'])
 
+
 @router.post('/', response_model=BaseChatResponse)
 def ask_copilot(req: BaseChatRequest):
     # Extract context data if available
