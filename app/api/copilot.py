@@ -28,4 +28,3 @@ def ask_copilot(req: BaseChatRequest):
         answer = f'Hello from DesKI Copilot! I can help you with client management. Question: {req.question}'
 
     return BaseChatResponse(answer=answer, source='DesKI Copilot')
-#
