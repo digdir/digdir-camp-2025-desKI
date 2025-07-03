@@ -1,0 +1,27 @@
+# Python cruft
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Git repo
+.git/
+.gitignore
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Env files
+*.env
+.env
+.env.*
