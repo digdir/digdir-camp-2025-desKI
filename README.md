@@ -62,7 +62,7 @@ This opens the **interactive API documentation** powered by **FastAPI (Swagger U
 
 ---
 # Developer info
-All services has (in progress) a Minimal Usage documentation within the class documentation.
+All services has a Minimal Usage documentation within the class documentation.
 Please read this and use as intended.
 
 ## 🧹 Ruff

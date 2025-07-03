@@ -10,9 +10,12 @@ from app.api.chatbot import router as chatbot
 from app.api.copilot import router as copilot
 from app.api.servicedesk import router as servicedesk
 from app.api.customersupport import router as customersupport
+from app.services.chroma_service import ChromaService
 
 # Create the FastAPI application
 app = FastAPI()
+# Initialize chromaservice to download and cache embedder model
+chroma_service = ChromaService()
 
 # Include routers with their prefixes
 app.include_router(customersupport, prefix='/customersupport')

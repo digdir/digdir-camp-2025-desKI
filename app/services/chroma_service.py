@@ -1,13 +1,21 @@
+import os
 import logging
 from typing import Optional
 
-from langchain_chroma import Chroma
+from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
 
+load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,  # or DEBUG for more detail
+    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+)
 logger = logging.getLogger(__name__)
 
-CHROMA_PATH = 'app/db/chroma_db'
-COLLECTION_NAME = 'dig_docs'
+CHROMA_PATH = os.getenv('CHROMA_PATH')
+COLLECTION_NAME = os.getenv('COLLECTION_NAME')
 
 
 class ChromaService:
@@ -33,7 +41,7 @@ class ChromaService:
 
         add_documents(documents: list) -> bool:
             Adds a list of documents to the ChromaDB.
-            
+
     Usage:
     ------
         from app.services.chroma_service import ChromaService
@@ -44,9 +52,9 @@ class ChromaService:
 
     def __init__(
         self,
-        persist_directory: str = CHROMA_PATH,
-        collection_name: str = COLLECTION_NAME,
-        embedding_model: Optional[HuggingFaceEmbeddings] = None
+        persist_directory: str = os.getenv('CHROMA_PATH'),
+        collection_name: str = os.getenv('COLLECTION_NAME'),
+        embedding_model: Optional[HuggingFaceEmbeddings] = None,
     ):
         self.embedding_model = embedding_model or HuggingFaceEmbeddings(
             model_name='intfloat/multilingual-e5-base',
@@ -59,6 +67,10 @@ class ChromaService:
             embedding_function=self.embedding_model,
             collection_name=self.collection_name,
         )
+        logger.info(len(self.db.get()))
+
+    def get_db(self):
+        return self.db
 
     def search(self, query: str, limit: int = 5) -> Optional[dict]:
         """
@@ -77,8 +89,11 @@ class ChromaService:
             logger.warning('Empty query provided. Returning None.')
             return []
 
-        # use similarity_search_with_relevance_score for more detailed results
-        results = self.db.similarity_search(query, k=limit)
+        count = len(self.db.get()['documents'])
+        logger.info(f'Documents in collection: {count}')
+
+        results = self.db.similarity_search_with_relevance_scores(query, k=limit)
+        logger.info(results)  # [(Document(...), 0.23), ...]
 
         if not results:
             logger.info('No results found for the query.')
@@ -87,7 +102,7 @@ class ChromaService:
         combined_chunks = []
         used_sources = set()
 
-        for doc in results:
+        for doc, _ in results:
             source = doc.metadata.get('source', 'ukjent fil')
             page = doc.metadata.get('page', 'ukjent side')
             used_sources.add(f'{source}, side {page}')

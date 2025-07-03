@@ -6,29 +6,32 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
 
+logging.basicConfig(
+    level=logging.INFO,  # or DEBUG for more detail
+    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+)
 logger = logging.getLogger(__name__)
 
 
-# Generates a dummy answer from the language model
 class LLMService:
     """
     A service for interacting with a language model to generate responses based on user queries.
 
     This service initializes the embedding model, connects to ChromaDB, retrieves relevant document chunks,
     and sends a prompt to an Azure AI model to generate a response based on the retrieved context.
-    
+
     Attributes:
     -----------
         model_name (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
         max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
         temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
         azure_endpoint (str): The Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
-    
+
     Methods:
     --------
         generate_response_azure(user_query: str, retrieved_context: dict) -> str:
             Generates a response from the language model based on the user's query and retrieved context.
-    
+
     Usage:
     ------
         from app.services.llm_service import LLMService
@@ -82,6 +85,11 @@ class LLMService:
         """
 
         prompt = f"""
+        Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen og ingenting annet.
+                        Svar på norsk om spørsmålet er på norsk, svar på engelsk om svaret er på engelsk. Om du ikke vet svaret, skriv: "Eg hakje peiling".
+                        Svar konsist, men med relevante detaljer fra kildene. Ikke gjett. Ikke legg til informasjon som ikke står i dokumentasjonen.
+                        Du er en chatbot som skal svare presist og effektivt, ikkje noe "jeg" eller "hmm".
+        
         Dokumentasjon: {retrieved_context}
     
         Spørsmål: {user_query}
@@ -91,19 +99,14 @@ class LLMService:
         if not user_query.strip():
             logger.warning('Empty user query provided.')
             return 'Please provide a valid question.'
-        
+
         try:
             response = self.client.complete(
                 messages=[
-                    SystemMessage(
-                        content="""Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen og ingenting annet.
-                        Svar på norsk om spørsmålet er på norsk, svar på engelsk om svaret er på engelsk. Om du ikke vet svaret, skriv: "Eg hakje peiling".
-                        Svar konsist, men med relevante detaljer fra kildene. Ikke gjett. Ikke legg til informasjon som ikke står i dokumentasjonen.
-                        Du er en chatbot som skal svare presist og effektivt, ikkje noe "jeg" eller "hmm"."""
-                    ),
+                    SystemMessage(content="""Du er en hjelpsom DigDir-assistent. """),
                     UserMessage(content=prompt),
                 ],
-                model=self.azure_model,
+                model=self.model_name,
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
             )

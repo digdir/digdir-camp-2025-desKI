@@ -2,6 +2,10 @@ import logging
 
 from langchain_huggingface import HuggingFaceEmbeddings
 
+logging.basicConfig(
+    level=logging.INFO,  # or DEBUG for more detail
+    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+)
 logger = logging.getLogger(__name__)
 
 
@@ -12,7 +16,7 @@ class EmbeddingService:
 
     Attributes:
         model (HuggingFaceEmbeddings): The HuggingFace model instance used for generating embeddings.
-        
+
     Methods:
         get_model() -> HuggingFaceEmbeddings:
             Returns the embedding model instance.

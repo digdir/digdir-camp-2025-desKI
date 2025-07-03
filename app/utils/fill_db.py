@@ -14,7 +14,7 @@ embedding_model = HuggingFaceEmbeddings(model_name='intfloat/multilingual-e5-bas
 
 # 2. Recursively find all .txt files
 txt_files = []
-for root, files in os.walk(DATA_PATH):
+for root, _, files in os.walk(DATA_PATH):
     for file in files:
         if file.endswith('.txt'):
             txt_files.append(os.path.join(root, file))
@@ -38,7 +38,7 @@ print(f' Ferdig med innlasting av {len(documents)} dokumentobjekter.')
 
 # 4. Split into text chunks
 print(' Deler opp i tekstbiter...')
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=850, chunk_overlap=150)
 chunks = text_splitter.split_documents(documents)
 
 # 5. Save to ChromaDB with embeddings

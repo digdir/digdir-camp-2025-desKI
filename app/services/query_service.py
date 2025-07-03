@@ -1,9 +1,18 @@
+import os
 import logging
+
+from dotenv import load_dotenv
 
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
 
+load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,  # or DEBUG for more detail
+    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+)
 logger = logging.getLogger(__name__)
 
 
@@ -26,7 +35,7 @@ class QueryService:
     --------
         run_query(user_query: str, limit: int = 5) -> str:
             Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
-            
+
     Usage:
     ------
         from app.services.query_service import QueryService
@@ -67,16 +76,16 @@ class QueryService:
         # Connect to local ChromaDB
         self.chroma_service = ChromaService(
             embedding_model=self.embedding_model,
-            persist_directory=chroma_path,
-            collection_name=chroma_collection,
+            persist_directory=chroma_path or os.getenv('CHROMA_PATH'),
+            collection_name=chroma_collection or os.getenv('COLLECTION_NAME'),
         )
 
         # Initialize the LLMService
         self.llm_service = LLMService(
-            llm_model_name=llm_model_name,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            azure_endpoint=azure_endpoint,
+            model_name=llm_model_name or os.getenv('AZURE_MODEL'),
+            max_tokens=max_tokens or 1024,
+            temperature=temperature or 0.7,
+            azure_endpoint=azure_endpoint or os.getenv('AZURE_ENDPOINT'),
         )
 
     def run_query(self, user_query: str, limit: int = 5) -> str:
@@ -98,12 +107,15 @@ class QueryService:
             retrieved_context = self.chroma_service.search(
                 query=user_query, limit=limit
             )
+            logger.info(f'Retrieved Context: {len(retrieved_context)}')
         except Exception as e:
             # Handle the exception, e.g., log it or return an error message
             logger.error(f'Error retrieving context from ChromaDB: {e}')
 
         try:
-            response = self.llm_service.generate_response(user_query, retrieved_context)
+            response = self.llm_service.generate_response_azure(
+                user_query, retrieved_context
+            )
         except Exception as e:
             # Handle the exception, e.g., log it or return an error message
             logger.error(f'Error generating response from LLM: {e}')
