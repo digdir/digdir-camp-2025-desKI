@@ -19,4 +19,5 @@ langchain-text-splitters
 requests-mock
 pytest
 ruff
+sentence-transformers
 numpy<2.0.0  # Needed because LangChain doesn't support numpy 2.x yet

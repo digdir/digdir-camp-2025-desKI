@@ -1,5 +1,6 @@
 import os
 import logging
+import re
 
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
@@ -103,7 +104,7 @@ class LLMService:
         try:
             response = self.client.complete(
                 messages=[
-                    SystemMessage(content="""Du er en hjelpsom DigDir-assistent. """),
+                    SystemMessage(content="""Du er en hjelpsom DigDir-assistent. Skriv svaret i klartekst, ikke noe \n eller markdown syntaks."""),
                     UserMessage(content=prompt),
                 ],
                 model=self.model_name,
@@ -113,7 +114,8 @@ class LLMService:
         except Exception as e:
             logger.error(f'Error generating response: {e}')
             return 'There was an error generating the response. Please try again later.'
-
+        if "deepseek" in self.model_name.lower() and "r1" in self.model_name.lower():
+            return re.sub(r"<think>.*?</think>\n?", "", response.choices[0].message.content, flags=re.DOTALL)
         return response.choices[0].message.content
 
         # TODO: Add support for self-created models

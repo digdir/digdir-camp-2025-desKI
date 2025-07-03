@@ -308,6 +308,8 @@ packaging==24.2
     #   opentelemetry-instrumentation
     #   pytest
     #   transformers
+pillow==11.3.0
+    # via sentence-transformers
 pluggy==1.6.0
     # via pytest
 posthog==6.0.2
@@ -408,11 +410,14 @@ ruff==0.4.4
     # via -r requirements.in
 safetensors==0.5.3
     # via transformers
-
+scikit-learn==1.7.0
+    # via sentence-transformers
 scipy==1.15.3
     # via
     #   scikit-learn
     #   sentence-transformers
+sentence-transformers==5.0.0
+    # via -r requirements.in
 shellingham==1.5.4
     # via typer
 six==1.17.0
@@ -445,13 +450,16 @@ tokenizers==0.21.2
     #   chromadb
     #   langchain-huggingface
     #   transformers
+torch==2.7.1
+    # via sentence-transformers
 tqdm==4.67.1
     # via
     #   chromadb
     #   huggingface-hub
     #   sentence-transformers
     #   transformers
-
+transformers==4.53.0
+    # via sentence-transformers
 triton==3.3.1
     # via torch
 typer==0.16.0
