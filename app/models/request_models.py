@@ -1,6 +1,7 @@
 # app/models/request_models.py
+from typing import Any, Dict, Optional
+
 from pydantic import Field, BaseModel, field_validator
-from typing import Optional, Dict, Any
 
 from app.utils.desensitize import detect_sensitive_data
 
