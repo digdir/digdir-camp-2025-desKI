@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 from fastapi.exceptions import RequestValidationError
-from fastapi.middleware.cors import CORSMiddleware
 
 from app.exceptions import (
     validation_exception_handler,
@@ -33,14 +32,6 @@ app.include_router(customersupport, prefix='/customersupport')
 app.include_router(chatbot, prefix='/chatbot')
 app.include_router(copilot, prefix='/copilot')
 app.include_router(servicedesk, prefix='/servicedesk')
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # TODO: THIS IS NOT SAFE FOR PROD! ONLY DEV. IT ALLOWS ANY IP ADDRESS TO ACCESS
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Register custom exception handlers
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
