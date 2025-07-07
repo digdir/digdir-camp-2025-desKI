@@ -1,12 +1,13 @@
 import os
-import logging
 import re
+import logging
 
-from app.config import AZURE_ENDPOINT, AZURE_MODEL
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
+
+from app.config import AZURE_MODEL, AZURE_ENDPOINT
 from app.utils.prompt_factory import PromptFactory
 
 logging.basicConfig(
@@ -49,7 +50,7 @@ class LLMService:
         max_tokens: int = 1024,
         temperature: float = 0.7,
         azure_endpoint: str = None,
-        endpoint: str = None
+        endpoint: str = None,
     ):
         """
         Initializes the LLMService by loading environment variables and setting up the embedding model and ChromaDB.
@@ -76,7 +77,9 @@ class LLMService:
         self.max_tokens = max_tokens
         self.temperature = temperature
 
-    def generate_response_azure(self, user_query: str, retrieved_context: dict,  endpoint: str = "chatbot") -> str:
+    def generate_response_azure(
+        self, user_query: str, retrieved_context: dict, endpoint: str = 'chatbot'
+    ) -> str:
         """
         Generates a response from the language model based on the user's query and retrieved context.
 
@@ -92,14 +95,14 @@ class LLMService:
             logger.warning('Empty user query provided.')
             return 'Please provide a valid question.'
 
-
         prompt = PromptFactory.get_prompt(user_query, retrieved_context, endpoint)
 
-        
         try:
             response = self.client.complete(
                 messages=[
-                    SystemMessage(content="""Du er en hjelpsom DigDir-assistent. Skriv svaret i klartekst, ikke noe \n eller markdown syntaks."""),
+                    SystemMessage(
+                        content="""Du er en hjelpsom DigDir-assistent. Skriv svaret i klartekst, ikke noe \n eller markdown syntaks."""
+                    ),
                     UserMessage(content=prompt),
                 ],
                 model=self.model_name,
@@ -109,9 +112,14 @@ class LLMService:
         except Exception as e:
             logger.error(f'Error generating response: {e}')
             return 'There was an error generating the response. Please try again later.'
-        
-        if "deepseek" in self.model_name.lower() and "r1" in self.model_name.lower():
-            return re.sub(r"<think>.*?</think>\n?", "", response.choices[0].message.content, flags=re.DOTALL)
+
+        if 'deepseek' in self.model_name.lower() and 'r1' in self.model_name.lower():
+            return re.sub(
+                r'<think>.*?</think>\n?',
+                '',
+                response.choices[0].message.content,
+                flags=re.DOTALL,
+            )
         return response.choices[0].message.content
 
         # TODO: Add support for self-created models

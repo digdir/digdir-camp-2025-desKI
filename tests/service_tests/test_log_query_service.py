@@ -23,7 +23,7 @@ class TestLogQueryService:
 
     def teardown_method(self, _method):
         """Teardown method to clean up after each test."""
-        
+
         self.addCleanup()
 
     @patch('app.services.log_query_service.requests.get')

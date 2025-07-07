@@ -14,13 +14,15 @@ Run this script with `python -m app.utils.fill_db.py` after placing .txt files u
 """
 
 import os
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 
-from app.services.embedding_service import EmbeddingService
 from app.services.chroma_service import ChromaService
+from app.services.embedding_service import EmbeddingService
 
-DATA_PATH = "_docs"
+DATA_PATH = '_docs'
+
 
 def load_txt_documents(data_path: str):
     """
@@ -32,7 +34,7 @@ def load_txt_documents(data_path: str):
     Returns:
         list: A list of langchain Document objects with source metadata.
     """
-    
+
     txt_files = []
     for root, _, files in os.walk(data_path):
         for file in files:
@@ -43,7 +45,9 @@ def load_txt_documents(data_path: str):
 
     documents = []
     for idx, filepath in enumerate(txt_files, start=1):
-        print(f"🔄 Leser fil {idx} av {len(txt_files)}: {os.path.relpath(filepath, data_path)}")
+        print(
+            f'🔄 Leser fil {idx} av {len(txt_files)}: {os.path.relpath(filepath, data_path)}'
+        )
         loader = TextLoader(filepath, encoding='utf-8')
         docs = loader.load()
         for doc in docs:
@@ -51,8 +55,9 @@ def load_txt_documents(data_path: str):
             doc.metadata['source'] = relative_path
         documents.extend(docs)
 
-    print(f" Ferdig med innlasting av {len(documents)} dokumentobjekter.")
+    print(f' Ferdig med innlasting av {len(documents)} dokumentobjekter.')
     return documents
+
 
 def chunk_documents(documents: list):
     """
@@ -64,32 +69,36 @@ def chunk_documents(documents: list):
     Returns:
         list: A list of split Document chunks.
     """
-    
-    print(" Deler opp i tekstbiter...")
+
+    print(' Deler opp i tekstbiter...')
     splitter = RecursiveCharacterTextSplitter(chunk_size=850, chunk_overlap=150)
     chunks = splitter.split_documents(documents)
-    print(f" Delt opp i {len(chunks)} biter.")
+    print(f' Delt opp i {len(chunks)} biter.')
     return chunks
+
 
 def main():
     """
     Main entrypoint for the ingestion pipeline.
     Initializes services, loads documents, chunks them, and stores them in ChromaDB.
     """
-    
+
     embedding_service = EmbeddingService()
     chroma_service = ChromaService(embedding_model=embedding_service.get_model())
 
     documents = load_txt_documents(DATA_PATH)
     chunks = chunk_documents(documents)
 
-    print(" Lagrer tekstbitene til ChromaDB...")
+    print(' Lagrer tekstbitene til ChromaDB...')
     success = chroma_service.add_documents(chunks)
 
     if success:
-        print(f"Alt ferdig! Lagt til {len(chunks)} biter fra {len(documents)} dokumenter.")
+        print(
+            f'Alt ferdig! Lagt til {len(chunks)} biter fra {len(documents)} dokumenter.'
+        )
     else:
-        print("Noe gikk galt under lagring til ChromaDB.")
+        print('Noe gikk galt under lagring til ChromaDB.')
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()

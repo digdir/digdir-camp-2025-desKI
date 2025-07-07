@@ -11,28 +11,29 @@ access and model caching.
 
 from app.services.embedding_service import EmbeddingService
 
+
 class TestEmbeddingService:
     """
     Test suite for the EmbeddingService.
 
     Validates that the returned embeddings are correctly typed and non-empty.
     """
-    
+
     def setup_method(self):
         """
         Create a new instance of EmbeddingService before each test.
-        
+
         This will use a cached variant if available.
         """
-        
+
         self.es = EmbeddingService()
 
     def test_embed_return_list(self):
         """
         Test that embed() returns a non-empty list of floats for a valid input string.
         """
-        
-        result = self.es.embed("Digdir er kult")
+
+        result = self.es.embed('Digdir er kult')
 
         assert isinstance(result, list)
         assert len(result) > 0

@@ -1,11 +1,11 @@
-import os
 import logging
 from typing import Optional
 
-from app.config import CHROMA_PATH, COLLECTION_NAME
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
+
+from app.config import CHROMA_PATH, COLLECTION_NAME
 
 load_dotenv()
 
@@ -14,6 +14,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
 )
 logger = logging.getLogger(__name__)
+
 
 class ChromaService:
     """

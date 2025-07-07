@@ -9,9 +9,8 @@ class PromptFactory:
 
     @staticmethod
     def get_prompt(endpoint: str, retrieved_context: dict, user_query: str) -> str:
-        if endpoint == "chatbot":
-            return (
-                f"""
+        if endpoint == 'chatbot':
+            return f"""
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
                 Svar kort og tydelig, men med relevante detaljer fra kildene. Ikke gjett.
@@ -26,10 +25,8 @@ class PromptFactory:
 
                 Svar:
                 """
-            )
-        elif endpoint == "copilot":
-            return (
-                f"""
+        elif endpoint == 'copilot':
+            return f"""
                 Du er en faglig støtteassistent for ansatte i Digdir. Du skal gi presise og profesjonelle svar basert på dokumentasjonen.
                 Dersom dokumentasjonen er mangelfull, vær tydelig på det, og gi forslag til videre undersøkelser.
                 Svar på norsk om spørsmålet er på norsk, og på engelsk om spørsmålet er på engelsk.
@@ -44,10 +41,8 @@ class PromptFactory:
 
                 Svar:
                 """
-            )
-        elif endpoint == "servicedesk":
-            return (
-                f"""
+        elif endpoint == 'servicedesk':
+            return f"""
                 Du er en DigDir-servicedeskassistent som hjelper kommuner, leverandører og samarbeidspartnere.
                 Svar basert på dokumentasjonen. Dersom dokumentasjonen ikke dekker spørsmålet, informer brukeren og foreslå hvordan de kan få videre hjelp.
                 Svar på norsk om spørsmålet er på norsk, på engelsk hvis det er relevant.
@@ -62,8 +57,7 @@ class PromptFactory:
 
                 Svar:
                 """
-            )
-        return "Du er en hjelpsom assistent."
+        return 'Du er en hjelpsom assistent.'
 
     # Can be used to split system and user prompt
     # @staticmethod

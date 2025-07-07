@@ -1,9 +1,8 @@
-import os
 import logging
 
 from dotenv import load_dotenv
-from app.config import CHROMA_PATH, COLLECTION_NAME, AZURE_ENDPOINT, AZURE_MODEL
 
+from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
