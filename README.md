@@ -61,6 +61,9 @@ http://localhost:8000/docs
 This opens the **interactive API documentation** powered by **FastAPI (Swagger UI)**, where you can explore and test all available endpoints. 
 
 ---
+# Developer info
+All services has a Minimal Usage documentation within the class documentation.
+Please read this and use as intended.
 
 ## 🧹 Ruff
 Ruff is a fast, all-in-one Python linter, formatter, and import sorter.

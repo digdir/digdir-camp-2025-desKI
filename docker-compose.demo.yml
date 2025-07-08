@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: deski-backend
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../digdir-camp-2025-desKI:/app
+      - chroma_data:/app/chroma_data
+    ports:
+      - "8000:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    user: root
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    networks:
+      - demo
+  
+  frontend:
+    build:
+      context: ../digdir-camp-2025-desKI-frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../digdir-camp-2025-desKI-frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --host 0.0.0.0 --port 3000
+    networks:
+      - demo
+
+networks:
+  demo:
+
+volumes:
+  chroma_data:
+  node_modules:
+  

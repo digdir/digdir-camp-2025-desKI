@@ -18,10 +18,10 @@ RUN curl -Lo /etc/bash_completion.d/git-prompt \
 RUN useradd -m -s /bin/bash vscode
 
 # Konfigurer Bash-prompt for å vise Git-branch
-RUN echo "\
-source /etc/bash_completion.d/git-prompt.sh\n\
-PS1='\\u@\\h:\\w\$(__git_ps1 \" (%s)\")\\$ '\n" \ 
-| tee -a /root/.bashrc /home/vscode/.bashrc
+RUN echo "source /etc/bash_completion.d/git-prompt.sh" >> /root/.bashrc && \
+    echo "PS1='\\u@\\h:\\w\$(__git_ps1 \" (%s)\")\\$ '" >> /root/.bashrc && \
+    echo "source /etc/bash_completion.d/git-prompt.sh" >> /home/vscode/.bashrc && \
+    echo "PS1='\\u@\\h:\\w\$(__git_ps1 \" (%s)\")\\$ '" >> /home/vscode/.bashrc
 
 # Sett arbeidsmappe i containeren
 WORKDIR /app
@@ -39,4 +39,3 @@ USER vscode
 
 # Start applikasjonen
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-
