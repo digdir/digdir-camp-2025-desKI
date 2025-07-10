@@ -14,7 +14,7 @@ class PromptFactory:
     def get_prompt(
         named_endpoint: NamedEndpoint, retrieved_context: dict, user_query: str
     ) -> str:
-        if named_endpoint == NamedEndpoint.CHATBOT or NamedEndpoint.DEFAULT:
+        if named_endpoint == NamedEndpoint.CHATBOT or named_endpoint == NamedEndpoint.DEFAULT:
             return f"""
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
