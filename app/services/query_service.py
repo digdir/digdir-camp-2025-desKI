@@ -94,7 +94,7 @@ class QueryService:
         )
 
     def run_query(
-        self, user_query: str, limit: int = 5, named_endpoint: NamedEndpoint = None
+        self, user_query: str, named_endpoint: NamedEndpoint = None, limit: int = 5
     ) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
@@ -111,8 +111,9 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
+        limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
-
+        retrieved_context = ''
         try:
             retrieved_context = self.chroma_service.search(
                 query=user_query, limit=limit
@@ -124,7 +125,9 @@ class QueryService:
 
         try:
             response = self.llm_service.generate_response_azure(
-                user_query, retrieved_context, named_endpoint
+                user_query=user_query,
+                retrieved_context=retrieved_context,
+                named_endpoint=named_endpoint,
             )
         except Exception as e:
             # Handle the exception, e.g., log it or return an error message
