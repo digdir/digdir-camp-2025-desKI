@@ -9,6 +9,7 @@ All Azure calls are mocked using unittest.mock to avoid real API usage.
 
 from unittest.mock import MagicMock, patch
 
+from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 
 
@@ -75,7 +76,9 @@ class TestLLMService:
         """
 
         llm = LLMService(model_name=self.normal_model)
-        result = llm.generate_response_azure('   ', 'irrelevant')
+        result = llm.generate_response_azure(
+            '   ', 'irrelevant', named_endpoint=NamedEndpoint.DEFAULT
+        )
         assert result == 'Please provide a valid question.'
 
     def test_generate_response_handles_exception(self, mock_client_class):

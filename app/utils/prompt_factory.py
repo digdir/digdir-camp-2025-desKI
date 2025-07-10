@@ -1,3 +1,6 @@
+from app.models.endpoint_enum import NamedEndpoint
+
+
 class PromptFactory:
     """
     Factory for retrieving predefined system and user prompts
@@ -8,8 +11,10 @@ class PromptFactory:
     """
 
     @staticmethod
-    def get_prompt(endpoint: str, retrieved_context: dict, user_query: str) -> str:
-        if endpoint == 'chatbot':
+    def get_prompt(
+        named_endpoint: NamedEndpoint, retrieved_context: dict, user_query: str
+    ) -> str:
+        if named_endpoint == NamedEndpoint.CHATBOT or NamedEndpoint.DEFAULT:
             return f"""
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
@@ -25,7 +30,7 @@ class PromptFactory:
 
                 Svar:
                 """
-        elif endpoint == 'copilot':
+        elif named_endpoint == NamedEndpoint.COPILOT:
             return f"""
                 Du er en faglig støtteassistent for ansatte i Digdir. Du skal gi presise og profesjonelle svar basert på dokumentasjonen.
                 Dersom dokumentasjonen er mangelfull, vær tydelig på det, og gi forslag til videre undersøkelser.
@@ -41,7 +46,7 @@ class PromptFactory:
 
                 Svar:
                 """
-        elif endpoint == 'servicedesk':
+        elif named_endpoint == NamedEndpoint.SERVICEDESK:
             return f"""
                 Du er en DigDir-servicedeskassistent som hjelper kommuner, leverandører og samarbeidspartnere.
                 Svar basert på dokumentasjonen. Dersom dokumentasjonen ikke dekker spørsmålet, informer brukeren og foreslå hvordan de kan få videre hjelp.
