@@ -3,10 +3,7 @@ import logging
 from dotenv import load_dotenv
 
 from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME
-<<<<<<< HEAD
-=======
 from app.models.endpoint_enum import NamedEndpoint
->>>>>>> origin/dev
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
@@ -43,58 +40,6 @@ class QueryService:
     Usage:
     ------
         from app.services.query_service import QueryService
-<<<<<<< HEAD
-        qs = QueryService()
-        answer = qs.run_query("Hva tilbyr Digdir?")
-        print(answer)
-
-
-    """
-
-    def __init__(
-        self,
-        embedder_model_name: str = 'intfloat/multilingual-e5-base',
-        chroma_path: str = None,
-        chroma_collection: str = None,
-        llm_model_name: str = None,
-        max_tokens: int = None,
-        temperature: float = None,
-        azure_endpoint: str = None,
-    ):
-        """
-        Initializes the QueryService by loading environment variables and setting up the embedding model and ChromaDB.
-
-        Args:
-            embedder_model_name (str): Optional; the name of the embedding model to use.
-            chroma_path (str): Optional; the path to the ChromaDB directory. Defaults to "app/db/chroma_db".
-            chroma_collection (str): Optional; the name of the collection in the ChromaDB. Defaults to "dig_docs".
-            llm_model_name (str): Optional; the name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
-            max_tokens (int): Optional; the maximum number of tokens to generate in the response. Defaults to 1024.
-            temperature (float): Optional; the sampling temperature to use for response generation. Defaults to 0.7.
-            azure_endpoint (str): Optional; the Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
-        """
-
-        # Initialize the embedding model
-        self.embedding_service = EmbeddingService(model_name=embedder_model_name)
-        self.embedding_model = self.embedding_service.get_model()
-
-        # Connect to local ChromaDB
-        self.chroma_service = ChromaService(
-            embedding_model=self.embedding_model,
-            persist_directory=chroma_path or CHROMA_PATH,
-            collection_name=chroma_collection or COLLECTION_NAME,
-        )
-
-        # Initialize the LLMService
-        self.llm_service = LLMService(
-            model_name=llm_model_name or AZURE_MODEL,
-            max_tokens=max_tokens or 1024,
-            temperature=temperature or 0.7,
-            azure_endpoint=azure_endpoint or AZURE_ENDPOINT,
-        )
-
-    def run_query(self, user_query: str, limit: int = 5) -> str:
-=======
         from app.models.endpoint_enum import NamedEndpoint (OPTIONAL)
         qs = QueryService()
         answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.CHATBOT (OPTIONAL)  )
@@ -149,19 +94,15 @@ class QueryService:
         )
 
     def run_query(
-        self, user_query: str, limit: int = 5, named_endpoint: NamedEndpoint = None
+        self, user_query: str, named_endpoint: NamedEndpoint = None, limit: int = 5
     ) -> str:
->>>>>>> origin/dev
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
 
         Args:
             user_query (str): The user's query.
             limit (int): The maximum number of document chunks to retrieve from the ChromaDB. Defaults to 5.
-<<<<<<< HEAD
-=======
             named_endpoint (NamedEndpoint): Enum that selects the preset prompt to be used.
->>>>>>> origin/dev
 
         Returns:
             str: The response from the language model based on the retrieved context.
@@ -170,11 +111,9 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
-<<<<<<< HEAD
-=======
+        limit = limit or 5 
         named_endpoint = named_endpoint or self.named_endpoint
-
->>>>>>> origin/dev
+        retrieved_context = ""
         try:
             retrieved_context = self.chroma_service.search(
                 query=user_query, limit=limit
@@ -186,11 +125,7 @@ class QueryService:
 
         try:
             response = self.llm_service.generate_response_azure(
-<<<<<<< HEAD
-                user_query, retrieved_context
-=======
-                user_query, retrieved_context, named_endpoint
->>>>>>> origin/dev
+                user_query=user_query, retrieved_context = retrieved_context, named_endpoint = named_endpoint
             )
         except Exception as e:
             # Handle the exception, e.g., log it or return an error message

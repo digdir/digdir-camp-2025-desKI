@@ -19,13 +19,6 @@ anyio==4.9.0
     #   watchfiles
 asgiref==3.8.1
     # via opentelemetry-instrumentation-asgi
-<<<<<<< HEAD
-attrs==25.3.0
-    # via aiohttp
-azure-ai-inference==1.0.0b9
-    # via -r requirements.in
-azure-core==1.35.0
-=======
 asgiref==3.8.1
     # via opentelemetry-instrumentation-asgi
 attrs==25.3.0
@@ -35,7 +28,6 @@ azure-ai-inference==1.0.0b9
     # via -r requirements.in
 azure-core==1.35.0
 azure-core==1.35.0
->>>>>>> origin/dev
     # via
     #   -r requirements.in
     #   azure-ai-inference
@@ -63,12 +55,9 @@ charset-normalizer==3.4.2
 chroma-hnswlib==0.7.6
     # via chromadb
 chromadb==0.6.3
-<<<<<<< HEAD
-=======
 chroma-hnswlib==0.7.6
     # via chromadb
 chromadb==0.6.3
->>>>>>> origin/dev
     # via langchain-chroma
 click==8.2.1
     # via
@@ -77,10 +66,7 @@ click==8.2.1
 coloredlogs==15.0.1
     # via onnxruntime
 cryptography==45.0.5
-<<<<<<< HEAD
-=======
 cryptography==45.0.5
->>>>>>> origin/dev
     # via
     #   azure-identity
     #   msal
@@ -97,24 +83,18 @@ fastapi==0.115.14
     # via
     #   -r requirements.in
     #   chromadb
-<<<<<<< HEAD
-=======
     # via
     #   -r requirements.in
     #   chromadb
->>>>>>> origin/dev
 filelock==3.18.0
     # via
     #   huggingface-hub
     #   torch
     #   transformers
-<<<<<<< HEAD
-=======
     # via
     #   huggingface-hub
     #   torch
     #   transformers
->>>>>>> origin/dev
 flatbuffers==25.2.10
     # via onnxruntime
 frozenlist==1.7.0
@@ -125,12 +105,9 @@ fsspec==2025.5.1
     # via
     #   huggingface-hub
     #   torch
-<<<<<<< HEAD
-=======
     # via
     #   huggingface-hub
     #   torch
->>>>>>> origin/dev
 google-auth==2.40.3
     # via kubernetes
 googleapis-common-protos==1.70.0
@@ -158,13 +135,6 @@ httpx==0.28.1
 httpx-sse==0.4.1
     # via langchain-community
 huggingface-hub==0.33.2
-<<<<<<< HEAD
-    # via
-    #   langchain-huggingface
-    #   sentence-transformers
-    #   tokenizers
-    #   transformers
-=======
 huggingface-hub==0.33.2
     # via
     #   langchain-huggingface
@@ -173,7 +143,6 @@ huggingface-hub==0.33.2
     #   tokenizers
     #   transformers
     #   transformers
->>>>>>> origin/dev
 humanfriendly==10.0
     # via coloredlogs
 idna==3.10
@@ -194,13 +163,10 @@ jinja2==3.1.6
     # via torch
 joblib==1.5.1
     # via scikit-learn
-<<<<<<< HEAD
-=======
 jinja2==3.1.6
     # via torch
 joblib==1.5.1
     # via scikit-learn
->>>>>>> origin/dev
 jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.0.0
@@ -210,19 +176,12 @@ kubernetes==33.1.0
 langchain==0.3.26
     # via langchain-community
 langchain-chroma==0.2.2
-<<<<<<< HEAD
-    # via -r requirements.in
-langchain-community==0.3.16
-    # via -r requirements.in
-langchain-core==0.3.67
-=======
 langchain-chroma==0.2.2
     # via -r requirements.in
 langchain-community==0.3.16
 langchain-community==0.3.16
     # via -r requirements.in
 langchain-core==0.3.68
->>>>>>> origin/dev
     # via
     #   langchain
     #   langchain-chroma
@@ -236,10 +195,7 @@ langchain-text-splitters==0.3.8
     #   -r requirements.in
     #   langchain
 langsmith==0.3.45
-<<<<<<< HEAD
-=======
 langsmith==0.3.45
->>>>>>> origin/dev
     # via
     #   langchain
     #   langchain-community
@@ -248,11 +204,8 @@ markdown-it-py==3.0.0
     # via rich
 markupsafe==3.0.2
     # via jinja2
-<<<<<<< HEAD
-=======
 markupsafe==3.0.2
     # via jinja2
->>>>>>> origin/dev
 marshmallow==3.26.1
     # via dataclasses-json
 mdurl==0.1.2
@@ -268,10 +221,7 @@ msal==1.32.3
 msal-extensions==1.3.1
     # via azure-identity
 multidict==6.6.3
-<<<<<<< HEAD
-=======
 multidict==6.6.3
->>>>>>> origin/dev
     # via
     #   aiohttp
     #   yarl
@@ -280,11 +230,6 @@ mypy-extensions==1.1.0
 networkx==3.5
     # via torch
 numpy==1.24.4
-<<<<<<< HEAD
-    # via
-    #   -r requirements.in
-    #   chroma-hnswlib
-=======
 networkx==3.5
     # via torch
 numpy==1.24.4
@@ -293,7 +238,6 @@ numpy==1.24.4
     #   chroma-hnswlib
     #   -r requirements.in
     #   chroma-hnswlib
->>>>>>> origin/dev
     #   chromadb
     #   langchain-chroma
     #   langchain-community
@@ -338,8 +282,6 @@ nvidia-nvjitlink-cu12==12.6.85
     #   torch
 nvidia-nvtx-cu12==12.6.77
     # via torch
-<<<<<<< HEAD
-=======
     #   scikit-learn
     #   scipy
     #   transformers
@@ -380,7 +322,6 @@ nvidia-nvjitlink-cu12==12.6.85
     #   torch
 nvidia-nvtx-cu12==12.6.77
     # via torch
->>>>>>> origin/dev
 oauthlib==3.3.1
     # via
     #   kubernetes
@@ -394,12 +335,9 @@ opentelemetry-api==1.34.1
     #   opentelemetry-instrumentation
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
-<<<<<<< HEAD
-=======
     #   opentelemetry-instrumentation
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
->>>>>>> origin/dev
     #   opentelemetry-sdk
     #   opentelemetry-semantic-conventions
 opentelemetry-exporter-otlp-proto-common==1.34.1
@@ -414,8 +352,6 @@ opentelemetry-instrumentation-asgi==0.55b1
     # via opentelemetry-instrumentation-fastapi
 opentelemetry-instrumentation-fastapi==0.55b1
     # via chromadb
-<<<<<<< HEAD
-=======
 opentelemetry-instrumentation==0.55b1
     # via
     #   opentelemetry-instrumentation-asgi
@@ -424,7 +360,6 @@ opentelemetry-instrumentation-asgi==0.55b1
     # via opentelemetry-instrumentation-fastapi
 opentelemetry-instrumentation-fastapi==0.55b1
     # via chromadb
->>>>>>> origin/dev
 opentelemetry-proto==1.34.1
     # via
     #   opentelemetry-exporter-otlp-proto-common
@@ -443,8 +378,6 @@ opentelemetry-util-http==0.55b1
     # via
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
-<<<<<<< HEAD
-=======
     # via
     #   opentelemetry-instrumentation
     #   opentelemetry-instrumentation-asgi
@@ -454,7 +387,6 @@ opentelemetry-util-http==0.55b1
     # via
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
->>>>>>> origin/dev
 orjson==3.10.18
     # via
     #   chromadb
@@ -470,19 +402,11 @@ packaging==24.2
     #   marshmallow
     #   onnxruntime
     #   opentelemetry-instrumentation
-<<<<<<< HEAD
-=======
     #   opentelemetry-instrumentation
->>>>>>> origin/dev
     #   pytest
     #   transformers
 pillow==11.3.0
     # via sentence-transformers
-<<<<<<< HEAD
-pluggy==1.6.0
-    # via pytest
-posthog==6.0.2
-=======
     #   transformers
 pillow==11.3.0
     # via sentence-transformers
@@ -490,7 +414,6 @@ pluggy==1.6.0
     # via pytest
 posthog==6.0.2
 posthog==6.0.2
->>>>>>> origin/dev
     # via chromadb
 propcache==0.3.2
     # via
@@ -554,18 +477,12 @@ pyyaml==6.0.2
     #   langchain-community
     #   langchain-core
     #   transformers
-<<<<<<< HEAD
-    #   uvicorn
-regex==2024.11.6
-    # via transformers
-=======
     #   transformers
     #   uvicorn
 regex==2024.11.6
     # via transformers
 regex==2024.11.6
     # via transformers
->>>>>>> origin/dev
 requests==2.32.4
     # via
     #   -r requirements.in
@@ -581,10 +498,7 @@ requests==2.32.4
     #   requests-oauthlib
     #   requests-toolbelt
     #   transformers
-<<<<<<< HEAD
-=======
     #   transformers
->>>>>>> origin/dev
 requests-mock==1.12.1
     # via -r requirements.in
 requests-oauthlib==2.0.0
@@ -608,8 +522,6 @@ scipy==1.15.3
     #   scikit-learn
     #   sentence-transformers
 sentence-transformers==5.0.0
-<<<<<<< HEAD
-=======
 ruff==0.4.4
     # via -r requirements.in
 safetensors==0.5.3
@@ -621,7 +533,6 @@ scipy==1.15.3
     #   scikit-learn
     #   sentence-transformers
 sentence-transformers==5.0.0
->>>>>>> origin/dev
     # via -r requirements.in
 shellingham==1.5.4
     # via typer
@@ -643,12 +554,9 @@ sympy==1.14.0
     # via
     #   onnxruntime
     #   torch
-<<<<<<< HEAD
-=======
     # via
     #   onnxruntime
     #   torch
->>>>>>> origin/dev
 tenacity==9.1.2
     # via
     #   chromadb
@@ -656,11 +564,8 @@ tenacity==9.1.2
     #   langchain-core
 threadpoolctl==3.6.0
     # via scikit-learn
-<<<<<<< HEAD
-=======
 threadpoolctl==3.6.0
     # via scikit-learn
->>>>>>> origin/dev
 tokenizers==0.21.2
     # via
     #   chromadb
@@ -668,12 +573,9 @@ tokenizers==0.21.2
     #   transformers
 torch==2.7.1
     # via sentence-transformers
-<<<<<<< HEAD
-=======
     #   transformers
 torch==2.7.1
     # via sentence-transformers
->>>>>>> origin/dev
 tqdm==4.67.1
     # via
     #   chromadb
@@ -684,15 +586,12 @@ transformers==4.53.0
     # via sentence-transformers
 triton==3.3.1
     # via torch
-<<<<<<< HEAD
-=======
     #   sentence-transformers
     #   transformers
 transformers==4.53.0
     # via sentence-transformers
 triton==3.3.1
     # via torch
->>>>>>> origin/dev
 typer==0.16.0
     # via chromadb
 typing-extensions==4.14.0
@@ -713,15 +612,10 @@ typing-extensions==4.14.0
     #   pydantic
     #   pydantic-core
     #   sentence-transformers
-<<<<<<< HEAD
-    #   sqlalchemy
-    #   torch
-=======
     #   sentence-transformers
     #   sqlalchemy
     #   torch
     #   torch
->>>>>>> origin/dev
     #   typer
     #   typing-inspect
     #   typing-inspection
@@ -749,11 +643,8 @@ websockets==15.0.1
     # via uvicorn
 wrapt==1.17.2
     # via opentelemetry-instrumentation
-<<<<<<< HEAD
-=======
 wrapt==1.17.2
     # via opentelemetry-instrumentation
->>>>>>> origin/dev
 yarl==1.20.1
     # via aiohttp
 zipp==3.23.0
@@ -763,9 +654,6 @@ zstandard==0.23.0
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
-<<<<<<< HEAD
-=======
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
->>>>>>> origin/dev
