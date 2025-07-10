@@ -8,6 +8,10 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
 
 from app.config import AZURE_MODEL, AZURE_ENDPOINT
+<<<<<<< HEAD
+=======
+from app.models.endpoint_enum import NamedEndpoint
+>>>>>>> origin/dev
 from app.utils.prompt_factory import PromptFactory
 
 logging.basicConfig(
@@ -50,7 +54,11 @@ class LLMService:
         max_tokens: int = 1024,
         temperature: float = 0.7,
         azure_endpoint: str = None,
+<<<<<<< HEAD
         endpoint: str = None,
+=======
+        named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
+>>>>>>> origin/dev
     ):
         """
         Initializes the LLMService by loading environment variables and setting up the embedding model and ChromaDB.
@@ -76,9 +84,19 @@ class LLMService:
 
         self.max_tokens = max_tokens
         self.temperature = temperature
+<<<<<<< HEAD
 
     def generate_response_azure(
         self, user_query: str, retrieved_context: dict, endpoint: str = 'chatbot'
+=======
+        self.named_endpoint = named_endpoint
+
+    def generate_response_azure(
+        self,
+        user_query: str,
+        retrieved_context: dict,
+        named_endpoint: NamedEndpoint = None,
+>>>>>>> origin/dev
     ) -> str:
         """
         Generates a response from the language model based on the user's query and retrieved context.
@@ -95,7 +113,13 @@ class LLMService:
             logger.warning('Empty user query provided.')
             return 'Please provide a valid question.'
 
+<<<<<<< HEAD
         prompt = PromptFactory.get_prompt(user_query, retrieved_context, endpoint)
+=======
+        named_endpoint = named_endpoint or self.named_endpoint
+
+        prompt = PromptFactory.get_prompt(user_query, retrieved_context, named_endpoint)
+>>>>>>> origin/dev
 
         try:
             response = self.client.complete(
