@@ -12,7 +12,7 @@ class PromptFactory:
 
     @staticmethod
     def get_prompt(
-       user_query: str, retrieved_context: dict, named_endpoint: NamedEndpoint
+        user_query: str, retrieved_context: dict, named_endpoint: NamedEndpoint
     ) -> str:
         if named_endpoint == NamedEndpoint.CHATBOT or NamedEndpoint.DEFAULT:
             return f"""

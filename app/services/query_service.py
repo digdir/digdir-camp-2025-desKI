@@ -111,9 +111,9 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
-        limit = limit or 5 
+        limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
-        retrieved_context = ""
+        retrieved_context = ''
         try:
             retrieved_context = self.chroma_service.search(
                 query=user_query, limit=limit
@@ -125,7 +125,9 @@ class QueryService:
 
         try:
             response = self.llm_service.generate_response_azure(
-                user_query=user_query, retrieved_context = retrieved_context, named_endpoint = named_endpoint
+                user_query=user_query,
+                retrieved_context=retrieved_context,
+                named_endpoint=named_endpoint,
             )
         except Exception as e:
             # Handle the exception, e.g., log it or return an error message
