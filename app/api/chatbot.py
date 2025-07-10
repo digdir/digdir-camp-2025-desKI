@@ -4,7 +4,6 @@ from app.models.endpoint_enum import NamedEndpoint
 from app.models.request_models import BaseChatRequest
 from app.models.response_models import BaseChatResponse
 from app.services.query_service import QueryService
-from app.services.query_service import QueryService
 
 router = APIRouter(tags=['Chatbot'])
 
