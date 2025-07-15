@@ -93,7 +93,7 @@ class QueryService:
             named_endpoint=self.named_endpoint,
         )
 
-    def run_query(self, user_query: str, limit: int = 5) -> str:
+    def run_query(self, user_query: str, named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT , limit: int = 5) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
 
@@ -108,8 +108,6 @@ class QueryService:
         """
 
         # TODO: Add optional log-search-functionality
-
-        named_endpoint = named_endpoint or self.named_endpoint
 
         limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint

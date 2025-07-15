@@ -21,8 +21,8 @@ def ask_chatbot(req: BaseChatRequest):
     elif length_validation == 0:
         return BaseChatResponse(answer="Spørsmål er for langt / Query is too long")
     else:
-        validated = vs.validate(query)
+        redacted, _ = vs.validate(req.question)
         qs = QueryService()
-        response = qs.run_query(validated, NamedEndpoint.CHATBOT)
+        response = qs.run_query(redacted, NamedEndpoint.CHATBOT)
 
         return BaseChatResponse(answer=response or 'Hei fra chatbot!', source=None)

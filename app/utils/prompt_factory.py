@@ -11,7 +11,7 @@ class PromptFactory:
     """
 
     @staticmethod
-    def get_prompt(endpoint: str, retrieved_context: dict, user_query: str) -> str:
+    def get_prompt( user_query: str, retrieved_context: dict, endpoint: str) -> str:
         if endpoint == 'chatbot':
             return f"""
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
