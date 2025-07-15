@@ -32,11 +32,3 @@ def remove_sensitive_data(text: str) -> str:
     for pattern, label in SENSITIVE_PATTERNS.items():
         text = re.sub(pattern, f'[REDACTED_{label}]', text, flags=re.IGNORECASE)
     return text
-
-def length_detector(text: str) -> int:
-    if len(text) > 2000:
-        return 0
-    if len(text) < 1:
-        return -1
-    else:
-        return 1
