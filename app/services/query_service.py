@@ -2,11 +2,13 @@ import logging
 import os
 from dotenv import load_dotenv
 
-from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME
+from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME, MAX_LENGTH, TEMPERATURE, MAX_NEW_TOKENS, TOP_P, FINETUNED_MODEL_API
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service_azure import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
+
+
 
 load_dotenv()
 
@@ -51,14 +53,16 @@ class QueryService:
     def __init__(
         self,
         embedder_model_name: str = 'intfloat/multilingual-e5-base',
-        chroma_path: str = None,
-        chroma_collection: str = None,
-        llm_model_name: str = None,
-        max_tokens: int = 1024,
-        temperature: float = 0.7,
-        azure_endpoint: str = None,
+        chroma_path: str = CHROMA_PATH,
+        chroma_collection: str = COLLECTION_NAME,
+        llm_model_name: str = AZURE_MODEL,
+        max_tokens: int = MAX_NEW_TOKENS,
+        temperature: float = TEMPERATURE,
+        max_length: int = MAX_LENGTH,
+        top_p: int = TOP_P,
+        azure_endpoint: str = AZURE_ENDPOINT,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
-        finetuned_api_url: str = None,
+        finetuned_api_url: str = FINETUNED_MODEL_API,
         use_azure: bool = USE_AZURE
 
     ):
@@ -90,16 +94,18 @@ class QueryService:
         # Connect to local ChromaDB
         self.chroma_service = ChromaService(
             embedding_model=self.embedding_model,
-            persist_directory=chroma_path or CHROMA_PATH,
-            collection_name=chroma_collection or COLLECTION_NAME,
+            persist_directory=chroma_path,
+            collection_name=chroma_collection,
         )
 
         # Initialize the LLMService
         self.llm_service = LLMService(
-            model_name=llm_model_name or AZURE_MODEL,
-            max_tokens=max_tokens or 1024,
-            temperature=temperature or 0.7,
-            azure_endpoint=azure_endpoint or AZURE_ENDPOINT,
+            model_name=llm_model_name,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            max_length=max_length,
+            top_p=top_p,
+            azure_endpoint=azure_endpoint,
             named_endpoint=named_endpoint,
             use_azure=use_azure,
             finetuned_api_url=finetuned_api_url

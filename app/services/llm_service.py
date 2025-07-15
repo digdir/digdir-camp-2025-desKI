@@ -14,6 +14,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer #sjekk om jeg trene
 #from app.models.endpoint_enum import NamedEndpoint sjekk om jeg trenger denne
 from app.utils.prompt_factory import PromptFactory
 from app.models.endpoint_enum import NamedEndpoint
+from app.config import FINETUNED_MODEL_API
 
 # Load environment variables from .env file
 load_dotenv()
@@ -57,6 +58,9 @@ class LLMService:
         model_name: str,
         max_tokens: int,
         temperature: float,
+        max_length: int,
+        top_p,
+
         azure_endpoint: str,
         named_endpoint: NamedEndpoint,
         use_azure: bool,
@@ -76,6 +80,9 @@ class LLMService:
         self.model_name = model_name
         self.max_tokens = max_tokens
         self.temperature = temperature
+        self.max_length = max_length
+        self.top_p = top_p
+
         self.named_endpoint = named_endpoint
 
         if self.use_azure:
@@ -88,7 +95,7 @@ class LLMService:
             )
 
         else:
-            self.finetuned_api_url = finetuned_api_url or os.getenv("FINETUNED_MODEL_API")
+            self.finetuned_api_url = finetuned_api_url 
 
 
 
