@@ -14,7 +14,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer #sjekk om jeg trene
 #from app.models.endpoint_enum import NamedEndpoint sjekk om jeg trenger denne
 from app.utils.prompt_factory import PromptFactory
 from app.models.endpoint_enum import NamedEndpoint
-from app.config import FINETUNED_MODEL_API
+from app.config import FINETUNED_MODEL_API, AZURE_MODEL, AZURE_ENDPOINT, MAX_LENGTH, TEMPERATURE, MAX_NEW_TOKENS, TOP_P, USE_AZURE
 
 # Load environment variables from .env file
 load_dotenv()
@@ -35,7 +35,7 @@ class LLMService:
 
     Attributes:
     -----------
-        model_name (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
+        llm_model_name  (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
         max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
         temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
         azure_endpoint (str): The Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
@@ -55,29 +55,29 @@ class LLMService:
 
     def __init__(
         self,
-        model_name: str,
-        max_tokens: int,
-        temperature: float,
-        max_length: int,
-        top_p,
+        llm_model_name: str = AZURE_MODEL,
+        max_tokens: int = MAX_NEW_TOKENS,
+        temperature: float = TEMPERATURE,
+        max_length: int = MAX_LENGTH,
+        top_p: float = TOP_P,
 
-        azure_endpoint: str,
-        named_endpoint: NamedEndpoint,
-        use_azure: bool,
-        finetuned_api_url: str = None,
+        azure_endpoint: str = AZURE_ENDPOINT,
+        named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
+        use_azure: bool = USE_AZURE,
+        finetuned_api_url: str = FINETUNED_MODEL_API,
     ):
         """
         Initializes the LLMService by loading environment variables and setting up the embedding model and ChromaDB.
 
         Args:
-            model_name (str): Optional; the name of the embedding model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
+            llm_model_name  (str): Optional; the name of the embedding model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
             max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
             temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
             azure_endpoint (str): Optional; the Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
         """
         
         self.use_azure = use_azure
-        self.model_name = model_name
+        self.llm_model_name  = llm_model_name 
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.max_length = max_length
@@ -144,7 +144,7 @@ class LLMService:
                 messages= [
                     UserMessage(content=prompt),
                 ],
-                model=self.model_name,
+                model=self.llm_model_name ,
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
             )
@@ -152,6 +152,14 @@ class LLMService:
         except Exception as e:
             logger.error(f"Error generating response (Azure): {e}")
             return "Azure model error"
+        
+        if 'deepseek' in self.llm_model_name.lower() and 'r1' in self.llm_model_name.lower():
+            return re.sub(
+                r'<think>.*?</think>\n?',
+                '',
+                response.choices[0].message.content,
+                flags=re.DOTALL,
+            )
         
         return response.choices[0].message.content
     

@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME, MAX_LENGTH, TEMPERATURE, MAX_NEW_TOKENS, TOP_P, FINETUNED_MODEL_API
 from app.models.endpoint_enum import NamedEndpoint
-from app.services.llm_service_azure import LLMService
+from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
 
@@ -59,7 +59,7 @@ class QueryService:
         max_tokens: int = MAX_NEW_TOKENS,
         temperature: float = TEMPERATURE,
         max_length: int = MAX_LENGTH,
-        top_p: int = TOP_P,
+        top_p: float = TOP_P,
         azure_endpoint: str = AZURE_ENDPOINT,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         finetuned_api_url: str = FINETUNED_MODEL_API,
