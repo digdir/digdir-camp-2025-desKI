@@ -13,6 +13,7 @@ router = APIRouter(tags=['Chatbot'])
 def ask_chatbot(req: StrictChatRequest) -> StrictChatResponse:
     query = req.question
     qs = QueryService()
-    response = qs.run_query(query, NamedEndpoint.CHATBOT)
+    response = qs.run_query(user_query=req.question, named_endpoint=NamedEndpoint.CHATBOT)
+
 
     return StrictChatResponse(answer=response or 'Hei fra chatbot!', source=None)

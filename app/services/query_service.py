@@ -1,15 +1,19 @@
 import logging
 from typing import Any, Optional
-
+import os
 from dotenv import load_dotenv
 
-from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME
+from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME, MAX_LENGTH, TEMPERATURE, MAX_NEW_TOKENS, TOP_P, FINETUNED_MODEL_API
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
 
+
+
 load_dotenv()
+
+USE_AZURE = os.getenv("USE_AZURE", "true").lower() == "true"
 
 logging.basicConfig(
     level=logging.INFO,  # or DEBUG for more detail
@@ -50,14 +54,21 @@ class QueryService:
     def __init__(
         self,
         embedder_model_name: str = 'intfloat/multilingual-e5-base',
-        chroma_path: str = None,
-        chroma_collection: str = None,
-        llm_model_name: str = None,
-        max_tokens: int = None,
-        temperature: float = None,
-        azure_endpoint: str = None,
-        named_endpoint: NamedEndpoint = None,
+        chroma_path: str = CHROMA_PATH,
+        chroma_collection: str = COLLECTION_NAME,
+        llm_model_name: str = AZURE_MODEL,
+        max_tokens: int = MAX_NEW_TOKENS,
+        temperature: float = TEMPERATURE,
+        max_length: int = MAX_LENGTH,
+        top_p: float = TOP_P,
+        azure_endpoint: str = AZURE_ENDPOINT,
+        named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
+        finetuned_api_url: str = FINETUNED_MODEL_API,
+        use_azure: bool = USE_AZURE
+
     ):
+
+
         """
         Initializes the QueryService by loading environment variables and setting up the embedding model and ChromaDB.
 
@@ -72,6 +83,9 @@ class QueryService:
             named_endpoint (NamedEndpoint): Optional; enum that tells the PromptFactory which prompt to use.
         """
 
+        # Use azure model if True, else use finetuned
+        self.use_azure = use_azure
+
         # Initialize the embedding model
         self.embedding_service = EmbeddingService(model_name=embedder_model_name)
         self.embedding_model = self.embedding_service.get_model()
@@ -81,17 +95,21 @@ class QueryService:
         # Connect to local ChromaDB
         self.chroma_service = ChromaService(
             embedding_model=self.embedding_model,
-            persist_directory=chroma_path or CHROMA_PATH,
-            collection_name=chroma_collection or COLLECTION_NAME,
+            persist_directory=chroma_path,
+            collection_name=chroma_collection,
         )
 
         # Initialize the LLMService
         self.llm_service = LLMService(
-            model_name=llm_model_name or AZURE_MODEL,
-            max_tokens=max_tokens or 1024,
-            temperature=temperature or 0.7,
-            azure_endpoint=azure_endpoint or AZURE_ENDPOINT,
-            named_endpoint=self.named_endpoint,
+            llm_model_name=llm_model_name,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            max_length=max_length,
+            top_p=top_p,
+            azure_endpoint=azure_endpoint,
+            named_endpoint=named_endpoint,
+            use_azure=use_azure,
+            finetuned_api_url=finetuned_api_url
         )
 
     def run_query(
@@ -116,28 +134,22 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
-        limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
         retrieved_context = ''
         try:
-            retrieved_context = self.chroma_service.search(
-                query=user_query, limit=limit
-            )
-            logger.info(f'Retrieved Context: {len(retrieved_context)}')
+            # retrieves context from vector db
+            retrieved_context = self.chroma_service.search(query=user_query, limit=limit)
+            logger.info(f"retrieved {len(retrieved_context)} context chunks")
+            
+
         except Exception as e:
-            # Handle the exception, e.g., log it or return an error message
-            logger.error(f'Error retrieving context from ChromaDB: {e}')
+            logger.error(f"Error retrieving the context from ChromaDB: {e}")
+            return "An error occured while retrieving documents"
+
 
         try:
-            response = self.llm_service.generate_response_azure(
-                user_query=user_query,
-                retrieved_context=retrieved_context,
-                named_endpoint=named_endpoint,
-                external_context=external_context,
-            )
-        except Exception as e:
-            # Handle the exception, e.g., log it or return an error message
-            logger.error(f'Error generating response from LLM: {e}')
-            response = 'An error occurred while generating the response.'
+            return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
 
-        return response
+        except Exception as e:
+            logger.error(f" Error generating response from LLM {e}")
+            return "An error occured while generating the response"
