@@ -1,6 +1,7 @@
 import os
 import re
 import logging
+from typing import Any, Optional
 
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
@@ -84,6 +85,7 @@ class LLMService:
         user_query: str,
         retrieved_context: dict,
         named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         """
         Generates a response from the language model based on the user's query and retrieved context.
@@ -102,7 +104,12 @@ class LLMService:
 
         named_endpoint = named_endpoint or self.named_endpoint
 
-        prompt = PromptFactory.get_prompt(user_query, retrieved_context, named_endpoint)
+        logger.info(f'User info: {external_context}')
+        logger.info(f'User Endpoint: {named_endpoint}')
+        prompt = PromptFactory.get_prompt(
+            user_query, retrieved_context, named_endpoint, external_context
+        )
+        logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         try:
             response = self.client.complete(

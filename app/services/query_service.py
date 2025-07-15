@@ -1,4 +1,5 @@
 import logging
+from typing import Any, Optional
 
 from dotenv import load_dotenv
 
@@ -93,7 +94,13 @@ class QueryService:
             named_endpoint=self.named_endpoint,
         )
 
-    def run_query(self, user_query: str, named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT , limit: int = 5) -> str:
+    def run_query(
+        self,
+        user_query: str,
+        named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
+        limit: int = 5,
+    ) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
 
@@ -126,6 +133,7 @@ class QueryService:
                 user_query=user_query,
                 retrieved_context=retrieved_context,
                 named_endpoint=named_endpoint,
+                external_context=external_context,
             )
         except Exception as e:
             # Handle the exception, e.g., log it or return an error message
