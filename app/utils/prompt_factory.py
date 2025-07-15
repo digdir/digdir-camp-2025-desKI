@@ -1,4 +1,6 @@
 from app.models.endpoint_enum import NamedEndpoint
+from typing import Optional, Any
+import json
 
 
 class PromptFactory:
@@ -12,9 +14,10 @@ class PromptFactory:
 
     @staticmethod
     def get_prompt(
-        user_query: str, retrieved_context: dict, named_endpoint: NamedEndpoint
+        user_query: str, retrieved_context: dict, named_endpoint: NamedEndpoint, external_context: Optional[dict[str, Any]] = None
     ) -> str:
-        if named_endpoint == NamedEndpoint.CHATBOT or NamedEndpoint.DEFAULT:
+        
+        if (named_endpoint == NamedEndpoint.CHATBOT) or (named_endpoint == NamedEndpoint.DEFAULT):
             return f"""
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
@@ -31,11 +34,14 @@ class PromptFactory:
                 Svar:
                 """
         elif named_endpoint == NamedEndpoint.COPILOT:
-            return f"""
-                Du er en faglig støtteassistent for ansatte i Digdir. Du skal gi presise, profesjonelle og konkrete svar basert på tilgjengelig dokumentasjon om Selvbetjening og klientadministrasjon. 
-                Hvis dokumentasjonen er mangelfull eller ikke dekker spørsmålet, skal du være tydelig på det og foreslå videre undersøkelser eller kontaktpunkter. 
-                Svar på norsk når brukeren spør på norsk, og på engelsk når brukeren spør på engelsk. Ikke gjett, og ikke spekuler uten å gjøre det eksplisitt tydelig. 
+           return f"""
+                Du er en faglig støtteassistent for ansatte i Digdir. Du skal gi presise, profesjonelle og konkrete svar basert på tilgjengelig dokumentasjon om Selvbetjening og klientadministrasjon.
+                Hvis dokumentasjonen er mangelfull eller ikke dekker spørsmålet, skal du være tydelig på det og foreslå videre undersøkelser eller kontaktpunkter.
+                Svar på norsk når brukeren spør på norsk, og på engelsk når brukeren spør på engelsk. Ikke gjett, og ikke spekuler uten å gjøre det eksplisitt tydelig.
                 Bruk korrekt terminologi for OAuth2, klienter, scopes, tokens, PKCE og annet relevant fagområde.
+
+                Når du refererer til antall nøkler eller antall OnBehalfOf-elementer, skal du telle antall objekter i de respektive listene i JSON-dataene under. Skriv antallet eksplisitt i svaret.
+
                 Når brukeren stiller spørsmål om en klient, skal du som minimum forklare:
                 - Klientens identitet (Klient ID, visningsnavn, beskrivelse)
                 - Applikasjonstype (f.eks. web, native, machine-to-machine)
@@ -46,12 +52,16 @@ class PromptFactory:
                 - Eventuelle sikkerhetsvalg som single sign-on (SSO)
                 - Hvordan innstillinger kan endres i Selvbetjening
                 - Eventuelle begrensninger i løsningen
+                - Antall nøkler (tallet beregnes ved å telle elementene i listen 'jwks' nedenfor)
+                - Antall OnBehalfOf (tallet beregnes ved å telle elementene i listen 'onBehalfOf' nedenfor)
+                - Informasjon om scopes som er tilgjengelige eller tilordnet
 
-                Hvis det finnes relevante regelverk, prosessbeskrivelser, lenker til interne sider eller annen dokumentasjon, inkluder dem i svaret.
-                Ikke anta noe om brukernes behov, men spør gjerne oppklarende spørsmål hvis noe er uklart.
+                Her er den samlede interne dokumentasjonen og konfigurasjonen. Bruk all informasjon som kildedata for svaret ditt. Hvis en liste er tom, skal du si at ingen elementer er registrert.
 
-                Intern dokumentasjon:
                 {retrieved_context}
+
+                Klientkonfigurasjon i JSON-format:
+                {json.dumps(external_context, indent=2, ensure_ascii=False)}
 
                 Forespørsel:
                 {user_query}
