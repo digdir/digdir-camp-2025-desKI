@@ -1,18 +1,27 @@
-import logging
 import os
+import logging
+
 from dotenv import load_dotenv
 
-from app.config import AZURE_MODEL, CHROMA_PATH, AZURE_ENDPOINT, COLLECTION_NAME, MAX_LENGTH, TEMPERATURE, MAX_NEW_TOKENS, TOP_P, FINETUNED_MODEL_API
+from app.config import (
+    TOP_P,
+    MAX_LENGTH,
+    AZURE_MODEL,
+    CHROMA_PATH,
+    TEMPERATURE,
+    AZURE_ENDPOINT,
+    MAX_NEW_TOKENS,
+    COLLECTION_NAME,
+    FINETUNED_MODEL_API,
+)
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
 
-
-
 load_dotenv()
 
-USE_AZURE = os.getenv("USE_AZURE", "true").lower() == "true"
+USE_AZURE = os.getenv('USE_AZURE', 'true').lower() == 'true'
 
 logging.basicConfig(
     level=logging.INFO,  # or DEBUG for more detail
@@ -63,11 +72,8 @@ class QueryService:
         azure_endpoint: str = AZURE_ENDPOINT,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         finetuned_api_url: str = FINETUNED_MODEL_API,
-        use_azure: bool = USE_AZURE
-
+        use_azure: bool = USE_AZURE,
     ):
-
-
         """
         Initializes the QueryService by loading environment variables and setting up the embedding model and ChromaDB.
 
@@ -108,7 +114,7 @@ class QueryService:
             azure_endpoint=azure_endpoint,
             named_endpoint=named_endpoint,
             use_azure=use_azure,
-            finetuned_api_url=finetuned_api_url
+            finetuned_api_url=finetuned_api_url,
         )
 
     def run_query(
@@ -129,25 +135,26 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
-
         named_endpoint = named_endpoint or self.named_endpoint
 
         try:
             # retriveds context from vector db
-            retrieved_context = self.chroma_service.search(query=user_query, limit=limit)
-            logger.info(f"retrieved {len(retrieved_context)} context chunks")
-            
+            retrieved_context = self.chroma_service.search(
+                query=user_query, limit=limit
+            )
+            logger.info(f'retrieved {len(retrieved_context)} context chunks')
 
         except Exception as e:
-            logger.error(f"Error retrieving the context from ChromaDB: {e}")
-            return "An error occured while retrieving documents"
-
+            logger.error(f'Error retrieving the context from ChromaDB: {e}')
+            return 'An error occured while retrieving documents'
 
         try:
-            #return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
-            context_str = "\n\n".join(retrieved_context)
-            return self.llm_service.generate_response(user_query, context_str, named_endpoint)
+            # return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
+            context_str = '\n\n'.join(retrieved_context)
+            return self.llm_service.generate_response(
+                user_query, context_str, named_endpoint
+            )
 
         except Exception as e:
-            logger.error(f" Error generating response from LLM {e}")
-            return "An error occured while generating the response"
+            logger.error(f' Error generating response from LLM {e}')
+            return 'An error occured while generating the response'

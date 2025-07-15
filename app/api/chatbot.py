@@ -12,6 +12,8 @@ router = APIRouter(tags=['Chatbot'])
 @router.post('/', response_model=BaseChatResponse)
 def ask_chatbot(req: BaseChatRequest):
     qs = QueryService()
-    response = qs.run_query(user_query=req.question, named_endpoint=NamedEndpoint.CHATBOT)
+    response = qs.run_query(
+        user_query=req.question, named_endpoint=NamedEndpoint.CHATBOT
+    )
 
     return BaseChatResponse(answer=response or 'Hei fra chatbot!', source=None)
