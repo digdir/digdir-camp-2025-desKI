@@ -1,6 +1,7 @@
-from app.models.endpoint_enum import NamedEndpoint
-from typing import Optional, Any
 import json
+from typing import Any, Optional
+
+from app.models.endpoint_enum import NamedEndpoint
 
 
 class PromptFactory:
@@ -14,10 +15,14 @@ class PromptFactory:
 
     @staticmethod
     def get_prompt(
-        user_query: str, retrieved_context: dict, named_endpoint: NamedEndpoint, external_context: Optional[dict[str, Any]] = None
+        user_query: str,
+        retrieved_context: dict,
+        named_endpoint: NamedEndpoint,
+        external_context: Optional[dict[str, Any]] = None,
     ) -> str:
-        
-        if (named_endpoint == NamedEndpoint.CHATBOT) or (named_endpoint == NamedEndpoint.DEFAULT):
+        if (named_endpoint == NamedEndpoint.CHATBOT) or (
+            named_endpoint == NamedEndpoint.DEFAULT
+        ):
             return f"""
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
@@ -34,7 +39,7 @@ class PromptFactory:
                 Svar:
                 """
         elif named_endpoint == NamedEndpoint.COPILOT:
-           return f"""
+            return f"""
                 Du er en faglig støtteassistent for ansatte i Digdir. Du skal gi presise, profesjonelle og konkrete svar basert på tilgjengelig dokumentasjon om Selvbetjening og klientadministrasjon.
                 Hvis dokumentasjonen er mangelfull eller ikke dekker spørsmålet, skal du være tydelig på det og foreslå videre undersøkelser eller kontaktpunkter.
                 Svar på norsk når brukeren spør på norsk, og på engelsk når brukeren spør på engelsk. Ikke gjett, og ikke spekuler uten å gjøre det eksplisitt tydelig.

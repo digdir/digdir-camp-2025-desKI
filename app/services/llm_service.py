@@ -1,12 +1,12 @@
 import os
 import re
 import logging
+from typing import Any, Optional
 
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
-from typing import Optional, Any
 
 from app.config import AZURE_MODEL, AZURE_ENDPOINT
 from app.models.endpoint_enum import NamedEndpoint
@@ -106,7 +106,9 @@ class LLMService:
 
         logger.info(f'User info: {external_context}')
         logger.info(f'User Endpoint: {named_endpoint}')
-        prompt = PromptFactory.get_prompt(user_query, retrieved_context, named_endpoint, external_context)
+        prompt = PromptFactory.get_prompt(
+            user_query, retrieved_context, named_endpoint, external_context
+        )
         logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         try:

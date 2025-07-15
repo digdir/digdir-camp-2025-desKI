@@ -1,4 +1,5 @@
 import logging
+from typing import Any, Optional
 
 from dotenv import load_dotenv
 
@@ -7,7 +8,6 @@ from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
-from typing import Optional, Any
 
 load_dotenv()
 
@@ -95,7 +95,11 @@ class QueryService:
         )
 
     def run_query(
-        self, user_query: str, named_endpoint: NamedEndpoint = None, external_context: Optional[dict[str, Any]] = None, limit: int = 5
+        self,
+        user_query: str,
+        named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
+        limit: int = 5,
     ) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
