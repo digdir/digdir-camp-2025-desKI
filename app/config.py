@@ -1,6 +1,7 @@
 # === Vector db ====
 CHROMA_PATH = 'app/db/chroma_db'
 COLLECTION_NAME = 'dig_docs'
+DATA_PATH = '_docs'
 
 # ==== Azure ====
 AZURE_ENDPOINT = 'https://digdircamp-resource.services.ai.azure.com/models'

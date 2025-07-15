@@ -8,10 +8,8 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
 
-from transformers import AutoModelForCausalLM, AutoTokenizer #sjekk om jeg trenegr denne
+from transformers import AutoModelForCausalLM, AutoTokenizer 
 
-#from app.config import AZURE_MODEL, AZURE_ENDPOINT
-#from app.models.endpoint_enum import NamedEndpoint sjekk om jeg trenger denne
 from app.utils.prompt_factory import PromptFactory
 from app.models.endpoint_enum import NamedEndpoint
 from app.config import FINETUNED_MODEL_API, AZURE_MODEL, AZURE_ENDPOINT, MAX_LENGTH, TEMPERATURE, MAX_NEW_TOKENS, TOP_P, USE_AZURE
@@ -131,11 +129,7 @@ class LLMService:
         
         prompt = PromptFactory.get_prompt(named_endpoint or self.named_endpoint, context, user_query)
 
-
-        #prompt = PromptFactory.get_prompt(user_query, context, named_endpoint or self.named_endpoint)
-        #endpoint_value = (named_endpoint or self.named_endpoint).value
-        #prompt = PromptFactory.get_prompt(user_query, context, endpoint_value)
-        logger.info(f"📝 Prompt til Azure:\n{prompt}")
+        logger.info(f" Prompt til Azure:\n{prompt}")
 
 
 

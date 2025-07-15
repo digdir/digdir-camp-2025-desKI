@@ -14,17 +14,13 @@ Run this script with `python -m app.utils.fill_db.py` after placing .txt files u
 """
 
 import os
-from app.config import CHROMA_PATH, COLLECTION_NAME
+from app.config import CHROMA_PATH, COLLECTION_NAME, DATA_PATH
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
-
-DATA_PATH = '_docs'
-#DATA_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "_docs"))
-
 
 
 
@@ -88,7 +84,6 @@ def main():
     """
 
     embedding_service = EmbeddingService()
-    #chroma_service = ChromaService(embedding_model=embedding_service.get_model())
     chroma_service = ChromaService(
     embedding_model=embedding_service.get_model(),
     persist_directory=CHROMA_PATH,
