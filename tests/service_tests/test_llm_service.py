@@ -93,7 +93,4 @@ class TestLLMService:
         llm = LLMService(llm_model_name=self.normal_model)
         result = llm.generate_response_azure(self.query, self.context)
 
-        assert (
-            result
-            == 'Azure model error'
-        )
+        assert result == 'Azure model error'
