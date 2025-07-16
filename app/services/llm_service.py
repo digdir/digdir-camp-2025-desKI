@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.inference.models import UserMessage, SystemMessage
+from azure.ai.inference.models import UserMessage
 
 from app.config import (
     TOP_P,
