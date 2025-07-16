@@ -1,6 +1,7 @@
 import os
 import re
 import logging
+from typing import Any, Optional
 
 import requests
 from dotenv import load_dotenv
@@ -36,7 +37,7 @@ class LLMService:
     A service for interacting with a language model to generate responses based on user queries.
 
     This service initializes the embedding model, connects to ChromaDB, retrieves relevant document chunks,
-    and sends a prompt to an Azure AI model to generate a response based on the retrieved context.
+    and sends a prompt to an Azure AI model to generate a response based on the retrieved retrieved_context.
 
     Attributes:
     -----------
@@ -48,7 +49,7 @@ class LLMService:
     Methods:
     --------
         generate_response_azure(user_query: str, retrieved_context: dict) -> str:
-            Generates a response from the language model based on the user's query and retrieved context.
+            Generates a response from the language model based on the user's query and retrieved retrieved_context.
 
     Usage:
     ------
@@ -102,30 +103,47 @@ class LLMService:
             self.finetuned_api_url = finetuned_api_url
 
     def generate_response(
-        self, user_query: str, context: str, named_endpoint: NamedEndpoint = None
+        self,
+        user_query: str,
+        retrieved_context: dict,
+        named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         """
         Generic interface: picks Azure or finetuned backend based on config.
         """
 
         if self.use_azure:
-            return self.generate_response_azure(user_query, context, named_endpoint)
+            return self.generate_response_azure(
+                user_query, retrieved_context, named_endpoint, external_context
+            )
 
         else:
-            return self.generate_response_finetuned(user_query, context, named_endpoint)
+            return self.generate_response_finetuned(
+                user_query, retrieved_context, named_endpoint, external_context
+            )
 
     def generate_response_azure(
-        self, user_query: str, context: str, named_endpoint: NamedEndpoint = None
+        self,
+        user_query: str,
+        retrieved_context: str,
+        named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         if not user_query.strip():
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
         prompt = PromptFactory.get_prompt(
-            named_endpoint or self.named_endpoint, context, user_query
+            named_endpoint or self.named_endpoint, retrieved_context, user_query
         )
 
-        logger.info(f' Prompt til Azure:\n{prompt}')
+        logger.info(f'User info: {external_context}')
+        logger.info(f'User Endpoint: {named_endpoint}')
+        prompt = PromptFactory.get_prompt(
+            user_query, retrieved_context, named_endpoint, external_context
+        )
+        logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         try:
             response = self.client.complete(
@@ -155,14 +173,21 @@ class LLMService:
         return response.choices[0].message.content
 
     def generate_response_finetuned(
-        self, user_query: str, context: str, named_endpoint: NamedEndpoint = None
+        self,
+        user_query: str,
+        retrieved_context: str,
+        named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         if not user_query.strip():
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
         prompt = PromptFactory.get_prompt(
-            user_query, context, named_endpoint or self.named_endpoint
+            user_query,
+            retrieved_context,
+            named_endpoint or self.named_endpoint,
+            external_context,
         )
 
         try:

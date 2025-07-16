@@ -1,5 +1,6 @@
 import os
 import logging
+from typing import Any, Optional
 
 from dotenv import load_dotenv
 
@@ -118,7 +119,11 @@ class QueryService:
         )
 
     def run_query(
-        self, user_query: str, limit: int = 5, named_endpoint: NamedEndpoint = None
+        self,
+        user_query: str,
+        named_endpoint: NamedEndpoint = None,
+        external_context: Optional[dict[str, Any]] = None,
+        limit: int = 5,
     ) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
@@ -135,8 +140,9 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
+        limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
-
+        retrieved_context = ''
         try:
             # retriveds context from vector db
             retrieved_context = self.chroma_service.search(
@@ -152,7 +158,7 @@ class QueryService:
             # return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
             context_str = '\n\n'.join(retrieved_context)
             return self.llm_service.generate_response(
-                user_query, context_str, named_endpoint
+                user_query, context_str, named_endpoint, external_context
             )
 
         except Exception as e:
