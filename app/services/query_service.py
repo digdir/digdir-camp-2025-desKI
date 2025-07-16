@@ -140,6 +140,7 @@ class QueryService:
             # retrieves context from vector db
             retrieved_context = self.chroma_service.search(query=user_query, limit=limit)
             logger.info(f"retrieved {len(retrieved_context)} context chunks")
+            logger.info(f"retrieved context: {retrieved_context}")
             
 
         except Exception as e:
@@ -148,7 +149,8 @@ class QueryService:
 
 
         try:
-            return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
+            logger.info(f"Is the retrieved context persistent? {retrieved_context}")
+            return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint, external_context)
 
         except Exception as e:
             logger.error(f" Error generating response from LLM {e}")

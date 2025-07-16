@@ -134,7 +134,7 @@ class LLMService:
         prompt = PromptFactory.get_prompt(named_endpoint or self.named_endpoint, retrieved_context, user_query)
 
         logger.info(f'User info: {external_context}')
-        logger.info(f'User Endpoint: {named_endpoint}')
+        logger.info(f'gathered context: {retrieved_context}')
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, external_context
         )
