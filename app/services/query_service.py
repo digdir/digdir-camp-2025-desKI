@@ -107,7 +107,7 @@ class QueryService:
 
         # Initialize the LLMService
         self.llm_service = LLMService(
-            model_name=llm_model_name,
+            llm_model_name=llm_model_name,
             max_tokens=max_tokens,
             temperature=temperature,
             max_length=max_length,
