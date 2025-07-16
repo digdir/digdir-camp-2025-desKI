@@ -44,7 +44,7 @@ class TestLLMService:
         )
         mock_client_class.return_value = mock_client
 
-        llm = LLMService(model_name=self.regex_model)
+        llm = LLMService(llm_model_name=self.regex_model)
         result = llm.generate_response_azure(self.query, self.context)
 
         assert isinstance(result, str)
@@ -65,7 +65,7 @@ class TestLLMService:
         )
         mock_client_class.return_value = mock_client
 
-        llm = LLMService(model_name=self.regex_model)
+        llm = LLMService(llm_model_name=self.regex_model)
         result = llm.generate_response_azure('Test', 'doc')
 
         assert result == 'Final answer'
@@ -75,11 +75,11 @@ class TestLLMService:
         Ensure that an empty or whitespace-only query returns a user-friendly warning.
         """
 
-        llm = LLMService(model_name=self.normal_model)
+        llm = LLMService(llm_model_name=self.normal_model)
         result = llm.generate_response_azure(
             '   ', 'irrelevant', named_endpoint=NamedEndpoint.DEFAULT
         )
-        assert result == 'Please provide a valid question.'
+        assert result == 'Please provide a valid question'
 
     def test_generate_response_handles_exception(self, mock_client_class):
         """
@@ -90,10 +90,7 @@ class TestLLMService:
         mock_client.complete.side_effect = Exception('Boom')
         mock_client_class.return_value = mock_client
 
-        llm = LLMService(model_name=self.normal_model)
+        llm = LLMService(llm_model_name=self.normal_model)
         result = llm.generate_response_azure(self.query, self.context)
 
-        assert (
-            result
-            == 'There was an error generating the response. Please try again later.'
-        )
+        assert result == 'Azure model error'

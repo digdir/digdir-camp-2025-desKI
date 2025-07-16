@@ -18,10 +18,9 @@ import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 
+from app.config import DATA_PATH, CHROMA_PATH, COLLECTION_NAME
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
-
-DATA_PATH = '_docs'
 
 
 def load_txt_documents(data_path: str):
@@ -84,7 +83,11 @@ def main():
     """
 
     embedding_service = EmbeddingService()
-    chroma_service = ChromaService(embedding_model=embedding_service.get_model())
+    chroma_service = ChromaService(
+        embedding_model=embedding_service.get_model(),
+        persist_directory=CHROMA_PATH,
+        collection_name=COLLECTION_NAME,
+    )
 
     documents = load_txt_documents(DATA_PATH)
     chunks = chunk_documents(documents)
