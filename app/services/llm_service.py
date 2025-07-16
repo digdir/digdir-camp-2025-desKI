@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.inference.models import UserMessage, SystemMessage
+from azure.ai.inference.models import UserMessage
 
 from app.config import (
     TOP_P,
@@ -105,7 +105,7 @@ class LLMService:
     def generate_response(
         self,
         user_query: str,
-        retrieved_context: str,
+        retrieved_context: dict,
         named_endpoint: NamedEndpoint = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
@@ -139,7 +139,7 @@ class LLMService:
         )
 
         logger.info(f'User info: {external_context}')
-        logger.info(f'gathered context: {retrieved_context}')
+        logger.info(f'User Endpoint: {named_endpoint}')
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, external_context
         )
@@ -147,10 +147,7 @@ class LLMService:
 
         try:
             response = self.client.complete(
-                messages= [
-                    SystemMessage(
-                        content="""Du er en hjelpsom DigDir-assistent. Skriv svaret i klartekst, ikke noe \n eller markdown syntaks."""
-                    ),
+                messages=[
                     UserMessage(content=prompt),
                 ],
                 model=self.llm_model_name,

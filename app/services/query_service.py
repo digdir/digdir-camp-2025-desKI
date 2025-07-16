@@ -140,6 +140,7 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
+        limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
         retrieved_context = ''
         try:
@@ -150,17 +151,15 @@ class QueryService:
             logger.info(f'retrieved {len(retrieved_context)} context chunks')
 
         except Exception as e:
-            # Handle the exception, e.g., log it or return an error message
-            logger.error(f'Error retrieving context from ChromaDB: {e}')
+            logger.error(f'Error retrieving the context from ChromaDB: {e}')
+            return 'An error occured while retrieving documents'
 
         try:
-            response = self.llm_service.generate_response_azure(
-                user_query=user_query,
-                retrieved_context=retrieved_context,
-                named_endpoint=named_endpoint,
-                external_context=external_context,
+            # return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
+            context_str = ''.join(retrieved_context)
+            return self.llm_service.generate_response(
+                user_query, context_str, named_endpoint, external_context
             )
-            return response
 
         except Exception as e:
             logger.error(f' Error generating response from LLM {e}')

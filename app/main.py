@@ -10,7 +10,6 @@ from app.exceptions import (
 from app.api.chatbot import router as chatbot
 from app.api.copilot import router as copilot
 from app.api.servicedesk import router as servicedesk
-from app.api.customersupport import router as customersupport
 from app.services.chroma_service import ChromaService
 
 # Create the FastAPI application
@@ -28,7 +27,6 @@ app.add_middleware(
 )
 
 # Include routers with their prefixes
-app.include_router(customersupport, prefix='/customersupport')
 app.include_router(chatbot, prefix='/chatbot')
 app.include_router(copilot, prefix='/copilot')
 app.include_router(servicedesk, prefix='/servicedesk')
