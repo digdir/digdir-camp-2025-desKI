@@ -18,4 +18,4 @@ FINETUNED_MODEL_API = 'https://finetunes.sandkasse.ai/generate'
 MAX_LENGTH = 2048
 MAX_NEW_TOKENS = 1024
 TEMPERATURE = 0.7
-TOP_P = 0.9
+DO_SAMPLE = True

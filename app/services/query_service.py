@@ -156,7 +156,7 @@ class QueryService:
 
         try:
             # return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
-            context_str = '\n\n'.join(retrieved_context)
+            context_str = ''.join(retrieved_context)
             return self.llm_service.generate_response(
                 user_query, context_str, named_endpoint, external_context
             )
