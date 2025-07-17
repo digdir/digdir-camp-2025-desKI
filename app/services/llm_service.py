@@ -107,6 +107,7 @@ class LLMService:
         user_query: str,
         retrieved_context: dict,
         named_endpoint: NamedEndpoint = None,
+        faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         """
@@ -115,12 +116,12 @@ class LLMService:
 
         if self.use_azure:
             return self.generate_response_azure(
-                user_query, retrieved_context, named_endpoint, external_context
+                user_query, retrieved_context, named_endpoint, faq_str, external_context
             )
 
         else:
             return self.generate_response_finetuned(
-                user_query, retrieved_context, named_endpoint, external_context
+                user_query, retrieved_context, named_endpoint, faq_str, external_context
             )
 
     def generate_response_azure(
@@ -128,20 +129,17 @@ class LLMService:
         user_query: str,
         retrieved_context: str,
         named_endpoint: NamedEndpoint = None,
+        faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         if not user_query.strip():
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
-        prompt = PromptFactory.get_prompt(
-            named_endpoint or self.named_endpoint, retrieved_context, user_query
-        )
-
         logger.info(f'User info: {external_context}')
         logger.info(f'User Endpoint: {named_endpoint}')
         prompt = PromptFactory.get_prompt(
-            user_query, retrieved_context, named_endpoint, external_context
+            user_query, retrieved_context, named_endpoint, faq_str, external_context
         )
         logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
@@ -154,7 +152,6 @@ class LLMService:
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
             )
-
         except Exception as e:
             logger.error(f'Error generating response (Azure): {e}')
             return 'Azure model error'
@@ -177,6 +174,7 @@ class LLMService:
         user_query: str,
         retrieved_context: str,
         named_endpoint: NamedEndpoint = None,
+        faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         if not user_query.strip():
@@ -187,6 +185,7 @@ class LLMService:
             user_query,
             retrieved_context,
             named_endpoint or self.named_endpoint,
+            faq_str,
             external_context,
         )
 
