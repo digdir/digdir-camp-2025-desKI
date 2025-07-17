@@ -10,7 +10,7 @@ AZURE_MODEL = 'Llama-4-Maverick-17B-128E-Instruct-FP8'
 
 USE_AZURE = False
 
-# ==== AIvar AP ====:
+# ==== AIvar API ====:
 FINETUNED_MODEL_API = 'https://finetunes.sandkasse.ai/generate'
 
 

@@ -1,4 +1,3 @@
-import os
 import logging
 from typing import Any, Optional
 
@@ -6,6 +5,7 @@ from dotenv import load_dotenv
 
 from app.config import (
     TOP_P,
+    USE_AZURE,
     MAX_LENGTH,
     AZURE_MODEL,
     CHROMA_PATH,
@@ -14,7 +14,6 @@ from app.config import (
     MAX_NEW_TOKENS,
     COLLECTION_NAME,
     FINETUNED_MODEL_API,
-    USE_AZURE
 )
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
@@ -89,7 +88,7 @@ class QueryService:
             named_endpoint (NamedEndpoint): Optional; enum that tells the PromptFactory which prompt to use.
         """
 
-        # Use azure model if True, else use finetuned 
+        # Use azure model if True, else use finetuned
         self.use_azure = use_azure
 
         # Initialize the embedding model
