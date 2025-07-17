@@ -60,6 +60,11 @@ http://localhost:8000/docs
 
 This opens the **interactive API documentation** powered by **FastAPI (Swagger UI)**, where you can explore and test all available endpoints. 
 
+To use the local finetuned model through AIvar API, do the following:
+1. set USE_AZURE = False in /app/config.py
+2. run "uvicorn model_server:app --host 0.0.0.0 --port 8001" from the terminal in jupyter notebook: https://notebook.sandkasse.ai/lab/tree/digdir-camp-2025-desKI/finetuning/use_model
+3. Use http://localhost:8000/docs 
+
 ---
 # Developer info
 All services has a Minimal Usage documentation within the class documentation.

@@ -41,7 +41,7 @@ class LLMService:
 
     Attributes:
     -----------
-        llm_model_name  (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
+        llm_model_name   (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
         max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
         temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
         azure_endpoint (str): The Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
@@ -189,10 +189,18 @@ class LLMService:
             external_context,
         )
 
+        logger.info(f'User info: {external_context}')
+        logger.info(f'User Endpoint: {named_endpoint}')
+        prompt = PromptFactory.get_prompt(
+            user_query, retrieved_context, named_endpoint, external_context
+        )
+        logger.info(f'Generated prompt (first 500 chars): {prompt}')
+
         try:
             response = requests.post(self.finetuned_api_url, json={'prompt': prompt})
             response.raise_for_status()
             data = response.json()
+
             return data.get('response', '[No response]')
 
         except Exception as e:
