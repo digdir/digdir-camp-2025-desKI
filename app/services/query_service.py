@@ -14,6 +14,7 @@ from app.config import (
     MAX_NEW_TOKENS,
     COLLECTION_NAME,
     FINETUNED_MODEL_API,
+    USE_AZURE
 )
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
@@ -22,7 +23,6 @@ from app.services.embedding_service import EmbeddingService
 
 load_dotenv()
 
-USE_AZURE = os.getenv('USE_AZURE', 'true').lower() == 'true'
 
 logging.basicConfig(
     level=logging.INFO,  # or DEBUG for more detail
@@ -89,7 +89,7 @@ class QueryService:
             named_endpoint (NamedEndpoint): Optional; enum that tells the PromptFactory which prompt to use.
         """
 
-        # Use azure model if True, else use finetuned
+        # Use azure model if True, else use finetuned 
         self.use_azure = use_azure
 
         # Initialize the embedding model

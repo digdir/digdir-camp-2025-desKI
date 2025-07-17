@@ -190,10 +190,18 @@ class LLMService:
             external_context,
         )
 
+        logger.info(f'User info: {external_context}')
+        logger.info(f'User Endpoint: {named_endpoint}')
+        prompt = PromptFactory.get_prompt(
+            user_query, retrieved_context, named_endpoint, external_context
+        )
+        logger.info(f'Generated prompt (first 500 chars): {prompt}')
+
         try:
             response = requests.post(self.finetuned_api_url, json={'prompt': prompt})
             response.raise_for_status()
             data = response.json()
+
             return data.get('response', '[No response]')
 
         except Exception as e:
