@@ -18,6 +18,7 @@ class PromptFactory:
         user_query: str,
         retrieved_context: dict,
         named_endpoint: NamedEndpoint,
+        faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         if (named_endpoint == NamedEndpoint.CHATBOT) or (
@@ -27,11 +28,14 @@ class PromptFactory:
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
                 Svar kort og tydelig, men med relevante detaljer fra kildene. Ikke gjett.
-                Dersom det ikke står noe i dokumentasjonen, kan du prøve å hjelpe så godt du kan.
+                Dersom det ikke står noe i dokumentasjonen, eller i lignende tidligere spørsmål og svar, kan du prøve å hjelpe så godt du kan.
                 Vær høflig og serviceinnstilt. Dersom løsningen krever en handling fra Digdir, si at en ansatt må ta tak i det.
 
                 Digdir-dokumentasjon:
                 {retrieved_context}
+                
+                Lignende tidligere spørsmål og svar:
+                {faq_str}
 
                 Spørsmål:
                 {user_query}

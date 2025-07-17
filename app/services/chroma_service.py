@@ -91,7 +91,7 @@ class ChromaService:
         logger.info(f'Documents in collection: {count}')
 
         results = self.db.similarity_search_with_relevance_scores(query, k=limit)
-        logger.info(results)  # [(Document(...), 0.23), ...]
+        logger.info(results) 
 
         if not results:
             logger.info('No results found for the query.')
@@ -132,3 +132,15 @@ class ChromaService:
         except Exception as e:
             logger.error(f'Error adding documents to ChromaDB: {e}')
             return False
+
+    def switch_collection(self, collection_name: str):
+        """
+        Switch to a different collection. Useful for FAQs vs docs separation.
+        """
+        self.collection_name = collection_name
+        self.db = Chroma(
+            persist_directory=self.persist_directory,
+            embedding_function=self.embedding_model,
+            collection_name=collection_name,
+        )
+        logger.info(f"Switched to collection {collection_name}, docs={len(self.db.get()['documents'])}")

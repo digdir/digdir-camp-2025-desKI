@@ -143,24 +143,35 @@ class QueryService:
         limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
         retrieved_context = ''
+        retrieved_faq = ''
         try:
             # retriveds context from vector db
-            retrieved_context = self.chroma_service.search(
-                query=user_query, limit=limit
-            )
-            logger.info(f'retrieved {len(retrieved_context)} context chunks')
-
+            retrieved_context = self._search_docs(user_query, limit)
+            context_str = ''.join(retrieved_context)
+            retrieved_faq = self._search_faq(user_query, limit)
+            logger.debug(f'Retrieved faq: {retrieved_faq}')
+            faq_str = ''.join(retrieved_faq)
+            
+            logger.info(f'retrieved {len(context_str)} context chunks')
+            logger.info(f'retrieved {len(faq_str)} context chunks')
+            
         except Exception as e:
             logger.error(f'Error retrieving the context from ChromaDB: {e}')
             return 'An error occured while retrieving documents'
 
         try:
-            # return self.llm_service.generate_response(user_query, retrieved_context, named_endpoint)
-            context_str = ''.join(retrieved_context)
             return self.llm_service.generate_response(
-                user_query, context_str, named_endpoint, external_context
+                user_query, context_str, named_endpoint, faq_str, external_context
             )
 
         except Exception as e:
             logger.error(f' Error generating response from LLM {e}')
             return 'An error occured while generating the response'
+    
+    def _search_faq(self, user_query: str, limit: int = 5):
+        self.chroma_service.switch_collection("faq_csv")
+        return self.chroma_service.search(user_query, limit=limit)
+    
+    def _search_docs(self, user_query: str, limit: int = 5):
+        self.chroma_service.switch_collection("dig_docs")
+        return self.chroma_service.search(user_query, limit=limit)
