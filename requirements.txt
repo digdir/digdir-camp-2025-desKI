@@ -134,8 +134,8 @@ httpx==0.28.1
     #   langsmith
 httpx-sse==0.4.1
     # via langchain-community
-huggingface-hub==0.33.2
-huggingface-hub==0.33.2
+huggingface-hub==0.33.4
+huggingface-hub==0.33.4
     # via
     #   langchain-huggingface
     #   sentence-transformers
