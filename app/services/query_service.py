@@ -1,4 +1,3 @@
-import os
 import logging
 from typing import Any, Optional
 
@@ -6,6 +5,7 @@ from dotenv import load_dotenv
 
 from app.config import (
     TOP_P,
+    USE_AZURE,
     MAX_LENGTH,
     AZURE_MODEL,
     CHROMA_PATH,
@@ -22,7 +22,6 @@ from app.services.embedding_service import EmbeddingService
 
 load_dotenv()
 
-USE_AZURE = os.getenv('USE_AZURE', 'true').lower() == 'true'
 
 logging.basicConfig(
     level=logging.INFO,  # or DEBUG for more detail

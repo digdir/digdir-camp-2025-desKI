@@ -44,7 +44,7 @@ class TestLLMService:
         )
         mock_client_class.return_value = mock_client
 
-        llm = LLMService(llm_model_name=self.regex_model)
+        llm = LLMService(llm_model_name=self.regex_model, use_azure=True)
         result = llm.generate_response_azure(self.query, self.context)
 
         assert isinstance(result, str)
@@ -65,7 +65,7 @@ class TestLLMService:
         )
         mock_client_class.return_value = mock_client
 
-        llm = LLMService(llm_model_name=self.regex_model)
+        llm = LLMService(llm_model_name=self.regex_model, use_azure=True)
         result = llm.generate_response_azure('Test', 'doc')
 
         assert result == 'Final answer'

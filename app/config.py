@@ -8,9 +8,9 @@ AZURE_ENDPOINT = 'https://digdircamp-resource.services.ai.azure.com/models'
 # Example model, change to the one you want to use
 AZURE_MODEL = 'Llama-4-Maverick-17B-128E-Instruct-FP8'
 
-USE_AZURE = True
+USE_AZURE = False
 
-# ==== AIvar AP ====:
+# ==== AIvar API ====:
 FINETUNED_MODEL_API = 'https://finetunes.sandkasse.ai/generate'
 
 
