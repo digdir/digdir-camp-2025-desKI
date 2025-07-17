@@ -2,8 +2,6 @@ import os
 import logging
 from typing import Any, Optional
 
-from dotenv import load_dotenv
-
 from app.config import (
     TOP_P,
     MAX_LENGTH,
@@ -14,15 +12,13 @@ from app.config import (
     MAX_NEW_TOKENS,
     COLLECTION_NAME,
     FINETUNED_MODEL_API,
+    SIMILARITY_THRESHOLD,
+    USE_AZURE
 )
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
 from app.services.embedding_service import EmbeddingService
-
-load_dotenv()
-
-USE_AZURE = os.getenv('USE_AZURE', 'true').lower() == 'true'
 
 logging.basicConfig(
     level=logging.INFO,  # or DEBUG for more detail
@@ -142,18 +138,19 @@ class QueryService:
 
         limit = limit or 5
         named_endpoint = named_endpoint or self.named_endpoint
-        retrieved_context = ''
-        retrieved_faq = ''
+        context_str = ''
+        faq_str = ''
         try:
-            # retriveds context from vector db
             retrieved_context = self._search_docs(user_query, limit)
             context_str = ''.join(retrieved_context)
-            retrieved_faq = self._search_faq(user_query, limit)
-            logger.debug(f'Retrieved faq: {retrieved_faq}')
-            faq_str = ''.join(retrieved_faq)
             
-            logger.info(f'retrieved {len(context_str)} context chunks')
-            logger.info(f'retrieved {len(faq_str)} context chunks')
+            if not USE_AZURE:
+                retrieved_faq = self._search_faq(user_query, limit)
+                logger.debug(f'Retrieved faq: {retrieved_faq}')
+                faq_str = ''.join(retrieved_faq)
+                
+            logger.info(f'retrieved {len(context_str)} context chars')
+            logger.info(f'retrieved {len(faq_str)} faq chars')
             
         except Exception as e:
             logger.error(f'Error retrieving the context from ChromaDB: {e}')
@@ -170,7 +167,15 @@ class QueryService:
     
     def _search_faq(self, user_query: str, limit: int = 5):
         self.chroma_service.switch_collection("faq_csv")
-        return self.chroma_service.search(user_query, limit=limit)
+        faq_matches = self.chroma_service.get_db().similarity_search_with_relevance_scores(user_query, k=limit)
+        formatted_faq = []
+        for doc, score in faq_matches:
+            if score >= SIMILARITY_THRESHOLD:
+                q = doc.page_content
+                a = doc.metadata.get("answer", "<no answer>")
+                formatted_faq.append(f"Spørsmål: {q} Svar: {a} \n")
+                
+        return formatted_faq
     
     def _search_docs(self, user_query: str, limit: int = 5):
         self.chroma_service.switch_collection("dig_docs")

@@ -136,10 +136,6 @@ class LLMService:
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
-        prompt = PromptFactory.get_prompt(
-            named_endpoint or self.named_endpoint, retrieved_context, user_query
-        )
-
         logger.info(f'User info: {external_context}')
         logger.info(f'User Endpoint: {named_endpoint}')
         prompt = PromptFactory.get_prompt(
@@ -156,7 +152,6 @@ class LLMService:
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
             )
-
         except Exception as e:
             logger.error(f'Error generating response (Azure): {e}')
             return 'Azure model error'
