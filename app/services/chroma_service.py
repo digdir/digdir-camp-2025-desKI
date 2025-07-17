@@ -91,7 +91,7 @@ class ChromaService:
         logger.info(f'Documents in collection: {count}')
 
         results = self.db.similarity_search_with_relevance_scores(query, k=limit)
-        logger.info(results) 
+        logger.info(results)
 
         if not results:
             logger.info('No results found for the query.')
@@ -143,4 +143,6 @@ class ChromaService:
             embedding_function=self.embedding_model,
             collection_name=collection_name,
         )
-        logger.info(f"Switched to collection {collection_name}, docs={len(self.db.get()['documents'])}")
+        logger.info(
+            f"Switched to collection {collection_name}, docs={len(self.db.get()['documents'])}"
+        )

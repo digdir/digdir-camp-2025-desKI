@@ -1,7 +1,9 @@
 import csv
-from langchain.schema import Document
-from app.services.chroma_service import ChromaService
 import logging
+
+from langchain.schema import Document
+
+from app.services.chroma_service import ChromaService
 
 logging.basicConfig(
     level=logging.INFO,  # or DEBUG for more detail
@@ -15,7 +17,7 @@ def load_csv_documents(csv_path: str) -> list:
     Loads a CSV file where each row is a (question, answer) pair.
     Returns a list of LangChain Document objects with question as content and answer as metadata.
     """
-    
+
     documents = []
     with open(csv_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -24,20 +26,21 @@ def load_csv_documents(csv_path: str) -> list:
             answer = row['svar']
             doc = Document(
                 page_content=question,
-                metadata={'answer': answer, 'source': '2024sorted_man_7.csv'}
+                metadata={'answer': answer, 'source': '2024sorted_man_7.csv'},
             )
             documents.append(doc)
     print(f'Loaded {len(documents)} Q&A entries from CSV')
     return documents
 
+
 chroma = ChromaService()
 
 # Switch to CSV collection
-csv_collection = "faq_csv"
+csv_collection = 'faq_csv'
 chroma.switch_collection(csv_collection)
 
 # Load and add
-csv_docs = load_csv_documents("./_docs/2024sorted_man_7.csv")
+csv_docs = load_csv_documents('./_docs/2024sorted_man_7.csv')
 chroma.add_documents(csv_docs)
 
-logger.info(f"Added {len(csv_docs)} FAQ entries into {csv_collection}")
+logger.info(f'Added {len(csv_docs)} FAQ entries into {csv_collection}')

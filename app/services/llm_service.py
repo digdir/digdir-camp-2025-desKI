@@ -113,7 +113,7 @@ class LLMService:
         """
         Generic interface: picks Azure or finetuned backend based on config.
         """
-    
+
         if self.use_azure:
             return self.generate_response_azure(
                 user_query, retrieved_context, named_endpoint, faq_str, external_context
