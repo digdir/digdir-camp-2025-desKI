@@ -61,20 +61,12 @@ class QueryService:
         answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.CHATBOT (OPTIONAL)  )
         print(answer)
     """
-
+    
     def __init__(
         self,
         chroma_service: ChromaService,
-        embedder_model_name: str = 'intfloat/multilingual-e5-base',
-        llm_model_name: str = AZURE_MODEL,
-        max_tokens: int = MAX_NEW_TOKENS,
-        temperature: float = TEMPERATURE,
-        max_length: int = MAX_LENGTH,
-        top_p: float = TOP_P,
-        azure_endpoint: str = AZURE_ENDPOINT,
-        named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
-        finetuned_api_url: str = FINETUNED_MODEL_API,
-        use_azure: bool = USE_AZURE,
+        embedding_service: EmbeddingService,
+        llm_service: LLMService,
     ):
         """
         Initializes the QueryService by loading environment variables and setting up the embedding model and ChromaDB.
@@ -89,31 +81,14 @@ class QueryService:
             azure_endpoint (str): Optional; the Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
             named_endpoint (NamedEndpoint): Optional; enum that tells the PromptFactory which prompt to use.
         """
-        # Use azure model if True, else use finetuned
-        self.use_azure = use_azure
-
-        # Initialize the embedding model
-        self.embedding_service = EmbeddingService(model_name=embedder_model_name)
-        self.embedding_model = self.embedding_service.get_model()
-
-        self.named_endpoint = named_endpoint or NamedEndpoint.DEFAULT
-
-        # Connect to local ChromaDB
+        
         self.chroma_service = chroma_service
-
-        # Initialize the LLMService
-        self.llm_service = LLMService(
-            llm_model_name=llm_model_name,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            max_length=max_length,
-            top_p=top_p,
-            azure_endpoint=azure_endpoint,
-            named_endpoint=named_endpoint,
-            use_azure=use_azure,
-            finetuned_api_url=finetuned_api_url,
-        )
-
+        self.embedding_service = embedding_service
+        self.embedding_model = embedding_service.get_model()
+        self.llm_service = llm_service
+        self.named_endpoint = NamedEndpoint.DEFAULT
+        self.use_azure = llm_service.use_azure
+        
     def run_query(
         self,
         user_query: str,
