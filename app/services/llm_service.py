@@ -141,7 +141,6 @@ class LLMService:
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, faq_str, external_context
         )
-        logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         try:
             response = self.client.complete(
@@ -166,7 +165,6 @@ class LLMService:
                 response.choices[0].message.content,
                 flags=re.DOTALL,
             )
-
         return response.choices[0].message.content
 
     def generate_response_finetuned(

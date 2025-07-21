@@ -1,19 +1,20 @@
 import logging
 from typing import Any, Optional
 
+from fastapi import Depends
+
 from app.config import (
     TOP_P,
     USE_AZURE,
     MAX_LENGTH,
     AZURE_MODEL,
-    CHROMA_PATH,
     TEMPERATURE,
     AZURE_ENDPOINT,
     MAX_NEW_TOKENS,
-    COLLECTION_NAME,
     FINETUNED_MODEL_API,
     SIMILARITY_THRESHOLD,
 )
+from app.dependencies.chroma import get_chroma_service
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
@@ -24,6 +25,12 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
 )
 logger = logging.getLogger(__name__)
+
+
+def get_query_service(
+    chroma_service: ChromaService = Depends(get_chroma_service),
+) -> 'QueryService':
+    return QueryService(chroma_service=chroma_service)
 
 
 class QueryService:
@@ -57,9 +64,8 @@ class QueryService:
 
     def __init__(
         self,
+        chroma_service: ChromaService,
         embedder_model_name: str = 'intfloat/multilingual-e5-base',
-        chroma_path: str = CHROMA_PATH,
-        chroma_collection: str = COLLECTION_NAME,
         llm_model_name: str = AZURE_MODEL,
         max_tokens: int = MAX_NEW_TOKENS,
         temperature: float = TEMPERATURE,
@@ -83,7 +89,6 @@ class QueryService:
             azure_endpoint (str): Optional; the Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
             named_endpoint (NamedEndpoint): Optional; enum that tells the PromptFactory which prompt to use.
         """
-
         # Use azure model if True, else use finetuned
         self.use_azure = use_azure
 
@@ -94,11 +99,7 @@ class QueryService:
         self.named_endpoint = named_endpoint or NamedEndpoint.DEFAULT
 
         # Connect to local ChromaDB
-        self.chroma_service = ChromaService(
-            embedding_model=self.embedding_model,
-            persist_directory=chroma_path,
-            collection_name=chroma_collection,
-        )
+        self.chroma_service = chroma_service
 
         # Initialize the LLMService
         self.llm_service = LLMService(
@@ -143,7 +144,7 @@ class QueryService:
             retrieved_context = self._search_docs(user_query, limit)
             context_str = ''.join(retrieved_context)
 
-            if not USE_AZURE:
+            if not self.use_azure:
                 retrieved_faq = self._search_faq(user_query, limit)
                 logger.debug(f'Retrieved faq: {retrieved_faq}')
                 faq_str = ''.join(retrieved_faq)
