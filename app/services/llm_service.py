@@ -39,13 +39,6 @@ class LLMService:
     This service initializes the embedding model, connects to ChromaDB, retrieves relevant document chunks,
     and sends a prompt to an Azure AI model to generate a response based on the retrieved retrieved_context.
 
-    Attributes:
-    -----------
-        llm_model_name   (str): The name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
-        max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
-        temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
-        azure_endpoint (str): The Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
-
     Methods:
     --------
         generate_response_azure(user_query: str, retrieved_context: dict) -> str:
@@ -78,7 +71,12 @@ class LLMService:
             llm_model_name  (str): Optional; the name of the embedding model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
             max_tokens (int): The maximum number of tokens to generate in the response. Defaults to 1024.
             temperature (float): The sampling temperature to use for response generation. Defaults to 0.7.
+            max_length (int): The maximum length of the input text. Defaults to 2048.
+            top_p (float): The top-p sampling parameter for response generation. Defaults to 0
             azure_endpoint (str): Optional; the Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
+            named_endpoint (NamedEndpoint): Optional; the named endpoint to use for the LLM service. Defaults to NamedEndpoint.DEFAULT.
+            use_azure (bool): Optional; whether to use Azure for LLM generation. Defaults to True.
+            finetuned_api_url (str): Optional; the URL for the finetuned model API. Defaults to the value in the environment variable 'FINETUNED_MODEL_API'.
         """
 
         self.use_azure = use_azure
@@ -141,7 +139,8 @@ class LLMService:
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, faq_str, external_context
         )
-        logger.info(f'Generated prompt (first 500 chars): {prompt}')
+
+        logger.info(f'Generated prompt: {prompt}')
 
         try:
             response = self.client.complete(
@@ -166,7 +165,6 @@ class LLMService:
                 response.choices[0].message.content,
                 flags=re.DOTALL,
             )
-
         return response.choices[0].message.content
 
     def generate_response_finetuned(
