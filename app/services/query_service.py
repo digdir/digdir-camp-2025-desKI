@@ -3,18 +3,8 @@ from typing import Any, Optional
 
 from fastapi import Depends
 
-from app.config import (
-    TOP_P,
-    USE_AZURE,
-    MAX_LENGTH,
-    AZURE_MODEL,
-    TEMPERATURE,
-    AZURE_ENDPOINT,
-    MAX_NEW_TOKENS,
-    FINETUNED_MODEL_API,
-    SIMILARITY_THRESHOLD,
-)
-from app.dependencies.chroma import get_chroma_service
+from app.config import SIMILARITY_THRESHOLD
+
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
@@ -25,13 +15,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
 )
 logger = logging.getLogger(__name__)
-
-
-def get_query_service(
-    chroma_service: ChromaService = Depends(get_chroma_service),
-) -> 'QueryService':
-    return QueryService(chroma_service=chroma_service)
-
 
 class QueryService:
     """
@@ -50,7 +33,7 @@ class QueryService:
 
     Methods:
     --------
-        run_query(user_query: str, limit: int = 5) -> str:
+        run_query(user_query: str, named_endpoint: NamedEndpoint, external_context: Optional[dict[str, Any]], limit: int = 5) -> str:
             Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
 
     Usage:
@@ -72,27 +55,21 @@ class QueryService:
         Initializes the QueryService by loading environment variables and setting up the embedding model and ChromaDB.
 
         Args:
-            embedder_model_name (str): Optional; the name of the embedding model to use.
-            chroma_path (str): Optional; the path to the ChromaDB directory. Defaults to "app/db/chroma_db".
-            chroma_collection (str): Optional; the name of the collection in the ChromaDB. Defaults to "dig_docs".
-            llm_model_name (str): Optional; the name of the language model to use. Defaults to the value in the environment variable 'AZURE_MODEL'.
-            max_tokens (int): Optional; the maximum number of tokens to generate in the response. Defaults to 1024.
-            temperature (float): Optional; the sampling temperature to use for response generation. Defaults to 0.7.
-            azure_endpoint (str): Optional; the Azure endpoint for the AI model. Defaults to the value in the environment variable 'AZURE_ENDPOINT'.
-            named_endpoint (NamedEndpoint): Optional; enum that tells the PromptFactory which prompt to use.
+            chroma_service (ChromaService): The service for interacting with ChromaDB.
+            embedding_service (EmbeddingService): The service for generating text embeddings.
+            llm_service (LLMService): The service for generating responses from a language model.
         """
         
         self.chroma_service = chroma_service
         self.embedding_service = embedding_service
         self.embedding_model = embedding_service.get_model()
         self.llm_service = llm_service
-        self.named_endpoint = NamedEndpoint.DEFAULT
         self.use_azure = llm_service.use_azure
         
     def run_query(
         self,
         user_query: str,
-        named_endpoint: NamedEndpoint = None,
+        named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         external_context: Optional[dict[str, Any]] = None,
         limit: int = 5,
     ) -> str:
@@ -111,8 +88,6 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
-        limit = limit or 5
-        named_endpoint = named_endpoint or self.named_endpoint
         context_str = ''
         faq_str = ''
         try:
@@ -159,3 +134,4 @@ class QueryService:
     def _search_docs(self, user_query: str, limit: int = 5):
         self.chroma_service.switch_collection('dig_docs')
         return self.chroma_service.search(user_query, limit=limit)
+    

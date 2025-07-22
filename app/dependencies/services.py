@@ -50,3 +50,5 @@ def get_chroma_service() -> ChromaService:
     return chroma_service
 def get_embedding_service() -> EmbeddingService:
     return embedding_service
+def get_llm_service() -> LLMService:
+    return llm_service
