@@ -146,8 +146,6 @@ error_log.txt
 dataFromServiceDesk
 docker-compose.logging.yml
 
-chroma_db/**/data_level0.bin
-chroma_db/**/length.bin
+app/db/chroma_db/**/data_level0.bin
+app/db/chroma_db/**/length.bin
 chroma_db/**/*.bin
-app/db/chroma_db/1d78db2e-f45e-4465-9fe0-eb43c66288ec/data_level0.bin
-app/db/chroma_db/1d78db2e-f45e-4465-9fe0-eb43c66288ec/length.bin
