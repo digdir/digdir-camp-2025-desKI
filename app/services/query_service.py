@@ -1,10 +1,7 @@
 import logging
 from typing import Any, Optional
 
-from fastapi import Depends
-
 from app.config import SIMILARITY_THRESHOLD
-
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
@@ -15,6 +12,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
 )
 logger = logging.getLogger(__name__)
+
 
 class QueryService:
     """
@@ -44,7 +42,7 @@ class QueryService:
         answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.CHATBOT (OPTIONAL)  )
         print(answer)
     """
-    
+
     def __init__(
         self,
         chroma_service: ChromaService,
@@ -59,13 +57,13 @@ class QueryService:
             embedding_service (EmbeddingService): The service for generating text embeddings.
             llm_service (LLMService): The service for generating responses from a language model.
         """
-        
+
         self.chroma_service = chroma_service
         self.embedding_service = embedding_service
         self.embedding_model = embedding_service.get_model()
         self.llm_service = llm_service
         self.use_azure = llm_service.use_azure
-        
+
     def run_query(
         self,
         user_query: str,
@@ -134,4 +132,3 @@ class QueryService:
     def _search_docs(self, user_query: str, limit: int = 5):
         self.chroma_service.switch_collection('dig_docs')
         return self.chroma_service.search(user_query, limit=limit)
-    

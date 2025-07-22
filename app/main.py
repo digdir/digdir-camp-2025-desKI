@@ -14,23 +14,25 @@ from app.dependencies.services import init_services
 
 app = FastAPI()
 
-@app.on_event("startup")
+
+@app.on_event('startup')
 def startup_event():
     init_services()
+
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=['http://localhost:3000'],
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["*"],
+    allow_methods=['GET', 'POST'],
+    allow_headers=['*'],
 )
 
 # Include routers
-app.include_router(chatbot, prefix="/chatbot")
-app.include_router(copilot, prefix="/copilot")
-app.include_router(servicedesk, prefix="/servicedesk")
+app.include_router(chatbot, prefix='/chatbot')
+app.include_router(copilot, prefix='/copilot')
+app.include_router(servicedesk, prefix='/servicedesk')
 
 # Register exception handlers
 app.add_exception_handler(RequestValidationError, validation_exception_handler)

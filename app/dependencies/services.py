@@ -1,19 +1,18 @@
-from app.services.chroma_service import ChromaService
-from app.services.embedding_service import EmbeddingService
+from app.config import (
+    TOP_P,
+    USE_AZURE,
+    MAX_LENGTH,
+    AZURE_MODEL,
+    CHROMA_PATH,
+    TEMPERATURE,
+    AZURE_ENDPOINT,
+    MAX_NEW_TOKENS,
+    FINETUNED_MODEL_API,
+)
 from app.services.llm_service import LLMService
 from app.services.query_service import QueryService
-
-from app.config import (
-    CHROMA_PATH,
-    AZURE_MODEL,
-    MAX_LENGTH,
-    TOP_P,
-    TEMPERATURE,
-    MAX_NEW_TOKENS,
-    AZURE_ENDPOINT,
-    FINETUNED_MODEL_API,
-    USE_AZURE
-)
+from app.services.chroma_service import ChromaService
+from app.services.embedding_service import EmbeddingService
 
 # Global shared instances
 chroma_service: ChromaService = None
@@ -21,11 +20,14 @@ embedding_service: EmbeddingService = None
 llm_service: LLMService = None
 query_service: QueryService = None
 
+
 def init_services():
     global chroma_service, embedding_service, llm_service, query_service
 
-    chroma_service = ChromaService(persist_directory=CHROMA_PATH, collection_name="dig_docs")
-    embedding_service = EmbeddingService(model_name="intfloat/multilingual-e5-base")
+    chroma_service = ChromaService(
+        persist_directory=CHROMA_PATH, collection_name='dig_docs'
+    )
+    embedding_service = EmbeddingService(model_name='intfloat/multilingual-e5-base')
     llm_service = LLMService(
         llm_model_name=AZURE_MODEL,
         max_tokens=MAX_NEW_TOKENS,
@@ -41,14 +43,21 @@ def init_services():
     query_service = QueryService(
         chroma_service=chroma_service,
         embedding_service=embedding_service,
-        llm_service=llm_service
+        llm_service=llm_service,
     )
+
 
 def get_query_service() -> QueryService:
     return query_service
+
+
 def get_chroma_service() -> ChromaService:
     return chroma_service
+
+
 def get_embedding_service() -> EmbeddingService:
     return embedding_service
+
+
 def get_llm_service() -> LLMService:
     return llm_service

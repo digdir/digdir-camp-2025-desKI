@@ -1,30 +1,31 @@
-from fastapi import APIRouter, Depends
 import time
 import logging
 
+from fastapi import Depends, APIRouter
+
 from app.models.endpoint_enum import NamedEndpoint
+from app.dependencies.services import get_query_service
 from app.models.request_models import StrictChatRequest
 from app.models.response_models import StrictChatResponse
 from app.services.query_service import QueryService
-from app.dependencies.services import get_query_service
 
-router = APIRouter(tags=["Chatbot"])
+router = APIRouter(tags=['Chatbot'])
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@router.post("/", response_model=StrictChatResponse)
+
+@router.post('/', response_model=StrictChatResponse)
 def ask_chatbot(
     req: StrictChatRequest,
     qs: QueryService = Depends(get_query_service),
 ) -> StrictChatResponse:
     starttid = time.time()
-    logger.info(f"⚡ Received chatbot request")
-    
+    logger.info('⚡ Received chatbot request')
+
     response = qs.run_query(
-        user_query=req.question,
-        named_endpoint=NamedEndpoint.CHATBOT
+        user_query=req.question, named_endpoint=NamedEndpoint.CHATBOT
     )
-    
-    logger.info(f"✅ Responded in {time.time() - starttid:.2f}s")
-    return StrictChatResponse(answer=response or "Hei fra chatbot!", source=None)
+
+    logger.info(f'✅ Responded in {time.time() - starttid:.2f}s')
+    return StrictChatResponse(answer=response or 'Hei fra chatbot!', source=None)

@@ -139,7 +139,7 @@ class LLMService:
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, faq_str, external_context
         )
-        
+
         logger.info(f'Generated prompt: {prompt}')
 
         try:
