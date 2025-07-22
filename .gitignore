@@ -145,3 +145,7 @@ resultat.csv
 error_log.txt
 dataFromServiceDesk
 docker-compose.logging.yml
+
+app/db/chroma_db/**/data_level0.bin
+app/db/chroma_db/**/length.bin
+chroma_db/**/*.bin

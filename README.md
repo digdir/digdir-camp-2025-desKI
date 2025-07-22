@@ -70,6 +70,9 @@ To use the local finetuned model through AIvar API, do the following:
 All services has a Minimal Usage documentation within the class documentation.
 Please read this and use as intended.
 
+Config.py includes all standard variables. Change them to change the behaviour of the program.
+Example: USE_AZURE: TRUE -> The program will use an Azure model, FALSE -> The program will use AIvar model.
+
 ## 🧹 Ruff
 Ruff is a fast, all-in-one Python linter, formatter, and import sorter.
 ### Basic Commands
