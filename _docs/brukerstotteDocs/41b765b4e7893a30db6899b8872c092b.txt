@@ -1,0 +1,21 @@
+URL: https://eid.difi.no/nb/digital-postkasse/hva-betyr-det-digital-post-blir-sendt-sikkert
+Title: Hva betyr det at digital post blir sendt sikkert? | Hjelpesider for fellesløsninger
+
+Hva betyr det at digital post blir sendt sikkert?
+
+For å sikre at uvedkommende ikke kan lese posten din blir den sendt kryptert til den digitale postkassen din. En kryptert sending kan sammenlignes med at du setter på en hengelås. Det er bare den som har nøkkelen, som kan låse opp og lese innholdet.
+
+Når du får post digitalt fra offentlige avsendere, må du logge inn via ID-porten for å lese posten din. 
+ 
+
+ 
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

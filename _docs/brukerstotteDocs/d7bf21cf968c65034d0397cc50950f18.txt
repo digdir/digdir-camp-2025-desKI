@@ -1,0 +1,36 @@
+URL: https://eid.difi.no/nb/minid/hvordan-registrere-minid-bruker-sms#main-content
+Title: Hvordan registrere MinID-bruker for SMS | Hjelpesider for fellesløsninger
+
+Sámegiella
+Hvordan registrere MinID-bruker for SMS
+
+For å registrere deg som MinID-bruker trenger du følgende:
+
+Fødselsnummer eller d-nummer
+Mobiltelefon og e-postadresse
+MinID Aktiveringsbrev
+
+Mangler du MinID Aktiveringsbrev, kan du bestille det her. MinID Aktiveringsbrev er gyldig 60 dager etter bestilling.
+
+MinID Aktiveringsbrev blir bare sendt til adressen du har registrert i Folkeregisteret i Norge. Har du både postadresse og bostedsadresse, blir det sendt til postadresse.
+
+Normal leveringstid for MinID Aktiveringsbrev er 10 virkedager (innad i Norge).
+
+Aktiveringskode for registrering av MinID-bruker kan brukes på to måter:  
+
+1.    Du kan bruke mobil eller MinID-app for å lese QR-koden 
+2.    Bokstavkoden kan brukes ved å gå til denne nettsiden. Der må du skrive inn koden manuelt
+
+Fyll inn aktiveringskode fra aktiveringsbrevet/skann QR- koden
+Fyll inn fødselsnummer
+Fyll inn kontaktinformasjon: e-post og mobilnummer. Lag et personlig passord (minimum 8 tegn, blanding av bokstaver a-å og tall 0-9)
+Guide
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

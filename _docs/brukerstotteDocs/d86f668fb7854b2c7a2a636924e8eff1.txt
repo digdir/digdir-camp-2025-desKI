@@ -1,0 +1,19 @@
+URL: https://eid.difi.no/nb/minid/advarsel-du-er-blitt-sperret-pa-grunn-av-gjentatte-feil-ved-innlogging#main-content
+Title: "Advarsel: Du er blitt sperret på grunn av gjentatte feil ved innlogging" | Hjelpesider for fellesløsninger
+
+Sámegiella
+"Advarsel: Du er blitt sperret på grunn av gjentatte feil ved innlogging"
+
+Om du har tastet inn feil passord eller engangskode 3 ganger, vil passordet ditt bli sperret for en time. Om du klikker på "Glemt passord", kan du lage deg et nytt passord med en gang og slipper dermed å vente en time før du kan logge inn på nytt.
+
+MinID teller antall feil innlogginger fra sist vellykkede innlogging, og tellingen blir ikke fjernet før du har hatt en vellykket innlogging.
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet
