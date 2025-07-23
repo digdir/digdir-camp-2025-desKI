@@ -1,0 +1,43 @@
+URL: https://eid.difi.no/nb/personvernerklaering-minid
+Title: Personvernerklæring for MinID | Hjelpesider for fellesløsninger
+
+Personvernerklæring for MinID
+
+Behandlingsansvarlig
+
+Behandlingsansvarlig er Digitaliseringsdirektoratet, Org.nr. 991 825 827. Digdir kan kontaktes på telefon (+47) 800 30 300, brukerstotte@digdir.no, eller på chat http://eid.difi.no/nb .
+
+Personvernombud nås på personvernombud@digdir.no.
+ 
+
+Formål, behandlingsgrunnlag og mottakere
+
+Digdir behandler personopplysninger om deg for å utstede en elektronisk ID – MinID, og for å bruke denne til å autentisere deg hos tjenester som aksepterer MinID som autentisering. Behandlingsgrunnlag er vilkår for bruk av MinID etter GDPR art 6 bokstav b.
+
+Fødselsnummer deles med tjenestene som har behandlingsgrunnlag for det og trenger det for å sikre entydig identifikasjon av deg.
+
+Vi minner for øvrig om den registrertes rett til innsyn, retting, og i noen tilfeller sletting, etter GDPR kapittel III.
+ 
+
+Opplysninger som behandles
+
+Digdir behandler følgende opplysninger for å kunne identifisere deg, jf. Punkt 3.1 over:
+
+Fødselsnummer eller D-nummer
+Navn og Folkeregistrert postadresse (slettes når aktiveringskodebrev blir tatt i bruk)
+Mobilnummer (deles med Kontakt- og reservasjonsregisteret)
+E-postadresse (deles med Kontakt- og reservasjonsregisteret)
+
+Som en del av sikkerheten registrerer Digdir de tidspunkter du logger på med MinID, samt IP-adresse og andre opplysninger om den enhet du bruker MinID fra. Logg over innlogginger blir slettet etter 13 måneder.
+
+Ved innlogging brukes informasjonskapsler som er ytterligere beskrevet her: https://eid.difi.no/nb/sikkerhet-og-personvern
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

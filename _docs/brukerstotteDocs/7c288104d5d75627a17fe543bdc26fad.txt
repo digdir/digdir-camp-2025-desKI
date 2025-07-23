@@ -1,0 +1,44 @@
+URL: https://eid.difi.no/nb/minid#main-content
+Title: MinID | Hjelpesider for fellesløsninger
+
+Sámegiella
+MinID
+MinID gir tilgang til offentlige tjenester på et betydelig sikkerhetsnivå (nivå 3).
+
+MinID er en tofaktor-løsning, som betyr at man må bruke to faktorer for å logge inn til en tjeneste. Den ene faktoren er et selvvalgt passord. Den andre faktoren kan brukeren velge selv, og er en engangskode man mottar på SMS eller et pushvarsel i MinID app. 
+
+ 
+
+Aktiveringsbrev
+Hvordan bestille MinID Aktiveringsbrev
+Hvilken adresse blir MinID Aktiveringsbrev sendt til
+Ikke mottatt MinID Aktiveringsbrev
+MinID med SMS
+Hvordan registrere MinID-bruker for SMS
+Hvordan logge inn med MinID
+Hvordan lage nytt passord for MinID
+Mottar ikke engangskode på SMS
+MinID app
+Hvordan registrere MinID-bruker med app
+Hvordan logge inn med MinID app
+Hvordan lage nytt passord for MinID app
+Mottar ikke varsel i MinID appen
+Endre brukerprofil
+Hvordan endre brukerprofil
+Mottar du ikke engangskode på SMS eller e-post
+Sperring av MinID
+Hvordan kan verger få tilgang til klientene sin MinID innlogging
+Feilmeldinger
+"Advarsel: Du er blitt sperret på grunn av gjentatte feil ved innlogging"
+"MinID-brukeren din har en feiltilstand som gjør at du ikke kan logge inn"
+Brukervilkår
+Vilkår for bruk av MinID
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

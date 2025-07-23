@@ -1,0 +1,31 @@
+URL: https://eid.difi.no/nb/minid/hvordan-logge-inn-med-minid#main-content
+Title: Hvordan logge inn med MinID | Hjelpesider for fellesløsninger
+
+Sámegiella
+Hvordan logge inn med MinID
+
+For å logge inn med MinID trenger du:
+
+Fødselsnummer eller d-nummer
+Passord
+Engangskode fra SMS 
+
+Slik logger du inn:
+
+Gå til den tjenesten du ønsker å logge inn til (f.eks. på: www.nav.no, www.altinn.no, www.skatteetaten.no)
+Velg MinID
+Skriv inn fødselsnummer eller d-nummer og passordet ditt. Klikk "Neste"
+Tast inn kode mottatt på SMS og klikk på "Neste"
+
+MinID gir tilgang til offentlige tjenester på et betydelig sikkerhetsnivå (nivå 3).
+
+Guide
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

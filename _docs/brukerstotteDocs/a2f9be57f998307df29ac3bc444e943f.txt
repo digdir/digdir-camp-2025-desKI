@@ -1,0 +1,34 @@
+URL: https://eid.difi.no/nb/buypass-id/hvordan-logge-inn-med-buypass-id-pa-smartkort#main-content
+Title: Hvordan logge inn med Buypass ID på smartkort | Hjelpesider for fellesløsninger
+
+Hvordan logge inn med Buypass ID på smartkort
+
+For å logge inn med Buypass ID på smartkort trenger du følgende:
+
+Smartkort med elektronisk ID fra Buypass
+Smartkortleser
+PIN-kode til smartkortet
+
+Slik logger du inn:
+
+Gå til den tjenesten du ønsker å logge inn til (f.eks.: www.nav.no, www.altinn.no, www.skatteetaten.no)
+Sett inn smartkortet i kortleseren
+Velg Buypass ID
+Velg Buypass ID på smartkort
+Skriv inn PIN-koden til smartkortet
+Klikk på "Identifiser"
+
+Om du har glemt eller ønsker å endre PIN-kode på smartkortet, kan du gå til Buypass sine nettsider.
+
+Buypass ID på smartkort gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4).
+
+Guide
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet
