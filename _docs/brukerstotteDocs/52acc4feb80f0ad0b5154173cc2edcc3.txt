@@ -1,0 +1,29 @@
+URL: https://eid.difi.no/nb/esignering#main-content
+Title: eSignering | Hjelpesider for fellesløsninger
+
+eSignering
+E-signatur er din personlige elektroniske signatur som bekrefter at du er den du utgir deg for å være.
+
+Når ett dokument er påført elektronisk signatur, kan man ikke endre innholdet i dokumentet. Å signere dokument elektronisk er tidsbesparende og kostnadseffektivt.
+
+Spørsmål og svar
+Hvilke e-ID støtter elektronisk signering?
+Hvordan kan jeg åpne et signert dokument?
+Hvorfor forsvinner det signerte dokumentet etter 40 dager?
+Hvordan kan jeg se om dokumentet skal signeres av flere personer?
+Hvordan bruke eSignering
+Hvordan signerer jeg?
+Hvordan kan jeg se om dokumentet er signert (validering)?
+Hvordan kan virksomheten ta i bruk signeringstjenesten
+Mer om eSignering
+Hva er eSignering
+Ord og begrep
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

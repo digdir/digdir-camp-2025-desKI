@@ -1,0 +1,30 @@
+URL: https://eid.difi.no/nb/esignering/hva-er-esignering
+Title: Hva er eSignering | Hjelpesider for fellesløsninger
+
+Hva er eSignering
+
+Elektronisk signatur (e-signatur) er din personlige, elektroniske signatur.
+Signeringstjenesten tilbyr deg å bruke en avansert elektronisk signatur når du signerer offentlige dokumenter og søknader.
+
+Avansert elektronisk signatur er en elektronisk signatur som:
+
+a) er entydig knyttet til undertegneren,
+
+b) kan identifisere undertegneren,
+
+c) er laget ved hjelp av midler som bare undertegneren har kontroll over, og
+
+d) er knyttet til andre elektroniske data på en slik måte at det kan oppdages om disse har blitt endret etter signering
+
+BankID og Buypass ID kan benyttes til avansert elektronisk signatur i signeringstjenesten. 
+ 
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

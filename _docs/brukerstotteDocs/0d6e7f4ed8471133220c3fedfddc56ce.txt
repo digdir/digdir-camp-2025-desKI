@@ -1,0 +1,32 @@
+URL: https://eid.difi.no/nb/minid/hvordan-kan-verger-fa-tilgang-til-klientene-sin-minid-innlogging
+Title: Hvordan kan verger få tilgang til klientene sin MinID innlogging | Hjelpesider for fellesløsninger
+
+Hvordan kan verger få tilgang til klientene sin MinID innlogging
+
+Hvis du er verge for området "skatt", vil du få automatisk tilgang til personens skatteforhold. Du kan velge å representere den du er verge for når du logger inn på "Min skatt". Du kan lese mer om det på Skatteetaten sine sider.
+
+For at du som verge skal få tilgang til dine klienter sin MinID-bruker, må du sende inn vergefullmakt eller fremtidsfullmakt som er stadfestet av Statsforvalteren. Vi trenger kun fullmakten dersom vergehaver har en MinID profil fra tidligere som verge ikke har tilgang til. Det finnes i dag ingen fullmaktløsning i ID-porten.
+
+MinID har sikkerhetsnivå betydelig (nivå 3), og kan kun brukes på enkelte tjenester. Dersom det er krav om innlogging på høyeste sikkerhetsnivå (BankID, Buypass eller Commfides) må du kontakte den tjenesten det gjelder. Som verge kan du ikke få innlogging på høyeste sikkerhetsnivå til vergehaver.
+
+Vergefullmakter sendes til:
+
+Digitaliseringsdirektoratet
+Skrivarvegen 2 
+6863 Leikanger
+
+Vi lagrer ikke vergefullmakt som blir sendt til oss, og kan derfor ikke gi deg tilgang uten at fullmakt blir sendt til oss på nytt. Når vergefullmakt er mottatt blir MinID Aktiveringsbrev sendt til vergehaver sin folkeregistrerte postadresse.
+
+Du må registrere kontaktinformasjon (mobilnummer og e-postadresse) når du registrerer en MinID-bruker. Du og din klient må bli enige om hvem sin kontaktinformasjon som skal registreres.
+
+Trenger du hjelp eller ønsker mer informasjon om MinID som verge, kontakt brukerstøtte for ID-porten på nummer: (+47) 800 30 300.
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet
