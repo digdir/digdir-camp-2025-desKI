@@ -29,7 +29,7 @@ azure-core==1.35.0
     #   -r requirements.in
     #   azure-ai-inference
     #   azure-identity
-azure-identity==1.23.0
+azure-identity==1.23.1
     # via -r requirements.in
 backoff==2.2.1
     # via posthog
