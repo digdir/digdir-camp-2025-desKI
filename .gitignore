@@ -146,6 +146,12 @@ error_log.txt
 dataFromServiceDesk
 docker-compose.logging.yml
 
-app/db/chroma_db/**/data_level0.bin
-app/db/chroma_db/**/length.bin
-chroma_db/**/*.bin
+# Ignore local ChromaDB files
+app/db/chroma_db/
+chroma_db/
+*.sqlite3
+*.pickle
+data_level0.bin
+header.bin
+link_lists.bin
+length.bin
