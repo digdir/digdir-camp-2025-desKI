@@ -90,7 +90,9 @@ class ChromaService:
         count = len(self.db.get()['documents'])
         logger.info(f'Documents in collection: {count}')
         query = query.lower()
-        results = self.db.similarity_search_with_relevance_scores("query: "+ query, k=limit)
+        results = self.db.similarity_search_with_relevance_scores(
+            'query: ' + query, k=limit
+        )
         logger.info(results)
 
         if not results:

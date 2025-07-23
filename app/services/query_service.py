@@ -128,18 +128,17 @@ class QueryService:
         return formatted_faq
 
     def _search_docs(self, user_query: str, limit: int = 10):
-        
         user_query = self.llm_service.clean_query(user_query)
-        
+
         self.chroma_service.switch_collection('dig_docs')
         results = self.chroma_service.search(user_query, limit=limit)
-        
+
         return_text = ''
         for doc in results:
             text = doc
             for meta_key in ['title:', 'description:', 'sidebar:', 'redirect_from:']:
                 text = text.replace(meta_key, '')
-            
+
             return_text += text
 
         return return_text
