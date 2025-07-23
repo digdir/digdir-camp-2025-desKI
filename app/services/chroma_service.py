@@ -89,8 +89,8 @@ class ChromaService:
 
         count = len(self.db.get()['documents'])
         logger.info(f'Documents in collection: {count}')
-
-        results = self.db.similarity_search_with_relevance_scores("query:"+query, k=limit)
+        query = query.lower()
+        results = self.db.similarity_search_with_relevance_scores("query: "+ query, k=limit)
         logger.info(results)
 
         if not results:
@@ -108,7 +108,6 @@ class ChromaService:
             combined_chunks.append(combined)
 
         retrieved_context = '\n'.join(combined_chunks)
-        logger.info(f'ETTER ENDRING: {retrieved_context}')
         return retrieved_context
 
     def add_documents(self, documents: list) -> bool:

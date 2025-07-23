@@ -50,6 +50,7 @@ def load_txt_documents(data_path: str):
         loader = TextLoader(filepath, encoding='utf-8')
         docs = loader.load()
         for doc in docs:
+            doc.page_content = doc.page_content.lower()
             relative_path = os.path.relpath(filepath, data_path)
             doc.metadata['source'] = relative_path
         documents.extend(docs)

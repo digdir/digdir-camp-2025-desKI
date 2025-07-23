@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.inference.models import UserMessage
+from azure.ai.inference.models import UserMessage, SystemMessage
 
 from app.config import (
     TOP_P,
@@ -111,7 +111,6 @@ class LLMService:
         """
         Generic interface: picks Azure or finetuned backend based on config.
         """
-
         if self.use_azure:
             return self.generate_response_azure(
                 user_query, retrieved_context, named_endpoint, faq_str, external_context
@@ -135,7 +134,9 @@ class LLMService:
             return 'Please provide a valid question'
 
         logger.info(f'User info: {external_context}')
-        logger.info(f'User Endpoint: {named_endpoint}')
+        logger.info(f'User query: {user_query}')
+        
+        
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, faq_str, external_context
         )
@@ -204,3 +205,21 @@ class LLMService:
         except Exception as e:
             logger.error(f'Error generating response (finetuned): {e}')
             return 'Finetuned-model error'
+    def clean_query(self, query: str) -> str:
+        logger.info(f'Cleaning query: {query}')
+        try:
+            response = self.client.complete(
+                messages=[
+                    SystemMessage(content="Please clean the query by extracting the actual question that the user needs help with, and only that. Remove any unnecessary characters or formatting. Only return the cleaned query without any additional text or formatting. Respond in Norwegian, Bokmål. Do not return any other text."),
+                    UserMessage(content=query),
+                ],
+                model=self.llm_model_name,
+                max_tokens=self.max_tokens,
+                temperature=self.temperature,
+            )
+        except Exception as e:
+            logger.error(f'Error generating response (Azure): {e}')
+            return 'Azure model error'
+        
+        logger.info(f'Cleaned query: {response.choices[0].message.content}')
+        return response.choices[0].message.content
