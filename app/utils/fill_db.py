@@ -10,7 +10,7 @@ Dependencies:
 - EmbeddingService (for generating embeddings)
 - ChromaService (for storing/searching embeddings)
 
-Run this script with `python -m app.utils.fill_db.py` after placing .txt files under the `_docs/` folder.
+Run this script with `python -m app.utils.fill_db` after placing .txt files under the `_docs/` folder.
 """
 
 import os
