@@ -105,7 +105,12 @@ class QueryService:
 
         try:
             return self.llm_service.generate_response(
-                user_query, retrieved_context, named_endpoint, previous, faq_str, external_context
+                user_query,
+                retrieved_context,
+                named_endpoint,
+                previous,
+                faq_str,
+                external_context,
             )
 
         except Exception as e:

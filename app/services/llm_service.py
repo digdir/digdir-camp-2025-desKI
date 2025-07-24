@@ -114,12 +114,22 @@ class LLMService:
         """
         if self.use_azure:
             return self.generate_response_azure(
-                user_query, retrieved_context, named_endpoint, previous, faq_str, external_context
+                user_query,
+                retrieved_context,
+                named_endpoint,
+                previous,
+                faq_str,
+                external_context,
             )
 
         else:
             return self.generate_response_finetuned(
-                user_query, retrieved_context, named_endpoint, previous, faq_str, external_context
+                user_query,
+                retrieved_context,
+                named_endpoint,
+                previous,
+                faq_str,
+                external_context,
             )
 
     def generate_response_azure(
@@ -139,7 +149,12 @@ class LLMService:
         logger.info(f'User query: {user_query}')
 
         prompt = PromptFactory.get_prompt(
-            user_query, retrieved_context, named_endpoint, previous ,faq_str, external_context
+            user_query,
+            retrieved_context,
+            named_endpoint,
+            previous,
+            faq_str,
+            external_context,
         )
 
         logger.info(f'Generated prompt: {prompt}')
