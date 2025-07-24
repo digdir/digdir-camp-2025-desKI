@@ -24,7 +24,9 @@ def ask_chatbot(
     logger.info('⚡ Received chatbot request')
 
     response = qs.run_query(
-        user_query=req.question, named_endpoint=NamedEndpoint.CHATBOT
+        user_query=req.question,
+        named_endpoint=NamedEndpoint.CHATBOT,
+        previous=req.previous,
     )
 
     logger.info(f'✅ Responded in {time.time() - starttid:.2f}s')

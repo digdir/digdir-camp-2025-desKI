@@ -68,8 +68,9 @@ class QueryService:
         self,
         user_query: str,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
+        previous: Optional[str] = None,
         external_context: Optional[dict[str, Any]] = None,
-        limit: int = 5,
+        limit: int = 7,
     ) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
@@ -86,18 +87,16 @@ class QueryService:
 
         # TODO: Add optional log-search-functionality
 
-        context_str = ''
         faq_str = ''
         try:
             retrieved_context = self._search_docs(user_query, limit)
-            context_str = ''.join(retrieved_context)
 
             if not self.use_azure:
                 retrieved_faq = self._search_faq(user_query, limit)
                 logger.debug(f'Retrieved faq: {retrieved_faq}')
                 faq_str = ''.join(retrieved_faq)
 
-            logger.info(f'retrieved {len(context_str)} context chars')
+            logger.info(f'retrieved {len(retrieved_context)} context chars')
             logger.info(f'retrieved {len(faq_str)} faq chars')
 
         except Exception as e:
@@ -106,7 +105,12 @@ class QueryService:
 
         try:
             return self.llm_service.generate_response(
-                user_query, context_str, named_endpoint, faq_str, external_context
+                user_query,
+                retrieved_context,
+                named_endpoint,
+                previous,
+                faq_str,
+                external_context,
             )
 
         except Exception as e:
@@ -129,6 +133,18 @@ class QueryService:
 
         return formatted_faq
 
-    def _search_docs(self, user_query: str, limit: int = 5):
+    def _search_docs(self, user_query: str, limit: int = 10):
+        user_query = self.llm_service.clean_query(user_query)
+
         self.chroma_service.switch_collection('dig_docs')
-        return self.chroma_service.search(user_query, limit=limit)
+        results = self.chroma_service.search(user_query, limit=limit)
+
+        return_text = ''
+        for doc in results:
+            text = doc
+            for meta_key in ['title:', 'description:', 'sidebar:', 'redirect_from:']:
+                text = text.replace(meta_key, '')
+
+            return_text += text
+
+        return return_text
