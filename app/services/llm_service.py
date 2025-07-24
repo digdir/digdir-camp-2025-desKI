@@ -9,8 +9,6 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
 
-
-
 from app.config import (
     TOP_P,
     USE_AZURE,
@@ -164,9 +162,11 @@ class LLMService:
         try:
             response = self.client.complete(
                 messages=[
-            SystemMessage(content="You are a professional and helpful support assistant for Digdir (the Norwegian Digitalisation Agency). You answer questions based strictly on provided documentation. Do not guess or speculate. Follow the user's instructions exactly."),
-            UserMessage(content=prompt)
-        ],
+                    SystemMessage(
+                        content="You are a professional and helpful support assistant for Digdir (the Norwegian Digitalisation Agency). You answer questions based strictly on provided documentation. Do not guess or speculate. Follow the user's instructions exactly."
+                    ),
+                    UserMessage(content=prompt),
+                ],
                 model=self.llm_model_name,
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
