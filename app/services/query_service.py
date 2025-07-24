@@ -68,6 +68,7 @@ class QueryService:
         self,
         user_query: str,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
+        previous: Optional[str] = None,
         external_context: Optional[dict[str, Any]] = None,
         limit: int = 7,
     ) -> str:
@@ -104,7 +105,7 @@ class QueryService:
 
         try:
             return self.llm_service.generate_response(
-                user_query, retrieved_context, named_endpoint, faq_str, external_context
+                user_query, retrieved_context, named_endpoint, previous, faq_str, external_context
             )
 
         except Exception as e:

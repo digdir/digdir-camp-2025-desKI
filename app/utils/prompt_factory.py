@@ -18,6 +18,7 @@ class PromptFactory:
         user_query: str,
         retrieved_context: dict,
         named_endpoint: NamedEndpoint,
+        previous: Optional[str] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
@@ -28,6 +29,7 @@ class PromptFactory:
                 Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
                 Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
                 Svar kort og tydelig, men med relevante detaljer fra kildene. Ikke gjett.
+                Husk å ta høyde for den tidligere samtalen, og bruk det dersom det er relevant. Vær obs på at brukeren kan stille helt nye spørsmål som ikke er relatert til tidligere samtale.
                 Dersom det ikke står noe i dokumentasjonen, eller i lignende tidligere spørsmål og svar, kan du prøve å hjelpe så godt du kan.
                 Vær høflig og serviceinnstilt. Dersom løsningen krever en handling fra Digdir, si at en ansatt må ta tak i det.
 
@@ -37,6 +39,9 @@ class PromptFactory:
                 Lignende tidligere spørsmål og svar:
                 {faq_str}
 
+                Tidligere samtale:
+                {previous}
+                
                 Spørsmål:
                 {user_query}
 
