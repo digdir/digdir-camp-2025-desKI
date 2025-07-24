@@ -441,7 +441,7 @@ ruff==0.4.4
     # via -r requirements.in
 safetensors==0.5.3
     # via transformers
-scikit-learn==1.7.0
+scikit-learn==1.7.1
     # via sentence-transformers
 scipy==1.15.3
     # via
