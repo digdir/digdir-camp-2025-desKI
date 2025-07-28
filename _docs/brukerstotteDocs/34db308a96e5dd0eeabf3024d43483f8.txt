@@ -1,0 +1,24 @@
+URL: https://eid.difi.no/nb/sikkerhet-og-personvern/ulike-sikkerhetsniva#main-content
+Title: Ulike sikkerhetsnivå | Hjelpesider for fellesløsninger
+
+Ulike sikkerhetsnivå
+
+De digitale tjenestene har ulikt sikkerhetsnivå. Det er den virksomheten som eier tjenesten som bestemmer hvilket sikkerhetsnivå tjenesten deres skal ha – betydelig sikkerhetsnivå (nivå 3) eller høyeste sikkerhetsnivå (nivå 4). Dette bestemmes ut i fra hvilke konsekvenser uheldige hendelser vil få for bruker og virksomheten.
+
+Betydelig sikkerhetsnivå
+MinID gir innlogging til tjenester med betydelig sikkerhetsnivå (nivå 3). Den har en to-faktors sikkerhetsløsning. MinID består av fødselsnummer og personlig passord, samt engangskoder på SMS eller push-varsel fra MinID app.
+
+Høyeste sikkerhetsnivå 
+BankID, Buypass og Commfides leverer elektronisk ID på høyeste sikkerhetsnivå (nivå 4). Dette er en to-faktorløsning, der en i tillegg må møte opp personlig for å legitimere seg. Dette for å unngå at sikkerhetselementet havner i feil hender. 
+
+Med høyeste sikkerhetsnivå får du blant annet tilgang til helseopplysninger. Er du innlogget med MinID, men ønsker å logge deg inn på en tjeneste som krever et høyere sikkerhetsnivå, må du logge deg inn på nytt med BankID, Buypass eller Commfides.
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

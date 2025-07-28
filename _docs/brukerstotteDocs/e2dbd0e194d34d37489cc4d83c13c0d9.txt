@@ -1,0 +1,25 @@
+URL: https://eid.difi.no/nb/minid/mottar-du-ikke-engangskode-pa-sms-eller-e-post-0
+Title: Mottar du ikke engangskode på SMS eller e-post | Hjelpesider for fellesløsninger
+
+Sámegiella
+Mottar du ikke engangskode på SMS eller e-post
+
+Mottar du ikke koder på SMS eller e-post må du kontakte ID-porten brukerstøtte. Vi må da nullstille brukeren din og sende deg et nytt MinID Aktiveringsbrev, slik at du får registrert en ny bruker. Dette kan du gjøre ved å ringe ID-porten brukerstøtte på (+47) 800 30 300.
+
+Ved nullstilling:
+
+Mottar du aktiveringsbrev i løpet av 10 virkedager (innad i Norge)
+Blir aktiveringsbrevet sendt til adressen du er registrert med i folkeregisteret. Har du både postadresse og bostedsadresse, blir det sendt til postadresse.
+ 
+
+ 
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

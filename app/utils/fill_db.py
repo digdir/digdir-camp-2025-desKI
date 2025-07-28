@@ -10,7 +10,7 @@ Dependencies:
 - EmbeddingService (for generating embeddings)
 - ChromaService (for storing/searching embeddings)
 
-Run this script with `python -m app.utils.fill_db.py` after placing .txt files under the `_docs/` folder.
+Run this script with `python -m app.utils.fill_db` after placing .txt files under the `_docs/` folder.
 """
 
 import os
@@ -50,6 +50,7 @@ def load_txt_documents(data_path: str):
         loader = TextLoader(filepath, encoding='utf-8')
         docs = loader.load()
         for doc in docs:
+            doc.page_content = doc.page_content.lower()
             relative_path = os.path.relpath(filepath, data_path)
             doc.metadata['source'] = relative_path
         documents.extend(docs)
