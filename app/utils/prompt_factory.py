@@ -18,7 +18,7 @@ class PromptFactory:
         user_query: str,
         retrieved_context: dict,
         named_endpoint: NamedEndpoint,
-        previous: Optional[str] = None,
+        previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:

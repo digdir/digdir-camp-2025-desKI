@@ -68,7 +68,7 @@ class QueryService:
         self,
         user_query: str,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
-        previous: Optional[str] = None,
+        previous: Optional[list[str]] = None,
         external_context: Optional[dict[str, Any]] = None,
         limit: int = 7,
     ) -> str:

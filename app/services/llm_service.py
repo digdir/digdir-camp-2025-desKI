@@ -117,7 +117,7 @@ class LLMService:
         user_query: str,
         retrieved_context: dict,
         named_endpoint: NamedEndpoint = None,
-        previous: Optional[str] = None,
+        previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
@@ -149,7 +149,7 @@ class LLMService:
         user_query: str,
         retrieved_context: str,
         named_endpoint: NamedEndpoint = None,
-        previous: Optional[str] = None,
+        previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
@@ -201,7 +201,7 @@ class LLMService:
         user_query: str,
         retrieved_context: str,
         named_endpoint: NamedEndpoint = None,
-        previous: Optional[str] = None,
+        previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
