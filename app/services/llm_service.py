@@ -7,7 +7,6 @@ import requests
 from dotenv import load_dotenv
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.inference.models import UserMessage
 
 from app.config import (
     TOP_P,
@@ -127,34 +126,35 @@ class LLMService:
     def generate_response_azure(
         self,
         user_query: str,
-        retrieved_context: str,
+        retrieved_context: dict,
         named_endpoint: NamedEndpoint = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
         if not user_query.strip():
-            logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
-        logger.info(f'User info: {external_context}')
-        logger.info(f'User Endpoint: {named_endpoint}')
         prompt = PromptFactory.get_prompt(
             user_query, retrieved_context, named_endpoint, faq_str, external_context
         )
-        logger.info(f'Generated prompt (first 500 chars): {prompt}')
+
+        if not isinstance(prompt, str):
+            logger.error(
+                f'Prompt is not a string. Got type: {type(prompt)} - value: {prompt}'
+            )
+            raise ValueError('Prompt must be a string')
+
+        messages = [{'role': 'user', 'content': prompt}]
 
         try:
             response = self.client.complete(
-                messages=[
-                    UserMessage(content=prompt),
-                ],
                 model=self.llm_model_name,
+                messages=messages,
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
             )
         except Exception as e:
-            logger.error(f'Error generating response (Azure): {e}')
-            return 'Azure model error'
+            return f'Azure model error: {e}'
 
         if (
             'deepseek' in self.llm_model_name.lower()
@@ -189,20 +189,14 @@ class LLMService:
             external_context,
         )
 
-        logger.info(f'User info: {external_context}')
-        logger.info(f'User Endpoint: {named_endpoint}')
-        prompt = PromptFactory.get_prompt(
-            user_query, retrieved_context, named_endpoint, external_context
-        )
-        logger.info(f'Generated prompt (first 500 chars): {prompt}')
-
         try:
-            response = requests.post(self.finetuned_api_url, json={'prompt': prompt})
+            response = requests.post(
+                self.finetuned_api_url, json={'prompt': prompt}, timeout=5
+            )
             response.raise_for_status()
             data = response.json()
 
             return data.get('response', '[No response]')
 
-        except Exception as e:
-            logger.error(f'Error generating response (finetuned): {e}')
+        except Exception:
             return 'Finetuned-model error'

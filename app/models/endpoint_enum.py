@@ -29,3 +29,4 @@ class NamedEndpoint(str, Enum):
     COPILOT = 'copilot'
     SERVICEDESK = 'servicedesk'
     DEFAULT = 'chatbot'
+    IMAGE = 'IMAGE'

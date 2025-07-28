@@ -3,6 +3,7 @@ from pydantic import ValidationError
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api import upload_api
 from app.exceptions import (
     validation_exception_handler,
     pydantic_validation_exception_handler,
@@ -20,7 +21,7 @@ chroma_service = ChromaService()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['http://localhost:3000'],  # React app URL
+    allow_origins=['http://localhost:5173'],  # React app URL
     allow_credentials=True,
     allow_methods=['GET', 'POST'],
     allow_headers=['*'],
@@ -30,6 +31,7 @@ app.add_middleware(
 app.include_router(chatbot, prefix='/chatbot')
 app.include_router(copilot, prefix='/copilot')
 app.include_router(servicedesk, prefix='/servicedesk')
+app.include_router(upload_api.router, prefix='/api')
 
 # Register custom exception handlers
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
