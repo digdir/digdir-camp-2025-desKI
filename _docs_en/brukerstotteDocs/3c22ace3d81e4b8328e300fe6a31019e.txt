@@ -1,0 +1,25 @@
+Url: https://eid.difi.no/nb/minid/mottar-du-nt-bangangcode-sms-sms-or-e-mail-0#main-Conent
+Title: If you do not receive a disposable code by SMS or email | Help sites for common solutions
+
+Sámegiella
+Do you not receive one-time code by SMS or email
+
+If you do not receive codes by SMS or e-mail, you must contact the ID port support. We must then reset your user and send you a new minide activation letter so that you can register a new user. You can do this by calling the ID port support at (+47) 800 30 300.
+
+By reset:
+
+Do you receive activation letters within 10 working days (inward in Norway)
+The letter of activation is sent to the address you are registered with in the National Register. If you have both a postal address and a residential address, it will be sent to the postal address.
+ 
+
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

@@ -1,0 +1,17 @@
+Title: Change contact information in KRR
+Description: User profile for changing contact information
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /KrR_User Profile
+
+Introduction
+Companies using the contact register can forward a logged in user to
+In order for the citizen to keep their contact information in KRR updated, they will have to confirm the information by logging through the ID port every 90th day.
+It is also possible to log directly to your contact information service.
+How:
+Ask Digdir to enter your integration.  This happens p.t. Manually, but will hopefully soon become self -catering.
+API access
+Hopefully, it will soon be possible for selected companies to change the mobile/email directly into the contact register, via API-Kall.
+Note that such solutions must clearly inform to the citizen that:
+* The changes occur in the national contact register and not only apply to the individual agency
+* Change of mobile number can affect SMS-based login with MinID

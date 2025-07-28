@@ -1,0 +1,84 @@
+Title: Overall architectural description for the services
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: Contact and Reservation Register
+redirect_From: /krr_architecture
+
+The reference service residue
+When you as a customer have created and set up the client correctly, it can be used to be assigned to the token and carry out the API calls.
+
+graph lr
+  subgraph digdir
+    The lookup service
+  end
+  subgraph digdir
+    The machine gate [machine gate]
+  end
+  SUBRAPH API CONSUMENT
+     new [client]
+  end
+  Machine Gate -> | 2. Exit Token with assigned scope | New
+  New -> | 1. Request access to scope | Machine Gate
+  New -> | 3rd user token towards | the reference service
+
+API consumers can even manage their client configurations through self-service web or self-service API. For KRR clients, the scopes will be predefined. 
+Lookup by logged in user (user -controlled data count)
+In this scenario, an end user logs into a service, and the service needs to retrieve data on the logged -in end user via the reference service (user -controlled data sharing). Such cases are realized in the ID gate at the classic OAuth2 flow, where the citizen approves - either explicitly or implicitly - for the service to use the lookup service on behalf of itself.
+
+ graph lr
+   subgraph digdir
+     The reference service [the lookup service]
+   end
+   subgraph digdir
+     Oidc [ID port]
+   end
+   subgraph customer
+      new [service]
+   end
+   End user --- | 1. Will use | new
+   Oidc ---> | 3rd Exit Token | New
+   End user --- | 2. Logs into | Oidc
+   New -> | 4. User Token towards | the reference service
+ 
+Description of the OAuth2 flow
+
+sequence chart
+  End User ->> Client: Clicking Login button
+  Client ->> End user: Redirect with authentication request
+  End User ->> Openid Provider: Follow Redirect ...
+  Note over the end user, Openid Provider: End user authenticates (and possibly consent to the requested scopes)
+  Openid Provider ->> End User: Redirect with Authorization Code
+  End User ->> Client: Follow Redirect ...
+  Client ->> Openid Provider: Inquiry Token (/Token)
+  Openid Provider ->> Client: id_token + access_token (possibly refresh_token)
+  Note over the end user, client: logged in to the service
+  Client ->> Replacement service: Use the lookup service with Access_token
+  The lookup service ->> Openid Provider: Valids Token
+  Openid Provider ->> Replacement service: Token information
+  The lookup service->> client: Result of API operation
+
+The start of the flow is identical to the authorization code flow for authentication (see this for details), with the following addition:
+
+In the authentication response from Openid Provider, the client is also handed over an access_token (and possibly a refresh_token) that provides access to requested scopes.  
+After logging in, the client can use the access_tokenet up against the lookup service.  
+Access_Token usually has a short life (30 seconds). If the token has expired, the client may request a new acess_token by using the refresh_token against the token- endpoint of the Openid provider.  It is then carried out a client authentication, to ensure that tokens is not delivered to the wrong party.
+
+Min profile and Gotourl
+In a minimum profile, the end user can update his contact information. You as a customer (business) can link to a min profile in your service, to get updated contact info to your users. By using Request Parameter "Gotourl", the end user is sent back to your service. 
+
+ graph lr
+   subgraph digdir
+     Min profile [min profile]
+   end
+   subgraph digdir
+     Oidc [ID port]
+   end
+   subgraph customer
+      new [service]
+   end
+   End user --- | 1. Will use | new
+   Oidc ---> | 3rd Exit Token | New
+   End user --- | 2. Logs into | Oidc
+   New -> | 4. Links to min profile | Min profile
+   Min profile -> | 5. Gotourl sends back to service | new

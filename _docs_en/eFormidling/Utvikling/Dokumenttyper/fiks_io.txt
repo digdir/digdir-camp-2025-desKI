@@ -1,0 +1,29 @@
+Title: "Document Type: FIKS IO"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+All FIKS IO message protocols are valid document types in eFoons.
+The FIKS IO document types consist of a standard Business Document (SBD) and possibly one or more documents.
+The document type identifier corresponds to the appropriate FIKS IO message protocol.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+FIKS IO document types are addressed from the sender's FIK's IO account number to the recipient's fixed IO account number.
+Business message
+The business message does not have content.
+One or more documents
+What types of documents supported for a given fix io document type corresponds to what is supported by the relevant 
+Fix the iO protocol. 
+
+KS FIKS IO (external link)
+
+Next step
+
+Example of FIKS IO message exchange

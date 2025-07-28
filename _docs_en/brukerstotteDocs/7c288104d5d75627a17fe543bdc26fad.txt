@@ -1,0 +1,44 @@
+Url: https://eid.difi.no/nb/minid#main-content
+Title: MinID | Help sites for common solutions
+
+Sámegiella
+Minid
+MinID provides access to public services at a significant level of security (level 3).
+
+MinID is a two-factor solution, which means that you have to use two factors to log in to a service. One factor is a self -selected password. The second factor can choose the user himself, and is a one -time code you receive by SMS or a push notification in the MinID app. 
+
+ 
+
+Activation letter
+How to Order Minide Activation Letter
+What address is minid activation letter sent to
+Not received minid activation letter
+Minid with sms
+How to record MinID user for SMS
+How to log in with MinID
+How to create new password for MinID
+Not receiving one -time code on sms
+Minid app
+How to record MinID user with app
+How to log in with MinID app
+How to create new password for MinID app
+Receives not notice in the MinID app
+Change user profile
+How to change your user profile
+Do you not receive one-time code by SMS or email
+Blocking minide
+How can guardians access clients minide login
+Error messages
+"Warning: You have been blocked due to repeated errors in login"
+"Your MinID user has a failure condition that makes you can't log in"
+Terms of use
+Terms of Use of MinID
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

@@ -1,0 +1,112 @@
+Title: Guidance for DPI through e -officing
+Description: How to get started with the integration point
+Summary: "How to install the integration point and set up DPI through eMespecting."
+Product: eFormidling
+Pageable: 
+redirect_From: /dpi_eFormidling_onboarding
+
+Background
+Todo: Why do
+Requirements and assumptions
+This guide is a step-by-step guide on how to install the integration point as a Windows service. 
+This must be done before you start installing.
+
+Install Java 8 on the server where the integration point should run from.
+It can be downloaded here and is free.
+
+
+
+
+Install Key Store Explorer for handling business certificate (free). Download.
+
+
+Make sure the server has a minimum of 2GB available memory. This can be done by checking 'System Information'.
+
+
+Check that the server is synchronized with NTP (Network Time Protocol). Can be done by pressing here.
+
+
+Order business certificate for your business from either Commfides or Buypass.
+
+
+Firewall openings
+Digdir's endpoints are exposed to the Internet, but traffic must be opened in and out to these IP addresses from Server:
+Production environment
+|    Description | IP address |
+| ------------- |: -------------: |
+| message exchange.difi.no | 51.144.60.163:443 |
+| Stream message exchange.difi.no | 40.74.39.254:443 |
+| oidc.difi.no | 146.192.252.54:443 |
+| MachinePorte.no | 146.192.252.50:443 |
+| Message intermediary.digipost.no (IP-Range) | 51.124.140.176/28:443 |
+| https://srest.dataplatfor.ms/ (new transport infrastructure) | 51.120.1.137 |
+Test environment
+|    Description | IP address |
+| ------------- |: -------------: |
+| QA message exchange.difi.no | 51.144.60.111:443/51.105.206.80:443 |
+| QA-stream message exchange.difi.no | 40.74.39.255:443 |
+| oidc-ver1.difi.no | 146.192.252.121:443 |
+| oidc-ver2.difi.no | 146.192.252.121:443 |
+| Ver1.Main machine port.no | 146.192.252.118:443 |
+| QaOntele.meldinger.digipost.no (IP-Range) | 51.105.206.80/28:443 |
+| https://srest.qa.dataplatfor.ms/ (new transport infrastructure) | 51.120.49.231 |
+Handling of business certificate
+When you receive the business certificate (P12 format) from Buypass or Commfides you get it in 2 or 3 parts, as well as associated passwords. What is to be used is the authentication section.
+The certificate must be entered into a JKS (Java Key Store) and it is done as follows:
+
+Open Key Store Explorer.
+Press 'File' and 'Open'. Navigate to where the certificate is open.
+Press 'Tools' and then 'Change Keystore type'. Choose JKS.
+Press 'File' and 'Save AS'. Save the file as name.jks. 
+Example: Minketore.jks
+Check that the file is stored as .jks, not .ks!
+
+We recommend that you keep the password that came with the certificate.
+Export of Public Key
+As part of the authentication, Digdir must have Public Key of the certificate. 
+It can be exported in Key Store Explorer:
+
+Open the jks you just made in Key Store Explorer.
+Right -click the certificate located in the keyor, find 'Export' and then press 'Export Certificate Chain'.
+Leave everything as it is and save as a .CER file. 
+Example: Mitt -Public Certificate.Cer
+
+
+Then send the file to serviceedesk@dir.no.
+Downloading the integration point and other resources
+To install and run the integration point, one must download these resources:
+
+The integration point (.jar)
+Winsw (.exe)
+Configuration file (.xml
+Properties file (.Properties)
+
+Setup and intallation of the integration point
+Start by creating a new folder where you put all the resources you downloaded. Recommend that you also put Jksen there, but it is optional.
+Then follow the steps below:
+
+Name the XML and Exe file so they have the same name. It is important that these are the same.
+Review the properties file and fill in the missing values. Save the file. These values must be completed (minimum requirements):
+
+The integration point folder should look like this now:
+
+Open command window as an administrator. Navigate to the integration point folder.
+Run this command for installation:
+
+To start the integration point Use this command:
+
+You can see if the service is running in Windows Services. You can also use it to stop/start the integration point.
+
+After installing and start -up, the integration point folder should look like this:
+
+FAQ (being updated continuously)
+How to uninstall/reinstall the service?
+For uninstall, you must first stop the service, so use this command:
+
+Where can one read logs?
+The logs of the integration point can be found in the integration point folder under the integration point -logs -> Application.log.
+The latest logs are at the bottom of the text file.
+How can I see the status of my shipments?
+Eventually it will be possible to see this in the case/archive system, but so far you can use TTP: // Localhost: Serverport/Conversations.
+More info can be found here
+Do you have any other questions or input? Contact serviceedesk@dir.no!

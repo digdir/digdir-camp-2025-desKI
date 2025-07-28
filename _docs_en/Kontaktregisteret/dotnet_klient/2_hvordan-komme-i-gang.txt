@@ -1,0 +1,16 @@
+title: How to get started
+Description: 
+Summary: ""
+Sidebar: krr_dotnet
+Product: krr
+redirect_From: /krr_how_comme_i_gang
+
+The client is available as a Nuget package. This will be updated regularly as new functionality is added.
+To install the Nuget package, do the following:
+
+Choose Tools -> Nuget Package Manager -> Manage Nuget Packages for Solution ...
+Search for lookup service.
+If you want pre-release, make sure there is included prerelease in the drop-down menu directly above the search wet (where it says stable only).
+
+
+Select lookup service and press install.

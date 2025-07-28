@@ -1,0 +1,17 @@
+Title: About Peppol eiovernment
+Description: ""
+Summary: ""
+Sidebar: Main_sidebar
+Product: egovernment
+Redirect_From: /Egovernment_index
+
+This is the technical documentation for egovernment. The purpose is to support architects, developers and operating personnel at
+public companies and their suppliers in the introduction and use of ego overnment.
+
+Technical documentation
+
+
+Feel free to see the collaborative portal for a completely overall non-technical introduction to egovernment:
+
+- [this is ego overnment] () (external link) // Todo fix link
+- [Use egovernment] () (external link) // Todo Fix Link

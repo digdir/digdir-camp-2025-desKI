@@ -1,0 +1,8 @@
+Title: Well-Known
+DESCRIPTION: ID-port's Well-Known endpoint
+Summary: "Metadata about the ID port is available on our .Well-Known-End point"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_wellknown
+
+Phased

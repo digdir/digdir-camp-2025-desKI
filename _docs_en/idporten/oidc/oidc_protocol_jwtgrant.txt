@@ -1,0 +1,9 @@
+Title: "Jwt Grant"
+Description: "This page Sumarizes the Protocol Options Availalbe for On Jwt Grants On The /Token Endpoint for Oidc Provider"
+Summary: "This Page Sumarizes The Protocol Options Availalbe for On Jwt Grants On The /Token Endpoint for Oidc Provider"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_jwtgrant
+
+Request
+The ID port does not support JWT Grants. Please use machine gate.

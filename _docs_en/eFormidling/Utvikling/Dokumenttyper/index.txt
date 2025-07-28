@@ -1,0 +1,31 @@
+Title: Document Types
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Document types used in eFruely:
+
+Archive
+Agreed
+Digital
+Digital dpv
+Fix io
+Access claim
+Print
+Publishing
+
+Receipts:
+
+Archive message receipt
+e-insight-receipt
+
+Internal receipts:
+
+Status
+
+Standard formats and e -dissemination use of these:
+
+Archive
+Document pack
+Standard Business Document (SBD)

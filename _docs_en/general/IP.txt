@@ -1,0 +1,17 @@
+Title: "IP addresses"
+Sidebar: Main_sidebar
+Product: General
+Redirect_From: /IP
+
+This page lists IP addresses used by the common solutions, in different environments
+| Solution | PRO | TEST |
+| - | - |- |
+| ID port (idporten.no - test.idporten.no) | IPV4: 139.105.36.167 IPV6: 2A02: 9CC :: 205 | IPV4: 139.105.36.135 IPV6: 2A02: 9CC :: 305 |
+| Employee gate (employeeport.no - Test.Alsattport.no) | IPV4: 139.105.36.165 IPV6: 2A02: 9CC :: 204 | IPV4: 139.105.36.133 IPV6: 2A02: 9CC :: 304 |
+| Machine Gate (MachinePorten.no - Test.Mainperporten.no) | IPV4: 139.105.36.164 IPV6: 2A02: 9CC :: 201 | IPV4: 139.105.36.132 IPV6: 2A02: 9CC :: 301 |
+| Contact Register - The reference service | IPV4: 139.105.36.169 IPV6: 2A02: 9CC :: 206 | IPV4: 139.105.36.137 IPV6: 2A02: 9CC :: 306 |
+| Minid (minid.no) | IPV4: 139.105.36.166 IPV6: 2A02: 9CC :: 202 | IPV4: 139.105.36.134 IPV6: 2A02: 9CC ::: 302 |
+| Evisyn.no) | 139.105.34.205 | 139.105.32.205 |
+| Elma (elma-smp.no) | 139.105.36.174 | 139.105.36.142 |
+| Eformidling.no) | Production | TEST |
+| eidas (eidasnode.no - test.eidasnode.no) | IPV4: 139.105.36.176 IPV6: 2A02: 9CC :: 20A | IPV4: 139.105.105.36.144 IPV6: 2A02: 9CC: 9CC :: 30B |

@@ -1,0 +1,151 @@
+Title: Registration of clients
+Description: Registration of clients
+Summary: "The self -service solution supports several types of clients. Clients must be pre -registered and correct registration of client is important that safety should be met."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_clii-
+
+Background
+It is the customer's responsibility to ensure that the actual pattern of use is in accordance with the registration. Proper registration is especially important for clients who consume APIs offered by others, and the Norwegian Digitalisation Agency's and API provider's use agreements regulate this responsibility.
+ID port's integrations {#integrations}
+The self -service solution allows the customer to create 5 different types of integrations:
+
+ID port (login only)
+ID port (API client, for user-controlled data sharing)
+Employee gate
+Machine gate
+The contact register
+
+In addition, there is an integration type for e -dissemination, which is managed internally by DIGDIR. 
+It is important to be aware that these types of integration are technically all standard OAuth2 clients, which must be registered with different characteristics.  See details further down.
+We have 3 ways you can register your integration:
+
+Self -service, by logging into self -service on the collaborative portal.
+Self-service, using our self-service api
+Manually, by sending email to serviceedesk@dir.no (only for the ID port and the contact register)
+
+Types of integration
+You must register an integration type to make sensible choices to your client in the self -service solution. Which type of integration you choose will add guidance on which scopes you can use with the client. A client can only have an integration type, and the type of integration cannot be changed afterwards.
+What is currently supported is:
+| Type of Integration | Description |
+|-|-|
+| IDPORTE | Ordinary login through the ID port. Hard coded to -scope.  |
+| API_ Client | The ID port integrations that will retrieve data from a third API on behalf of logged in user. |
+| Employee Gate | Login and data sharing in employee port |
+| Machine Gate | For server to server integrations (B2B) |
+| KRR | Contact Register |
+| eFormidling | The integration point for eFonsidation. Managed by Digdir |
+It is not possible to change the type of integration after creation.
+You will not be able to put on a scope on your client who conflicts with the client's integration type. For example, you cannot add a scope that is limited to the "machine gate" on an ID port client, and vice versa.
+Suppliers
+If you are a supplier, there are any of the client characteristics below that you have to make sure to get the right registered.  See separate supplier information.
+OAuth2 properties
+This section details some important OAuth2 properties that categorize our clients.  See the OAUTH2 Dynamic Client Registration for more information (RFC7591).
+Basically, as a customer, you can choose OAuth2 properties freely according to your own risk assessment. Those who consume API offered by others must be aware that API providers can set specific properties requirements.   Validation of such requirements, as a general rule, only takes on run-time at Token issuance and not by client registration.
+Client-authentication
+Depending on application, we offer different methods for authentication of your client.  This is controlled by the attribute:
+| Method | token_endpoint_Auth_method | Description |
+|-|-|-|
+| Static Secret | Client_Secret_Basic Client_Secret_Post | A static secret (Client_Secret) that the Norwegian Digitalisation Agency generates and is exchanged manually, or made available via self -service.  The maximum permissible life is set at 360 days. It is the customer's responsibility to rotate the secret before expiry to ensure continuous service delivery.  Old and new secret will both work in a window of 30 minutes. |
+| Business Certificate | private_key_jwt | The client uses a valid business certificate from Buypass or Commfides. The organization number in the certificate must vote with the client registration. The customer can optionally choose to "lock" the client to just a specific business certificate. |
+| Asymmetrical Key | private_key_jwt | The public key from a self-generated asymmetrical key pair is registered on the client, and the client uses the private key to authenticate. The maximum permissible life is set at 1 year.   |
+| None | None | The client is a so-called public client who cannot protect a secret in a satisfactory way.  Applies to Single-Page application and in some cases mobile apps |
+The Directorate of Digitization recommends the use of asymmetrical keys for client authentication over static secrets. Whether using a business certificate, as the procedure for issuing such is thoroughly regulated in legislation and therefore provides both the Norwegian Digitalisation Agency and the API providers a good and secure identification of the client.  If the organization has high maturity, self-generated asymmetrical keys can also be recommended.
+The Directorate of Digitization presupposes that API provider and API consumer handle a certificate and keys in a way that ensures that unauthorized persons cannot abuse them.
+ should be avoided in favor of.  When rotating, old and new secret will appear for 30 minutes.  Only one old client_secret is supported by rotation.  In case of compromised secret, 2 new secrets should be made.  This is how the old one will stop working immediately.  The first new inhibitance should never be used.
+Note that the existing Secret is deleted immediately if you change the method to something other than Client_Secret_*
+Grant type
+A Grant represents the user's consent to retrieve an access token (which in turn is used to retrieve the protected resource belonging to the user, see OAuth2, Chapter 1.3 and in DCR Chapter 2)
+The ID port supports the following Grants:
+| Grant-Type | Description |
+|-|-|
+| Authorization_code | Authorization Code flow, as described in RFC 6749 Chapter 4.1 |
+| Refresh_token | The client uses a Refresh token to pick up the new Access token. User becomes (normally) not involved.  |
+| Urn: IETF: Params: OAuth: Grant-Type: JWT-Bearer | A signed JWT according to RFC7523. Can either use business certificate in or for pre -registered asymmetrical key. |
+| jwt_bearer_token | Short form of URN: IETF: Params: OAuth: Grant-Type: JWT-Bearer |
+Only clients who are registered with as permissible Grant type will be handed the refresh_token using the authorization code-Grant.   
+Machine gate clients should always use.
+We do not support Implicit, Password or Client-Credentials Grant.
+Client types
+Client type () tells the type of driving time environment the client runs under.  OAuth2 Chapter 2.1 lists which choices exist.  Choosing a client type is a security assessment the customer will perform.
+| Client-Type | OAuth2 'Application_Type' | to client authentication | Description |
+|-|-|-|-|
+| Standard client | Web | private_key_jwt client_secret_basic client_secret_post | Typically a server-page web service located in a secure operating environment.  The vast majority of ID-part's customers will use this client type.  It is highly recommended, but not required, to use PKCE, as well as the State and Nonce parameters for standard clients. Machine gate clients always fall into the 'standard client' category, but static secrets are not allowed here.  |
+| Single-Page Application (SPA) | Browser | None | Typically a JavaScript client who fully and completely lives in the user's browser.  Such a client cannot protect a client secret/business scene, and therefore becomes a public client, it has no client authentication We follow the latest IETF recommendations, which requires such clients to use the authorization code flow and that both PKCE and State parameter are required.  |
+| Mobile app | Native | None | Similar as for spas, a mobile app cannot protect a secret when distributed through the App Store, and therefore becomes a public client.
+Scopes
+The customer records different OAuth2 Scopes on their clients. The list in self -service shows scopes that your business has access to. 
+{% include note.html content = "Press 'Scopes available to everyone' if you are a vendor or want to add scopes that are set available to everyone." %}
+See rules for scopes for complete details.
+Overview of combinations
+The table below summarizes the relationship between the different properties:
+| Type of Integration | Client-Type 'Application_Type' |  allowed 'token_endpoint_Auth_method' | allowed 'grant_types' | Standard-Scope | Can add scopes? |
+|-|-|-|-|-|-|
+| ID port | Web |  Client_Secret_Basic Client_Secret_Post Private_Key_JWT | Authorization_code Refresh_token | Openid Profile | Eidas Only, No_pid |
+||  Browser |  None | Authorization_code Refresh_token | Openid Profile | Eidas Only, No_pid |
+||  Native |   None | Authorization_code Refresh_token | Openid Profile | Eidas Only, No_pid |
+| API client logged in user | Same as for the IDPort ||| | Yes |
+| Machine Gate | Web | Private_key_Jwt | jwt_bearer_token | | Yes |
+| Contact Register | Web | private_key_jwt | Jwt_Bearer_Token | KRR: Global/Contact Information.READ KRR: Global/Digital Post.READ | No |
+The use of asymmetrical key
+One can submit a JWKS structure (RFC7517), ie an array of several (up to 5) JWK representations.
+Is modeled as a separate resource under the client 
+Unable to do operations on single keys, only the entire set, ie both mail and put replace any existing JWKS.
+RS256, RS384 and RS512 are supported as algorithm.
+One must always submit the entire key definition (KTY, alg, use, e, n).  
+If you want to "lock" the integration to a specific business certificate, must also include the certificate (X5C). Then we will run the validating reefass/commfides.
+Example of entering a key:
+`` `
+Post/Clients/{Client_id}/JWKS
+{
+  [
+    {
+      "KTY": "RSA",
+      "E": "Aqab",
+      "Use": "Sig",
+      "Kid": "Digdir_min_nekkel",
+      "Alg": "Rs256",
+      "N": "LGC-DGNL9L9PCSB6EW5MF23AISS09Q7MXRE9Q9DAZSIN9IJQJQJMKWDYSPOYW3G_RSX2A74CG_Q3ITSSM0CO9IJ0 Lqp8gjoii9i8syi6anbkk6fisr1adzbsggrm1-zmrnvsj811sntdkbgx8zxvrjm4f6d2kwl3Tenv0crrvtpho 0SRMIMKBVBDAWPYQC64SQDVARY6XILPHD-DA2N2N2CL6VRQVNS7DYD8-C2TEYGGB_TASRVSORX9GF5CZ-HLNHF IgG2qqyzaljyfowppg5RYBP9BAWG9VFLLUFD_Y6VVZ0TQVFAYJ67NFZ_W4RXY-MDRGERKHJCQ81GKMVZQ5FQ "
+    }
+  )
+}
+`` `
+ Elected by the customer itself, and must be unique within Client_id. In addition to simple alphanumeric characters, the special characters are allowed.
+At client authentication towards /token-endpoint, and using JWT Bearer Grants, clients who have registered a key must use the parameter in the JWT header instead of the X5C.
+
+NB! A key has a maximum of 1 year life from the time it is posted.
+
+When using self-service apia, the customer must be careful to send configurations that are compatible with the table above, otherwise you risk ending up with a useless client.
+When using self -service on the collaborative portal, available choices are limited by the selected integration type.
+Other metadata
+We try to follow the spec as much as possible.  See the OAUTH2 Dynamic Client Registration for more information (RFC7591).
+Base set
+The following metadata is common to all types of clients:
+| Attribute | Required? | Description |
+|-|-|-|
+| Client_id | Yes | Unique identifier for the client. Is assigned by the Norwegian Digitalisation Agency. |
+| Client_orgno | Yes | client's organization number.  Legal consumer if supplier-controlled integration. Delivered as "consumer_orgno" in tokens |
+| Supplier_orgno | No | Supplier's organizational number, if integration is controlled by supplier |
+| Scopes | Yes | List of Scopes as the client may request. For login, open time must always be present. |
+Metadata for login clients:
+Clients who are going to involve the user (ie the user's browser) must have the following set:
+| Attribute | Required? | Description |
+|-|-|-|
+| Display_name | Yes | client's organization name used for viewing on web |
+| redirect_uris | Yes | List of valid URLs that the provider can redirect back to after a successful authorization request. In the test environment, pure http as well as localhost are allowed. |
+| post_logout_redirect_uris | Yes | List of URLs to which the Provider Redirecter after completing their own-initiated login. |
+| front channel_logout_uri ** | No |  URL that the provider sends Request to logging triggered by another client in the same session. Must belong to the same domain as one of the recorded redirect_uri. |
+| FrontChanel_logout_Session_Required | No | Flags that determine the parameters of the ice seas and session ID should be sent with front channel_logout_uri. If not set, then 'Sid' will not be included in the id_token. |
+| Logo | No | Logo displayed in login image is exchanged p.t. Manually |
+*NB! The use of Localhost is not allowed in the production environment for anyone other than native clients. If you are to register a localhost Uri in the test environment, this must be http: // and not https: //.
+** Front Channel Logout Uri must have the same domain as a registered redirect Uri.
+Metadata for clients consuming APIs
+For clients (both login and machine) receiving Access_token for API protection, you can record the following:
+| Attribute | Description | Standard Lifetime |
+|-|-|
+| Authorization_lifetime | Life for registered authorization. | 7200 seconds |
+| Access_token_lifetime | Lifetime of issued access_token | 120 seconds* |
+| Refresh_token_lifetime | Lifetime of Issued Refresh_token | 600 seconds |
+The life of the Authorization defines maximum life, while the refresh_Token defines inactivity. As a general rule, the client should be registered as follows:
+Access_token_lifetime <ref_token_lifetime <= Authorization_lifetime.
+*Note that most of the characteristics of Access_token are determined by API provider, and not as part of the client registration.  For example, a client cannot get the token that has a longer life than the API provider has set as a maximum limit.

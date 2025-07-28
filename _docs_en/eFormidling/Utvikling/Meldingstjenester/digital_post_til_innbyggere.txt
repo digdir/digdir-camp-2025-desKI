@@ -1,0 +1,55 @@
+Title: Digital mail to residents
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+E -dissemination supports the following processes and document types with the Digital Post messaging service (DPI).
+| Process | Document Type | Example |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -----------
+| Information for citizen | Digital Print | Example |
+| Decision to citizen | Digital Print | Example |
+About digital mail to residents is part of a recipient's capabilities or does not depend on several factors such as
+described for the individual process.
+To use digital mail for residents, the integration point must be configured with necessary access to APII Digital
+Post to residents offers.
+The integration point converts the document types digital and print to call against the API Digital mail to residents offers.
+See the document types for details.
+The integration point converts the message statuses from Digital Post to residents to Emofide Message Statuses.
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B -> | Digital | C ("FA: FA server" integration point)
+C ---> D ("FA: FA-Server Digital Post to residents")
+C ---> | Status | B
+D -> c
+
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B -> | Print | C ("FA: FA server" integration point)
+C ---> D ("FA: FA-Server Digital Post to residents")
+C ---> | Status | B
+D -> c
+
+Message Statuses
+Message Statuses for Messages Sent with Digital Post to Citizen:
+| Status | Comment |
+| ----------- | ------------------------------------------------------------------------------------------- |
+| Created | Integration point receives the message and creates shipment in internal format |
+| Sent | Shipment is sent to access point |
+| Received | Shipment is received by the recipient's access point |
+| Delivered | Shipment Delivered to the Preferred Channel |
+| Read | The inhabitant has opened a shipment in its mailbox Inbox |
+| Error | Something about the shipment has failed |
+Remarks of Error Status
+Essentially, a message fails because it cannot be delivered to the inhabitant. In such a case, the sender must decide whether the message should be resubmitted. A message can also get error status without the shipment itself. Then there is something about the message that fails, such as the SMS and/or email notification that the post is made available to the inhabitant. 
+Printing messages have some own peculiarities when it comes to status incorrectly. Read more about this on document type: Print
+Tip: To retrieve more details as to why a message has failed, you can decode the Raw Receipten that comes with the status message. View Raw Receipt
+Next step
+
+Product documentation for digital mail to residents (external link)
+Technical documentation for digital mail to residents (external link)
+Multiple messaging services

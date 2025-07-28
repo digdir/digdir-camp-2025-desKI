@@ -1,0 +1,26 @@
+URL: https://eid.difi.no/nb/idport/slik-skaffer-du-deg-deg-electronic-d#main-conent
+Title: How to get Electronic ID | Help sites for common solutions
+
+How to get Electronic ID
+If you are to be performed by state and municipality online, you must have an electronic ID (e-ID) in order to log in. An electronic ID is important to confirm that you are the one you are releasing to be. You can choose from different electronic ID options to log in to public services: MinID, BankID, BankID app, Buypass ID or Commfides.
+
+MinID is a personal electronic ID that provides access to public services at a significant level of security (level 3). MinID, is issued by the Norwegian Digitalisation Agency. MinID can be ordered from the year you turn 13. When you create a mini, you are also registered in the contact register. The contact register is used by the state and municipality to notify you. Therefore, you need to register your mobile number and email address. More about registration and login with MinID.
+
+BankID and BankID app are a personal electronic ID that provides access to public services at the highest security level (level 4). BankID is issued by your bank.
+More about ordering and logging in with BankID.
+
+Buypass ID is a personal electronic ID that provides access to public services at the highest security level (level 4). It is issued by Buypass AS, and is delivered as Buypass ID on Smart Card or as Buypass ID in mobile. 
+More about ordering and logging in with Buypass ID.
+
+Commfides is a personal electronic ID that provides access to public services at the highest level of security (Level 4). Commfides is issued by Commfides Norge AS, and is delivered as a USB stick. More about ordering and logging in with Commfides.
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

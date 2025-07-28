@@ -1,0 +1,37 @@
+URL: https://eid.difi.no/nb/bankid/how-logge-in---de-sd
+Title: How to log in with BankID with app | Help sites for common solutions
+
+How to log in with BankID with app
+
+To log in with BankID with app you need:
+
+birth number
+code app from your bank 
+personal password
+
+Go to the service you want to log in to (eg at: www.nav.no, www.altinn.no, www.skatteaten.no)
+
+Select BankID in the ID port
+Enter Birth Number, 11 digits
+Select the login "BankID with app"
+Approve the alert from the app on your mobile
+Enter personal password
+
+Note that BankID must be activated at your bank to use it in the ID port.
+
+BankID provides access to public services at the highest security level (level 4).
+
+ 
+
+ 
+
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

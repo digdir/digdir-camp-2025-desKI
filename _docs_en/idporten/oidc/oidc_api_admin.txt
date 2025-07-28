@@ -1,0 +1,152 @@
+Title: Residual API for the administration of OIDC integrations
+Description: API that allows service providers to manage its OIDC integrations.
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_api_admin
+
+This residual interface allows customers and suppliers to self-care for their integrations into the ID port and machine gate.
+In order to use the API, the customer must set up his own self-service client that is only used for this purpose.  The self -service client must use a business certificate against Digdir to ensure an "unbroken" legal chain of trust between self -service integrations and customer. Since this client is given very wide powers on behalf of the organization, it is important that it is well secured in its own environment.
+If you only have a handful of integrations, it might be best to use web-based self-service.
+
+graph lr
+  Subgraph Norwegian Digitalisation Agency
+    subgraph joint solutions
+      IDP [ID port / machine gate]
+      end
+    subgraph administration
+      Web [logged in self -service]
+      API [self -service therapy]
+      end
+    configuration database]
+  end
+  subgraph customer
+     admin [self -service client]
+     Internal [Services On-Prem]
+     Sky [Services in Sky]
+  end
+  Admin-Rest --- API
+
+  API ---> Configur
+  web -> config
+  Configur -> IDP
+
+  Intern-Oidc/OAuth2 --- IDP
+  Sky-Oidc/OAuth2 --- IDP
+
+
+APIA enables for example:
+* Customer can create/change new clients associated with their own org number
+* Supplier can create/change independent clients associated with their own customers
+* Supplier can create/change Onbehalfof clients on behalf of their own customers
+How to access?
+Contact serviceedesk@dir.no to access the service.
+Access control of APIt {#scopes}
+The API is based on DCR, an established standard for maintaining OAuth2 integrations, ie RFC7591 and is secured with the tokens issued by the machine gate.
+The self -service client must be assigned scopes to access the API:
+| Scope | Description |
+|-|-|
+| Idports: DCR.Read | provides access to read client registrations for clients bound to the same org.no. As given in the access_token. Also provides reading access to Onbehalfof registrations |
+| Idports: DCR.Modify | Provides access to change client registrations for clients bound to the same org.no. As given in the access_token. Also provides reading access to Onbehalfof registrations |
+| Idports: DCR.Write | Provides access to create new client registrations for clients bound to the same org.no. As given in the access_token. Also provides reading access to Onbehalfof registrations |
+| Idports: DCR/Onbehalfof: Write | Provides access to view, create, change and delete the onbehalfophophophonia belonging to a given client. Does not allow to change other parameters on the client itself. |
+| IDPORT: DCR.SUPPLIER | Gives suppliers access to view, create, change and delete independent OIDC integrations for other organizations. Own org.no is linked to these integrations.  |
+Endpoints
+| Environment | Url | Open-API/Swagger
+|-|-|-|
+| Test | https: //api.test.so collaboration.digdir.no/clients/ | https: //api.test.so collaboration.digdir.no/swagger-ui/index.html? Urls.primaryname = external%20oidc |
+| Prod | https: //api.so collaboration.digdir.no/clients/ | https: //api.so collaboration.digdir.no/swagger-ui/index.html? Urls.primaryname = external%20oidc |
+Create an integration
+You can create different types of integrations over the API, ie clients for respectively. The ID port, the machine port or the contact register.  This is controlled by the attribute, which then further limits which combinations of other OAuth2 properties are legal. See client registration for details.
+Here is a minimum example of how to create a client:
+`` `
+Post /Clients http /1.1
+HOST: API.TEST. COOPERATION.DIGDIR.NO
+Content-Type: Application/Json
+Authorization: Bearer Eyjrawqioijwmswme1rbtviqzrnn3z0nmnwudvgfpms0pzdzhmqkfjduziuzrsveq0iiywiywxnijoiulmyntyifq.eyjzy29wzsivzsiy29wzsve CI53CML0ZSBPZHBVCNRLBJPKY3IUCMVHZCISIMLZCYI6IMH0DHBZOLWVXC9VAWRJLXZLCJIUZLCJIUZGRMAS5BAS5B1WVAWRWBB3J0ZW4TBVIWIWCYYYYYYYYYYYYYYYIWIWCIWVIWVIWVIWVISKIKIKMLZCYML. Y2XPZW50X2FTCII6INZPCMTZB21OZXRZC2VYDGLMEGMAWTHIPS 5mswiy2xpzw50x2lkijoiawyymde4x3nlbgzzzxj2awnlx2nsawvudcisimnsawvudf9vcmdubyi6ijk5mtGyntgyynisimp0asi6ilpmasi6ilpcograph XEJZSDUXUV2GXNUL2CZMNFLX0LTJATAWEZDNCILCILCJB25ZDW1LCIII6EYJHDXROB3JPDHKIOIJPC282NTISLWFDG9YAW9YAW9YAWQ O5ote4mju4MJCIFX0.MEECCCNOBNG8U3IWIOXO0U09CKBA-SIQ31OEASMK7_SSKSIGNC1NDQQKYEJHOO5HHGZZZZZGNCVDL2PBFVOSAO0CZRN9CZRN9CZRFVOSAO ABAWTIX2CYSK3YBWGBNRZTHERSEQS-QTUWMG4IVQBBO 6TUAO7NCENMTY13IYNGK829-RTZIZ32F-AEOFY0T1FK7ZVAFBTM9IJ1N4RDN255AKRLYQKWKWKWKWKWKVN25AKRDN25. QEK820OEVH3BEE-5ICPNKDOJCFMV65DBSQ6OERHTFMHU2RQ6GGGJGJUGJOSKNJUNJUGXNJLXNJLXNJPK52BTne7kypbkibaktlgc0epbbbbj6amussrjxbria0.hjulreq6
+{
+   "Integration_Type": "API_ Client",
+   "Application_Type": "Native",
+"Client_name": "Turbo tax",
+   "Description": "Version 3.1 of the app's turbo tax",
+   "Client_uri": "https://www.turbobskatt.no",
+"Scopes": [
+       "Tax Agency: Tax Report"
+   ], ],
+   "Redirect_uris": [
+       "https://127.0.0.1:*/callback"
+   ], ],
+   "Grant_Types": [
+       "Refresh_token",
+       "Authorization_code"
+   ], ],
+   "Token_endpoint_Auth_method": "None"
+}
+`` `
+The response is a JSON structure with the complete client model recorded.
+Also note that the API will create and return client_id and any client_secret for clients created and that the latter is returned in plain text.
+The example above creates an ID port client for user-controlled data sharing on behalf of logged in user (), it is an end-user system intended to be installed locally on a PC (combined with a redirect current pointing to a local gate)
+Ownership of integrations
+Normally, the customer himself automatically owns () of integrations created via self-service API based on the organization number in the business certificate used.
+If you are a supplier, you have more opportunities on how to register your customers' integrations. See separate page with supplier information.
+Change of integration
+Change occurs by PUT call on a given client ID.  Note that you are not allowed to change the type of integration on an existing integration.
+Client Secret (Client_Secret) is not reset by changes, but if you change the client authentication method, it will be removed.
+Rotation of client_secret
+For integrations using symmetrical key (client_secret) as the client authentication method, one can generate new secret by calling/clients/{client_id}/Secret
+Note: The Norwegian Digitalisation Agency will in the long run introduce maximum life at Client_Secret.
+The use of asymmetrical key
+Asymmetrical key is the most secure and recommended client-authentication mechanism.
+One can submit a JWKS structure (RFC7517), ie a set that is an array of several (up to 5) JWK representations.
+We have chosen to model these as their own resource under the client 
+You cannot do operations on single keys, only the entire set, ie both post and put replace any existing JWKS.
+Only RS256, RS384 or RS512 with Key State 2048 is supported as algorithm.
+You must always submit the key definition (KTY, alg, Use, E, N).  
+If you want to "lock" the integration to a specific business certificate, must also include the certificate in a -claim. Then we will run the validating reefass/commfides.
+Example of entering a key:
+`` `
+Post/Clients/{Client_id}/JWKS
+{
+  [
+    {
+      "KTY": "RSA",
+      "E": "Aqab",
+      "Use": "Sig",
+      "Kid": "Minor Organization_sakarchive System_2021_Q1",
+      "Alg": "Rs256",
+      "N": "LGC-DGNL9L9PCSB6EW5MF23AISS09Q7MXRE9Q9DAZSIN9IJQJQJMKWDYSPOYW3G_RSX2A74CG_Q3ITSSM0CO9IJ0 Lqp8gjoii9i8syi6anbkk6fisr1adzbsggrm1-zmrnvsj811sntdkbgx8zxvrjm4f6d2kwl3Tenv0crrvtpho 0SRMIMKBVBDAWPYQC64SQDVARY6XILPHD-DA2N2N2CL6VRQVNS7DYD8-C2TEYGGB_TASRVSORX9GF5CZ-HLNHF IgG2qqyzaljyfowppg5RYBP9BAWG9VFLLUFD_Y6VVZ0TQVFAYJ67NFZ_W4RXY-MDRGERKHJCQ81GKMVZQ5FQ "
+    }
+  )
+}
+`` `
+The key identifier is selected by the customer itself, and must be unique within all ID ports/machine sports customers.
+At client authentication towards /token-endpoint, and using JWT Bearer Grants, clients who have registered a key must use the parameter in the JWT header instead of the X5C.
+Registration of Scopes
+See documentation of client registration for details on which rules apply to be allowed to register OAuth2 Scopes belonging to Digdir or 3rde parties on an integration.
+Run-time commissioning / cloud
+The self-service therapy should prepare for automation with customers who have frequent changes in their own application infrastructure, typically where scaling services dynamically up and down, moving a service from one cloud platform to another, or one is a supplier as a dynamic provisions new cloud bodies for each new customer.
+How the APIs should be used in this way will vary widely between different customers depending on their application landscape, but a "typical" recommended usage pattern that Digdir envisions is as follows:
+
+sequence chart
+  Participant A AS own administration system
+  Participant C AS Application in Sky / POD
+  Participant S AS self -service therapy
+  Participant in AS ID port
+
+  Note above A, I: 1: The administration system will start a new application:
+  A ->> C: Startup Command (eg Kibectl)
+  Note over C: The application even generates a key pair
+  C ->> A: Public key
+
+  Note above A, I: 2: The administration system records the new application at Digdir
+  A ->> S: Post /Clients  
+  S ->> A: 200 OK (Client_ID)
+  A ->> S: Post/Clients/{Client_id}/JWKS
+  A ->> C: Here's Your Client_ID
+  S->> in: Transfer of integration configuration, 0-2 minutes
+
+  Note above A, I: 3: End users can now log into the new application
+
+  C->> in: Token request signed with private key
+
+Note that we recommend that the customer uses asymmetrical keys for client authentication, and that the key pair is generated at the application instead of centrally in the administrative performance, in this way, you minimize the risk of abuse since the private key is never sent over the network, and there is no central system sitting on its own.
+A good example of such use is NAV's Kubernetes operator Digdirator.

@@ -1,0 +1,115 @@
+title: logging
+Description: 
+Summary: ""
+Sidebar: krr_dotnet
+Product: krr
+redirect_From: /krr_logging
+
+Generally
+The client uses Common.logging API to abstract logging. It is up to the user to imitate API with a suitable log grammar work, but we show how this can be done with Log4net.
+Log level will log results for requests that go well and those who fail, only for failed requests or worse, while will never occur. These loggers will be below 
+Implement log4net that logs
+
+Install Nuget package. This will also install the dependencies and. Note that the version here is a bit strange, but a search in the Nuget Gallery will eg. Show that Log4net 2.0.3 has packed name log4et [1.2.13] 2.0.3. Then is what is to be installed. 
+Notice which version of the log4net is actually installed. For some reason, it may be 2.0.0 installed. Then the version must be updated to 2.0.3.
+
+A complete app.config with log4net adapter and one:
+{ % highlight xml %}
+xml version = "1.0" Encoding = "UTF-8"?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{ % Endhighlight %}
+Log Request and Response
+It is possible to log the full request/response that is sent/received. To activate this, set the following:
+{ % highlight charp %}
+Lookup service configuration.logk request = true;
+{ % Endhighlight %}
+It will then be logged to a logger with names.
+
+Note that logging of request and response can provide much poorer performance. There is no need to log this in a production environment.
+
+Example of app.config with log4net adapter. In this example, there is a logger for regular Debug log as well as a logger for request and response:
+{ % highlight xml %}
+xml version = "1.0" Encoding = "UTF-8"?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{ % Endhighlight %}

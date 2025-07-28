@@ -1,0 +1,51 @@
+Title: "Components used"
+Sidebar: Main_sidebar
+Product: General
+Redirect_From: /Notice
+
+This page uses the following third-party components, and in the folder /Assets /Licences you will find the license files required by these third-party suppliers.
+
+
+Originally Theme from a Bootstrap Bootswatch Branching: http://www.codeply.com/go/rv7khujwcn (mit license)
+
+
+Bootstrap: http://themes.getbootstrap.com/pages/licenses (mit license)
+
+
+JQuery: https://github.com/jquery/jquery/edit/master/license.txt (MIT license)
+
+
+Jekyll: https://github.com/jekyll/jekyll (mit license)
+
+
+Navgoco page navigation: https://github.com/tefra/navgoco (BSD license)
+
+
+Anchor JS: https://github.com/bryanbraun/anchorjs/ (mit license)
+
+
+Lunr.js: https://github.com/olivernn/lunr.js (MIT License) (Search) (not in use, replaced by Simplejekyllsearch)
+
+
+SIMPLEJEKYllsearch https://github.com/christian-fei/simple-jekyll-search (search, pre-indexes client page
+
+
+Pygments-CSS (Monokai.CSS) for syntax view of code: https://github.com/richleland/pygments-css (Unlisens)
+
+
+Mojombo/TPW (syntax.css) for syntax view of code (hippo theme): https://github.com/mojombo/tpw/blob/master/css/syntax.css (mit license)
+
+
+Boot Snip Footer: http://bootsnipp.com/snippets/1Keeq (MIT License)
+
+
+TOC Generator: https://github.com/ghiculescu/jekyll-table-of-ontents (mit license)
+
+
+Fontawesome: http://fontawesome.io/license/ (gpl)
+
+
+Jquery Cookie: https://github.com/carhartl/jquery-cookie (MIT LISENSE)
+
+
+Jquery Inc plugin. http://johannburkard.de/blog/programming/javascript/inc-a-super-tiny-lient-side-include-javascript-jquery-plugin.html (MIT LISENS).

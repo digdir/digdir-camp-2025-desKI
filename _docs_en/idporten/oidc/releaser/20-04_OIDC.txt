@@ -1,0 +1,15 @@
+title: 20-04 oidc
+Description: 20-04 Oidc
+Sidebar: Oidc
+Redirect_From: /20-04_oidc
+
+Signed authentication requests (pairs and Request Objects). Production access to self -service through Altinn authorization.
+Releasen was production -fed Apr 23, 2020
+New functionality:
+Altinn Authorization-based access control against self-service-web (Shipped)
+It is now possible for customers to point out administrators who can self -care in production by assigning a special role in Altinn. This replaces today's manual registration of birth numbers.
+Signed authentication requests (shipped)
+Implement support for the customer to send signed authentication requests in OIDC.
+We base the support on the upcoming Pushed Autorization Request (pair) specification from IETF. We will also support so -called 'Request Objects' from Oidc, but only for clients who are pre -registered with asymmetrical key.
+Support random port for native clients (shipped)
+In accordance with RFC8252 Chapter 7.3, Native clients (mobile, desktop) should be able to support Redirect-Ui at the Loopback Device on any port number. Introduces support for this in both client registration and Runtime in Oidc Provider.

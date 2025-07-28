@@ -1,0 +1,41 @@
+Title: Upgrade
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_ip_upgrade
+
+The purpose of this page is to make it easier to upgrade the integration point of the Emsydidling.
+
+TOC
+{: toc}
+
+Docker
+If you run the integration point as Docker Container or Pod in Kubernetes then you just need switching to the latest image
+Tag and start container/pod with this one. What is the last version you can look at:
+
+Download the integration point
+
+Java
+
+For those who use Java, it is recommended to use automatic upgrade:
+
+Automatic upgrade
+
+
+To update the integration point, replace the file with a newer version.
+
+Download the integration point
+Put the new .jar file in the folder where you have installed the integration point
+Stop the integration point
+Update version number in your service (XML file), Scheduled task or command in console window
+Reboot the integration point
+
+Example of how upgrading is done:
+
+Upgrade the integration point running as a service
+Upgrade integration point running from command window
+Upgrade integration point running via task schedules
+
+Verify successful upgrading
+Check the integration point health status:

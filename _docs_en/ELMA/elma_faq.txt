@@ -1,0 +1,9 @@
+Title: Elma Faq
+Description: Elma Frequently Asked Questions
+Summary: "A Page Containing the Most Frequently Asked Questions About Elma."
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_faq
+
+CAN I AS A SERVICE PROVIDER HAVE MORE THAN ONE ACCESS POINT ARREENT PER DOMAIN?
+No, you'll then use two different service providers for that domain.

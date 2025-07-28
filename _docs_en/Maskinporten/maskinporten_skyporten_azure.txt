@@ -1,0 +1,180 @@
+Title: Skype with Azure - Machine gate for sharing sheltering resources
+Description: Skype with Azure - Machine gate for sharing sheltering resources
+Summary: 'Recipe to use the cloud port with Azure'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_skyport
+
+
+
+TOC
+{: toc}
+
+For those who will offer via Azure
+Layoff
+The project requires that you have a real machine-gate to the right environment.
+Here is information on how to get started with the machine gate.
+You also need to have an Azure account and AZ CLI tool installed.
+Azure Service Principal with Federated Identity based on the machine gate
+At Azure, Azure Service Principal with Federated Identity is used for the sky of its OIDC integration.
+Now is a recipe for how to do it. Contact us if you want help getting started.
+Login in Azure from the command line
+Log in to build the infrastructure needed in the cloud.
+`` `
+az login
+{
+...
+    "Tenantid": "5E55ABCD-DDDD-44444 BBBB-4A4A4A4A4A4A4AA",
+...
+}
+Used pretends logging in with the cloud of the oidc token
+Export Azure_Tenant_ID = "5E55ABCD-DDDD-44444 BBBB-4A4A4A4A4A4AAA"
+`` `
+Define Subscription ID environmental variable
+Find the Value of the Subscription You Want To Work in and Create Objects In.
+LIST SUBSCRIPTIONS:
+`` `` `Bash
+AZ Account Subscription List
+Find the Subscription ID of the Subscription You Want To Use
+AZ Account Subscription List
+[
+  {
+...
+    "DisplayName": "Skyporten Test",
+    "ID": "/Subscriptions/77777777777777777777777777777777777777777777777",
+    "State": "Enabled",
+    "Subscriptionid": "777777777777777777777777777777777777777777777",
+...
+  }
+)
+`` `
+Export the Subscription ID:
+
+CREATE A Resource Group, Storage Account and Storage Share
+`` `` `Bash
+Export Storage_ACC = "Skype Earage Pilot"
+Export Storage_rg = "File Storage-Rg"
+Export Identity = "Skyvesenetidentity"
+AZ Group CREATE - -NAME $ STORAGE_RG - -LOOCATION NORTHEURE
+Export Storage_ACC = "Skype Earage Pilot"
+AZ Storage Account Create--Name $ Storage_acc--Resource-Group $ Storage_rg--LOOCATION NORTHEURE--SKU STANDARD_RAGRS--KIND STORAGEV2
+{
+...
+  "ID": "/subscriptions/11111111111111119-447C-B453-111111111111/ResourceGroups/filestorage-rg/provvergers/microsoft.Storage/StorageAcounts/skyportstoragepilot",,
+...
+}
+Export File_Storage_ID = "/Subscriptions/111111111-A899-447C-B453-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111.
+Export Storage_Share = "Skyporten-Share"
+AZ Storage Share CREATE--ACCOUNT-NAME $ STORAGE_ACC--NAME $ STORAGE_SHARE
+`` `` `` `
+CREATE A Managed Identity
+The Identity Will Be Used To Give Access to The Storage Share.
+`` `` `Bash
+AZ Identity CREATE--NAME “$ Identity”--Resource-Group “$ Storage_rg”
+Resource Provider 'Microsoft.Managedidentity' Used by this Operation is Not Registered. We are registration for you.
+Registration Succeeded.
+{
+  "Clientid": "44444444-CF66-4934-B34C-4444444444444444",
+  "ID": "/subscriptions/11111111111111189-447C-B453-111111111111/ResourceGroups/filestorage-rg/provvergers/microsoft.Managed identity/userassigneddidentities/skyvesenidentity",,
+  "Location": "Northurope",
+  "NAME": "Skyvesenididentity",
+  "Principalid": "222222222-F9FB-4B76-A853-22222222222222222",
+  "Resourcesgroup": "File Storage-RG",
+  "System Data": Zero,
+  "Tags": {},
+  "Tenantid": "33333333-D105-4B01-AAA7C-33333333333333",
+  "Type": "Microsoft.Managedidentity/Userassignedidentities"
+}
+Export Service_Principal_ID = "2222222222-fb-4b76-A853-222222222222222222"
+Export Identity_Client_ID = "44444444-CF66-4934-B34C-4444444444444444444"
+`` `` `` `
+CREATE A FEDERATED CREDENTIAL
+`` `` `Bash
+Export Credential_Name = "Sliding Fedcreds"
+AZ Identity Federated-Credential CREATE--NAME "$ Credential_name"-identity-name "$ Identity"--resource-group "$ Storage_rg"--issuer "Test.Sky.makky.makerporten.no"--Subject "0192: 9174255725. "https://sky.organizationnavn.no"
+{
+  "Audiences": [
+    "https://sky.humtenskemaskin.no"
+  ], ],
+  "ID": "/subscriptions/111111111111111119-447C-B453-11111111111111/ResourceGroups/filestorage-rg/provVers/microsoft.Managed identity/userassignededities/skyVesenidentity/federatedAndenedAredtialcrediacsediadsighti-
+  "Issuer": "https://test.sky.maskerporten.no",
+  "Name": "The Skyvesenfedcreds",
+  "Resourcesgroup": "File Storage-RG",
+  "Subject": "0192: 917422575; ENTUR: Skype. Demo",
+  "System Data": Zero,
+  "Type": "Microsoft.Managedidentity/Userassignedidentities/Federated Identity Credentials"
+}
+`` `` `` `
+Assign Roles to the Managed Identity
+`` `` `Bash
+AZ Role Assignment Create - -Role Contributor \
+  -Subscription $ SUBSCRIPTION_ID \
+  --Assignee-Object-ID $ Service_principal_id \
+  --Assignee-Principal-Type ServicePrincipal \
+  --scope “$ File_Storage_id”
+Federated Identities Also Need "Storage File Data Privileged ..." Roles
+AZ Role Assignment CREATE -EASSIGNEE "$ SERVICE_PRINCIPAL_ID" \
+  -role "Storage File Data Privilege Contributor" \
+  --scope “$ File_Storage_id”
+`` `` `` `
+Upload a File to the Storage
+`` `` `Bash
+echo foo> ./bar.txt
+Upload the file
+AZ Storage File UPLOAD--ACCOUNT-NAME $ STORAGE_ACC--Share-Name $ Storage_Share--Path Remotebar.txt--Source ./bar.txt
+`` `` `` `
+Add roles to be able to access the file Storage
+`` `` `Bash
+Contributor Role for the Service Principal
+AZ Role Assignment Create--Role Contributor-Subscription $ Subscription_id-Essignee-Object-ID $ Service_Principal_ID--Assignee-Principal-Type ServicePalPal--SCOPE/SUBSCRATIONSE
+Blob access
+AZ Role Assignment CREATE -EASSIGNEE "$ SERVICE_PRINCIPAL_ID" \
+  -role "Storage Blob Data Contributor" \
+  --SCOPE "/SUBSCRIPTIONS/$SUBSCRIPTION_ID/RESOURSCEGROUPS/$STORAGE_RG/provvergers/microsoft.Storage/StorageAcounts/$storage_ACC"
+Federated Identities Also Need "Storage File Data Privileged ..." Roles
+AZ Role Assignment CREATE -EASSIGNEE "$ SERVICE_PRINCIPAL_ID" \
+  -role "Storage File Data Privilege Reader" \
+  --SCOPE "/SUBSCRIPTIONS/$SUBSCRIPTION_ID/RESOURSCEGROUPS/$STORAGE_RG/provvergers/microsoft.Storage/StorageAcounts/$storage_ACC"
+Reader Might Be Enough, But I Add this One Too
+AZ Role Assignment CREATE -EASSIGNEE "$ SERVICE_PRINCIPAL_ID" \
+  -role "Storage File Data Privilege Contributor" \
+  --SCOPE "/SUBSCRIPTIONS/$SUBSCRIPTION_ID/RESOURSCEGROUPS/$STORAGE_RG/provvergers/microsoft.Storage/StorageAcounts/$storage_ACC"
+`` `` `` `
+Logout
+Logout to be able to test the login credentials.
+`` `` `Bash
+Logout from Regular Azure Developer Session, If Active
+az logout
+`` `` `` `
+For those who are going to consume from Azure
+Layoff
+The project requires that you have a real machine-gate to the right environment.
+Here is information on how to get started with the machine gate.
+Here is a node.J's example of token generation for the cloud port.
+Authentication with the machine gate
+Define the token as an environmental variable
+Here it is foven to find the machine-gate to full JSON. This is can be created with one of
+These code examples.
+
+The Unpacked Token Will Look Something Like This:
+
+For Azure, Test.Sky.maskerporten.no, Will Respond With A Custom Format Where Subject Includes Scope as A PostFix,
+Because Azure Does Not Support Attribute Mapping To The Subject Field.
+Login with the Federated Credentials and Download a File, two test access
+`` `` `Bash
+Login With Skyporten Token
+AZ Login - -Service -Principal -u $ Identity_Client_id -t $ Azure_Tenant_id - -Federated token $ machine gate_token
+List files
+AZ Storage File List--ACCount-Name $ Storage_acc--Share-Name $ Storage_Share | jq. [0] .name
+Download a File
+AZ Storage File Download--ACCount-Name $ Storage_acc--Share-Name $ Storage_Share--Auth-Mode Login--ENABLE-FILE-BACKUP-REQUES
+`` `` `` `
+Troubleshoot
+Missing Trailing Slash () In Issue Argument When Calling 
+
+The Issuer Must Exactly Match the Issuer in the Credential. UPDATE OR RECREATE THE CREDENTIAL WITH TRAILING SLASH IN THE ISSUS.
+Token Timeout Error (as Expected Since Token has timed out)
+
+Wrongly Using Service Principal ID Instead of Client ID
+
+Use Identity_Client_id Instead.

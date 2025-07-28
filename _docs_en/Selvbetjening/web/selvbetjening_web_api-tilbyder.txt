@@ -1,0 +1,71 @@
+Title: Self-Service for API providers via the collaborative portal
+Description: Self-service for API providers via the collaborative portal
+Sidebar: Self -Service_sidebar
+Product: Self -Service
+redirect_From: /self-service_web_api provider
+
+This document shows how you as an API provider can self-care scopes in the machine gate through the collaborative portal.
+
+
+TOC
+{: toc}
+
+Self-service as API provider
+Assumptions
+In order to create subsecopes in the machine gate, it assumes that the business is registered with a prefix. Read more about this on How to use the machine gate as API provider
+Login (Scopes/APIs)
+To get to the API administration interface, do the following:
+
+Log in to the collaborative portal.
+Touch "business services" in the left menu.
+Touch "Administration of Services" in the left menu.
+Choose "My API" in the environment you want to create scope.
+
+Create Scopes
+
+Complete the steps in "Login"
+Press "New Scope".
+Select Prefix and complete registration.
+Press "Create" to save.
+
+Videotutorial: (https://vimeo.com/427689809)
+
+Access management
+
+Complete the steps in "Login"
+Press the scop to access control.
+Scroll down to under the configuration and press "Add access".
+Enter Organization Number and press "Add"
+To delete an access, press the garbage can icon to the right of the organization with access.
+
+VideoTutorial: (https://vimeo.com/427689702)
+
+Disable Subscopes
+NB! So far, access should be removed before a scope disabled. If not, those who have accessed will still get the scop listed on their available scopes.
+
+Complete the steps in "Login"
+Tap the scop to disable.
+Tap “Change”
+Tap "Disable" and confirm that you want to disable.
+
+VideoTutorial: (https://vimeo.com/427689583)
+
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the integration of the "API provider" and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+VideoTutorial: (https://vimeo.com/397388041)
+
+Often asked questions
+The "prefix" field is empty when I create a new scope.
+If the prefix field is empty, then your business has not created a prefix. Then you will not create a scope. Contact serviceedesk@dir.no.
+"New Scope" is grayed into the production environment.
+To manage in the production environment, you have to log in with the ID port. This assumes that you have been delegated the right rights in Altinn on behalf of your business.
+I see the scopes of a business other than what I expect.
+Access to the collaborative portal and the self-service solution is provided on the basis of your email domain, which in turn is connected to a business on our site.  For large businesses and companies, it may be that email domains are reused across multiple companies. Contact serviceedesk@dir.no.

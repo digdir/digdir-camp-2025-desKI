@@ -1,0 +1,115 @@
+Title: Introduction
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_nm_about
+
+This is the technical documentation for e -dissemination. The purpose is to support architects, developers and operating personnel at
+Public companies and their suppliers in the introduction and use of e -mourning.
+
+TOC
+{: toc}
+
+Feel free to see the collaborative portal for a completely overall non-technical introduction to eForsing:
+
+This is e -officing (external link)
+Use e -Design (external link)
+
+What is e -officing?
+Emsyring lets your business:
+- Send messages to receiving business preferred channel
+- Send messages to the preferred citizen's preferred channel
+- Receive incoming messages on the desired channel
+All Norwegian companies and residents can be reached through e -dissemination.
+
+To simplify connection to existing infrastructures for message exchange to other public activities,
+Residents and businesses, e -mediation should be used.
+Digitization Circular (external link)
+
+The functionality of e -dissemination can be used
+through:
+
+Professional system that already supports integration with eFonsemidling
+Own integrations directly towards eForsing
+
+In what contexts can e -mediation be used?
+Messages can be sent in many different contexts and must in many cases be treated differently depending on the context. Before
+Example will in some contexts want to:
+
+Route Messages to various subject systems
+Associate some messages to stricter access checks
+Add messages in different work queues 
+
+All messages in e -dissemination are therefore sent as part of a given context. In e -officing, these contexts are called
+processes. A recipient supports message exchange in connection with one or more processes. A recipient supports one
+provided process through one or more document types that in turn are supported by one or more messaging services. Document types
+Defines which content can be sent. In cases where a process is supported through several document types must sender take
+position on which document type is to be used. In cases where the same document type is supported by multiple messaging services
+Ensures e -dissemination that the recipient's preferred messaging service is used. Processes, messaging services and document types
+constitutes the recipient's capabilities.
+Processes supported by eForsing include:
+| Process | Document Types | Message Services |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------- |- ------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Case processing | Archive Message | E -Design Service Service Services Serverutaltinn Digital Post |
+| Security Company Treatment | Archive Message | E -Design Service Service Services Serverutaltinn Digital Post |
+| Information for citizen | Digital Print Digital DPV | Digital mail to residential Digital Post |
+| Decision to citizen | Digital Print Digital DPV | Digital mail to residential Digital Post |
+| Access requirements from e -insight | Access requirements | E -Insight messaging |
+| Journal mail to e -insight | Publishing | E -Insight messaging |
+| Meeting to e -insight | Publishing | E -Insight messaging |
+| Agreed message exchange | Agreed | E -Design Service Service |
+| Fix io-message exchange | Fix io | Fix io |
+What can be sent and received with e -officing?
+Emsyring supports messages with both structured and unstructured content. Messages with custom content can also
+Shipped. The content supported depends on the context a message is sent in and the recipient's capabilities. Possible
+Content includes:
+
+XML-based format
+Json-based format
+PDF files
+Text files
+
+How does eFormidling work?
+Emsyring is not in itself a messaging service, but delivers an intermediate product (integration point) that provides
+Professional system A single interface for message exchange regardless of process, document type and messaging service.
+The integration point is installed with the businesses (or their suppliers) and integrated towards one or more professional systems.
+Professional system can use the integration point of the following interface:
+
+Emofide 2
+Best/edu (phased out)
+
+In addition, e -forming supplies:
+
+a central address service (service registration) used by the integration point to look up the preferred channel for 
+  recipient
+Miscellaneous support services (administration, monitoring, troubleshooting, etc.
+
+Before a business sends a message, a capability look is made to see if the recipient supports the process in question
+The message should be sent as part of and if so with which document types the recipient supports it. The business then builds
+The message with the desired document type before it is sent to the integration point. The integration point Routes the message to
+Preferred messaging service (eg KS Svarut) for the recipient.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS Address Service
+Participant D AS messaging service (eg KS Svarut)
+A->> B: Capability lookup
+B->> C: Capability lookup
+A->> B: Outgoing Message
+B->> D: Outgoing Message
+
+The company's professional system receives continuous incoming messages from the company's integration point that in turn receives
+The messages from the messaging the business uses.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant D AS messaging service (eg KS Replyer)
+D->> B: Incoming Message
+B->> A: Incoming Message
+
+Next step
+
+Get started

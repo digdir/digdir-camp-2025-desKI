@@ -1,0 +1,7 @@
+title: 21-08 machine gate
+Description: 21-08 Machine Gate
+Sidebar: Oidc
+Redirect_From: /21-08_maskorten
+
+Error correction of a memory leak and improved stability in integration with Altinn
+Releasen was production of Aug 29, 2021

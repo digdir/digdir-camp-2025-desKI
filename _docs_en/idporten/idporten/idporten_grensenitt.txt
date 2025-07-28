@@ -1,0 +1,11 @@
+Title: ID port's interface
+Description:
+Summary:
+Sidebar: Main_sidebar
+Product: ID port
+Redirect_From: /Idporten_grensnitt
+
+The ID port supports two interface protocols:
+
+OpenID Connect / OAUTH2
+Saml2 is only available to those who cannot use OpenID Connect / OAUTH2

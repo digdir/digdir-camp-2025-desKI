@@ -1,0 +1,20 @@
+Title: Monitoring
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page what it takes to monitor the integration point.
+The integration point's support services include services that can be used to monitor the integration point:
+| Service | Description |
+| ------------------------- | --------------------------------------------------------------- |
+| /Manage/Health | Health Status Up () or Down () |
+| /Manage/Health/Liveness | Status of Kubernetes Liveness Probe |
+| /Manage/Health/Readiness | Status of Kubernetes Readiness Probe |
+| /Manage/Metrics | Miscellaneous measurements |
+| /manage/prometheus       | Miscellaneous measurements for prometheus |
+The integration point log can also be monitored. The integration point logs both to file and to standard output (STDOUT).
+Next step
+
+Automatic Upgrade (recommended)
+Backup (recommended)

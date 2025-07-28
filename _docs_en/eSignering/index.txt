@@ -1,0 +1,8 @@
+title: esignation
+Description: Esignment
+Product: esignation
+redirect_From: /esign_index
+
+The service can help public companies ensure user -friendly, secure and effective handling documents that require signature from residents.
+The digital process of esignation means that the companies release manual handling when extraditing and obtaining documents to be signed. When esigning documents, the signing itself is carried out with an electronic ID. The signed document cannot be changed afterwards, and will be ready for archiving in the case and archive system after the citizen has completed the signing process. The service supports both single signature and multi -signature of signing assignments. 
+The service is managed to Digitalization Directorate and is provided by Posten Norge AS.

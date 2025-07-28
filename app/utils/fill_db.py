@@ -41,7 +41,7 @@ def load_txt_documents(data_path: str):
                 txt_files.append(os.path.join(root, file))
 
     print(f" Fant {len(txt_files)} .txt-filer i '{data_path}'")
-
+    print(f"Path : {os.path.abspath(data_path)}")
     documents = []
     for idx, filepath in enumerate(txt_files, start=1):
         print(
@@ -87,10 +87,10 @@ def main():
     chroma_service = ChromaService(
         embedding_model=embedding_service.get_model(),
         persist_directory=CHROMA_PATH,
-        collection_name=COLLECTION_NAME,
+        collection_name="digdir_docs_en",
     )
 
-    documents = load_txt_documents(DATA_PATH)
+    documents = load_txt_documents("./_docs_en")
     chunks = chunk_documents(documents)
 
     print(' Lagrer tekstbitene til ChromaDB...')

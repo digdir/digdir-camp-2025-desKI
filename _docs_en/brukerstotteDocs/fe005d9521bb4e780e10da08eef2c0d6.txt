@@ -1,0 +1,31 @@
+Url: https://eid.difi.no/nb/minid/hvord-logge-in-sd-sd-sd-minid#MAIN-content
+Title: How to log in with MinID | Help sites for common solutions
+
+Sámegiella
+How to log in with MinID
+
+To log in with MinID you need:
+
+Birth number or D-number
+Password
+One -time code from SMS 
+
+How to log in:
+
+Go to the service you want to log in to (eg at: www.nav.no, www.altinn.no, www.skatteaten.no)
+Choose MinID
+Enter your birth number or D number and your password. Click "Next"
+Enter code received by SMS and click "Next"
+
+MinID provides access to public services at a significant level of security (level 3).
+
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

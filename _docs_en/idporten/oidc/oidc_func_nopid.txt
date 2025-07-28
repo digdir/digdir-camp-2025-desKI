@@ -1,0 +1,20 @@
+title: pseudonymized login
+Description: pseduonymized login
+Summary: "Pseudonymized Token may be beneficial for API owners offering services for cloud suppliers or other clients that you do not want to receive too many personal information. API owner can retrieve birth/D number by validating a pseudonyized token against the ID port."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_nopid
+
+About the functionality
+Birth number/D number is the unique identifier in the ID port.  However, in some cases, it is not desirable for a client to receive the birth number, for example, if it is a generic cloud service that also uses an API offered by a public business, or if it is a single-Page application (SPA) that uses ID-Part's tokens directly to hedging against its own backend.
+On a general basis, it is good privacy not to exchange more personal information than one actually needs in the individual scenario.
+Use
+The ID port offers two methods to pseudonymize the birth number in the token.
+1: pure oauth2 using the opaque token
+By "pure" oauth2 (ie not oidc), the client does not receive anything, only.  API provider must create a separate OAuth2 scope for the purpose, and this must be configured to HA.  Then the access_token will not be meaningful, and the apia/backend can then introspecte the token to retrieve the birth number.
+The client must take care not to demand the scope (because then it will get an ID_TOKEN containing the birth number ...).  This pattern therefore fits best when the client and API belong to the same organization, or API providers trust that consumers configure properly.
+2: pseudoynimizing scopes
+In this case, the API provider must create a scope and set it up with the set up with the flag to True. Now neither ID_Token nor Access_Token will be handed over to clients containing F/D-No ().  
+When the clients use the token against the endpoint of the API provider, API provider can, in turn, da Kalle /Tokeninfo-Endpoint to retrieve F /D-NR belonging to the token.  API provider must create a separate client (must be registered on the same organization number as the owner scopet), and use it against the tokeninfo endpoint.
+The use of pseudonymizing scopes can often be combined with being set for further protection.
+This pattern fits well when there are many clients from various businesses who will have access to your API.

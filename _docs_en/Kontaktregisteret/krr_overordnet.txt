@@ -1,0 +1,12 @@
+Title: About the Contact and Reservation Register
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /Krr_Roverordinated
+
+The contact and reservation register is a register of the residents 'digital contact information, and the status of the citizens' possible reservation against digital communication with the administration. The register, and the use of it, are based on the e -government regulations.
+The register contains information about:
+- residents have reserved themselves against digital communication against the public or not
+- preferred email address, mobile number, language/target form and secure digital mailbox
+Registration and updating the information lies to the various registers and is not part of the lookup service.

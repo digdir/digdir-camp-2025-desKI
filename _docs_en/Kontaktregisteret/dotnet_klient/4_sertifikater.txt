@@ -1,0 +1,39 @@
+Title: Install Certificates
+Description: 
+Summary: ""
+Sidebar: krr_dotnet
+Product: krr
+redirect_From: /krr_s certificates
+
+To use this library, you need a certificate to be able to authenticate against the lookup service. This should be installed on the machine that will use the client library. The reason we want to install it is not to have a password in clear text in the code.
+All certificates have a unique identifier called thumbprint. If you do not want to handle yourself in the code how to load the certificates, then you can follow the guide below, step by step. Finally, it is reviewed how to find Thumbprint for the installed certificate.
+Install business certificate
+
+The business certificate is used by the business to sign requests that go to the reference service.
+
+
+Double -click the certificate (certificate name.p12)
+Choose the certificate to be stored in Current User or Local Machine and press Next
+File names should now be filled. Press Next
+Enter your PRIVAT key password and select Mark This Key as Exportable ..., Press NEXT
+Select Automatically Select the Certificate Store Based on the Type of Certificate
+Click Next and Finish
+If you are asked to accept the certificate chain so you do.
+You should then get a dialogue that says that importing was successful. Press OK.
+
+Find Thumbprint to installed certificate
+ Takes in, which in turn takes in directly:
+{ % highlight charp %}
+Was configuration = new lookup service configuration (environmental functional test environment, sender Certificate of Humb Print);
+was client = lookup service client (configuration);
+{ % Endhighlight %}
+It is easiest to find Thumbprint through Microsoft Management Console (MMC.exe).
+
+Select File -> Add/Remove Snap -in ... 
+Mark Certificates and press Add>
+If the certificate was installed in Current User, select My User Account, if installed on Local Machine, select Computer Account. Click Finish and OK
+Expander the Certificates node, select Personal and Open Certificates
+Double -click on the certificate you installed
+Select Details, Scroll down to Thumbprint and Copy
+
+If you want to submit certificates you have already initialized, you can use the designer.

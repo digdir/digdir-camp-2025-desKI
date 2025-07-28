@@ -1,0 +1,112 @@
+title: Installation
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+redirect_from: /eformidling_properties_config
+
+The purpose of this page is to make it as easy as possible to install and configure eFormidling's
+integration point.
+
+TOC
+{:toc}
+
+Prerequisites
+Installation of eFormidling's integration point assumes that the following points have been completed:
+
+Preparing for installation
+
+Docker-specific configuration
+When using Docker, the integration point must be configured using environment variables.
+How you specify the configuration depends on which tools are used: docker-compose, Kubernetes
+or others. A few examples:
+
+Example of configuration with Kubernetes
+Example of configuration with docker-compose (external link)
+
+The integration point's Docker image is without a persistent volume. To avoid data loss when, for example, restarts it is therefore
+necessary to configure:
+
+External database
+Intermediate storage of messages to external database
+External message queue
+
+Java-specific configuration
+When using Java directly, the integration point can be configured using a configuration file,
+Java parameters or environment variables.
+
+Start by creating a folder, for example
+
+Then download integration point-local.properties and save in the above folder
+
+Download integration point-[version number].jar
+
+eFormidling recommends verifying that is from the Norwegian Directorate of Digitalisation.
+
+How do I verify that the jar file is from the Norwegian Directorate of Digitalisation?
+
+When you are finished, the structure of the area should look like this:
+
+You must remove the uncomment (at the start of a line) from for
+the current configuration property to take effect.
+
+In addition, the integration point must be run with the necessary permissions to create files and folders in this file area.
+When using Java directly, it is recommended to configure a background service that starts and stops the integration point when the operating system starts and stops, and that can be started and stopped manually if necessary. Example:
+
+Running the integration point as a service (Windows)
+
+Running the integration point with the task scheduler (Windows)
+, or equivalent, depending on the distribution (Linux)
+
+It is also possible to start and stop the integration point manually:
+
+Running the integration point from the command window
+
+Configure the integration point
+Before the integration point can be started, it must be configured.
+Different conventions are used for naming configuration properties depending on the mechanism used for
+configuration. The following variants correspond to the same configuration property:
+
+, or (for configuration file and Java parameters)
+(for environment variables)
+
+If additional protection of corporate certificates, passwords and other secrets is required, it is possible to use
+Hashicorp Vault or mechanisms that inject values into environment variables.
+
+HashiCorp Vault
+Example of installing the integration point on Azure contains an example of a
+mechanism that injects values into environment variables
+
+We recommend configuring the integration point in the following order:
+
+Minimum configuration to start the integration point
+Optional configuration (e.g. external database, BEST/EDU integration, etc.)
+One and only one messaging service
+
+We recommend configuring the eFormidlings messaging service (DPO) before Altinn Digital Post (DPV) and KS SvarUt and SvarInn
+(DPF) to ensure that the organization receives mail in the case and archive system (and avoid fallback to Altinn Digital Post and
+KS SvarUt and SvarInn for organizations that have not configured eFormidligs messaging service)
+
+Minimum configuration
+The integration point requires that the organization's enterprise certificate is configured.
+In addition, it is recommended to turn off support for eInnsyn, which is the only messaging service that is on by default. If
+you are going to use eInnsyn, you can turn the support back on after you have verified that the minimum configuration is ok.
+| Property | Description | Default value |
+|--------------------------------|--------------------------------------------------------------------|---------------|
+| difi.move.org.number | Organization number for your organization (9 digits) | (none) |
+| difi.move.org.keystore.alias | Alias (name) for company certificate in keystore (case sensitive) | (none) |
+| difi.move.org.keystore.password | Password for company certificate and keystore | (none) |
+| difi.move.org.keystore.path | Path to keystore | (none) |
+| difi.move.org.keystore.type | Format for keystore ( or ) | JKS |
+| difi.move.feature.enableDPE | Turns on/off support for eInnsyn | true |
+Example:
+
+Optional Configuration
+Environment (Production or Test)
+Optional
+Available Environments:
+
+eFormidling Production
+eFormidling Test
+
+| Property | Describe

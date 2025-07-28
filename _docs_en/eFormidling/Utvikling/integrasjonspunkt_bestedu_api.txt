@@ -1,0 +1,22 @@
+Title: The Integration Point Best/Edu-API
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page describes the API () and its usage pattern.
+Best/Edu was selected in the DIFI report 2015/3
+Best/EDU entails a number of limitations and is therefore under phase out in favor of eFormidling 2.
+Documentation of API and usage patterns is limited for the same reason, but a brief introduction follows.
+Best/Edu is an interface for communication between the case and archive system. The interface was specified by the County Governor
+in Sogn og Fjordane based on Noark 4 web service. A description of Best/Edu including the XML form is attached
+The report that forms the fact that the e -officing was made:
+
+Solution for message exchange in the public sector
+
+Different subject systems have made different adjustments in their implementations of Best/Edu. Support is implemented for these
+The variants at the integration point.
+
+Search for "noarkexchange.wsdl" at the GitHub integration point to see different variants supported by the integration point (external link)
+Noark 4 web service (external link)
+Noark 4 Web Service Types (External Link)

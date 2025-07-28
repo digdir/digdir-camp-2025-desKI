@@ -1,0 +1,20 @@
+title: 19-08 oidc
+Description: 19-08 Oidc
+Sidebar: Oidc
+redirect_From: /19-08_oidc
+
+Launch of the machine gate after the successful pilot period.
+Launch of web-based self-service on the collaborative portal.
+Releasen was production of Aug 26, 2019
+New functionality:
+Token-Type follows Scope (Shipped)
+API provider should be able to control which token_Type (self-contained or urban reference) he wants to receive.
+(As of today, Token_Type is a characteristic of the consumer, and the players must manually ensure that the correct type is selected.)
+Token-Leve Time follows Scope (Shipped)
+Anyone who offers an API must be able to decide how long the consumers of their token's maximum should be allowed to have. Typically, APIs that protect personal -sensitive data will not want the clients to have tokens living for years.
+Reading Access to API Supply Service (Shipped)
+It is desirable that all administrators in an organization should be able to see what the API organization offers, and the woman who is given access, even if they cannot change this. Today, the information is visible for those who have the right to change.
+ID port login to self-service-web (shipped)
+For the production environment, the ID port is required to change/create integrations and manage API protection in the self-service solution. Initially, this is done by the administrators to be manually reported to Difi.
+Self -service on web (shipped)
+It will now be possible to self-service your OIDC and KRR integrations in the test environment by logging into the collaborative portal.

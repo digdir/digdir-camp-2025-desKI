@@ -1,0 +1,24 @@
+Url: https://eid.difi.no/nb/sikkyness-og---svivvern/ulike security level
+Title: Different security level | Help sites for common solutions
+
+Different security levels
+
+The digital services have different levels of security. It is the business that owns the service that determines what security level their service should have - significant level of security (level 3) or the highest level of security (level 4). This is determined based on the consequences of unfortunate events for the user and the business.
+
+Significant security level
+MinID provides login to services with a significant level of security (level 3). It has a two-factor security solution. MinID consists of birth number and personal password, as well as disposable codes by SMS or Push notification from the MinID app.
+
+Highest security level 
+BankID, Buypass and Commfides deliver electronic ID at the highest security level (level 4). This is a two-factor solution, where one must also meet personally to legitimize yourself. This is to prevent the safety element from falling into the wrong hands. 
+
+With the highest level of security, you get access to health information. If you are logged in with MinID, but want to log in to a service that requires a higher level of security, you must log in again with BankID, Buypass or Commfides.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

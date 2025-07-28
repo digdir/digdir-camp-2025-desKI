@@ -1,0 +1,41 @@
+Title: Automated Testing with the ID port
+Description: Automated testing with the ID port
+TOC: FALSE
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_apitesting
+The ID port in test environments offers "headless login"/automatic login where tokens can be issued without user interaction to synthetic test users.  This functionality should only be used to simplify the testing of APIs protected by the access_token from the ID port.
+This is the "full" tokens that can then be introspectes, refreshes or revoked.
+Flow:
+
+sequence chart
+  Client ->> ID port: http get authentication request (/Authorize)
+  Note over the ID port: Automatic authentication based on login_hint and implicit consent to scopes
+  ID port ->> client: http response with location header with authorization scode
+  Client->> ID port: http token request (/token)
+  ID port ->> client: id_token + access_token (possibly refresh_token)
+  Client ->> API: Use API with Access_token
+  API ->> IDPORT: validate token
+  ID port ->> API: Token information
+  API->> Client: Result of API operation
+
+1: Modified /Authorize-Request
+In this simplified flow, a synthetic test user can be automatically logged in by submitting one and list of other common parameters in an authorization request to the ID port.
+Parameter | Description | Example
+ -|-|-|
+  | Specifies which synthetic personal identifier is to be used as well as the security level desired | 
+       | Specifies which scope to automatically be consented to | 
+2: Handling of /Authorize response
+The client reads Authorization Response from the Location Header and picks out code (and verifies state).  The client then calls the token peak in the usual way.
+ that is issued will have.
+Example
+Below is an example of the use of curl.  It is cut a little in output to clarify relevant information.
+Redirected Authorization Request is simulated with Get and Authorization Response is found in Response Header Location.  Submission Request - Use your own and and which is registered on client, generates own, etc.:
+
+Relevant from Response:
+
+Pick out and make the standard Token Request with values adapted to your own client and values that correspond to choices in Authorization Request.  The example is used as a method for client authentication.
+
+Get out the access_token from response.
+
+Use against API to be tested.

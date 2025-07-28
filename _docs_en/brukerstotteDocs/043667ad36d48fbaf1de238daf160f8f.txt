@@ -1,0 +1,23 @@
+URL: https://eid.difi.no/nb/bankid/feildata-ring-entered#MAIN-Content
+Title: "Incorrect data entered" | Help sites for common solutions
+
+"Incorrect data entered"
+
+The error message "The wrong data entered" may come when you enter the one -time code from the code generator during login.
+
+This error message means that your BankID is not activated for public services, but can only be used for logging in to your online bank.
+
+You can enable BankID for public services by logging into your online bank, selecting BankID in the menu and then ordering or activating BankID.
+
+If you need help creating or activating BankID, contact your bank.
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

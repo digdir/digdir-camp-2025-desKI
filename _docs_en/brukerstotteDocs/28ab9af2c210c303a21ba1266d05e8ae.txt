@@ -1,0 +1,26 @@
+Url: https://eid.difi.no/nb/contakt-og-eservation register/slett-contact information#main-content
+Title: Delete contact information | Help sites for common solutions
+
+Delete contact information
+
+If you want to be deleted from the Contact Register, decisions and other important letters from the state and municipality will be sent to you on paper. When the mobile number and e-mail address is deleted from the Contact Register, you will also not receive any other type of information or SMS or e-mail service messages.
+
+There is a difference between deleting contact information and reserving against communication on the Internet. Reservation means that you get a decision and other important letters on paper, but you can still get messages by SMS or e-mail. These may be, for example, reminders of medical agreements, or warning of water closure. 
+
+When you are deleted from the Contact Register, you cannot use MinID to log in to public services on the Internet. You can still log in with BankID, Buypass or Commfides. If you want to reserve yourself for the use of BankID, Buypass, or Commfides, you must contact them directly.
+
+To delete your contact information, you must send this form to:
+
+Norwegian Digitalisation Agency
+Printer Road 2
+6863 Leikanger
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

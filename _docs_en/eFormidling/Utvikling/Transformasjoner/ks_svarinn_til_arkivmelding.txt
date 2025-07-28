@@ -1,0 +1,35 @@
+Title: Transformation from KS Replyer to Archive Message
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The table below shows how the integration point transforms responses from the API for KS Replyer to Incoming
+Messages. The integration point supplements incoming messages with information from configuration, standard values and
+Lookup with third parties. Note that incoming messages from KS Replyer are treated differently depending on whether
+The integration point is configured with the interface Best/Edu or not. The table below shows how incoming
+Messages from KS Replyer are processed if the integration point is not configured with the interface Best/Edu.
+| To eFonsemidling Message | From KS Svarinn | From configuration | From default value |
+| ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- ----------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| Message identifier in SBD | Identifier for message () | - | - |
+| Conversation identifier in SBD | Identifier for message () | - | - |
+| Process in SBD | - |       |  |
+| Document Type in SBD | - |  |              |
+| Organization number for recipients in SBD | The recipient's organization number () | - | - |
+| Organization number for sender in SBD | The response recipient's organization number () | - | - |
+| Scope in SBD | Identifier for the message This is a response to () | - | - |
+|  In the archive message | Title for message () | - | - |
+|  In the archive message | Sender's case sequence number () | - | - |
+|  In the archive message | Sender's case year () | - | - |
+|  In the archive message | Sender Journal year () | - | - |
+|  In the archive message | Sender Secretary Sequence Number () | - | - |
+|  In the archive message | Sender Journal Post Number () | - | - |
+|  In the archive message | Sender Journal Post Type () | - | Incoming Document () |
+|  In the archive message | Sender Journal Status () | - | Completed from case manager () |
+|  In the archive message | Sender Date () | - | - |
+|  In the archive message | Sender Document Date () | - | - |
+|  In the archive message | Sender's title () | - | - |
+|  In the archive message Metadata from Delivery System. - | - |
+Further description of the functionality of KS Replyer can be found at:
+
+Technical documentation for KS Replyer (external link)

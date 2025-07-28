@@ -1,0 +1,80 @@
+title: e -insight messaging service
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring supports the following processes and document types with e -insights messaging (DPE).
+Recipients support one or more of the following processes:
+| Process | Document Type | Example |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------
+| Access requirements from e -insight | Access requirements | Example |
+| Journal mail to e -insight | Publishing | Example |
+| Meeting to e -insight | Publishing | Example |
+Sender supports the process:
+| Process | Document Type | Example |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|      | E-Authority receipt status | See the examples above |
+When using e -insights messaging, a business usually occurs as both the sender and the recipient.
+Whether e -insight's messaging service is part of a recipient's capabilities or does not depend on several factors such as
+described for the individual process.
+Eye insights messaging is realized with Azure Service Bus, which is used as a transport.
+In order to use the sights messaging service, the integration point must be configured with the necessary access to the APIs e -insight
+Message service offers.
+The integration point packs the messages and sends them unchanged through the APIs e -insights messaging offers. See
+Document types for details.
+Evisation sends back an e-insight receipt after publishing journal entry and meeting.
+In addition, the recipient's integration point sends message statuses (received and delivered) back to the sender.
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Resident")-> | Send access requirements | B ("FA: FA-Server Eilyn.no")
+B -> | Insight Requirements | C ("FA: FA-Server" E-Insight Integration Point)
+C ---> | Insight Requirements | D ("FA: FA-Server e-insight message service")
+D -> | Insight Requirements | E ("FA: FA-Server Recipient Integration Point")
+E -> | access requirements | F ["FA: FA-Server Recipient System"]
+C ---> | Status: Received | B
+D -> | Status: Received | C
+E -> | Status: Received | D
+C ---> | Status: Delivered | B
+D -> | Status: Delivered | C
+E -> | Status: Delivered | D
+
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA server sender subject system")
+B ---> | Publishing | C ("FA: FA server" sender integration point)
+C ---> | Publishing | D ("FA: FA-Server e-insight message service")
+D -> | Publishing | E ("FA: FA-Server Eye Insight Integration Point")
+E -> | Journal mail | F ["FA: FA-Server Eilsyn.no"]
+C ---> | Status: Received | B
+D -> | Status: Received | C
+E -> | Status: Received | D
+C ---> | Status: Delivered | B
+D -> | Status: Delivered | C
+E -> | Status: Delivered | D
+C ---> | e-insight receipt | B
+D ---> | e-insight receipt | C
+E-> | e-insight receipt | D
+F-> | E-Insight receipt | E
+
+Message Statuses
+Message Status Message Submitted with E -Insights Message Service:
+| Status | Comment |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Created | The integration point receives Best/Edu or eFormidling 2.0 message from the Case Archive System and creates a DPE message. |
+| Sent | Integration point has sent the shipment to message providers.                                                     |
+| Received | The sender receives confirmation that the receiving integration point has received the message.                               |
+| Delivered | The shipment (access requirements) has been sent by e-mail to the recipient's postal reception.                                             |
+Message Statuses for Messages Received with E -Insights Message Service:
+| Status | Comment |
+| ------------------------------------------------------------------------------------------------------------------------- |
+| Created | Integration point downloads from message intermediaries and creates the message with them. |
+| Inbound_mottatt | The integration point of the recipient has received a message.                                |
+| Incoming_Delever | Has generated two receiving receipts and these are sent to the sender.              |
+Next step
+
+Product documentation for e -insight (external link)
+Technical documentation for e -insight (external link)
+Multiple messaging services

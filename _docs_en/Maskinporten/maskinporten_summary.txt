@@ -1,0 +1,56 @@
+Title: English Summary of Machine Gate
+Description:
+Summary:
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine gate_vertered
+
+Simple Description of Architecture
+Machine gate offers a simple security model for API's, Based on the OAuth2 Protocol and the Use of JWT-Bearer Grants, Inspired by Google System Accounts.
+Machine gate allows the api-downers to define access to their api's, as scopes, based on the legal organization number of the consumer. This can be the self-service api or our self-service web-application.
+
+graph lr
+  subgraph api-canner
+    API [API Manager]
+  end
+  subgraph digdir
+    MP [Machine Gate]
+  end
+
+  API ---> | Grants Access to the Scope | MP
+
+
+Providing The Correct Access, The API-Consumer May Now Create API-Clients and Add the Provided Scopes:
+
+graph lr
+subgraph digdir
+  MP [Machine Gate]
+end
+  Subgraph API-consumer
+    Client [Self-Service Client]
+  end
+
+  Client -> | CREATE / EDIT CLIENT WITH PROVIDED SCOPES | MP
+  MP -> | New / Modified Client Registration | Client
+
+
+
+When the Client (s) have been created, they can be used to recieve access_tokens and perform the api-calls.
+
+graph lr
+  subgraph api-canner
+    API
+  end
+  subgraph digdir
+    The machine gate [machine gate]
+  end
+  Subgraph API-consumer
+     New [Client]
+  end
+  Machine gate -> | 2.issues token containing the provided scope | new
+  New -> | 1. Requests Access to Scope | Machine Gate
+  New -> | 3.use Token Towards | API
+
+API-consumers can manage their own client configuration and register new clients with scopes provided from the api-downers.
+API-OWNERS AND CONSUMERS May use this service to manage access if the data provided by the api is regulated by law, and do not require consent by a user.
+It is requested that both the api-doer and the consumer uses self-service, Einher through the web Application or the self-service API.

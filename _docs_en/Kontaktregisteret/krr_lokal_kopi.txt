@@ -1,0 +1,20 @@
+title: local copy
+Description: 
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_lokal_kopi
+
+As a general rule, guidance for the use of the contact and reservation register says it is not allowed to use the contact register to quality assure e-mail addresses in other registers. The terms of use for the contact and reservation register also state that public companies should not have their own registers with the same information. However, there are a few exceptions. A few companies have to hold a separate local copy of the Contact and Reservation Register (KRR) for special reasons. 
+Retrieve changes
+The companies that are except the rule, and hold a local copy of KRR, must collect daily change reports for changes that occur in KRR. For this, the business needs special access (see section on scope below).
+Requirements for updated contact info
+In order to ensure that the contact info in a local copy is updated, such companies must collect change messages at least once a day.
+Scope
+In order to retrieve changes, the reference service is used and the business must have been awarded the scopet KRR: Global/Heltering.READ. More documentation on the use of the scop can be found in Swagger Ui.
+Own service for mailbox supplier changes
+If the certificate, name or organization number of a mailbox supplier changes, it will no longer trigger a change of all users. Such changes are few and rarely occur. Therefore, in order to obtain changes related to the mailbox suppliers, one must use their own service for this.
+
+{% Include note.html content = "Today there are only two certificates. One for Digipost and one for e-box." %}
+
+
+{% Include note.html Content = "Although Helter changes for people return a certificate, this is always connected to the mailbox supplier. This means that there is no point in saving the certificate for each user." %}

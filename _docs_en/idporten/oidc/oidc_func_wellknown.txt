@@ -1,0 +1,18 @@
+Title: Well-Known
+DESCRIPTION: ID-port's Well-Known endpoint
+Summary: "Metadata about the ID port is available on our .Well-Known-End point"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_wellknown
+
+Well-known endpoint
+Metadata on the ID port is available on our .Well-Known-End point according to. Openid Connect Discovery.  
+At the end point you will find a link to our JWK endpoint, where the ID port's signing certificate is published.  We strongly recommend customers to use the endpoint of dynamic self-configuration to ensure continuous service delivery when the ID port switches signing certificate.
+| Environment | Issu | URL |
+|-|-|-|
+| Test |  | https: //test.idporten.no/.well-known/openid-configuration |
+| Prod |  | https: //idport.no/.well-known/openid-onfiguration |
+These metadata should caches in your own solution, typically 24 hours is an appropriate life.
+You can find the IP address of these environments here
+Machine gate
+Note that the machine gate has its own metadata, which is published here

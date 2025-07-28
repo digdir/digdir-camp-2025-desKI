@@ -1,0 +1,19 @@
+Title: Troubleshooting in the ID port
+Description: Troubleshooting in the ID port
+Summary: 'Here you will find an overview of error messages and what they can mean and how it can be solved. The page is updated regularly. '
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Idporten_FeLsoking
+
+
+
+TOC
+{: toc}
+
+Error messages
+Invalid Client
+Troubleshooting in self -service
+"New Integration" will not be available after login with the ID port
+You do not have access to self -service.
+Solution: A person with a role "main administrator" in Altinn for your business must log in and delegate access to you.
+Procedure: Access to production environment

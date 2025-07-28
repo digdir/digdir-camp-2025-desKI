@@ -1,0 +1,9 @@
+Title: Idport-Ut-Utland
+Description: The ID port abroad
+Summary: "Idports abroad was a temporary solution under Covid-19 and is now turned off."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_idporten-uutland
+
+The ID gate abroad was a temporary solution that was established ifbm. COVID-19 so that people without F/D number could log on to Norwegian services.
+The solution is now turned off.

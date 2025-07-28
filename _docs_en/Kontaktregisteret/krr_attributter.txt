@@ -1,0 +1,44 @@
+title: attributes in krr
+Description: KRR attributes
+Summary:
+TOC: FALSE
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_ attributes
+Here is an overview of the attributes found in KRR's REST API and what response to expect.
+| Attribute Name | Description | Possible responses |
+| - | - | - |
+| Personal identifier | Valid birth number or D-number | 20914695016 |
+| Reservation | Reservation provided by person, used in accordance with section 15 a. Yes, no |
+| Reservation time | The time for when a person reserved. Only appear if the user is reserved. | Ex. "2023-06-13T13: 42: 34+02" |
+| Reservation_ Oppdated | Time for when the reservation status was updated. | Ex. "2023-06-13T13: 42: 34+02" |
+| Status | Specifies the status of the person | Active, deleted, non -registered |
+| Notification Status | Textual description whether or not to be notified Can_varsles, can_not_varsles |
+| Email address | The email address that person has registered in KRR | Ex. Reset@default.digdir.no |
+| Email Address_ Oppdated | The last time email address was updated by person. New or changed email address. Date can be more than 18 months back in time. | Ex. 2023-08-05T10: 45: 15.768Z |
+| email address_sist_verified | The last time email address was verified by person. Confirmed by person at least twice a year. | Ex. 2023-08-05T10: 45: 15.768Z |
+| email address_sist_validated | The last time the email address was validated by one -time code sent to the email address. | Ex. 2023-08-05T10: 45: 15.768Z |
+| email address_duplicated | Email address is registered on one or more other persons in krr. | Yes, no |
+| Mobile phone number | Mobile number that person has registered in KRR | '+4712345678' |
+| Mobile Phone Number_ Oppdated | The last time mobile number was updated by person.  New or changed mobile number. Date can be more than 18 months back in time. | Ex. 2023-08-05T10: 45: 15.768Z |
+| Mobile phone number_sist_verified | The last time the mobile phone number was verified by person.  Confirmed by person at least twice a year. | Ex. 2023-08-05T10: 45: 15.768Z |
+| Mobile phone number_sist_validated | The last time mobile number was validated by one -time code sent to registered mobile number. | Ex. 2023-08-05T10: 45: 15.768Z |
+| Mobile phone number_duplicated | Mobile number is registered on one or more other persons in Krr. | Yes, no |
+| Mailbox Address | Unique address for a person's mailbox address at a mailbox supplier. | Ex. Ola.Nordmann#9YDT |
+| Mailbox provider address | Org. Number of mailbox supplier | 984661185, 922020175 |
+| Certificate | Personal Certificate for Digital Post | X509Certificate |
+| Spraak | The person's preferred language for communication with the public | NN, NB, EN, See |
+| SPRAAK_ OPPATED | The last time language choices were updated | Ex. 2023-08-05T10: 45: 15.768Z |
+You can find a selection of test users on the Test users in KRR
+Coding for 
+| Code Value | Description |
+|-|-|
+| Active | Person is found in the register |
+| Deleted |   Person is deleted from the register |
+| Not_ registered |   Person is not found in the register |
+Coding for 
+Notification status may have the following value:
+| ---- | ---- |
+| Code value | Description | 
+| Can_varsles | Person has not expired contact information |
+| Can_not_varsles | Person has expired contact information, is reserved, deleted or is not found in the register |

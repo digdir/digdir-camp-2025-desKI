@@ -1,0 +1,76 @@
+Url: https://eid.difi.no/nb/ recognizable-error-og-losings/windows-s-internet-explorer-microsoft-dge-firefox-chrome-and-opera#main
+Title: Windows (Internet Explorer, Microsoft Edge, Firefox, Chrome and Opera) | Help sites for common solutions
+
+Windows (Internet Explorer, Microsoft Edge, Firefox, Chrome and Opera)
+
+Here you will find instructions for deleting cookies in various Windows browsers:
+
+Internet Explorer
+
+FastSnarvei: CRTL+SHIFT+DEL
+
+Start the "Internet Explorer" browser
+Click Menu - the "tool wheel" in the top right corner
+Select "Security"
+Click "Delete Reader Log"
+Check that "cookies and site data" are squatted by
+Click "Delete"
+Close browser and open again before trying to log in again
+Microsoft Edge
+
+FastSnarvei: CRTL+SHIFT+DEL
+
+Start the browser "Microsoft Edge"
+Click Menu- three horizontal dots in the upper right corner.
+Select "Log"
+Tap the trash can 
+Check that "time interval" is set to "everything"
+Check that "cookies and site data" are squatted by
+Click "Remove Now"
+Close browser and open again before trying to log in again
+Firefox
+
+FastSnarvei: CRTL+SHIFT+DEL
+
+Start your browser "Firefox"
+Click Menu - three horizontal strokes in the top right corner
+Choose "History"
+Click "Empty Recently History"
+Make sure the "Delete the time period" is set to "everything"
+Make sure "info capsules" are squatted by
+Click "OK"
+Close browser and open again before trying to log in again
+Chrome
+
+FastSnarvei: Ctrl+Shift+Divide
+
+Start the browser "Chrome"
+Click Menu - three vertical dots in the top right corner
+Select "Log"
+Select "Log Again"
+Tap "Delete Network Data"
+Check that "time period" is set to "all dates"
+Check that "cookies and other website data" are squatted by
+Click "Delete Data"
+Close browser and open again before trying to log in again
+Opera
+
+FastSnarvei: Ctrl+Shift+Divide
+
+Start the browser "Opera"
+Click the Opera icon in the top left corner
+Choose "History"
+Select "Delete Surfate"
+Check that "time period" is set to "all dates"
+Check that "Delete Info Capsules and Other Site Data" is ticked off
+Click "Delete Data"
+Close browser and open again before trying to log in again
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

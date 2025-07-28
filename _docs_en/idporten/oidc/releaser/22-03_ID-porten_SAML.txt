@@ -1,0 +1,7 @@
+Title: 22-03 ID port Saml
+Description: 22-03 ID port Saml
+Sidebar: Oidc
+Redirect_From: /22-03_id port_saml
+
+The ID port Saml's certificate expires. Customers must update their solution with our new metadata (IDP5) by this date.
+Scheduled production setting: Mar 20, 2022

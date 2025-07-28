@@ -16,9 +16,10 @@ class BaseChatResponse(BaseModel):
 class StrictChatResponse(BaseChatResponse):
     @field_validator('answer')
     def forbid_sensetive_output(cls, v):
-        if detect_sensitive_data(v):
+        sensitive = detect_sensitive_data(v)
+        if sensitive:
             raise ValueError(
-                'Svaret inneholder sensitiv informasjon. '
+                f'Svaret inneholder sensitiv informasjon:{sensitive} '
                 'Vennligst fjern den eller kontakt kundeservice.'
             )
         return v

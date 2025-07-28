@@ -1,0 +1,42 @@
+title: Create and set up client
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /Krr_ Raising_ Client
+
+To make a request to one or more of KRR's endpoints, the business must set up a client by self -service web or self -service API. Here we describe how you can create clients by self -service web, but similar can be done by self -service API. 
+Register new user on my page
+The use of self -service assumes that your business has access to the collaborative portal and that you are registered a user. Register new user on my page.
+{% Include note.html Content = "In order to register a new user, you must use the email domain for your business!" %}
+Create client
+
+Log in to my page and go to "Integrations" in the menu on the left.
+Tap "Self -Service" and select the environment in which you want to create the client.
+Select "Add New".
+
+Set up client
+a. At the residual reference service
+- Select "Machine Gate & Krr".
+- Under "Scope", select the Scope package "Krr". Then you will automatically be assigned the right scopes.
+  For lookups in KRR, KRR is: Global/contact information. Read relevant.
+- Integration identifier: generated automatically and should be used in jwt_claims.
+- Name of integration: Custom, unique name of integration.
+- Description: Custom description of what the integration should be used for.
+b. Lookup by user login (user -controlled data sharing)
+-Select "ID port & API client".
+- Below "Will the client use external scope?", Choose "Yes".
+- You must manually add the scop: KRR: User/contact information.READ.
+Link to more detailed description of the scopes.
+
+Complete the registration by pressing "Create".
+
+{% Include note.html content = "When creating, you get an integration page (client ID) that must be used in the request for the ID port." %}
+For suppliers
+If you are a supplier for the customer (data processor and processing manager), the customer's organization number must be added when setting up a client. 
+In addition, a so-called Onbehalfof client (at the bottom of the self-service page must be created when creating a client), where the supplier must enter a desired Onbehalfof value (Entity ID), name and org.no. 
+"ISS_ONBEHALFOF": "Onbehalfof value" must be included in Claims when requesting the Access token from the machine gate. 
+Adding key to client
+The public key will be added to the client, instructed as JWK. More description on how the key should be registered here.
+Get started with the code
+This repo can help to get started with the code.

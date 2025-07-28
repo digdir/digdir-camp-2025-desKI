@@ -1,0 +1,57 @@
+title: overall
+Description:
+Summary:
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine gate_vertered
+
+Overall architectural description
+The machine gate is a service that offers a simple model for API protection based on the OAUTH2 protocol and the use of JWT-Bearer Grants, inspired by Google's System accounts.
+The machine gate allows API providers to define access to their API, modeled as Scopes, based on the consumer's organization number.
+This can be done via the machine gate self -service therapy or web solution.
+
+graph lr
+  Subgraph API provider
+    API [API Manager]
+  end
+  subgraph digdir
+    MP [Machine Gate]
+  end
+
+  API-> | provides access to Scope for API Consument | MP
+
+
+Provided that the correct access is given, API consumers can now create their API-Client Regulations with the assigned scopes:
+
+graph lr
+subgraph digdir
+  MP [Machine Gate]
+end
+  SUBRAPH API CONSUMENT
+    Client [Administration Client]
+  end
+
+  Client -> | Create / Change Client with assigned scopes | MP
+  MP -> | new / changed client registration | Client
+
+
+
+When the clients are registered, these can be used to be assigned the token and carry out the API calls.
+
+graph lr
+  Subgraph API provider
+    API
+  end
+  subgraph digdir
+    The machine gate [machine gate]
+  end
+  SUBRAPH API CONSUMENT
+     new [client]
+  end
+  Machine Gate -> | 2. Exit Token with assigned scope | New
+  New -> | 1. Power access to scope | Machine Gate
+  New -> | 3rd user token towards | API
+
+API consumers can even manage their client configurations and record them with assigned scopes from the providers.
+API providers and consumers can use this service to manage access in cases where the information values the API offers are regulated by a legal basis, and does not require the consent of the user.
+The use of the machine gate requires both players to use the machine's self -service functionality, either through the web solution or self -service therapy.

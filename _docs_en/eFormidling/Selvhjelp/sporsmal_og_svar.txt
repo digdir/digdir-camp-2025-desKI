@@ -1,0 +1,217 @@
+title: questions and answers
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From:
+- /eform_terms
+- /eFormidling_veileded_sakark
+- /eFormidling_selfhelp
+
+
+TOC
+{: toc}
+
+Enterprise
+How do I get the public part of the business certificate from a Keystore (or)?
+Export Public Key from Keystore Explorer:
+
+Open up the keystor in Keystore Explorer.
+High-click on selected certificate and select "Export-> Certificate" or "Certificate Chain" in the menu.
+If you choose the Certificate Chain, you need to mark for "Head Only" in the next window.
+Also mark for export format "x.509"
+
+
+Mark for PEM format.
+Navigate to selected folder and save as .Cer file.
+
+Export Public Key from JKS-Kystore with Keytool:
+
+Export Public Key from P12 Keystore with Keytool:
+
+How do I switch passwords for the business certificate?
+It is important that the password at Keystore is similar to the password on the certificate for the integration point to work. Here is guidance to change passwords on both.
+Change Keystore Password:
+
+Open up the keystor in JKS.
+On the work line on top of the window:
+Tools
+Set Keystore Password
+Enter new password
+
+
+
+Change Certificate Password:
+
+Open up Keystore in JKS.
+High -click on selected certificate and select "Set Password" in the menu.
+Enter a new password.
+
+How do I update the business certificate used in e -mouring?
+When switching business certificates can follow the same procedure as the first installation:
+
+Available business certificate in the Emsynidling certificate directory
+Available business certificate for business integration point
+
+
+NB! If you use the message type DPF, the public part of the certificate must upload at Svarut.Ks.no under "Recipient System"!
+
+The integration point
+How can I protect certificate, password and other things that the integration point needs?
+One can use Hashicorp Vault or inject of environmental variables. See description on:
+
+Configure the integration point
+
+How do I install the Java version the integration point requires?
+
+From 01.01.19 Oracle Java will be licensed. This can be used, or one can use free options as Openjdk. Read more
+
+The integration point is a Java application and therefore requires that you have Java (JDK) driving environment installed on the server it will run.
+To verify if Java is installed and which version can you in a command line window use the command
+
+The integration point requires minimum version 1.8.0
+Openjdk Java 8 (free)
+The Norwegian Digitalisation Agency has chosen to use JDK 8 from https://adoptopenjdk.net/ with hotspot as JVM. This will support the integration point. There are many different providers of OpenJDK to download a free version of Java. Here you can choose the provider you want, but version must be Java 8.
+Installation guidance for Openjdk can be found here https://adoptopenjdk.net/installation.html#x64_win-jdk. If you use a OS other than Windows X64 Bit, you can choose your platform inside the link.
+
+NB! 32-bit Java can create challenges for the memory use of the integration point, so 64-bit is preferable!
+
+Oracle Java 8 (License -based)
+If Java is not installed or the version is too old, a new version can be downloaded here and installed. This will support the integration point.
+
+NB! Remember to install 64-bit java if you have a 64-bit operating system!
+
+Install Java Cryptography Extension (JCE)
+If you use a new version of Java, the new JCE must be installed. Download JCE from Oracles pages
+There is no easy way to check if Java Cryptography Extension is installed. Often it can be the easiest to just download and install JCE, but one you want to check, you can go to the folder and check for the files and have newer date than other files. If the date is equal, you must install JCE.
+If JCE is missing, the integration point will stop during start -up and write log message about missing JCE. On recent Java versions, one must enter the JCE files in both and.
+How much disk space does the integration point need?
+1 million messages entail:
+
+approximately 200MB to the integration point
+About 100 MB log data
+approximately 1400MB File database if used
+Intermediate storage of incoming messages before they are consumed
+intermediate storage of outbound messages before they are sent
+
+Why are there no messages on the webhook subscription I have set up?
+No messages will be communicated to webhook subscriptions by default. This must be configured. See:
+
+Webhook subscription
+
+What message metadata is stored by the integration point?
+An example of which message metadata stored by the integration point can be seen below:
+
+How do I check if the integration point has started?
+If the integration point's health status answers OK, the integration point has started. Health status is available at
+ (eg)
+In addition, the following log line is produced after a successful start:
+
+How can I reset the integration point?
+After upgrades, it may be that old receipts are left at the integration point. This can lead to warnings and in some cases errors. To get a recent installation of the integration point, you should make the following:
+
+Stop the integration point.
+Backup of the folder and file.
+Then move these out of the folder. Make sure they are removed from the integration point folder before moving on.
+Start the integration point again. Now these files will be downloaded again.
+
+How can I manually download an incoming message from the integration point?
+To manually download an incoming message from the integration point, you need a HTTP client with GUI (such as postman) or a command line/terminal that supports the command.
+
+Lock the message: 
+Download the message: 
+Possibly - Mark the message as fully processed: 
+
+How do I migrate data from the includes the H2-Fildatabase?
+Unfortunately, there is no straight way to do this, but there is one community -driven migration tool one can try:
+H2 Migration Tool
+Digital mail to residents
+What is needed for the Proxy client library for digital mail to residents to work?
+The proxy client library requires special configuration of the integration point, see below:
+
+Sending without birth number
+If for some reason, the birth number is missing or forcing sending to print. Example SBD:
+
+NB! Values for the recipient and return mail recipient must be filled in as in the SBD above otherwise the transmission will fail!
+Various
+How do I verify that the Jar file is from the Directorate of Digitization?
+One can verify that the Jar file is from the Directorate of Digitization using Gnupg:
+
+
+Download the desired JAR file with associated signature and e-dissemination public coding key:
+
+
+Download
+
+
+The public code signing key must be entered in the key ring on the machine where the signature is to be verified:
+
+
+
+Then the signature can be verified using. The command below:
+
+
+
+The result should contain and should match the example below:
+
+What is Kosmos?
+Kosmos stands for continuous updates for secure message exchange in the public sector. Cosmos is a support-
+Application that automatically keeps the integration point upgraded.
+
+Automatic upgrade
+
+What does the version number mean?
+Emsyring follows [semantic versioning] (https://semver.org) to show changes between different versions.
+A distribution of the integration point contains the name of the component, version number and file type as in this example:
+Integration point-2.0.7.jar
+Version number is specified in the Major.Minor.patch format
+Patch contains backwards compatible bug fixes. By error correction is meant internal change of unwanted behavior or mistake. These are versions one can install without noticing changes
+Minor has new functionality, but is backwards compatible. Here, new functionality has been added or changed to existing functionality without affecting consumers of the API. This will also be increased if it is functionality that is desired to be removed in later version (degrecated). A minor update will not change existing integrations, but it may be useful to test new functionality if available through the integration used.
+Major has changes that are not backwards compatible. These may be changes in how the API is used or removing functionality, which has previously been signaled that will be removed through minor-release and API comments. A major update will cause all or part of the functionality one to use no longer working and will therefore be important to ensure that what one needs works as expected through testing or dialogue with the provider of the subject system that integrates the integration point.
+Conception
+What does Move, Nextmove and Miif mean?
+Move, Nextmove and MiIf are former work names for eForsing.
+What does DPO mean?
+DPO is a technical code for Emsydidling's messaging service. DPO occurred as an abbreviation for digital mail to public
+Business. The fact that not all public enterprises use the Emsyring's messaging service has led to some misunderstandings.
+The use of the term is toned down.
+What does DPV mean?
+DPV is a technical code for Altinn Digital Post. DPV arose as an abbreviation for digital mail to business. That
+Altinn Digital Post can also be used to send to residents has led to some misunderstandings. The use of the term
+is toned down in favor of Altinn Digital Post.
+What does DPF mean?
+DPF is a technical code for KS Svarut and Replyer (KS FIKS). DPF originated as an abbreviation for digital mail to fix. That
+Not everyone has a relationship with FIKS (digital joint solutions that municipalities and county municipalities can use) have led to a
+Share misunderstandings. The use of the term is toned down in favor of KS Svarut and Replyer.
+What does DPE mean?
+DPE is a technical code for digital mail to e -insight. The use of the term is toned down in favor of e -insights
+messaging service.
+What does dpi mean?
+DPI is a technical code for digital mail for residents. That other messaging services can also be used to send digital
+Post to residents has led to some misunderstandings. The use of the term is toned down in favor of digital mail to
+Residents. 
+What does dpfio mean?
+DPFIO is a technical code for digital mail to FIKS IO. FIKS IO is a messaging service offered by KS. The use of the term
+is toned down in favor of FIKS IO.
+Case and archive system
+How do I configure case and arkvisystem X to use e-mediation?
+The supplier must assist in the configuration of case and archive system X to use e-molding. Either by pointing to the correct
+documentation or by doing the layout.
+Architecture
+Why was eFormidling established?
+The following work is the basis for the establishment
+
+Message exchange internally in the administration
+Solution for message exchange in the public sector
+
+Why is E -Mediation based on asynchronous message exchange?
+The following work is the basis for e -mediation being based on asynchronous message exchange:
+
+Message exchange internally in the administration
+Solution for message exchange in the public sector
+
+Why is Emsydling based on the fact that the integration point should be installed in the businesses?
+The following work forms the basis for e -mediation is based on the integration point installing in the businesses:
+
+Message exchange internally in the administration
+Solution for message exchange in the public sector

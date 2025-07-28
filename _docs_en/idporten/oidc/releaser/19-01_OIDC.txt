@@ -1,0 +1,7 @@
+title: 19-01 oidc
+Description: 19-01 Oidc
+Sidebar: Oidc
+Redirect_From: /19-01_oidc
+
+API-based self-service of scopes, as well as performance improvements.
+Releas was production -taxed Jan 22, 2019

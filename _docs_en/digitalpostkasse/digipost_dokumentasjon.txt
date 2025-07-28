@@ -1,0 +1,14 @@
+Title: Digital Mailbox
+Description: Digital mailbox to residents
+Product: Digital Mailbox
+Redirect_From: /Digipost_ Documentation
+
+Description of service, prices and additional services can be found at the collaborative portal
+Documentation and clients
+Client library .Net
+Client Library Java 
+Integration Guide/Concept Catalog 
+Who can use digital mail for residents?
+Public companies that have accepted the Norwegian Digitalisation Agency's terms of use can use this service. See terms of use in the collaborative portal
+Routine for access
+Follow steps guidance on the collaborative portal

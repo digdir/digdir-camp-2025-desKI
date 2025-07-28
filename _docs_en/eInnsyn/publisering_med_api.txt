@@ -1,0 +1,15 @@
+Title: Publishing with API
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /Publication_med_api
+
+Publishing to the API is available for testing in the customer test environment.
+The API key issuance is not yet clear, so keys must be issued manually by contacting a service desk.
+Api spec
+e-insight-api-pec
+Client Library:
+Java
+Typescript
+API Key issuance
+Link comes here soon

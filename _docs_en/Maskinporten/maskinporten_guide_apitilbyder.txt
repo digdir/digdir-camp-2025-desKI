@@ -1,0 +1,154 @@
+Title: How to use the machine gate as API provider
+Description: API protection with the machine gate
+Summary:
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine gate_guide_apitil provider
+
+Overall procedure for API protection
+A full value chain for API protection with the machine gate consists of the following steps:
+
+API provider is manually assigned an API pre-fix in the machine gate
+API provider creates an API
+API provider provides access to a consumer
+Consumer creates a machine gate integration (OAuth2 client) and register the scop to it.
+
+Access is now established.  When the API is to be used run-time, the following steps are carried out:
+
+His consumer Outh2 client requests the token from the machine gate
+The consumer includes token in calling to the API.
+The API provider validates the token, performs any fine-granulated access control and returns requested resource.
+
+Procedure for API provider
+1: Manual allocation of prefix
+The first time you use the machine gate, you must be manually set up as API provider: You must decide:
+* one you want to use for your APIs
+* your 
+Submit form: https://forms.Office.com/pages/responsepage.aspx?id=D1AOAK8I7EGVRNUR1A5KZBWZ0NWNRGRFJRFJQFQFQUNGCTUMVNWCTUMVNWWVYWVYWVYTWLTWLTWLTWLPRTJQWWWS09EUFVWWWWWWWWWWWWWWWS0VVDSLFCTUMVNWWVCZ.
+Description of APIs
+In the Machine Gate context, an API is the same as an OAuth2 scope. Norwegian Digitalisation Agency wants to give API providers great freedom to decide for their own semantics for API protection within the framework of the OAuth2 standards. At the same time, there is a need for some rules to ensure interoperability.  
+The following syntax is used:
+
+There is a text string that is manually assigned to the API provider. An API provider may have several prefix.  Example of prefix may be or. Using organization numbers such as prefix can in many contexts be useful, since it can facilitate automated processes. In other contexts, organization numbers will not be sufficiently granular for large companies.
+
+Subscope should describe the resource as best as possible (or).  
+Subscope may have different postFIX to distinguish on reading and writing access to the resource ()
+Absence of postfix should basically be interpreted as only reading access
+
+
+
+Visibility
+The attribute is used to set the scop's visibility:
+| Value | Description |
+|-|-|
+| Public | The scop is visible to everyone on /scopes /all endpoints.    |
+| Private | The scop is not visible to anyone other than API provider and the consumers that have accessed | Consumer must be told that the scop is available |
+| Interal | Intense Use in Norwegian Digitalisation Agency |   
+Note that there is no integration with the API catalog, so the API provider itself must ensure that the scop does not end up in the API catalog if used.
+Scope restrictions
+It is recommended that you limit the use of the scop. By setting the attribute, one will limit the use of the types of integration included in the attribute. For example, you can limit the use to be used only with the machine port (server to server) or ID gate clients (user login).
+Inactive entities
+To ensure legal logging and statistics, the Directorate of Digitization will never delete scopes and access (or integrations), but rather disable them at Delete-call.
+Disabled entities will not come up in Get listings as default, but can be retrieved by setting as a query parameter. Disabled entities will not be reactivated by mail and you get 409 Conflict instead.
+Administration of API
+The APIs can be administered in 2 ways. Either when using OAuth2 client or using web interfaces via the collaborative portal.
+1a: Create an API - via the collaborative portal
+
+
+Go to "My Profile" at https://so cooperation.digdir.no/. Select "Business Services" and "Administration of Services" on the left side of the menu.
+
+
+Choose "My API" in the environment you want to create the API in.
+
+
+Press "New Scope"
+
+
+Choose the prefix from the drop -down menu, if this is empty, then no prefix is assigned to the organization number you represent. Then contact serviceedesk@dir.no. The organization number for your business will be pre-filled in the form.
+
+
+Fill in the rest of the parameters and press "Save". The subsecop will now show in the list of "My API".
+
+
+Videotutorial: (https://vimeo.com/427689809)
+
+1b: Access management - via the collaborative portal
+
+
+Go to "My Profile" at https://so co -work.difi.no/. Select "Business Services" and "Administration of Services" on the left side of the menu.
+
+
+Choose "My API" in the environment in which you want to access.
+
+
+Choose the API you want to access.
+
+
+Go to "access" under the form.
+
+
+To add new access, press "+ Add New Access" and register the organization number to the business that will access.
+
+
+To revoke access, press "Delete" in the list of access.
+
+
+
+commented away dead link
+
+
+[! [Access Board API] (https://so-co-work.difi.no/sites/ssites/files/ accessible-pi-png.png)] (https://so cooperation.difi.no/sites/sites/ssites/folleres/files/filtsgangspelpe_api.MP4 "Available Board)
+
+2a. Creating APIs - OAuth2 -Selven Operating Client
+If you want to automate the administration of Scopes and access from your own API Management solution, you must create an OAuth2 client that uses the self-service therapy for the machine gate.  See {{Site.baseurl}/Docs/Idporten/Oidc/Oidc_Api_admin_maskporten for details.
+Example of creating scope
+
+2b. Access Management - OAUTH2 Self -operating client
+Access is given and removed by simple residual call:  
+Example of providing access
+
+which gives organization number access to the scop.
+Send Delete to withdraw an access.
+Example of viewing access
+Request:
+
+Response:
+
+We have chosen to add scope as a Query parameter, as there are specific standards that require the use of the slash "/" in the scope definition, and this will be unnecessarily cumbersome for users of the API to support this as part of the PATH component.
+3. Give the consumer message to make an integration
+You can now tell the consumer that he must create a machine-integration with the appropriate API scop. This process is documented in the API consumer guide.
+4: validate token
+When a consumer uses the machine-gate to your API, you need to make a proper validation of this.  The OAuth2 and JWT-Specs specify in detail what to do.  
+If the token is self-contained:
+- Check that 'Issuer' votes with the machine gate ("https://maskporten.no/" in prod)
+- validate signing and that signing certificate corresponds to what the machine gate publishes at its JWK endpoint
+- Verify that Scope matches your current API end point
+- Valids that the token has not expired (EXP)
+Example of token:
+
+It is the -claimet that tells which consumer has got the token.
+Note: Do not use Client_id or Client_org for access management, these are old Claims that will be removed.
+If the consumer uses the supplier, you will also get two extra Claims, most API providers do not have to make access decisions based on the supplier, but it may be useful to log information for traceability.
+
+Use delegation in Altinn
+If you want consumers of your API to be able to use Altinn to delegate access to a system provider, you must create a so -called delegation (delegationscheme) that must be connected to one or more of your OAuth2 Scopes in the machinery.  This requires you to be a service owner in Altinn.
+The procedure is documented in more detail in functionality description for external delegation.
+
+
+First, create a scope in the machine gate in the usual way (see above), but be sure to set that this scop has a source of delegation associated with it.
+
+
+You then have to make a "delegated resource" in Altinn with the current scopet:
+
+Ask Altinn to access Scope.
+Create a machine gate client that has this Admin scop registered.
+
+This client must ask a token from the machine gate, and then create the resource at a post-call to 
+
+
+Finally, you give access to consumers in the usual way. Note that the supplier must never be given direct access.
+
+
+Note:
+* Machine gate scopes that lack delegation source will not be able to use Altinn for delegation
+* Machine gate-scopes that have a source of delegation will not be able to be consumed by suppliers using the ID port/machine sports internal delegation functionality (Onbehalfof)

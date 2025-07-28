@@ -1,0 +1,97 @@
+Title: Oidc-Client Using React and Code Flow
+Description: Oidc-Client Using React and Code Flow
+Summary: "This is Short How-To On Using The Code Flow From A React-Based JavaScript Oidc-Client."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_sample_Act
+
+This is Short How-to on Building an Oidc Single-Page Application in React towards ID port's Oidc Service. We are using the Oidc Client Library from https://github.com/identitymodel/oidc-ilient-js/wiki.
+Please note that the client uses the code flow as per updated security rececommenions from the ietf.
+The General Process of Authentication is:
+1. Initialize Oidc Client Library
+2. Redirect the browser two id gate oidc provider through a library callback
+3. <User Performs Authentication>
+4. ID port Redirects Back to The Browser (with Query Parameters-No Access Token)
+5. Complete Authentication Through Library Callback (Fetches Access Token)
+The process of logging out is analogous to logging in. IMPORTANT TO REM SEMS THAT YOU HAVE TWO SESSIONS - ONE CLIENT PAGE, AND ONE SERVER PAGE - AND YOU NEED TO CLOSE BOSH SESSIONS ON LOGOUT.
+Code samples
+Auth/Login.jsx: The Authentication Process is started by Executing the Login ()-Method in the Authstore (which Executes the Signinredirect ()-Method in the Oidc Client Library That Performs The Redirect).
+`` JS
+@inject ("author")
+@observer
+Class Login Extends Component {
+componentwillmount () {
+      this.Props.Authstore.login ();
+   }
+render () {
+      return (
+          Login in Process - please wait ...
+      ));
+   }
+}
+`` `
+Auth/login response.jsx: The Authentication Process is Completed by Executing the Completelogin ()-Method in the Authstore (Which Executes the Signinredirectcallback ()-Method in the Oidc Client Library That Foot Footping the Accesses. Errors from the ID port Oidc Provider Are Given AS Query Parameters-Trade Them Appropriately. IMPONENT: The Route for this component must match the redirect_uri setting of your client configuration at the Norwegian Digitalisation Agency (eg http: // yourhost: 8080/login/response).
+`` JS
+@inject ("author")
+@observer
+Class login response extend's component {
+}
+`` `
+Stores/AuthenticationStore.js: NB-The Isloggedin ()-Method Checks if there is an access token that hass on Expired-use that to determine if the User Needs to Request A Fresh Access Token (and position). The Loaduser ()-Method Can Be Called When Loading The React App to Have The Manager Load The User Object From Session Store To Prevent Unnencessary Access Token Requests.
+`` JS
+Class AuthenticationStore {
+   @observable Manager = Zero;
+   @observable User = Zero;
+Constructor () {
+      Let config = {
+         Authority: "https: //eid-stestest-web01.dmz.local/idporten-oidc provider",
+         Client_id: "Your_Client_configuration_id",
+         redirect_uri: "http: // localhost: 3000/login/response",
+         post_logout_redirect_uri: "http: // localhost: 3000/logout/response",
+         Response_Type: "Code",
+         Scope: "Openid Profile",
+         ACR_VALUES: "Level3",
+         Ui_locales: "NB",
+         Loaduserinfo: False,
+         Revokeaccesstokenonsignout: True
+      };
+      This. Manager = New UserManager (config);
+   }
+@Compputed
+   get isloggedin () {
+      Return this.User! = Zero && this.user.access_token &&! This.user.expired;
+   }
+@action.bound
+   Loaduser () {
+      this.Manager.Getuser ()
+         .then ((user) => this.user = user);
+   }
+@action.bound
+   login () {
+      this.Manager.signinredirect ()
+         .catch ((Error) => this.
+   }
+@action.bound
+   Completelogin () {
+      this.Manager.signinredirectcallback ()
+         .then (user => this.user = user)
+         .catch ((Error) => this.
+   }
+@action.bound
+   logout () {
+      this.Manager.signoDredirect ()
+         .catch ((Error) => this.
+   }
+@action.bound
+   Completelogout () {
+      this.Manager.signoDredirectcallback ()
+         .then (() => {this.Manager.removeuser ()})
+         .then (() => {this.user = zero;})
+         .catch ((Error) => this.
+   }
+@action.bound
+   Shopping Serror (Error) {
+      Console.Error ("Problem with Authentication Endpoint:", Error);
+   }
+}
+`` `

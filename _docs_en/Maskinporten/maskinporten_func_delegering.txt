@@ -1,0 +1,95 @@
+Title: Delegation in the Machine Gate
+Description: Delegation in the Machine Gate
+Summary: "An API consumer can use Altinn to delegate an allocated API access to a supplier."
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_func_delegation
+
+Background
+The machine gate, in collaboration with Altinn authorization, has support for API consumers to delegate an API access to a supplier.
+This functionality is part of the national reference architisure trip for e -look. See description of e -look in the National Architectural Library for further information.  See also Altinn's documentation of the service.
+
+graph lr
+
+  K [API Consument]
+  a [API provider]
+  l [supplier]
+
+  K --- | Has an agreement on access to data with | a
+  K --- | Has a data processing agreement with | l
+  l --- | Retrieves data on behalf of consumer from | a
+
+Initially setup
+In order to clear the use of delegation, the API provider must record necessary information about the API as follows:  
+
+sequence chart
+  Participant API AS API provider
+  Participant M AS Machine Gate
+  Participant a as Altinn
+  Participant K AS API directory
+
+  API ->> M: Creating OAuth2 Scopes  
+  API ->> A: Creating Delegation Setup
+  API ->> K: Record API in the API directory
+
+
+Scope in the machine gate is created using self -service, but you must be careful to register a delegation source.  List of valid delegation sources can be found at the bottom of this page, you will use the value as on your scopet:
+
+Note that the machine scopes that lack a source of delegation will not be able to use Altinn to delegation.
+You must then create a delegation upset in Altinn, which contains the scoped you just registered in the machine gate:
+`` `
+Post/Machine Gate-API/Delegationschemes http/1.1
+Host: tt02.altinn.no
+Content-Type: Application/Json
+Authorization: Bearer  
+{
+    "Owner_org": "991825827",
+    "Scopes": [
+        "Difitest: Test2"
+    ], ],
+    "Title": [
+        {
+            "Code": "NB_NO",
+            "Value": "Difi tests delegation"
+        }
+    ], ],
+    "Description": [
+        {
+            "Code": "NB_NO",
+            "Value": "Bla bla bla bla bla and even more blah"
+        }
+    ], ],
+    "Default_language": "NB_NO"
+}
+`` `
+Note that it may take a few minutes for the delegation setup to become visible in the Altinn portal.
+Finally, we recommend that you register your API in the API directory so that other potential consumers can find it.
+Give access to consumers
+API provider uses self-service to provide access to consumers in the ordinary way.  
+Note that API provider must never provide direct access to the supplier.
+Make a supplier integration
+Supplier integrations that will use external delegation are slightly different from other integrations in the ID port/machine gate, and it is therefore important to get them registered correctly.
+The ID gate/machine gate already has two existing internal delegation mechanisms, which are not compatible with delegation in Altinn. To obtain the correct registration, you must:
+
+For suppliers who use the self -service solution on the collaborative portal, it is important to note that you must create the integration as belonging to yourself, and not choose "on behalf of a customer" or "on behalf of multiple customers".
+For suppliers who use self-service API, they must not use tokens with the scop, but the supplier should therefore not put in the registration call.
+
+Supplier must register API provider Scope on his client.
+Delegation in Altinn
+Authorized employee of API consumer logs into Altinn, chooses to represent the company, seeks up and delegates the API access to the supplier in the Portal solution.  This is documented in more detail at Altinn.
+Note that it is possible for consumer to perform a delegation in Altinn, although API provider has not yet provided consumer access to the scop in the machine gate.
+Pick up tokens
+Once the above points are performed, the supplier may request the token from the machine gate.
+The supplier must include the consumer's organization number in -claimet in JWT -Grantet:
+
+And the returned token will look like this:
+
+Environments and test data
+Delegation can only be tested in the test environment, which is linked to Altinn's TT02 environment.
+To test as a consumer, you must ask Altinn to get a test user associated with an organization in the TT02 environment.
+For API providers who want to test delegation themselves, it is easiest to use your own orgno as a supplier since the Outh2 client of the supplier needs a test business certificate.
+Endpoint that lists supported delegation setup:
+| Environment | Endpoint |
+|-|-|
+| TEST | https://api.test.so collaboration.digdir.no/delegationsSources |
+| PRO | https://api.so collaboration.digdir.no/delegationssources |

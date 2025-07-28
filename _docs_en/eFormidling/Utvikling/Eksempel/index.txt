@@ -1,0 +1,17 @@
+Title: Examples
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Examples of use of eForsing:
+
+Handling
+Confidential case handling
+Information to resident
+Decision to citizen
+Authority requirements from e -insight
+Journal mail to e -insight
+Meeting to e -insight
+Agreed message exchange
+Fix iO message exchange

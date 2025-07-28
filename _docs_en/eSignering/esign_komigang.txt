@@ -1,0 +1,11 @@
+title: esignation
+Description: Esignment
+Product: esignation
+redirect_From: /esign_comigang
+
+Documentation
+API Specification/Functional Documentation/Client Libraries is managed by the operating provider of the Service for Esignment (external pages)
+Who can use donkey?
+Public companies that have accepted the Norwegian Digitalisation Agency's terms of use can use this service. See terms of use in the collaborative portal
+Routine for access
+Follow steps guidance on the collaborative portal

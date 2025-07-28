@@ -1,0 +1,13 @@
+title: generally about the model
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_Generelt_om_modellen
+
+Introduction
+Evisation based on Noark 5 as a data model. As of today, eirets are based on 5.3.1, but will with the time upgrade to the current version.
+Incoming data based on Noark 4 Public Journal turns the folder into Noark 5 before sending, and everything is then serialized to RDF and JSON-LD
+General changes in relation to Noark 5
+In addition to the properties found in Noark 5, we have added peekers upwards in the hierarchy. That is, registration has a 'parent' property that refers to the folder it belongs to. This' Parent Property, debt for all classes with the forecast of the archive class. Some of the reason for this is that we look at the model that is more centered around registration/journal entry with associated properties. Instead of archives with underlying content, such as typical deliveries at Noark5 will be.
+Otherwise, we have made some fields non-compulsory. This is, for example, because it is not everything in Noark 5 The structure of the folder and registration that we clearly rent from Noark4 Public Journal The extraction that we still support and many still use for delivery.
+In addition to the fields we have from Noark 5 the data model, we have introduced the field title_sensitive and public title_sensitive. These fields are useful to support the personal name tagging as a user or tags in Noark 4 and Noark 5, respectively. JSON-LD does not support fields of field in the same way as XML. We have therefore introduced new fields, where this type of information can occur. That is, public title_Sensitive and title_Sensitive is the title with personal names, while the public title and title are "washed" for information that should not be searchable after 1 year.

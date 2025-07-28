@@ -1,0 +1,35 @@
+Title: Configuration of E-Insight Client
+Description: Configuration of e-insight-client
+Summary: "Configuration of e-insight-client ++"
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_configuration
+
+Configuration of e-insight-client.xml file
+The first thing that needs to be done is to enter correct values in the e-insight-client.xml file. Basically, this one looks like this:
+
+These do you fill in
+What needs to be done here is to fill in the following (not distant and. You should fill in occasionally):
+* 
+  * This links the e-insight client to the integration point. Here you have to include the name of the integration point and the gate on which it runs.  is the standard name.
+* 
+  * This is the folder from which the e-insight client will read files. Files to be uploaded to e -insight. After a file is read from here, it will disappear from the Inputdirectory folder. For example:  
+* 
+  * Here you will fill in the organization number of your organization. For example: 
+* 
+  * Here you have to fill in the name of your email server. This should send out the email with the access requirement. Their integration point will receive the access requirement with them and then tell the e-insight client that it must send the email.
+  * Standard gate for is 25. So you do not need to fill in if you use port 25.
+  * The username and password field just needs to fill out if the email server requires authentication for email sending.
+You can change this too
+These are settings that can be changed, but do not necessarily have to be changed to make the service work.
+
+ is to select log directory. % Base% The variable points to the installation folder.
+ and is to select the ID and name of the service in the Windows Services list. 
+
+Transportation
+One can also turn on support for transport protection integration point. See how here.
+In the client one must then change to -dapplication.moveurl = https: //servername.no: port number.
+Loggot
+In addition, you can enter logging if desired. This allows you to rotate logs in size and choose how many you want to take care of. The standard size here is 10MB, you can change to the desired size. The number of files taken care of is 8. This can also be changed. Make sure this is within the tag like the rest of the configuration.
+
+Example of pre-configured e-insight-client.xml
+Here is an example of a pre-configured e-insight-client.xml file including logging.

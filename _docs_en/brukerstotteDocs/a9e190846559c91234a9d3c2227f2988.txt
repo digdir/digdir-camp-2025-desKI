@@ -1,0 +1,23 @@
+Url: https://eid.difi.no/nb/buypass-id/how-logge-in-sd-sd-sd-sd-sd-sd-ed-skt
+Title: How to log in with Buypass ID in mobile with mobile app | Help sites for common solutions
+
+How to log in with Buypass ID in mobile with mobile app
+Go to the service you want to log in to (eg: www.nav.no, www.altinn.no, www.skatteaten.no)
+Select Buypass ID in the ID port
+Select Buypass ID in mobile with mobile app
+Enter your birth number (11 digits) and click "Continue"
+Open Buypass ID app on your mobile. ID missions are sent with "push" or you pick it up by opening the app-see download symbol in the upper right corner of the app
+Key PIN for Buypass ID app
+
+Buypass ID provides access to public services at the highest level of security (level 4).
+
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

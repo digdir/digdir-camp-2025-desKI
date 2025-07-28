@@ -1,0 +1,147 @@
+Title: Prepare installation
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From:
+- /e -mounds_ assets
+- /Emsyring_making Certificate
+
+Before you can install the integration point, some preparations are needed.
+
+TOC
+{: toc}
+
+Order access
+Before one can use e -dissemination, one must order the necessary access to the e -officing and the messages that are desired
+used.
+Note that if you want to use e-dissemination in the test environment, your own test accesses must be ordered:
+
+Testing
+
+See the collaborative portal for what it takes to get the necessary access to the Emsyring and the messaging services that
+Used by Emsyring:
+
+Use e -Design (external link)
+
+Some of the messaging services require the business to create a user with username and password:
+
+Create user for Altinn dissemination (necessary to use E -Design Service)
+Create User for KS Svarut and Replyer
+Create user for Altinn Digital Post
+
+Contact our service desk if necessary:
+
+serviceedesk@dir.no
+
+Order business certificate
+Before a business can use e -mediation, it must have been issued a business certificate.
+Em shape requires a business certificate to authenticate the companies that use the service safely. IN
+In addition, the business certificate is used for:
+
+end-to-end encryption of messages between businesses in cases where the underlying messaging service supports
+  this
+Signing out of outbound messages in cases where the underlying messaging service supports this
+Authentication of business against certain third -party services
+
+A business on eForsing basically communicates in which the organization the business certificate is issued,
+But it is also possible for an organization to act on behalf of other organizations.
+Em shape supports a business certificate of the types Seid V1 and V2, but not esail. SSL certificates (including
+Wildcard certificates) are not business certificates.
+Note that if you want to use the E-Mediation Test Environment, it must be issued a separate test business certificate.
+One can either use an already issued business certificate or order a new one:
+
+Order business certificate from Buypass (external link)
+Order business certificate from Commfides (external link)
+
+Available business certificate in the Emsynidling certificate directory
+To enable the sender to send end-to-end-encrypted messages to the recipient the public part of
+The recipient's business certificate is first made available in the Emsynings Certificate Catalog.
+Suppliers usually send the business certificate with the corresponding private key in a single file with surname
+ () or () - this file must not be shared with the Norwegian Digitalisation Agency
+Or others.
+If the supplier has sent several files, it is the labeled as the authentication certificate to be used.
+The public part of the business certificate can be obtained from - or file, and usually has a surname
+, or.
+
+How do I get the public part of the business certificate from a Keystore (or)?
+
+In order to make the public part of the business certificate available in the Emsynings Certificate Catalog must be sent
+This one to our service desk:
+
+serviceedesk@dir.no
+
+To avoid platform -specific problems it is recommended to put the public part of the business certificate in a
+-file before it is sent.
+Available business certificate for business integration point
+To enable the sender to authenticate against e -officing and sign messages sent must
+The business certificate with the associated private key is made available to the company's integration point.
+When installing the integration point, the keives (or), () for
+The business certificate and password for the keystor.
+To avoid platform -specific problems, it is recommended that for the business certificate contains only English
+letters, numbers, hyphen and period (avoid and other).
+The integration point requires that password for the keystor () is identical to the password for the private
+The key () in the Kestor.
+Choose how to run the integration point
+Emsynidling's integration point can be run using a docker or using Java directly.
+Docker is recommended if you already use Docker or Kubernet in their operating environment.
+Java is recommended if one has a traditional server-based operating environment.
+
+How do I install the Java version the integration point requires?
+
+If the e-insight client is to be used with the integration point, it is recommended that these be installed on the same server.
+Set of necessary resources for the integration point
+The following resources are required by the integration point:
+
+1 cpu
+2GB memory
+At least 2 GB available disk (cover ~ 1 million messages)
+Extra resources are required by any use of external database
+Extra resources are required by any use of external message queue
+Extra resources may be required by high-volume use
+
+Plan securing the integration point
+The integration point processes many information elements in need of hedging:
+
+[Overview of information elements] https://docs.digdir.no/docs/eformidling/ skills/#security
+
+The integration point is designed to run in a closed environment that only gives authorized system and users access to
+The interfaces offered by the integration point. The companies themselves must consider what security measures are needed.
+Digdir recommends that the integration point be ensured in line with good security practices:
+
+Configure the Integration Point API with username and password (NB: Requires that system (s) to integrate with the integration point supports this)
+Configure the Integration Point API with TLS (NB: requires that system (s) to integrate with the integration point support this)
+Use functionality to keep usernames and passwords in environmental variables or Hashicorp vault so that secrets in plain text are avoided
+Use external database instead of H2
+Use External ActiveMQ instead of built -in Activemq
+Limit access to the integration point API to the system (s) that integrate and user (s) that must have access to manage the integration point
+Limit access to the integration point files to the user (s) that must have access to manage the integration point
+Limit the integration point access to only necessary external and internal services
+Do not expose the integration point API on the Internet
+Drive the integration point in a professional operating environment
+
+Configure firewall if required
+If the integration point is to be run in an operating environment where outgoing traffic is filtered by a firewall it is necessary
+to configure this to allow outgoing traffic from e -officing integration point to services integration point
+user.
+See descriptions included IP addresses for the Services Integration Point User:
+
+eFormidling Production
+eFormidling test
+
+One must also allow incoming traffic to the integration point from the service (s) that will use the integration point.
+The interface of the integration point is, by default, available on port, but can be set to something else if
+desirable.
+Configure time synchronization if missing
+Em shape uses time -limited Json Web Tokens (JWT) to authenticate the businesses. One too old authentication will
+Rejected. To prevent authentication from being rejected due to differences between e -dissemination clock and clock in
+The driving environment for the company's integration point is important that the clock is synchronized using Network Time
+Protocol (NTP). It is also important that the clock is adjusted correctly for time zone and summer time (CET / CEST in Norway).
+Service provider selects the time source, which should be located internally in the data center.
+
+You can check your watch at https://time.is/ (external link)
+Read about Network Time Protocol (external link)
+
+Next step
+
+Installation

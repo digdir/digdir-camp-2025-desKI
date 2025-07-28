@@ -1,0 +1,30 @@
+Url: https://eid.difi.no/nb/esigning/hva-er-signing
+Title: What is donkey | Help sites for common solutions
+
+What is esignation
+
+Electronic signature (E-signature) is your personal, electronic signature.
+The signing service offers you to use an advanced electronic signature when signing public documents and applications.
+
+Advanced electronic signature is an electronic signature that:
+
+a) is unambiguously linked to the signer,
+
+b) can identify the signer,
+
+c) is made using funds that only the signer has control over, and
+
+d) are associated with other electronic data in such a way that it can be detected if these have been changed after signing
+
+BankID and Buypass ID can be used for advanced electronic signature in the signing service. 
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

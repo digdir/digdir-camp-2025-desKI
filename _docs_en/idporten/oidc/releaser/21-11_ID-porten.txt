@@ -1,0 +1,14 @@
+Title: 21-11 ID port
+Description: 21-11 ID port
+Sidebar: Oidc
+Redirect_From: /21-11_ID port
+
+Transition to OIDC towards Eid providers ifbm new vendor agreements
+Releasen was production -made Dec 7, 2021
+New functionality:
+Support Synthetic Birth Number in ID port's test environments (Shipped)
+It will now be possible to use synthetic birth number (+80 on month) in test environments for the ID port, test time and minID
+BankID over Oidc (shipped)
+Integrate toward BankID over Oidc protocol
+Buypass over Oidc (shipped)
+The interface between the ID port and Buypass is based on the OIDC protocol.

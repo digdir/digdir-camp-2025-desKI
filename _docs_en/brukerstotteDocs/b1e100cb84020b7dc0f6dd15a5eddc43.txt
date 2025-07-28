@@ -1,0 +1,20 @@
+Url: https://eid.difi.no/nb/buypass-id/how-logge-in-sd-sd-sd-sd-sd-sd-skt-i
+Title: How to log in with Buypass ID in mobile with password/SMS | Help sites for common solutions
+
+How to log in with Buypass ID in mobile with password/SMS
+Go to the service you want to log in to (eg: www.nav.no, www.altinn.no, www.skatteaten.no)
+Select Buypass ID in the ID port
+Select Buypass ID in mobile with password/SMS
+Enter your birth number (11 digits) and click "Continue"
+Write your password and click "Continue"
+Enter the one -time code you receive by SMS (6 digits)
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

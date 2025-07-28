@@ -1,0 +1,28 @@
+Title: Backup
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page what it takes to back up the integration point.
+It is possible to backup or move the integration point and at the same time preserve the history by making a copy of the contents of the folder. 
+
+Stop the integration point
+Take a copies of all the content of the folder
+Reboot the integration point
+
+Part of the content is produced and used by the integration point:
+| File | Description | Consequence of any loss |
+| --------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ACTIVEMQ data/ | Content of the internal message queue if in use | Any untreated outbound and incoming messages are lost |
+| Integration point.mv.db | Content of the internal database if in use | Any untreated outbound and incoming messages are lost, as well as all history |
+| Integration point.trace.db | Troubleshooting information for the internal database | None |
+| Integration Point-Logs/ | Logs manufactured by the integration point | Mister Log |
+| Messages/ | Intermediate storage and outgoing messages | Any untreated outbound and incoming messages are lost |
+None of these files are required to start the integration point, if missing it will be generated.
+ and the company's Keystore (P12 or JKS) must be taken care of and required to start the integration point.
+ Can be downloaded again if needed.
+Next step
+
+Automatic Upgrade (recommended)
+Monitoring (recommended)

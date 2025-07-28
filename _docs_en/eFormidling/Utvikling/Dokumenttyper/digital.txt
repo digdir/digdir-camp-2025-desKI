@@ -1,0 +1,95 @@
+Title: "Document Type: Digital"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD), one or more documents and possibly one or more
+Extensions.
+The document type has the identifier.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to the recipient's birth number.
+Business message
+The business message is described below.
+
+ (required)
+Defines which authentication level is required for the document to be opened.
+| Legal values |  or |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+The instruction defines which document should be the main document.
+| Legal values | String that matches the file name for one of the documents in the message |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Used to identify a responsible unit within a business. In digital mail to residents are assigned
+Sender identifier when connecting to the service.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Will be shown to the inhabitant and used in notifications/reminders by e-mail and SMS for the inhabitant. Shall not contain
+Sensitive information. Can be used at a lower security level than the document itself is classified on.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Language code according to. ISO-639-1 (2 letters).
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Date of when a message should be made available to the inhabitant of the resident's mailbox.
+| Legal values | Date |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+If the data controller wants the citizen to actively be asked to send back an opening receipt when opening the digital mail, it can be specified with this attribute.
+| Legal values |  or |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Text to be included in the Email notice to the end user after the post is made available.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Text to be included in SMS notification to the end user after the post is made available.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Metadata files are used to use additional functionality as a link outside letters in digital mail to residents.
+| Legal values | Objects with field names corresponding to a file name for one of the attachments and value corresponding to the file name for metadat file for this. |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+
+One or more documents
+The types of documents supported depend on the recipient and are not known in advance. This means that attempts to
+Sending documents that are not supported by the recipient fails first upon reception.
+Supported file format includes PDF, HTML, TXT and more. Further description can be found on:
+
+Document Types for Digital Post to Citizen (External Link)
+
+One or more extensions
+Metadata files are used to use additional functionality as a link outside letters in digital mail to residents.
+Further description of additional functionality including format of metadata files is available at:
+
+Extensions for digital mail to residents (external link)
+
+Enriching and transformation
+The integration point transforms and enriches messages sent by digital mail to residents.
+
+Transformation from digital to digital mail to residents
+
+Next step
+
+Document type under example of a resident's decision

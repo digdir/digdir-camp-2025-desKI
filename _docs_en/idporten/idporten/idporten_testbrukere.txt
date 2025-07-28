@@ -1,0 +1,60 @@
+Title: ID port test users
+Description: The ID port test users
+Summary:
+TOC: FALSE
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Idporten_test users
+Here you will find information about test users that can be used for testing the ID port integrations in the verification environment test.
+Test time
+We recommend that all customers use test time when testing the ID port. Test time offers to select security level. 
+
+Test time supports login with synthetic personal identifier (+80 on the month-digit), and the risk of mixing test and production data is then avoided.
+Test time has no password, so you don't have to contact Digdir to assign, created or reset users.
+We recommend using Tenor Testdata search to find test users from the Test People's register.
+Synthetic test users can also be used for "headless login" for automated API testing.  This is described further down this page.
+Minid
+Create the test user even in the test environment test
+It is possible to create a test user in MinID on his own in the new test environment Test. One must then follow the usual flow for ordering MinID. This assumes that one uses synthetic personal identifier (+80 on the month-digit). PID must be obtained from tenor test data searches. 
+Approach
+
+Press the login image in test in MinID "Order new MinID". Or use direct link: https://activation letter.test.minid.no/order
+Fill in synthestic personal identifier
+Order activation letter. You then get an activation code.
+{ % Include note.html content = "In the production environment, the end user will be sent activation code by mail. In the test environment, the activation code comes immediately. In both cases, the user must enter the page of the activation letter page to recover code and complete new user creation in minide" %}
+Post the activation code in "Register activation letter" 
+
+Static OTC - test
+There is functionality for static OTC in the test environment test. This applies in login flow and forgotten password flow. It is only possible for test users with synthetic personal fibrator. In addition, OTC is sent by SMS to listed mobile phone number on the user a logs in with. Any email in forgotten password flow. 
+The contact information (e-mail, tel) that is created on a mini-Test user is registered in the Contact and Reservation Register (KRR). Read more about how to change contact information on a test user on our pages about KRR.
+Otc
+(New code
+- Login: 12345
+- Forgot password: 12345
+-
+## BankID
+
+For those who cannot use synthetic birth numbers, we offer a set of standard test users with BankID with personal numbers that are not found in the National Register.
+
+** Password and one -time code **
+
+- one -time code: OTP
+- Password: Qwer1234 
+
+
+| 08089409382 | 08089408084 |   08089406820 | 08089405603 | 08089404224 |
+| 08089409110 | 08089407967 | 08089406669 | 08089405522 | 08089404143 |
+| 08089408912 | 08089407886 | 08089406588 | 08089405441 | 08089404062 |
+| 08089408831 | 08089407614 | 08089406316 | 08089405360 | 08089403945 |
+| 08089408750 | 08089407533 | 08089406235 | 08089405018 | 08089403864 |
+| 08089408599 | 08089407452 | 08089406154 | 08089404739 | 08089403783 |
+| 08089408408 | 08089407371 | 08089406073 | 08089404658 | 08089403511 |
+| 08089408327 | 08089407290 | 08089405956 | 08089404577 | 08089403430 |
+| 08089408246 | 08089407029 | 08089405875 | 08089404496 | 08089403279 |
+| 08089408165 | 08089406901 | 08089405794 | 08089404305 | 08089403198 |
+
+** Note: These test users are widely available and will be reset on a regular basis. **
+
+-
+Automated testing of APIs protected with access_token from the ID port
+The ID port in test environments offers "headless login" where tokens can be issued without user interaction to synthetic test users.  See more here

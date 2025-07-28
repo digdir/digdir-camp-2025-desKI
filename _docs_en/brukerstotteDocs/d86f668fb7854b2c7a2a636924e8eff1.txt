@@ -1,0 +1,19 @@
+URL: https://eid.difi.no/nb/minid/advarsel-du-s-blitt-spritt-pa-grun--of-Gjenrjentte-wrong-by-wood logining#MAIN-CONT
+Title: "Warning: You have been blocked due to repeated errors in login" | Help sites for common solutions
+
+Sámegiella
+"Warning: You have been blocked due to repeated errors in login"
+
+If you have entered the wrong password or one -time code 3 times, your password will be blocked for an hour. If you click on "Forgot Password", you can create a new password right away and thus do not have to wait an hour before you can log in again.
+
+MinID counts the number of incorrect logins from the last successful login, and the census is not removed until you have had a successful login.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

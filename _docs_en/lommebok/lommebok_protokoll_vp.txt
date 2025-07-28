@@ -1,0 +1,80 @@
+Title: Protocol flow to receive proof
+Description: Protocol flow for OpenID4VP
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_protokoll_vp
+
+On this page, I try to explain the protocol flow that you must follow as a usage station, when you wish the citizen will present a proof to you.
+The protocol is based on the OpenID4VP standard.
+Overordna så består flyten av fylgjande steg:
+
+User City (Relying Party) must first register with a registrar 
+The user city constructs a Sokalla VP-Request and sends it to the wallet.  This can happen in 2 ways.
+The user opens the wallet and approves the presentation of the proof
+The wallet sends the evidence presentation to the user city
+
+Setup and registration
+All user sites must be registered by hand. The requirements for registration find me in the act for RP registration, C/2025/2621, and where the information to be registered can be found in Annex I. In practice, this is a business name, org number, and a few other fields. 
+In particular, it can be noted that it should be recorded what personal data (evidence type, or individual attributes from evidence) that the user city comes to ask and the purpose of demanding this data. 
+For the sandbox, you register by sending an email to Digdir (Service Desk@...), but in the long term a self -service solution will come.  As part of the registration process, you will receive two certificates that need to be used when requesting evidence from your wallets of the residents:  
+
+One access certificate (Relying Party Access Certificate, RPAC) that is useful to authenticate you up to your wallet
+One registration party registration Certificate, RPRC) that tells you what data you have registered that you want to ask.
+
+You must make a private key yourself for these certificates before completing the registration, and based on this create a CSR file that you include with the application.
+TODO: OpenSSL command to make CSR the way Digdir wants it.
+Make vp-wrquest
+Write about 
+Cross Device
+Same Device
+Renders this to be judged as a QR code on its own website
+Here is a judgment to ask for only "is over the age of 18" attribute from the ID certificate to the inhabitant:
+`` `
+  // what attributes and evidence you want?
+  "presentation_definition" : {
+    "input_descriptors": [{{
+      "Purpose": "We need to verify your identity",
+      "Name": "Eudi Pid",
+      "Format": {
+        "MSO_MDOC": {
+          "Alg": ["RS256", "ES256", "ES384"]
+        }
+      },
+      "ID": "eu.europe.ec.eudi.pid.1",
+      "Constraints": {
+        "Fields": [{
+          "Intent_to_retain": False,
+          "Path": ["$ ['eu.europa.ec.eudi.pid.1'] ['Age_over_18']"]
+        }]
+      }
+    }],
+    "ID": "3787345F-9460-4D14-ACFF-28E3B2217E1A"
+  },
+// Metadata for your user site:
+  "Client_metadata": {
+    "Authorization_encrypted_response_alg": "ECDH-E-es",
+    "Authorization_encrypted_response_enc": "A128CBC-HS256",
+    "Jwks_uri": "https://emo-ukersted.test.eidas2sandkasse.net/jwks",
+    "VP_Formats": {
+      "MSO_MDOC": {
+        "Alg": ["RS256", "ES256", "ES384"]
+      }
+    },
+    "id_token_signed_response_alg": "Rs256"
+  },
+// OAuth-specific Claims for 
+"Client_id": "X509_SAN_DNS: demo-user site.test.eidas2sandkasse.net",
+  "Response_uri": "https://emo-ukersted.test.eidas2sandkasse.net/esponse",
+  "Client_id_scheme": "X509_SAN_DNS",
+  "Aud": "https://self-issued.me/v2",
+"ISS": "Issu",
+  "Response_Type": "Vp_token",
+  "Nonce": "Nonceval",
+  "Response_mode": "Direct_Post.jwt",
+// oauth2-spesifikke claims for akkurat denne forespørselen:
+  "State": "2C7E983B-BDE-49FF-974E-7AEA1DBD0189",
+  "Exp": 1749120685,
+  "IAT": 1749120565,
+  "JTI": "F376E4A1-2C2E-4976-B322-F9C1A115F66D"
+}
+`` `

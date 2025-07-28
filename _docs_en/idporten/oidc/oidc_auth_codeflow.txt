@@ -1,0 +1,9 @@
+Title: Authentication using the Authorization Code flow
+Description: Use of the IDPort's Openid Connect Provider for Authentication with Authorization Code flow
+Summary: "Authorization Code flow is the usual flow used in Openid Connect, and is recommended flow for most services."
+Sidebar: Oidc
+Product: ID port
+redirect_to: https://docs.digdir.no/oidc_guide_idport.html
+Redirect_From: /Oidc_Auth_codeflow
+
+Moved to https://docs.digdir.no/oidc_guide_idporten.html

@@ -1,0 +1,11 @@
+title: 21-04 minid
+Description: 21-04 Minid
+Sidebar: Oidc
+Redirect_From: /21-04_minid
+
+Support for app-based login instead of SMS.
+Refactoring MinID to adapt to the new system architecture project.
+Scheduled production setting: 2021-04-20
+New functionality:
+App-based login in MinID (under Consideration)
+A pilot where Digdir should test if it is appropriate to replace login with SMS with a mini-app instead.

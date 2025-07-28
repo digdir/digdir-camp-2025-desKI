@@ -1,0 +1,53 @@
+Title: Transformation from KS Replyer to Best/Edu
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The table below shows how the integration point transforms responses from the API for KS Replyer to Incoming
+Messages. The integration point supplements incoming messages with information from configuration, standard values and
+Lookup with third parties. Note that incoming messages from KS Replyer are treated differently depending on whether
+The integration point is configured with the interface Best/Edu or not. The table below shows how incoming
+Messages from KS Replyer are processed if the integration point is configured with the interface Best/Edu.
+| To eFrasing Best/Edu | From KS Svarinn | From configuration | From default value |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------- | ------------------------------------------------------------- |
+|          | Identifier for message () | - | - |
+|        | - | - |  |
+|          | The recipient's organization number () | - | - |
+|           | The recipient's name () | - | - |
+|            | The recipient's organization number () | - | - |
+|            | The response recipient's organization number () | - | - |
+|             | The Receipt's Name () | - | - |
+|              | Identifier for the message This is a response to () | - | - |
+|                 | Sender's case sequence number () | - | - |
+|                  | Sender's case year () | - | - |
+|                | Sender's title () | - | - |
+|               | Sender Document Date () | - | - |
+|              | Sender Journal Post Type () | - | - |
+|                | Sender Journal Status () | - | - |
+|                  | Sender Journal year () | - | - |
+|                 | Sender Secretary Sequence Number () | - | - |
+|               | Sender Journal Post Number () | - | - |
+|            | Sender's title (), otherwise title for message () | - |                       |
+|               | Sender's title (), otherwise title for message () | - |                       |
+|                 | Sender Date () | - | - |
+|      | - | - |                                               |
+|        | Sender's case manager () | - | - |
+|      | - | - |                                               |
+|        | The Receipt's Name () | - | - |
+|     | The response receiver's address line 1 () | - | - |
+|      | The Roser's Postcode () | - | - |
+|    | The response recipient's post office () | - | - |
+|      | The Receiver's Land () | - | - |
+|       | The response recipient's organization number () | - | - |
+|   | MIME Type for the attachment () | - | - |
+|  | Surname for file provided by MIME type | - | - |
+|     | File name for the attachment () | - | - |
+|    | File name for the attachment () | - | - |
+|    | - | - |                                               |
+|          | BASE64-CODED Binary Document | - | - |
+Further description of the functionality of Best/Edu can be found at:
+- Best/Edu
+Further description of the functionality of KS Replyer can be found at:
+
+Technical documentation for KS Replyer (external link)

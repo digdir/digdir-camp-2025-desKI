@@ -1,0 +1,19 @@
+Url: https://eid.difi.no/nb/minid/hvilen-resresres-blir-minid- Activation letter-sent-to -#MAIN-conent
+Title: Which address is minid activation letter sent to | Help sites for common solutions
+
+Sámegiella
+What address is minid activation letter sent to
+
+MinID activation letter is only sent by mail to your registered address. If you are registered with both postal address and residential address, the letter will be sent to the postal address. For safety reasons, mini -activation letters are not sent to another address.
+
+Normal delivery time is 10 working days.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

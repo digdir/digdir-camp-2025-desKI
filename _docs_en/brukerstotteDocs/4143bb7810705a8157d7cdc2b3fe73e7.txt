@@ -1,0 +1,34 @@
+URL: https://eid.difi.no/nb/contakt-og-eservation register/insight-in-person information-gdpr
+Title: Access to Personal Data (GDPR) | Help sites for common solutions
+
+Access to personal data (GDPR)
+
+Everyone who uses the Norwegian Digitalisation Agency's common solutions has the right to request access to personal data stored in these common solutions.
+
+When applying for access, you must choose which service you want access to. Below you will find information about these solutions.
+
+Access requirements must be sent to the Norwegian Digitalisation Agency. Use the form here.
+
+Norwegian Digitalisation Agency
+PO Box 1382 Vika
+0114 Oslo.
+ 
+The ID port
+The ID port is a safe login solution for public services on the Internet.
+
+The contact and reservation register
+The contact and reservation register is a joint solution that all public companies should use in contact with the inhabitants. The businesses can use the register to send out notice and service messages by SMS or e-mail. The companies can also find information about the citizen being reserved for digital communication with the state and municipality.
+
+donkey
+Esignment is a service that provides opportunities for citizens to sign letters electronically from public companies with Eid.
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

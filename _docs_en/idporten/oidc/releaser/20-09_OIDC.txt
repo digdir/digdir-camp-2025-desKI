@@ -1,0 +1,22 @@
+title: 20-09 oidc
+Description: 20-09 Oidc
+Sidebar: Oidc
+Redirect_From: /20-09_oidc
+
+Maintenance release with minor error corrections and improvements.
+Releasen was production -sized Sep 29, 2020
+Improvements:
+Couples should work for clients with "none" authentication method (Pbleid-19995)
+The couple functionality worked only for clients with client_secret_* - client authentication method, which resulted in public clients as e.g. End user systems could not use couples.  Host fixed so couples work for all client types.
+Removing "Unspecified" as 'Aud' in Access_tokens if no value is requested (PBLEID-19222)
+Today, we hand out "Unspecified" as 'Aud' in Access_token if the client is not active a specific value.
+This creates problems for resource servers / API gateways that must be configured to operate as "unspecified".   In addition, the Aud = unspecified did not give any value, as it cannot be used for real audience restriction as RFC8707 adds up.
+The ID port and machine gate are changed to hereafter only include 'Aud' if actively requested by client (ie a 'resource' in Grant/Authorize-Request.)
+Configured client authentication method must be used on all OIDC endpoints (PBLEID-17855)
+As of today, a client's configured client authentication method is only validated on /token.
+This is improved to include validation also on Token Introspection, Token Exchange and Revocation.
+Error corrections:
+Posting of JWKS does not replace keys that lie there before (PBLEID-20887)
+When posting a JWKS with new keys, no old keys were removed. 
+not possible to use uriers as resource in Grants (PBLEID-20587)
+https://tools.ietf.org/html/draft-eif-oAuth-resource-edicators-08#section-2 says that "resource" may be a URI, but the machine gate/oidc supports only url.  Correct this so that Uri is also legal.

@@ -1,0 +1,84 @@
+Title: Journal mail to e -insight
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+eFormidling allows your business to publish a journal entry to e -insight.
+
+TOC
+{: toc}
+
+Introduction
+Evisation is a search service for anyone looking for information related to the public sector. Journal posts are a part
+of the content that can be applied for.
+
+The use of e -insight is compulsory for the state -owned enterprises covered by the regulations of section 6 of the Public Act.
+Digitization Circular (external link)
+The use of e -insight is recommended for state enterprises that are not covered by the regulations of section 6 of the Public Act.
+Digitization Circular (external link)
+
+Emypesing is used to publish information to e -insight. Usually, e-dissemination is used through the e-insight client, but
+This is a temporary solution for the suppliers to a greater extent support integration directly through eForsing.
+Read more about e -insight at:
+
+This is e -insight (external link)
+Use e -insight (external link)
+Technical documentation for e -insight (external link)
+
+Publishing of journal entry is represented with the following process for the recipient:
+| Process name | Process identifier |
+| ----------------- | --------------------------------------------------- |
+| Journal mail | URN: NO: DIFI: Profile: Evisation: Journal post: Ver1.0 |
+Publishing journal entry is represented with the following process for sender:
+| Process name | Process identifier |
+| ------------------- | ------------------------------------------------- |
+| E-Insight response | URN: NO: DIFI: Profile: Evisation: Response: Ver1.0 |
+A business always acts as a sender, while the recipient of journal entry is always an insight at Digdir.
+Message content
+There is only a document type supported to publish journal entry to e -insight and this is only supported by e -insight
+messaging service.
+| Document Type | Message Services |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Publishing | E -Insight messaging |
+Address messages
+Messages are addressed from the sender's organization number to Gigdir's organization number.
+Because the process is supported by a single document type supported by a single messaging service there is none
+Business rules related to choosing these.
+Send messages
+Before a business sends a message a voluntary capability lookup to see if the recipient supports
+The journal entry process. In that case, document type and messaging service are provided. The business then builds the message before it is sent
+to the integration point. The integration point Routes the message to Evisyn's messaging service.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant d as e -insight message service
+
+A->> B: Outgoing Message
+B->> D: Outgoing Message
+
+Further description of the relevant messaging services can be found at:
+- e -insights messaging service
+Notification
+Sender System receives status messages when a message is delivered. Sender's system also receives status messages at
+error situations and when a message is not delivered within the defined life. Sender's system can notify
+The sender of both successful broadcasts and deviations.
+Assumptions
+
+Interface E -Mediation 2 must be used (Best/Edu is not supported)
+The use of e -insight requires appointment
+
+Configuration
+The following configuration is required for full functionality:
+
+Minimum configuration of the integration point
+Configuration of e -insights messaging service
+
+Development
+Interface:
+- Emsyring 2
+Document Types:
+- Publishing
+Examples:
+- Example of journal entry to e -insight

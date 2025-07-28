@@ -1,0 +1,29 @@
+Url: https://eid.difi.no/nb/esigning#MAIN-Content
+Title: Esignment | Help sites for common solutions
+
+donkey
+E-signature is your personal electronic signature confirming that you are the one you are publishing for being.
+
+When one document is applied to electronic signature, the contents of the document cannot be changed. Signing document electronically is time -saving and cost -effective.
+
+Questions and answers
+Which E-ID supports electronic signing?
+How can I open a signed document?
+Why does the signed document disappear after 40 days?
+How can I see if the document should be signed by several people?
+How to use esignation
+How do I sign?
+How can I see if the document is signed (validation)?
+How can business use the signing service
+More about esignation
+What is esignation
+Words and concepts
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

@@ -1,0 +1,23 @@
+Url: https://eid.difi.no/nb/minid/minid-erkeren-din-haar-en-feile-state-as-gear-you-do not-can-can-in-in-in
+Title: "Your Minide user has a fault condition that prevents you cannot log in" | Help sites for common solutions
+
+Sámegiella
+"Your MinID user has a failure condition that makes you can't log in"
+
+"Your mini-user has an error condition that allows you to not log in. Contact User Support for more information."
+
+Reasons for you to get this error message:
+
+Your MinID user has not been in use for more than 2 years, and has thus been closed
+You even asked for your MinID user to be closed
+You've got a new identification number and try to log in with your old number (you need to order a new mini -Active letter to your new birth number)
+Your contact information in the contact and reservation register has been removed. You can read more about it here.
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

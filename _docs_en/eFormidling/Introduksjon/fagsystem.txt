@@ -1,0 +1,68 @@
+Title: Professional system that supports integration with eFonsidation
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page provides an overview of which professional systems support e -dissemination according to the requirements and tests as described on
+- Requirements and test descriptions
+Read more about how self -declaration of support for e -officing works on
+- Self -declaration of support for eFruely (external link)
+The site presents information that provided from the suppliers and is not quality assured by eFonsemidling.
+Proposals for changes are submitted by clicking "Change/Edit Content" in the menu above the page.
+
+TOC
+{: toc}
+
+Solutions with self -declared support for eFrasing
+
+Note that the self -declared regime for e -dissemination was established in November 2023. Not all suppliers with support for e -mouring have submitted the self -declaration form yet.
+
+Acos WebSak
+| Fag system | ACOS WebSak |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Supplier | ACOS AS |
+| Processes |                                                                       |
+| - Access requirements from e -insight | Supported from version 8.14 |
+| - Journal mail to e -insight | Supported from version 8.14 |
+| - Meeting for e -insight | Supported from version 8.14 |
+| - Case handling | Supported from version 8.14 |
+| - Confidential case handling | Supported from version 8.14 |      
+| - Decisions to a citizen | Supported from version 8.14 |
+| Delivery Model |                                                                       |
+| - Integration point is operated by customer | Supported |
+| - Integration point is operated by supplier | Supported |
+| - Supplier runs its own integration point on behalf of its customers | Not supported |
+| Links | ACOS websak (external link) |
+Sikri as
+| Fag system | Elements |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Supplier | Siki AS |
+| Processes |                                                                       |
+| - Access requirements from e -insight | Supported from version 7.115.0 |
+| - Journal mail to e -insight | Supported from version 7.115.0 |
+| - Meeting for e -insight | Supported from version 7.115.0 |
+| - Case handling | Supported from version 7.115.0 |
+| - Confidential case handling | Supported from version 7.115.0 |      
+| - Decisions to a citizen | Supported from version 7.115.0 |
+| Delivery Model |                                                                       |
+| - Integration point is operated by customer | Supported |
+| - Integration point is operated by supplier | Supported |
+| - Supplier runs its own integration point on behalf of its customers | Supported |
+| Links | Elements (external link) |
+Template for self declaration
+| Fag system | Name of the solution |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Supplier | Name of the Supplier |
+| Processes |                                                                       |
+| - Access requirements from e -insight | Supported from version 1.2 |
+| - Journal mail to e -insight | Supported from version 1.2 |
+| - Meeting for e -insight | Not supported |
+| - Case handling | Supported from version 1.0 |
+| - Confidential case handling | Not supported |      
+| - Decisions to a citizen | Supported from version 1.1 |
+| Delivery Model |                                                                       |
+| - Integration point is operated by customer | Supported |
+| - Integration point is operated by supplier | Not supported |
+| - Supplier runs its own integration point on behalf of its customers | Not supported |
+| Links | Name of the solution (external link) |

@@ -1,0 +1,24 @@
+Title: Example of access requirements from e -insight
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of access requirements from e -insight.
+
+TOC
+{: toc}
+
+Receive messages
+Check incoming messages
+
+Download message
+
+Erase message
+
+Next step
+
+Functional description of access requirements from e -insight
+The document type of access requirements
+The interface e -forming 2
+Several examples

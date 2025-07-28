@@ -1,0 +1,97 @@
+Title: Emsydidling's messaging service
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape supports the following processes and document types with e -dissemination messaging service (DPO).
+Recipients support one or more of the following processes:
+| Process | Document Type | Example |
+| ------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Case processing | Archive Message | Example |
+| Confidential Case Management | Archive Message | Example |
+| Agreed message exchange | Agreed | Example |
+Sender supports one or more of the following processes:
+| Process | Document Type | Example |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+|  | Archive Message receipt status | See the examples above |
+|        | Status | See the examples above |
+When using the Emsynings Message Service, a business usually occurs as both the sender and the recipient.
+Whether the Emsyring's messaging service is part of a recipient's capabilities or does not depend on several factors such as
+described for the individual process.
+Emsynidling's messaging service is realized with Altinn dissemination, which is used as transport.
+In order to use E -Design's messaging service, the integration point must be configured with necessary access to the API
+Altinn dissemination offers.
+The integration point packs the messages and sends them unchanged through the API Altinn dissemination offers. The following files
+Sent:
+
+SBD.JSON (Standard Business Document)
+asic.zip (document package)
+
+By using the interface Best/Edu converter the integration point first from Best/Edu to archive message, before the message
+Shipped as described above.
+The case processing processes require the recipient to return an archive message receipt.
+In addition, the recipient's integration point sends message statuses (received and delivered) back to the sender. These are used
+To signal back from the recipient to the sender whether a message was delivered to the integration point or about delivery
+Failed. These are internal control messages that are handled by the integration point.
+If one chooses to integrate against e -mediation without integration point, the integration must:
+
+Use e -Design's messaging service at Altinn dissemination (and)
+Send back statuses (received and delivered) after receiving a message
+If received message contains Altinn dissemination then receipts and statuses must be marked with
+same when they are sent back
+
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA server sender subject system")
+B -> | Archive Message | C ("FA: FA server" sender integration point)
+C ---> | Archive Message | D ("FA: FA-Server Emsydidling's messaging service")
+D ---> | Archive Message | E ("FA: FA-Server Recipient Integration Point")
+E -> | Archive Message | F ["FA: FA-Server Recipient System"]
+C ---> | Status: Received | B
+D -> | Status: Received | C
+E -> | Status: Received | D
+C ---> | Status: Delivered | B
+D -> | Status: Delivered | C
+E -> | Status: Delivered | D
+C ---> | Archive Message receipt | B
+D-> | Archive Message receipt | C
+E-> | Archive Message receipt | D
+F-> | Archive Message receipt | E
+
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA server sender subject system")
+B ---> | agreed | C ("FA: FA server" sender integration point)
+C -> | agreed | D ("FA: FA-Server Emsydidling's messaging service")
+D -> | agreed | E ("FA: FA-Server Recipient Integration Point")
+E -> | agreed | F ["FA: FA-Server Recipient System"]
+C ---> | Status: Received | B
+D -> | Status: Received | C
+E -> | Status: Received | D
+C ---> | Status: Delivered | B
+D -> | Status: Delivered | C
+E -> | Status: Delivered | D
+
+Message Statuses
+Message Status Message Submitted with E -Designing Message Service:
+| Status | Comment |
+| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Created | The integration point receives BEST/EDU or EMOSPLING 2.0 Message from Case Archive System and creates a DPO message |
+| Sent | Integration Point has sent the shipment to message intermediaries |
+| Received | The sender receives confirmation that the receiving integration point has received.                                                                                      | 
+| Delivered | The delivery has been forwarded to the case archive system and confirmed completed.                                                                                           |
+| Read | Appreceifts are sent from the recipient to the sender. This is both a receipt and a message type indicating that the case archive system of the recipient has received the message. | 
+Message Statuses for Messages Received with E -Design's Message Service:
+| Status | Comment |
+| --------------------- | --------------------------------------------------------------------------------------------------- |
+| Created | Integration point downloads from message intermediaries and creates the message with them |
+| Inbound_mottatt | The integration point of the recipient has received a message.                               |
+| Incoming_Delever | Has generated two receiving receipts and these are sent to the sender |
+Next step
+
+Product Documentation for Altinn Dissemination (External Link)
+Technical documentation for Altinn dissemination (external link)
+Multiple messaging services

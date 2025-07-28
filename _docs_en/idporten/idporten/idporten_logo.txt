@@ -1,0 +1,9 @@
+Title: Use of the ID port logo
+Description:
+Summary: "The ID port's logo should always be used on services that use the ID port for login."
+TOC: FALSE
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Idporten_logo
+It is important that the logo is used correctly and that use guidelines are followed.
+Read more about the use of the logo and download the logo in our proof guide.

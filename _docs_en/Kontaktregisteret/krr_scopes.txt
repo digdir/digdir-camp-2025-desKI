@@ -1,0 +1,28 @@
+Title: Integration Type and Scopes
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_scopes
+
+Allowed integration types
+You must record integration type to your client in the self -service solution. Which type of integration you choose will add guidance on which scopes you can use with the client. A client can only have an integration type.
+In the KRR context, the following types of integration are relevant:
+| Type of Integration | Description |
+|-|-|
+| API_ Client | The ID port integrations that will retrieve data from a third API on behalf of logged in user. |
+| KRR | Contact register (server-to-server) |
+When using the residual look, you must select the type of integration "Machine Gate & KRR client". Under "Scope", select the Scope package "Krr". Then you will automatically be assigned the right scopes.
+For user login, you must select the integration type "ID port & API client". Below "Will the client use external scope?" Do you choose "yes". You must then manually set the scopet: KRR: User/contact information.READ.
+{% include note.html content = "It is not possible to change the type of integration after creation." %}
+List of current scopes for KRR
+| Scope | Description | Permitted integration types |
+|-|-|-|
+| OpenID | Trigger an openide connect authentication | IDPORT, API_ CLIENT |
+| Profile | Provides access to /Userinfo endpoint |  IDPORT, API_ CLIENT |
+| KRR: Global/ | Scopes for Global Access to KRR |  KRR, Machine Gate |
+| KRR: User/ | Scopes that provides KRR data for logged in user | API_CLIENT |
+{% Include note.html content = "The various scopes available to KRR are described under the sections of the various services." %}
+In general, API consumers must ask API provider (owner of scopet) for access to use their scope. Read more here about how you as a customer can access the scopes above.
+Link to more about scopes.
+test

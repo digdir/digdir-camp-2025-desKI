@@ -1,0 +1,17 @@
+Title: Audience-Restricted Tokens
+Description: Audience-Restricted Access Tokens
+Summary: "Some apis request that the access_tokens are audience-rested, ie. Should have a specific ´Aud 'value."
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_func_Audience_restricted_tokens
+
+When Multiple Organizations Sacrifice Identical Apis Protected By The Same Outh2 Scope Value, They Are Vulnerable for Token Replay Attacks.  
+Example Showing Token Replay: Both Bank1 and Bank2 Sacrifice The Same API for Customer Account Information.  If Bank1 Receives a valid access_token, it can craft an api request using this token to bank2, and thhus get information related to the customers of their competitors.
+Audience-Restiction Mitigates This Attack, by binding the token to a specific Audience (-Value). Typically, The Url of the Target API (Resource Server) is used as Aud-Value, but this can be chosed freely by the api owner.  A pre -requisite for Audience-Restriction to Work, is that the apis validate That Their Expected Aud-Value Is Present in the Token.
+Most APIS Protected by Machine Gate/ID port Do Not Require Audience-Restion, Please Contact The API Owner to Obtain the Aud-Value to Be Used.
+Audience-Restion is Standardized in RFC8707: Resource Indicators
+request
+The client including the -claim in the jwt grant in order trigger audience restion.
+response
+The Resulting Access Token Will Include The Target Resource Value in the Claim.
+If Audience-Restion is not used, then Will Currently Contain The Value. In the future, the machine gate will not include -claim when Audience Restriction is not used.

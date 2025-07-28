@@ -1,0 +1,24 @@
+title: pkce
+Description: ID port's functionality for PKCE - Proof Key for Code Exchange
+Summary: "PKCE is an OAuth2 extension that protects against the stealing of the authorization code"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_pkce
+
+About the functionality
+PKCE - Proof Key for Code Exchange - (pronounced "pixy") is a method that protects both Public clients who use the authorization code (typically mobile apps) against stealing the authorization code, but also against CSRF attacks.
+PKCE is defined in RFC7636, and we refer to this for detailed documentation of the functionalist.
+The method is based on the following steps:
+
+The client generates a secret at each login.  
+I /Authorize-call is sent a hash's version of the secret as part of the request
+The I /Token call must be sent with. Any attacker who has snapped up the authorization code along the way does not know the secret and therefore will not be given tokens.
+
+We only support 
+Note that Code_verifier must be at least 43 characters long, and no longer than 128.
+If is then calculated.  The Code Challenge should not use padding.
+Here's a tool for calculating Challenges:
+PKCE is, as a rule, required
+Updated security recommendations from IETF are clear that the use of PKCE is the best practice, and it is required in the OAuth 2.1 standard.
+Therefore, all clients in the ID port must use PKCE, if not, as a general rule, the ID port will reject the authentication request.  
+But for customers with less secure integration software that does not yet support PKCE, it is possible to use self-service to downgrade their client to circumvent the forced PKCE validation, this is done by putting on the client to the "none".

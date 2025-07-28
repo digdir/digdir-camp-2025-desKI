@@ -1,0 +1,23 @@
+Title: Elma Open Data
+Description: Elma Open Data
+Summary: "Elma Provides Open Data's Containing Information About Participants and What Profiles Each PartiCipant Is Registered With."
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_open_data
+
+Updated: 19.09.2024
+IMPORTANT NOTE ON USE
+NB! These datasets must not be used to check IF a donor Norwegian organization is registered in peppol or what documents an organization can recceive. This should be done via a lookup via the SML (service metadata locator).
+See Section Below On How To Do A Proper Lookup.
+Dataset
+We have previously published data Sets of Recipients in Elma at the data hotel (hotel.difi.no). The data hotel was discontinued on 11 February 2025. Elma Will Stop Updating the DataSt at September 23, 2024.
+Read more about the discontinuation of data hotel
+Read More About Peppol Directory
+How to Lookup participants in Peppol
+The only valid way to lookup an organization is the peppol way of lookup via the sml.
+Previously, Elma was the only peppol smp where norwegian organizations were registered. This is no longer the case. A Norwegian organization may be registered to an other smp. A Lookup Only in Elma is No Longer a Valid Way to Lookup Norwegian Organizations in Peppol.
+It is Also Possible to Lookup Organizations via Peppol Directory. It is current not mandatory for SMPS to Publish Information to Peppol Directory, So the List There Is Not Complete.
+RECIPE FOR CREATING THE URL TO LOOKUP A ORGANIZATION CAN BE Found at Helger.com
+Under The Section "Create Participant in SMP and cf. at the bullet point" a new dns entry in the form of… "
+See Official Peppol Documentation on Sml and SMP for More Details
+See the Vefa-Peppol Lookup Library for a Java Implementation.

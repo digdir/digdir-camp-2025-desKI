@@ -1,0 +1,24 @@
+Url: https://eid.difi.no/nb/digital-postkasse/how-skaffer- i-me-meg- a-mailbox-from-dignost#main-conent
+Title: How do I get a mailbox from Digipost? | Help sites for common solutions
+
+How do I get a mailbox from Digipost?
+
+To select digital mailbox from Digipost:
+
+Go to the website www.norge.no
+Click "Select Digital Mailbox"
+Click "Go to Digipost"
+To create a digital mailbox from Digipost, you must identify yourself electronically with BankID or Buypass ID.
+To read mail from the public, you must use the ID port
+
+If you have any questions, contact digipost: kundeservice@digipost.no or tel. (+47) 22 03 00 00
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

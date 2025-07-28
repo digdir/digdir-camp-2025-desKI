@@ -1,0 +1,55 @@
+Title: "Archive Message"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_nm_archive message
+
+The archive message contains archive-specific metadata and is designed for communication between the case and archive system. It was staying
+specified in collaboration between the ACOS and the Norwegian Digitalisation Agency. It is also used at KS and several suppliers
+of the case and archive system.
+There are currently several variants of the archive message. The variant used in e -officing has been based on
+Noark 5 version 3.1 and is defined in archive message.xsd. Archive message.xsd defines the type of archive message.
+| Field | Type | Required |
+| ------------------- | ------------------------------------------------------------------------------------------- |
+| SYSTEM | String | Yes |
+| Message Time | String | Yes |
+| Time | Datetime | Yes |
+| Number files | integer | Yes |
+| Folder | Custom from Noark Folder | Either folder or basic registration |
+| Basic Registration | Custom from Noark Basic Registration | Either folder or basic registration |
+Archive message uses the types from Noark with some adjustments. The Noark Types are copied and customized from the Noark form
+Archive structure.xsd for archive message.xsd. The Noark Form Metadata Catalog.xSD is used unchanged.
+Emsydidling's requirements for designing archive messages sent with the interface:
+- Valids according to. archive message.xsd
+- Archive message should contain a case folder
+- The case folder should contain a journal entry
+- Only the document item is taken into account under the corresponding document description
+When receiving the archive message, one cannot rely on validating against archive reports.xSD because in some cases sufficient information will be lacking to produce a valid archive message. This applies to messages sent from the Emorts interface and messages received from KS Replyer.
+Example
+
+Adaptations to Noark's Types
+In the work on the archive message, some noark types were removed because they were not considered relevant by
+Message Exchange: Archive, Archive Creator, Archive part, Classification System, Moet folder, Moet participant, Moeter registration,
+Conversion, disposal, discard, deletion, electronic signature and class.
+For the same reason, some item from the remaining Noark types is removed:
+- Folder. Caption
+- Case folder.utlaant date and case folder.utlaant to
+- registration.kassation
+- Document Description.kassation, Document Description.Tho -Excession, Document Description.
+- Document object.Format, document object.Format details, document object.Check, Document object.Check.
+For the same reason, some elements of the remaining Noark types are volunteers:
+- Folder.
+- journal entry
+To avoid the risk of collisions across the system is folder systemide, registration. SystemID,
+Document description.SystemID and class.
+In addition, some structural changes have been made:
+- Registration has been reversed from the reference archive section being voluntary to demand that one of the reference archive part, reference parent folder (new) or reference class (new) must be stated
+- Folder is expanded with reference parent folder and classification (new type)
+- Folder. Registration has been changed to folder. Basis registration
+- Basic registration. Registering site has been moved to registration. Registration page
+- Registration has been converted from containing a list of either document descriptions or document object to contain a list of document descriptions and document objects mixed
+Feel free to see relevant Xsder
+
+Archive message.xsd (based on noark 5 v3.1 archive structure.xsd) (external link)
+Noark 5 V3.1 Metadata Catalog.xsd (External Link)

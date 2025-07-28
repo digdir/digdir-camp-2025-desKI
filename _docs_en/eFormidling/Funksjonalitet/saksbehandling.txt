@@ -1,0 +1,155 @@
+Title: Case Management
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape allows your business to send and receive messages as part of case processing.
+
+TOC
+{: toc}
+
+Introduction
+Case handling is the process from a triggering event to a decision. Possible triggering events include to
+send an application or to have children. The Administration Act defines a decision as a decision made during the exercise of
+public authority and which generally or specifically determines the rights or obligations of private persons
+(Individuals or other private legal subjects). Procedure rules for public authorities are found in
+The Public Administration Act with adjustments from regulations for different areas such as child welfare.
+Public enterprises usually use case processing systems to facilitate effective case processing and
+compliance with case processing rules. Many of the case processing systems contain support for record keeping and
+Archiving and is often called case and archive systems. There are also many case processing systems adapted to specific
+Areas (for example, child welfare) that are often called professional systems.
+As part of the case processing, communication between several companies will often be needed. Example includes:
+- Obtaining documentation
+- Complaints processing
+- Quality assurance
+In these cases, it is usually desirable that communication goes directly between the business processing system
+So that the documents sent and received can be automatically linked to the case in question. the support of the e -officing for
+Case management provides effective communication about cases between different case management systems. Emsyring can also be used for
+to facilitate (part-) automated case processing.
+Case processing is represented with the following processes for the recipient:
+| Process name | Process identifier |
+| ------------------------------- | ----------------------------------------------------------------------------- |
+| Administration | Urn: No: Difi: Profile: Archive message: Administration: Ver1.0 |
+| Health, social and care | URN: NO: DIFI: Profile: Archive message: Health social care: Ver1.0 |
+| Culture, sports and leisure | Urn: No: Difi: Profile: Archive message: Cultural sports and Frit time: Ver1.0 |
+| Nature and Environment | Urn: No: Difi: Profile: Archive message: Nature and environment: ver1.0 |
+| Business Development | Urn: No: Difi: Profile: Archive message: Naling development: Ver1.0 |
+| Growing up and education | Urn: No: Difi: Profile: Archive message: Growth education: Ver1.0 |
+| Plan, Construction and Geodata | URN: NO: DIFI: Profile: Archive message: Planbygggeodata: Ver1.0 |
+| Taxes and Fees | URN: NO: DIFI: Profile: Archive message: Tax Games: Ver1.0 |
+| Technical Services | Urn: No: Difi: Profile: Archive message: Technical services: Ver1.0 |
+| Traffic, travel and transport | Urn: No: Difi: Profile: Archive message: Traffic travel and transport: Ver1.0 |
+Case processing is represented with the following process for sender:
+| Process name | Process identifier |
+| --------------------- | ------------------------------------------------------- |
+| Archive Message response | Urn: No: Difi: Profile: Archive message: Response: Ver1.0 |
+What processes a recipient supports are up to the recipient and is shown in the recipient's capabilities. The recipient can on
+Its side choose to handle different processes differently. For example, by routing the messages to different subject systems or to different
+Work lists in the same system. Usually a business acts both as the sender and the recipient, but it is also possible to
+Just act as a sender.
+Message content
+Only one document type is supported for case processing.
+| Document Type | Message Services |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Archive Message | E -Design Service Service Services Serverutaltinn Digital Post |
+In addition, the sender expects a receipt from the recipient as a confirmation that a message has been delivered right up to
+The recipient's system (not just to the recipient's integration point).
+| Document Type | Message Services |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Archive Message receipt | E -Design Service Service Services Serverutaltinn Digital Post |
+Address messages
+Messages are addressed from the sender's organization number to the recipient's organization number.
+For recipients who use e -dissemination themselves, the Emsyring's messaging service is preferred. For recipients who do not use
+Emypesing is preferred KS Svarut if the recipient uses this service. For all other recipients preferred
+Altinn digital mail.
+
+graph lr
+A {User Receive Design?}
+B {User Receiverk's Svare?}
+U (Emsyring's messaging service)
+V (ks Svarut)
+W (Altinn Digital Post)
+A -> | yes | U
+A ---> | No | B
+B -> | Yes | V
+B -> | no | W
+
+Some businesses cannot be reached with these messaging services. This applies, for example, to foreign companies. In such
+Cases can be sent physical to the businesses with the help of the printing service in Digital Post to residents (DPI).
+Read more about how this works on:
+
+Decision to residents
+
+Send messages
+First, a capability look is made to see which document types the recipient supports for case processing. Business
+The subject system then builds a message with the desired document type. Finally, the message is sent to the integration point, which mourning
+in order for the message to be routed to preferred messaging service.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS Address Service
+Participant D AS eFormidling's messaging service
+Participant e AS KS Svarut
+participant f AS Altinn Digital Post
+A->> B: Capability lookup
+B->> C: Capability lookup
+A->>+B: Outgoing Message `Archive Message`
+B->> D: Alt 1)
+B->> E: Alt 2)
+B->>-F: Alt 3)
+
+Further description of the relevant messaging services can be found at:
+- Emsydidling's messaging service
+- KS Svarut and Replyer
+- Altinn digital mail
+Receive messages
+eFormidling allows your business to receive messages in connection with case processing. eFormidling supports receiving messages
+From other companies using e -mouring and messages sent to your business account at KS Replyer. Latter
+Opportunity allows the municipalities to communicate effectively with the companies that use e -dissemination.
+The company's professional system receives continuous incoming messages from the company's integration point that in turn receives
+The messages from the messaging the business uses.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS E -Formidling Message Service
+Participant d as ks Svarinn
+C->> B: Incoming Message
+D->> B: Incoming Message
+B->> A: Incoming Message
+
+Further description of the relevant messaging services can be found at:
+- Emsydidling's messaging service
+- KS Svarut and Replyer
+Notification
+Sender System receives status messages when a message is delivered. Sender's system also receives status messages at
+error situations and when a message is not delivered within the defined life. Sender's system can notify
+The sender of both successful broadcasts and deviations.
+In addition, E-Mozening sends an email notice of any deviations to the sender's defined notification point. Notification is collected
+and is sent periodically.
+Upon receipt to the subject system, the receiving system may make notification of receiving a message so that the message does not risk to
+stay unread.
+Upon receipt to Altinn Digital mail, the company can be notified of reception of notification. Notification goes to business
+Registered notification address in the Unit Register.
+Assumptions
+
+Use of eFruely messaging messaging requires appointment
+Use of KS Svarut and Replyer requires appointment
+Use of Altinn Digital Post requires appointment
+
+Configuration
+The following configuration is required for full functionality:
+
+Minimum configuration of the integration point
+Configuration of eFruing messaging service
+Configuration of KS Svarut and Responsible
+Configuration of Altinn Digital Post
+
+There is also support for partial configuration. Partial configuration means that one does not reach all recipients. Such as
+Need one does not configure KS Svarut if one is to reach state -owned enterprises. One does not need to configure either
+KS Replyer if one does not want to receive from senders using KS Svarut.
+Development
+
+Example of case processing

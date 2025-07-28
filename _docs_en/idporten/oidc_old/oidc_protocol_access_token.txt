@@ -1,0 +1,73 @@
+Title: "Access Token from the ID port"
+Description: "This Page Documents The Access_tokens Issued by Id Port Id Port Id Port Oidc Provider"
+Summary: 'His Page Documents The Access_tokens Issued by Id Port Id Port The Oidc Provider'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_access_token
+
+Request
+Two Request an access_token, use the /token endpoint.
+The Access Token
+ID port Issues Two Different Types of Access_tokens:
+| Token Type | Description |
+|-|-|
+| By Reference | The token is just a string reference the authorization inside ID port.  Such tokens must be validated towards the /tokeninfo endpoint.  By-reference tokens Are Good for Privacy, AS No Personal Data Can Be Harvested by the Client or in Transit. |
+| By Value | The token is self-contained, meaning it containins all the relevant information about the authorization (end user, scope, hourly stamp etc.).  Such tokens Are non-reefocable and should have a short lifetime |
+"By Value" / Self-Contained Access Token
+The token is a jwt with the following structure:
+Access Tokenets Header:
+| Claim | value |
+| --- | --- |
+| KID | "Key Identifier" - Unique Identifier for The Key and Certificate Used by ID port. The Corresponding Public Key and the Certificate Must Be Fooded From Our .well-Known Endpoint. |
+| ALG | "Algorithm" - algorithm used for signing the token. ID port only supports (RSA-SHA256) |
+Access Token Body:
+| Claim | Value | Example |
+| --- | --- | --- |
+| Sub | "Subject Identifier" - an unique identifier for The Authenticated User.  The Value is pairwise, meaning a donor client will always get the same value, whilst different clients do not get equal values for the same user.  |
+| Aud |  The indented audience for the token.  Normally the OAuth2 'Issuer' Url of the Resource Server / API. Some Resource Servers Require Audience-Restricted Tokens, and the Actual Values to Used Must Be Exchanged Out-of-Band.  ID port will set the string value IF no Audience-Restricted Token was Requested by the Client.   See OAUTH2 Resource Indicators |  |
+| ACR | Security Level |
+| Client_id | The Client_id of the Client Who Received This Token. Note that client_ids should in General Not Be Used for Access Control. |
+| Client_amr | How the Client Authenticated Itself Towards The AS.  | |
+| Consumer | The Organization Number, In ISO6523 Notation, of the Organization Who Is The Legal Consumer of the Token/API.  This value is always present.  In Most Cases, This Organization Will Also Be The Data Controller According To The GDPR. |  |
+| Supplier | The Organization Number, in ISO6523 Notation, of the Optional Organization which the has delegated to act on Its Behalf Regarding the API Consiction.  In most cases, this is a data processor. |
+| Delegation_Source |  The OAuth2 Issuer Value of the Legal Authority Where The Organization Performed Delegation of A Given API Access (IE: Scope) to the Organization | 
+| Scope | A list of scopes the access_token is bound to.  Note that the end uss May Not Grant Access to All Scopes Requested.  |
+| PID | "Personal identifier" - The Norwegian National ID Number (Birth Number/D number) of the authenticated end User.   NOT INCLUDED IF SCOPE WAS Requested or pre-registered on the client.  Also Not Included for Machine-Type Tokens. |
+| Token_Type | Type of token. Only Supported. |
+| ISS | The Identifier of ID port as can be verified on the .well-known endpoint | 
+| Exp | Expire - Timestamp When This Token Should Not Be Trusted Any More.  |
+| IAT | Timestamp when this token was issued.  |
+| JTI | JWT ID - Unique Identifer for a Given Token |
+| Client_orgno | Desecated the Organization Number of the Client. Present for Legacy Reasons, but note that access Control Decisions by the Resource Server Should Be Based On The / Claims. |
+Identifying organizations
+ID port and machine gate use a forward-compatible notation for identifying organizations. This is Because We Expect That The Solutions in the Future Will Be Extended Handle Both Foreign Organizations, Organizations Not Having A Registration In The Unit Register (I.E. "Public Selection") As Well A Sub-Eventies Within An Organization.
+The -claim Identifies The Organization, which the -claim States How This Identifier Is Encoded:
+|  | Description |
+|-|-|
+| ISO6523-actoride-upis | The Organization ID is an ISO6523-formatted string, where the first element can have values from peppols extensions to the Official ICD list from ISO.  The ID can have 2-4 elements, separated by colon.   AS of Jan 2021, Only 0192 IS Supported AS ICD Value (Norwegian Organizations Being Registered in Unit Register) |
+Customer Implementations must be able to act that the authority list and consequently the id formatting may be extended in the future.
+Below is an example for Norwegian Digitalisation Agency:
+
+client_amr
+The Following Values May Be Returned for the -claim.  The Values Are Partly From OAuth Token Endpoint Authentication Methods, Plus Some Custom Claims for Certificate-Based Authentication:
+| Value | Description |
+|-|-|
+| None | NO CLIENT AUTHENTICATION WAS Performed |
+| Client_Secret_basic |   |
+| Client_Secret_Post |   |
+| private_key_jwt | A Pre-registered asymmetric Keypair was used. During the registration, a "business certificate" was used to volume the keypair to the organization. |
+| Business Certificate | A Business Certificate according to Soon-to-be-albandoned Norwegian Regulation ("Requirement Preki") was used to authenticate the client.  |
+| Qcforeseal | A Qualified Electronic Seal According To The Eidas Regulation (See Also https://uri.etsi.org/trstsvc/trustedlist/schemerules/euCommon/) |
+| CFORESEAL | A non-qualified Electronic Seal According to the Eidas Regulation |   |
+Access Token Validation
+The Client and Resource Server Must Validate All Responses From Id Port According To The Oidc and OAuth2 Standards as Well As Practice Recommendations from the IETF.
+Access tokens must always be validated by the resource server / API Before Granting Access. Clients Should Normally Just Pass the Access Token Along to the Resource Server Without Any Processing of It, However IF Any Processing Is Performed, Clients Must Also Perform Such Validation.
+The Following References Are Vital:
+* RFC6819: OAUTH2 Threat Model
+* RFC8252: OAuth 2.0 for Native Apps
+* Draft RFC: OAuth 2.0 for Browser-Based Apps
+* Draft RFC: OAuth 2.0 Security Best Current Practice
+Developers Integrating Towards ID port / Machine gate Are Expected to Know These Documents and Apply Them in Their Risk Assessments. Our documention will not re-nerate the recommenions in the above documents, but overall we would like to hightlight:
+
+Use a Certified / Well Recognized IAM-Product or Oidc Library for the Integration
+Keep Secrets / Certificates Safe To Avoid Getting Your Organization Impersonated

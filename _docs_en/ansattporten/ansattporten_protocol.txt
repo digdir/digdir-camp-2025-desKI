@@ -1,0 +1,20 @@
+Title: Employee Gate Protocol
+Description: Employee gate is protocol-like with the ID port
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee gate_protocol
+
+The employee gate's protocol support is almost identical to its ID port, and we refer to this.
+In particular, note the following:
+
+The employee gate uses weird for coding representation conditions. This is documented here
+The employee gate has its own endpoint.  See metadata
+
+acr
+The employee gate supports more owned than the ID port.  The client specifies which eider it will receive by entering an array of in the authentication request:
+| ACR_VALUES | Description |
+| ----- | --------------------- |
+|     | Eid at level high, as in the ID port, ie BankID, Buypass or Commfides |
+|     | Eid at both level high and significant, ie includes mini -in addition to those at the level high.  |
+|  | Microsoft Entra ID. See more information here |
+For historical reasons, the employee gate also supports abbreviated security levels (substantial, high). These will be phased out and should not be used anymore.

@@ -129,7 +129,6 @@ class ChromaService:
             return False
         try:
             self.db.add_documents(documents)
-            self.db.persist()
             return True
         except Exception as e:
             logger.error(f'Error adding documents to ChromaDB: {e}')

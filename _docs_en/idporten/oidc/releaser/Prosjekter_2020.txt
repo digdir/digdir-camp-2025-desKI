@@ -1,0 +1,36 @@
+Title: Projects 2020
+Description: Projects 2020
+Sidebar: Oidc
+Redirect_From: /projects_2020
+
+This "release" contains larger projects and potential pilots that would like to implement in 2020.
+Scheduled production setting: 2020-12-31
+New functionality:
+Procurement New Eid Agreements-ID port and esignation (under Consideration)
+Today's agreements with the Eid suppliers run until November 2020, and new agreements must be made. The new agreements will be based on requirements that follow from the new regulations for trust services (introduced November 2019).
+Notify Norske Eid to Eidas (under Consideration)
+New regulations for trust services introduced in November 2019 mean that Eid suppliers must be self-declared again to Nkom. Since the national requirements are largely based on European requirements (Eidas), Difi wants to run a project in 2020 where we are looking at at the same time reporting the EID solutions to the EU, so that Norwegian citizens can use their EIDER on European services.
+Piloting of the Employee Gate (under Consideration)
+We would like to pilot different variants of "Employee Gate" in Q1 2021. The pilot will contain at least:
+
+Combine login with a "spectator voter" from e.g. Altinn Authorization or other sources of employee relationship
+
+Possibly we can see if we can test out:
+
+
+self-service Circle-of-Trust 
+
+
+Use of Azure AD
+
+
+OIDC provider as the core of new system architecture (in Development)
+The transition from SAML integrations to OIDC integrations goes fast. 40% of the traffic in the ID port now goes over Oidc. As a result, Difi decided in a project in 2019 that ID porte's system architecture must be changed to the OpenID Connect / OAUTH2 section becoming the core of new architecture. One must look at whether it is possible to use a shelf product IAM product instead of today's proprietary solution. At the same time, we will facilitate the use of shooting technology, both PAAS and SAAS solutions where possible.
+Rewriting into a new system architecture begins now, and will continue until the current operating agreement expires in late 2021.
+By 2020, we envision doing the following:
+
+
+Piloting of various IAM products
+
+
+Move SSO handling out of today's collar core and "Fram" to Oidc Provider

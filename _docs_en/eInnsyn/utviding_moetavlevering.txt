@@ -1,0 +1,58 @@
+Title: Expanded Meeting Delivery with more traits
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_ UTVVIDE_MOETE DELIVERY
+
+Expanded Meeting Delivery with more traits
+In order to support some scenario around meeting delivery, some need for extensions or adjustments has been identified on how to use noark the data model now. To the extent that advice takes a height to use existing fields that lie in Noark where it is already possible to enter the desired information, but which there are no compulsory requirements attached to.  In one case, it has seen it necessary to create a new field, as there is no alternative to the use of an alternative.
+Use of meeting case type in meeting case registration
+Meeting registration is a document that belongs to the agenda in a meeting. The meeting registration itself will have the "reference meeting case" which is pointing to the journal entry, which is the actual case presentation for the case. This journal entry will have a journal entry type set for case submissions
+The actual meeting case registration may have different types. Specified by meeting case type
+This can be
+
+Case
+Delegated Meeting Case
+Minutes
+Interpellation
+
+The meeting case registration is the very processing of a case for a meeting.  Each treatment may have its own decisions. Therefore, connect to this meeting registration/treatment, it will typically be a separate document.  This will be a decision, attachment to decisions etc.
+Specification of these types is entering the document description.
+In the Document Type field in the document description one can then enter the values that
+
+Decision
+Attachment to the decision
+
+These are optional values
+Order of case proposals
+It can often be desirable to specify in order in the case list, which does not directly follow the document number the meeting case registration has in the meeting folder.  To achieve this, it defines a separate field, outside the Noark standard.
+At the meeting case registration, you will then enter the number in treatment order in the Moetes case field.
+The order of the attachment itself will follow the Noark standard using document number
+Status on meeting processing
+The need is to make a process of treatment of a case is the final treatment. And in that way, this treatment is clearly evident and weighing clearly.  For this finest meeting registration status which is found on the meeting case document here it can be entered the value "completed".
+Meeting document registration types
+These are registrations that contain information about the meeting itself.  
+At the meeting documents registration, the type is specified in the Meeting Document Registration Type field.
+Typical values here will be
+
+
+Protocol
+
+
+Meeting book
+
+
+Attachment to protocol
+
+
+Notice
+
+
+Video link at meetings
+In order to support the publication of recordings of meetings, there is a separate field for this.  The Video link field can be added to meetings and meeting case registration to link admission to meetings and political issues.
+Data then becomes as a result
+
+As of now, the delivering system must send all data on a meeting while updating with video link. We have seen that it can be inappropriate if a system other than the case archive service is to update a meeting with video links. We are therefore working to send an update with only ID on the object and a video link for updating.
+Decision and voting
+Proposals for publishing decisions and voting on a meeting case. 
+NB: Not yet supported, only solution proposals.

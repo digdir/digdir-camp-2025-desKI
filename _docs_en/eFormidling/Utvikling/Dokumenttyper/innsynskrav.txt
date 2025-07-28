@@ -1,0 +1,37 @@
+Title: "Document Type: Authority Requirements"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD) and possibly one or more documents.
+The document type has the identifier.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from GIGDIR's organization number to the recipient's organization number.
+Business message
+The business message is described below.
+
+ (required)
+Organization number for the recipient of the access requirement.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+E-mail address The answer to the access requirement is to be sent to.
+| Legal values | Email address |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+
+The document
+See
+- Authority requirements under technical documentation at e -insight (external link)
+Next step
+
+Example of access requirements

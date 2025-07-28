@@ -1,0 +1,21 @@
+Title: Testing with the ID port login
+Description: Login ID port
+Summary:
+TOC: FALSE
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_idports_test users
+To test KRR integrations in the verification environment (test) that requires the ID port login (eg min profile, lookup by logged in user), you can use the ID port test users.
+Test time
+We recommend that all customers use test time when testing when logging through the ID port. Test time offers to select security level. 
+
+Test time supports login with synthetic personal identifier (+80 on the month-digit), and the risk of mixing test and production data is then avoided.
+Test time has no password, so you don't have to contact Digdir to assign, created or reset users.
+Use Tenor Testdata search to find test users from the Test People's register.
+-
+## BankID and MinID
+
+For those who cannot use synthetic birth numbers, we offer a set of standard test users with BankID with personal numbers that are not found in the National Register. It is also possible to create and log in with MinID for services with a significant level of security (level 3).
+-
+Minid
+It is possible to create and log in with MinID for services with significant security level (level 3).

@@ -1,0 +1,20 @@
+Title: Generally about the meeting model
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_generelt_om_moet model
+
+Generally about the meeting model
+The meeting data model is based on as it is in Noark 5. This model is very simplified in relation to earlier Noark versions and is based on some
+Classes such as Arvar registration and folder classes in the general noark model.
+A general adaptation has been made.  The type of meeting registration is divided into meeting documents registration and meeting case registration. Meeting document registration is
+Typical occurrences of notice, protocols, etc. While meeting case registration is the actual case presentation
+
+The use of the model
+
+Priority of meetings upon sending
+(Note! Own in-queue for meetings will cease 1 January 2024)
+In reception at e-insight, a separate in-queue has been created for meetings. This is to increase the flow of meeting delivery.
+In order to use this, when sending the integration point, one must change the process type to meeting, where there is today a journal entry.
+
+Values and fields are here

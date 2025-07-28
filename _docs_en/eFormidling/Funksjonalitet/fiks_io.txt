@@ -1,0 +1,81 @@
+Title: FIKS IO message exchange
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape allows your business to send messages as part of FIKS IO message exchange.
+
+TOC
+{: toc}
+
+Introduction
+FIKS IO message exchange allows the sender and recipient to exchange messages defined in the context of KS FIKS IO.
+The messages are not predefined in the context of eFonside, but the protocols defined in FIKS IO are supported.
+All FIKS IO messaging protocols are valid processes in eFoching. FIKS IO message exchange is represented with
+The following process for the recipient:
+| Process name | Process identifier |
+| ----------------------------------------------------------------------------------------------------------- |
+| Archive Clothing Case | no.dibk. archive light.building case.v1 |
+| Matric Comprehension | No.Ks.fiks.matrikkfoering.v2 |
+| (...) | (All FIKS IO messaging protocols are valid processes in e-molding) |
+Message content
+All FIKS IO message protocols are valid document types in eFoons. Process and document type must match FIKS IO
+-The notification exchange. The document types are only supported by FIKS IO.
+| Document Type | Message Services |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| no.dibk. archive light.building case.v1 | Fix io |
+| No.Ks.fiks.matrikkfoering.v2 | Fix io |
+| (All FIKS IO messaging protocols are valid document types in eFo-mediation) | Fix io |
+Address messages
+Messages are addressed from the sender's FIKS IO account number to the recipient's fixed IO account number.
+Because the processes are supported by similar document types supported by a single messaging service there are none
+Business rules related to choosing these.
+Send messages
+Before a business sends a message, a voluntary capability look is made to see if the recipient supports the current
+Fix the io process. In that case, document type and messaging service are provided. The business then builds the message before it 
+to the integration point. The integration point Ruter's message to FIKS IO.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS Address Service
+Participant D AS FIKS IO
+A->> B: Capability lookup
+B->> C: Capability lookup
+A->> B: Outgoing Message
+B->> D: Outgoing Message
+
+Further description of the relevant messaging services can be found at:
+- Fix io
+Receive messages
+The company's professional system receives continuous incoming messages from the company's integration point that in turn receives
+The messages from FIKS IO.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant D AS FIKS IO
+D->> B: Incoming Message
+B->> A: Incoming Message
+
+Further description of the relevant messaging services can be found at:
+- Fix io
+Assumptions
+
+Interface E -Mediation 2 must be used (Best/Edu is not supported)
+Use of FIKS IO requires appointment
+
+Notification
+Sender System receives status messages when a message is delivered. Sender's system also receives status messages at
+error situations and when a message is not delivered within the defined life. Sender's system can notify
+The sender of both successful broadcasts and deviations.
+Configuration
+The following configuration is required for full functionality:
+
+Minimum configuration of the integration point
+Configuration of fix io
+
+Development
+
+Example of FIKS IO message exchange

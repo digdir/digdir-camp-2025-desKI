@@ -1,0 +1,16 @@
+title: 20-01 oidc
+Description: 20-01 Oidc
+Sidebar: Oidc
+Redirect_From: /20-01_oidc
+
+Support to limit both scopes and integrations to the machine gate or ID port.
+Releasen was production FEB 11, 2020
+New functionality:
+Introduce SCOPE restrictions (SHIPPED)
+An API officer will now be able to decide whether a scope should apply to just the machine gate, just the ID port or both by entering 'allowed_integation_Types'.
+In a transitional phase, Oidc Provider will present the "machine gate tokens" if the client utilizes JWT-Grants.
+Error corrections:
+Authorization-Requestar Valides OK if one does not send with scope (PBLEID-19293)
+Today, we allow to send an authorization shell against the Oidc provider without Scopes. The client gets back an access to scopes.  This breaks the Oidc scene stating that one must always send with scopes in an authorization-sprequ (or set a default scope).  We fix the error by demanding that the client must always ask for a scope in /authorize.
+Redirect-Uri-validation does not work at Eidas login in OIDC (PBLEID-18992)
+If one tries Eidas login in Oidc provider, then the validation of Redirect_uri fails /token.  The validation is ok if the same client asks for "regular" login.   The error was introduced by stricter validation on /token by Redirect-Ui in the 19-09 release.

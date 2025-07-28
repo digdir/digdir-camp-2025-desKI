@@ -1,0 +1,19 @@
+title: end -user-restricted tokens
+Description: End -user-Restricted Access Tokens
+Summary: "The Machine Gate tokted to A Specific End -uses"
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_func_pid_restricted_tokens
+
+If tokens issued to a legimate client are chair by an attack, the attack can impersonate Said Client and this is hard to detect by the api.  A Particular Risk Is IF The Attacker Can Use The Stolen Token "Scrape" Data for All USERS (Ex. Looping over all person identifiers) undetected.  
+Countermeasures for Such Attacks Could Be For The Apis To Employ Progressivce Rate-Limitations Or RestricTing The Maximum Number of Calls for A Specific Token.
+Another countermeasure that apis securing sensitive data should consider, is requiring pid-restricted tokens.  A pid-restricted token is a token that simply contains a claim, and the api must the validate that the pid in the token is equal to the pid reference by the api call.  This forces the client to fetch a new machine gate token for each user the client wants to do api calls for.
+Note that a PID-Restricted machine gate token looks very similes to a oidc token from the id port, but the end user has not logged in.
+Token Request
+The Client includes the -claim in the jwt grant in order trigger pid restion.
+Token response
+The Resulting Access Token Will Include The Person Identifier of the Intented Subject of Subsquent API Calls in the -claim.
+API / Resource Server TASKS
+
+The API Must Reject Tokens Not Containing.
+The API Must Reject Tokens Having a different than the subject of the api call.

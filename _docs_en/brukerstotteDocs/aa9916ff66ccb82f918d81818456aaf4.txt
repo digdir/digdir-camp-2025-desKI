@@ -1,0 +1,18 @@
+URL: https://eid.difi.no/nb/ennentte-error- and-losinger/advarsel-erer-din-s-es-closed
+Title: "Warning: Your user is closed" | Help sites for common solutions
+
+"Warning: Your user is closed"
+
+"Warning: Your user is closed so you can no longer log in with the ID port. This normally only happens on the request of the individual. If you believe this has happened with an error or you would like to reopen your user, contact the Norwegian Digitalisation Agency."
+
+If you get this error message, please contact the ID port support at (+47) 800 30 300
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

@@ -1,0 +1,212 @@
+Title: Self -service of the machine gate via the collaborative portal
+Description: Self -service of the machine gate via the collaborative portal
+Summary: 'Here you will find guides and tutorials on how you can self -care the machine gate via the collaborative portal'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine Gate_jolv Serving_web
+
+This document shows how you can self-care in the machine gate as API provider and API consument.
+
+
+TOC
+{: toc}
+
+Login and access
+Login
+The collaborative portal is the entrance to the online self -service. A prerequisite for using this is that your business is registered with us and terms of use are signed. When you create a user, you are linked to the business registered with the domain in your email address. For example, you log in with @igdir.no, and you will be linked to the Norwegian Digitalisation Agency.
+Create a user
+To create a user on the collaborative portal. Do the following:
+
+Go to collaboration.digdir.no
+Tap "My Profile" in the top right corner.
+Tap “Sign Up” in the login window
+Register user with your job address
+Confirm the user by pressing the link that comes by email. (NB! Check spam if the email does not arrive).
+
+Access in the test and production environment
+Access to test and production is secured with the ID port, and access must be delegated by an authorized person in the business. (Director/leader/other person with role "main administrator" in Altinn). 
+Procedure for access through Altinn authorization. Anyone who is to delegate access must have a role as the main administrator.
+
+Go to altinn.no
+Tap “Log In”
+Choose the business you are going to represent
+Tap “Profile”
+Press "Others with Rights to Business"
+Tap “+ Add New Person or Operation”
+Enter the birth number and last name of the person who will have access.
+Tap "Provide Single Services"
+Search the "Machine Gate" in the search box on "Provide new rights"
+Tap “Go ahead”
+Press “Complete Delegation”
+Tap “Confirm”
+
+Table for available rights:
+| Rightness | Function |
+| - | - |
+| Self-service of APIs in the ID port/machine gate | Provides access to administration and access management of scopes for API providers in both test and production environment |
+| Self-service of integrations in the ID port/machine gate | Provides access to create, change and delete clients and integrations against KRR, the ID port and the machine port in both test and production environment |
+| Self-service for suppliers in the ID port/machine gate*| Opens the field "to a customer" so that suppliers can create clients customers' organizer number in both test and production environment |
+| Self-service for testing in the ID port/machine gate | Provides access to the administration of clients and scopes only in the test environment |
+*NB! Self -service for suppliers requires "self -service of integrations ..." as well.
+Videotutorial: https://vimeo.com/433540385
+
+Procedure for deleting access through Altinn authorization. Anyone who is to delegate access must have a role as the main administrator.
+
+Go to altinn.no
+Tap “Log In”
+Choose the business you are going to represent
+Tap “Profile”
+Press "Others with Rights to Business"
+Find the person you are going to deprive rights of
+Tap “Give or Remove Access”
+Press “Remove one or more rights”
+Press "Remove" on the right to be removed.
+Press “Done to Confirm”
+
+Videotutorial: https://vimeo.com/433540358
+
+Self-service as API provider
+Assumptions
+In order to create subsecopes in the machine gate, it assumes that the business is registered with a prefix. Prefix must be created by the Norwegian Digitalisation Agency when ordering. For ordering to the test environment, send an email to serviceedesk@dir.no.
+For ordering to the production environment, submit a form:
+Machine gate - Obtaining information.
+Login (Scopes/APIs)
+To get to the API administration interface, do the following:
+
+Log in to the collaborative portal.
+Touch "business services" in the left menu.
+Touch "Administration of Services" in the left menu.
+Choose "My API" in the environment you want to create scope.
+
+Create Scopes
+
+Complete the steps in "Login"
+Press "New Scope".
+Select Prefix and complete registration.
+Press "Create" to save.
+
+Videotutorial: (https://vimeo.com/427689809)
+
+Access management
+
+Complete the steps in "Login"
+Press the scop to access control.
+Scroll down to under the configuration and press "Add access".
+Enter Organization Number and press "Add"
+To delete an access, press the garbage can icon to the right of the organization with access.
+
+VideoTutorial: (https://vimeo.com/427689702)
+
+Disable Subscopes
+NB! So far, access should be removed before a scope disabled. If not, those who have accessed will still get the scop listed on their available scopes.
+
+Complete the steps in "Login"
+Tap the scop to disable.
+Tap “Change”
+Tap "Disable" and confirm that you want to disable.
+
+Videotutorial: https://vimeo.com/427689583
+
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the integration of the "API provider" and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+Videotutorial: https://vimeo.com/397388041
+
+Self-service as API consumer
+Login (integrations)
+To get to the administration interface for integrations/clients, do the following:
+
+Log in to the collaborative portal.
+Touch "business services" in the left menu.
+Touch "Administration of Services" in the left menu.
+Choose "integrations" in the environment you want to create self -service in.
+
+Delegate rights to other business (eg supplier)
+If another business is to be used to make the look against the machine gate, then you can delegate the right further via Altinn. (NB! This only applies to Scopes that uses Altinn as a source of delegation. Listen with API provider if they offer this).
+The same procedure also applies if you are to delegate rights from a sub -unit to the main unit.
+
+Log in to altinn.no
+Choose to represent the business
+Tap “Profile”
+Tap "Access to Programming Interface - API"
+Tap “Give and Remove Access'
+Press "Delegate New API"
+Enter the organization number of the business you are delegating access to and select from the list. 
+Tap “Next”
+Seek the right to delegate access and press "+".
+Press “Next” when you have added the rights to be delegated
+Tap "Confirm".
+
+VideoTutorial: Due to changes in the graphic interface, we have to record a new video. We hope to have this in place very soon.
+
+Create client to consume API
+
+Complete the steps in "Login"
+Press "New Integration".
+Select "Machine Gate" on "Difi Service".
+Tap "Add Scopes" to add the scop to consume. (If the scop is not in the list, then the API provider has not shared access to the business you represent.)
+Complete the registration.
+Press "Create" to save.
+
+Videotutorial: https://vimeo.com/427689834
+
+Erase client
+
+Complete the steps in "Login"
+Tap the client to delete.
+Press "Change".
+Tap "Disable" and confirm.
+
+Videotutorial: https://vimeo.com/427689782
+
+Register key on client
+
+Public key, in PEM format, must be converted to JWK using JWK Creator or the like before it can be placed on the client. 
+Press 'Own Public Keys', at the bottom of the client registration page in self-service web.
+Paste JWK and press 'Add'. NB! Remember to place it between two brackets []. 
+Check that JWK is stored in the correct format on the client:
+
+`` `
+    {
+      "KTY": "RSA",
+      "E": "Aqab",
+      "Use": "Sig",
+      "Kid": "My_egen_nokkel",
+      "Alg": "Rs256",
+      "N": "LGC-DGNL9L9PCSB6EW5MF23AISS09Q7MXRE9Q9DAZSIN9IJQJQJMKWDYSPOYW3G_RSX2A74CG_Q3ITSSM0CO9IJ0 Lqp8gjoii9i8syi6anbkk6fisr1adzbsggrm1-zmrnvsj811sntdkbgx8zxvrjm4f6d2kwl3Tenv0crrvtpho 0SRMIMKBVBDAWPYQC64SQDVARY6XILPHD-DA2N2N2CL6VRQVNS7DYD8-C2TEYGGB_TASRVSORX9GF5CZ-HLNHF IgG2qqyzaljyfowppg5RYBP9BAWG9VFLLUFD_Y6VVZ0TQVFAYJ67NFZ_W4RXY-MDRGERKHJCQ81GKMVZQ5FQ "
+    }
+`` `
+Register certificate on client
+
+Export public key from business certificate in PEM format. Remember that the sign key must be exported. 
+Press 'Business Certificate', at the bottom of the client registration page in self -service web.
+Paste the key in the correct format. 
+
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the client in the list and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+Videotutorial: https://vimeo.com/397388041
+
+Often asked questions
+The "prefix" field is empty when I create a new scope.
+If the prefix field is empty, then your business has not created a prefix. Then you will not create a scope. Contact serviceedesk@dir.no.
+The scop I will consume deficiencies when I press "Add Scopes".
+Most likely, API provider has not shared access with the business you represent, or they have provided access to another environment. Contact API provider.
+"New integration" is grayed into the production environment.
+To manage in the production environment, you have to log in with the employee gate. This assumes that you have received the necessary rights in Altinn. See access in the production environment
+I see the integrations of a business other than what I expect.
+Access to the collaborative portal and the self-service solution is provided on the basis of your email domain, which in turn is connected to a business on our site.  For large businesses and companies, it may be that email domains are reused across multiple companies. Contact serviceedesk@dir.no.

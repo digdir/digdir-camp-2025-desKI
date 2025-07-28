@@ -1,0 +1,138 @@
+Title: Start and Stop
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_ip_run
+
+Here are alternative ways one can use to run the integration point and cosmos.
+
+TOC
+{: toc}
+
+The integration point
+There are several ways to drive the integration point. The one we recommend for easy start/stop in addition to access management is to install the integration point as a service. Here we will show three different ways to run the integration point.
+Alt 1: Run the integration point as a service
+The integration point can also be installed as a service on server. To do this, you can download a third-party software and set up your own small config file.
+The documentation on the software you need is on Github. You will need two files: .exe file from this program and a separate .xml file to tell the .exe file which settings to use. This is the same concept to which the e-insight-client installation is based. 
+
+Download winsw.exe here. More information about which version to choose is here: Supported .NET versions. If you are unsure what .net version you have, read here
+Download our configuration file for testmkosmos environment or production environment
+Change the name of the .exe fila and XML files to the names you want. For example, integration point-service.exe and integration point-service.xml. (both must have the same name)
+Put both of these files in your integration point folder.
+Change the version number on integration point-%version no. Jar to be equal to your version
+To install the service, do the following:
+Open command window as administrator and navigate to the integration point folder. Eg. . Then run the following command
+  
+
+In this Config file, automatic loggot at 10MB size and 8 files will be included. This can be changed to the desired size by changing the variable.  If you do not want loggot you can remove the entire from integration point-service.xml
+The logs for this service will initially be written for eg and the file integration point-service.out. The content of this is very similar to the content of Application.log file.
+Drive with the lowest possible rights
+We recommend running the integration point with a minimum right -wing user. To change which user runs the service by right -clicking it, select "Properties" and then select "Log on the" tab. How to create a minimum right -wing user.
+Logging
+If your integration point is set up to run as a Windows service, one can also easily activate logging.
+You can rotate logs in size and at the same time choose how many you want to take care of. The standard size here is 10MB, you can change to the desired size. The number of files taken care of is 8. This can also be changed. Make sure this is within the tag like the rest of the configuration.
+
+Finished configured, for example, it looks like this:
+
+Upgrade the integration point running as a service
+Download the latest version of integration point [version no. If you have the integration point installed as a service then you must change the version number in the integration point-service.xml file and thus reinstall the service.
+In the integration point service.xml file, this line must be updated with correct (new) version number :.
+When making changes to version / integration point-service.xml file, you need to reinstall the service. You do this by opening the command window as an administrator and navigating to the integration point folder. Then run the following commands.
+
+Then the service is reinstalled and restarted.
+Alt 2: Run the integration point from command window
+The integration point is started from the command line with the following commands for test and production respectively. To start the integration point, certain minimum user rights are required, read more about this here. Or you can start the command window as an administrator and thus also have the rights to start it.
+TEST
+
+Prod
+
+Check in browser when the integration point has started, which provides response in the form of a WSDL.
+
+To check health at the integration point
+
+Note: If you drive the integration point from the command line then this window must be open. Possibly you can change the command to. Then it will run without the command window, but you will have to close it by finding the process in Task Manager / Task Manager and stopping it there. 
+Upgrade integration point running from command window
+Download the latest version of integration point [version no. Thus, you need to replace the version number in your boot command.
+Alt 3: Drive via Task Schedules with the minimum rights
+When starting the integration point, certain rights on this user are required for the program to function. 
+Creating Local User Type User:
+%server name%\ integration point
+Setting rights to the Local Security Policy (Deactivate Login Option):
+
+Deny Log on Locally
+Deny Log On Thru Remote Desktop Service 
+Deny access to this computer from the network 
+Log on as a batch job (in order to be able to run taskschedules)
+
+User must have access to the folder where the integration point files are located
+Features on the folder
+  * Security:
+    * Add integration point user with modify rights
+User must have Modify access to Windows Event Log
+Registry Editor
+  * Permissions on HKEY_LOCAL_MACHINE \ SYSTEM \ CurrentControlset \ Services \ EventLog
+  * Add the integration point user with Modify rights to Security "Folder".
+Run the command in "Task Scheduler"
+general:
+User: %server name %\ integration point
+- Run Wherer User IS logged on or not
+Trigger:
+* That startup
+   * Edit Action
+   * Program/Script: Java
+   * Add argument (Optional):
+        * -jar integration point-%version no. 
+   * Start in (Optional):
+        * "Disk: \ folder name" to the integration point "
+
+Note: If you are going to start the integration point in the staging environment, use the following argument instead: 
+Upgrade integration point running via task schedules
+Download the latest version of integration point [version no. Thus, you need to replace the version number in your task. Under argument (Optional)
+Cosmos
+Starting as Windows service
+
+If you drive already the integration point as a service, this tenesta must be stopped in favor of the cosmos so that it is the cosmos that controls the start -up (incl. Wanted version) of the integration point
+
+We have arranged that the cosmos can be run as a Windows service using the Jar wrapper https://github.com/kohsuke/winsw. Follow the guidance and use the configuration below. These are the same wrapper that we have used for the integration point and eighth before. 
+
+Save the configuration file Fila as and winsw.exe file changed to.
+If you already have the integration point as Windows service then you can use the same .exe file by changing names from to be judged: to. You don't need when using cosmos but you still have to have 
+
+If you have everything in the same directory, you only need to change the version name "x.y.z" from the following configuration:
+`` `
+
+ ID of the service. It should be unique Accross The Windows System
+cosmossvc
+ Display name of the service 
+Cosmos service
+ Service Description 
+Keeps the integration point Application up-to-date.
+ Path to the executable, which should be started 
+java
+-jar%base%\ kosmos-x.y.z.jar ---spring.profiles.active = Production ---spring.config.additional-location = File:%Base%\ Integration Point-Local.properties
+%Base%\ Kosmos-Logs
+
+10240
+8
+
+
+`` `
+Download the configuration file here
+
+Note: Sure you have spaces in the folder name in the trail you should change % base % to the absolute path. Judgment: C: \ "Kosmos app" \ path \ to \ here \ kosmos.x.y.z.jar
+
+Judgment: Now you should have these files in the folder.
+
+Start from command line
+To start from the command line, you can use the following command:
+In production
+
+In staging
+
+Start in Linux
+To start, you can use the same command as above, but if you want to start cosmos as a background test you can put on an ampersand at the end of the command. Here you obviously do not need wrapper the files as shown in the picture above, but rather have a folder structure that resembles this: 
+
+Judgment:
+
+Shortly after the command is executed you will return a PID for the process. This can be used if you need to stop the process. You will also be able to find it by using HTOP and looking for the command, or in the top and shut down the java process. The integration point starts as his own Java process.

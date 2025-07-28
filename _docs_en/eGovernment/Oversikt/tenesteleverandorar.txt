@@ -1,0 +1,16 @@
+Title: Tenest providers
+Description: "Overview of service providers"
+Summary: ""
+Product: egovernment
+Sidebar: egovernment_sidebar
+
+Existing service providers
+At Peppol egovernment, we currently have the following service providers within the reporting test for digital mail to the inhabitant (DPI):
+
+Sender's access point for DPI: Tietoevry and KS - Digital Fellesteester AS 
+Recipient's access point for digital messages DPI: Posten Norge AS
+Receiver's access point for printing messages DPI: Tietoevry
+
+Tenest providers offer the processes and document types describe on digital mailbox - processes and document types
+Certified tenest providers
+Peppol Service Providers (external link) provides a complete overview of certified service providers (service providers) within all Peppol judgment.

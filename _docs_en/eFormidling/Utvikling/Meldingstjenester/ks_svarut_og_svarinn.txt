@@ -1,0 +1,69 @@
+Title: KS Svarut and Replyer
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring supports the following processes and document types with the messaging service KS Svarut and Replyer (DPF).
+| Process | Document Type | Example |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Case processing | Archive Message | Example |
+| Confidential Case Management | Archive Message | Example |
+Whether KS Svarut and Replyer are part of a recipient's capabilities or do not depend on several factors as described as described
+For the individual process.
+In order to use KS Svarut and Replyer, the integration point must be configured with necessary access to APIT KS Svarut and
+Answer offers.
+KS Reply's self -service solution provides the opportunity to configure an integration (one recipient system) to receive messages for multiple organization numbers. Such a layout can be used to support reception of messages addressed to sub -units. This will work for messages sent from KS Svarut directly and they also sent via Emofide (as long as the sender has configured the integration point with support for KS Svarut).
+The integration point converts the document type archive message to call against APIs KS Svarut offers. The integration point
+In addition, inverter responses from the APIs KS Replyer offer to the document type archive message. See the document types for details.
+KS Svarut does not support processes. Messages are therefore being disseminated to KS Svarut without information about
+Associated process. KS Svarinn does not support processes. All messages received from KS Referinn are therefore assigned
+process as configured at the integration point.
+By using the interface Best/Edu converter the integration point first from Best/Edu to archive message, before the message
+Shipped as described above.
+The integration point converts the message statuses from KS Svarut and Reply to the Emsynings Message Statuses and
+Archive message receipt.
+Flow sketch for from state to municipality:
+
+graph lr
+A ("FA: FA-USer Case Manager State")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B -> | Archive Message | C ("FA: FA-Server Integration Point")
+C ---> D ("FA: FA server KS Svarut")
+D ---> E ("FA: FA-Server KS Replyer")
+E-> F ("FA: FA-Server Case/Archive")
+F-> G ("FA: FA-USer Case Manager Municipality")
+C ---> | Status | B
+C ---> | Archive Message receipt | B
+D -> c
+
+Flows for from municipality to state:
+
+graph lr
+A ("FA: FA-UR Case Manager Municipality")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B ---> C ("FA: FA server KS Svarut")
+C ---> D ("FA: FA-Server KS Replyer")
+D ---> E ("FA: FA-Server Integration Point")
+E -> | Archive Message | F ("FA: FA-Server Case/Archive")
+F-> G ("FA: FA-IUS Case Manager State")
+F-> | Archive Message receipt | E
+E -> D
+
+Message Statuses
+Message Status Message Submitted with KS Svarut:
+| Status | Comment |
+| ------------- | --------------------------------------------------------------------------------------------------------- |
+| Created | The integration point receives BestEDU message from the Case Archive System and creates a DPF message |
+| Sent | Integration Point has sent the shipment to message intermediaries |
+| Delivered | The shipment is ready for reception and can be retrieved from Replyinn |
+| Read | A shipment is read when the entire shipment file is downloaded by the recipient | 
+Message Statuses for Messages Received with KS Replyer:
+| Status | Comment |
+| --------------------- | ----------------------------------------------------------------------------- |
+| Created | Integration point downloads from KS down and creates the message with him |
+| Inbound_mottatt | The message is converted to internal format | 
+| Incoming_Delever | The message is delivered to the Case Archive System | 
+Next step
+
+Product documentation for KS Svarut and Replyer (external link)
+Technical documentation for KS Svarut and Replyer (external link)
+Multiple messaging services

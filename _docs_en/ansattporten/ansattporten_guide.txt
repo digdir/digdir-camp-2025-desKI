@@ -1,0 +1,49 @@
+Title: Integration Guide for Employee Port
+Description: Employee gate is a copy of the ID port but where the functionality is adapted to login in employee/representation context.
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee gate_guide
+
+The employee gate is a separate login service with functionality that differs somewhat from the ID port, so that it should be more appropriate to use in employee context or in other situations where it is desirable to act in a representation relationship on behalf of other businesses or persons.
+You can find more overall information about the employee port by clicking here
+Description of the use scenario
+On this page, we describe how to set up a service that uses the employee port for point authentication.   If you would rather read about how your service can require login on behalf of a business, you must click here. 
+User journey
+Point authentication is the simplest user journey.  In this scenario, the user performs a login to a service, and establishes an isolated SSO session only for this service:
+
+User click Login button with service.  
+Uses authenticates with Eid through the employee gate.
+User is sent back to the service.
+
+Unlike the ID port, the user will not have a common SSO session created in the employee gate.  If the user tries to log in to another service right afterwards, with the same browser, then the user must authenticate again.  But if the user tries to log in to the same service again, then they will be logged in automatically.
+Protocol-flow
+Point login in the employee gate has completely identical flow as for logging in with the ID port:
+
+sequence chart
+
+Participant B AS uses
+Participant C AS SERVICE
+Participant A AS Employee Gate
+
+B->> C: Clicking "Login" on service
+C->> A: /Authorize (redirect)
+Note above A: End user authenticates themselves
+A --- >> C: Code (Redirect)
+C->>+A: /Token (Code)
+A->>-C: id_token
+Note over B, C: logged in the service
+
+
+This flow is thoroughly documented on this page login with the ID port, but with the following changes:
+
+You will find the Employee Pass-Specific Protocol Definition here.
+Of course, you must use the employee gate's endpoints, which you find here.  
+The client you use must be registered in self-service to use the employee gate and not the ID port.
+
+Supported Eider
+The employee gate supports more EIDER than the ID port. The PT client chooses to support which owners it wants to support, using the field in the authentication request:
+Isolated SSO
+The SSO behavior in the employee gate is realized by the functionality of isolated SSO session, where the employee gate overrides the flag to true regardless of what the customer himself has put into self-service.   Note that this also means that the employee gate does not offer individual session wet times per service, but instead all the services then divide a common underlying HTTP session cookie where MAX life of 120 min starts at login to the first service, and inactivity hours of 30 min apply to the Union of the logged-in services. 
+This also means that customers must support logging from both their own service, but also handle logging requests (Front_Chanel_logout) from the employee port initiated by another service.
+Login
+Although the employee gate does not have SSO across services, your service should still be able to handle logging in the same way as the ID port.  Ie Both offer the user to be able to log out, as well as having to handle logging supplies initiated from other services in the employee port (Front_Channel_logout).

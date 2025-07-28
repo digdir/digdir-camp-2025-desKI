@@ -1,0 +1,14 @@
+Title: "/Revoke Endpoint"
+Description: "The /Revoke Endpoint Invalidates All Tokens and the Underlying OAuth2-Grant"
+Summary: 'The /Revoke Endpoint Invalidates All Tokens and the Underlying OAuth2-Grant'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_revoke
+
+{% Include note.html content = "In 2022, non-back cover compatible changes will be on the ID port." %}
+About
+The Endpoint is thoroughly documented in rfc7009
+When the Client Calls the Revoke Endpoint With Valid Token (Einher an access_token or a refresh token), that token and all other tokens Associated with the underlying grant - for that specific client only Only - are invalidated in the ID gate.
+Note that the SSO-session Itself is not affected by a Revoke, and any tokens Issued to other clients during the same SSO-session are still valid.
+Request
+Response

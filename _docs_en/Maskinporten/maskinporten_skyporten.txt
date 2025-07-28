@@ -1,0 +1,91 @@
+Title: Skype - Machine gate for sharing shelter resources
+Description: Skype port - Machine gate for sharing sheltering resources
+Summary: 'Here you will find a description of the cloud port and how it can be used'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_skyport
+
+
+
+TOC
+{: toc}
+
+What is the cloud port?
+The cloud port allows you to use the machine gate to share access to sheltering resources.
+
+There is a method that puts together
+
+The machine gate as identity provider
+Identity Federation shelf products at the cloud suppliers
+Access control patterns to specify access to resources in the cloud
+
+The short version is that you are free to share what you want from your cloud to an organization number with minimal configuration.
+You can therefore use the machine gate and the collaborative portal as today to access the board of shotguns such as. an bigquery table, an S3 file bucket, or a current.
+Consumer example in GCP:
+`` `` `Bash
+CREATE LOGIN Credentials with a Machine Gate Client Token
+$ GCLOUD IAM WORKLOAD-IDENTITY-POOLS CREATE-Cred-Config $ Provider_full_Ididifier--SERVICE-ACCOUNT = $ SAEMAIL-Credential-SOURCE file = $ machinery_Token_FILE--SOLTTIPT-FILE = Credentials.Json
+Created Credential Configuration File [Credentials.json].
+Log into gcloud with the machine gate token
+$ GCLOUD Auth Login--Crede file = Credentials.json
+Authenticated with external Account Credentials for: [SkyportenorageConsumer@skyporten poc.iam.gserviceAcCount.com].
+Your Current Project Is [Skype Poc].
+Consume File from Storage Bucket
+$ GCLOUD STORAGE LS GS: // $ BUCKET
+gs: //skyportenbucket/foo_remote.txt
+$ GCLOUD STORAGE CP GS: //$bucket/foo_remote.txt foo_local.txt
+Copying gs: //skyportenbucket/foo_remote.txt to file: //foo_local.txt
+  Completed Files 1/1 | 4.0b/4.0b
+`` `` `` `
+The cloud port is especially useful for sharing sheltering resources out of or between cloud suppliers.
+Can I use it?
+Yes. The cloud port as a concept is tested by the Norwegian Digitalisation Agency and cross -sectoral data collaboration in the transport sector and together with selected providers and consumers. It is not yet covered by SLA or, and the pilot must be evaluated for continuation.  All contact and use increase the chance of this being continued, so contact us.
+How can I use it?
+Well-known meta-data
+Metadata on the cloud port is available on the following .Well-Known-End point.
+| Environment | Issu | URL |
+|-| ------------------------------------ |-|
+| Test |  | https: //test.sky.maskporten.no/.well-known/openid-configuration |
+| Prod |               | https: //sky.maskporten.no/.well-known/openid-configuration |
+Note: If you use the machine gate today, the machining trailing slash has in the ice sows, but this is not the case in the cloud gate due to different supplier implementations.
+Access to the cloud port for providers
+The cloud port uses the machine gate, and you must therefore first get started with the machine gate as API provider.
+See also the guides below for setups related to each cloud supplier.
+Access to the cloud port for consumers
+The cloud port uses the machine gate, so to get something divided via the cloud port, you also need an integration (OAuth2-Client). 
+A good alternative is to use simplified onboarding for machine gate with keys. 
+More detailed documentation can be found here.
+There are several code examples that can help you start generating the Accesstokens for the machine gate:
+
+Digdir's own java example
+node sample
+NAV's machine-gate-Client
+
+Contact us if you want help getting started.
+What cloud supplier do I have as a provider?
+GCP
+Everything OK! Access with differentiated on org number and/or scope is supported. See guide here.
+Azure
+Everything OK! Access with orgnr and scopes is supported by the cloud gating on the scope at the end of the sub-field in the token. See guide here.
+Aws
+Everything OK! Access with orgnr and scopes is supported by the cloud gating on the scope at the end of the sub-field in the token. See guide for consumer and provider here.
+Second
+If you have a supplier that supports the WorkLoad Identity Federation, it may be enough for you to also share through the cloud port. Feel free to contact us to get started.
+Architecture
+Central aspects of architecture:
+
+Provides access to sheltering resources based on Consumer's organization number
+Using national joint component (machine gate) for authorized access
+The security and infrastructure are completely operated by DIGDIR and cloud supplier
+Enables effective sharing of large analytical data sets
+The cloud supplier is used OIDC-based ID-Federing
+Consumer is not given an email or user in your supplier's ski account
+Standard-based (OIDC/OAUTH2)
+No keys or other secrets must be shared from the data provider's sky account
+
+Authorization flow for consumer
+
+Example code for token generation
+You can see example Token generation in node.js here.
+Contact
+We encourage everyone who is interested in talking to us at slack or mail contact@smferdselsdata.no if you are interested or have questions.

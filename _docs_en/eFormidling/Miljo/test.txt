@@ -1,0 +1,33 @@
+title: test
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+By using the Emsyring test environment when, and reached, the integration point of test businesses and test residents.
+See more about testing of eForsing at:
+
+Testing
+
+A test business certificate is required to use e-dissemination environment is required.
+The integration point must be configured to use the test environment:
+
+Configuration of environment (production or test)
+
+The following services are used by the integration point test environment and must be able to be reached:
+| DNS name | IPV4 address | Gate | Service | Description | Input/Outgoing Traffic |
+| --------------------------------------------- | --------------------------------------------------------------- | ------- | --------- | --------------------------------------------------------------------------------------------------------------------
+| QA message exchange.difi.no (phased out) | 139.105.36.141 | 443 | All | eFormidling, various services, address look and more.                                      | Outbound |
+| Test.eFormidling.no | 139.105.36.141 | 443 | All | eFormidling, various services, address look and more.                                      | Outbound |
+| Test-logs.Eformidling.no | 139.105.36.147 | 80/443 | All | Em shape, logging.                                      | Outbound |
+| QA-stream-message exchange.difi.no (phased out) | 139.105.36.145 | 443 | All | Emsyring, Logging | Outbound |
+| Test.makerporten.no | 139.105.36.128/27 139.105.36.132 | 443 | All | Machine gate | Outbound |
+| EFM-DPE-QA.Servicebus.windows.net | 13.74.107.66 13.69.227.68 52.138.226.67 20.82.244.139 | 443 | DPE | Azure Service Bus, HTTP/REST API | Outbound |
+| EFM-DPE-QA.Servicebus.windows.net | 13.74.107.66 13.69.227.68 52.138.226.67 20.82.244.139 | 5671 | DPE | Azure Service Bus, AMQP with TLS | Outbound |
+| Altinn.no | 89.250.123.0 | 443 | DPO | Altinn dissemination service | Outbound |
+| tt02.altinn.no | 89.250.123.40 | 443 | DPV | Altinn dissemination service | Outbound |
+| crl.test4.buypass.no | 185.62.163.56 | 80 | DPI | Buypass CRL list | Outbound |
+| crl.test4.buypassca.com | 185.62.163.191 | 80 | DPI | Buypass CRL list SEID 2.0 | Outbound |
+| Test.contaktregisteret.no | 139.105.36.137 | 443 | DPI | Contact and Reservation Register | Outbound |
+| srest.qa.dataplatfor.ms | 51.120.52.137 and 51.120.49.231 | 443 | DPI | Digital mailbox, residual endpoint, access point | Outbound |
+| Test.Ksv.ks.no | 137.221.25.65 137.221.28.65 | 443 | DPF | KS Svarut and Responsible | Outbound |

@@ -1,0 +1,11 @@
+title: National sandbox for digital wallet
+DESCRIPTION: National sandbox for digital wallet
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_om
+
+Digdir offers a national "sandbox" for digital wallet where anyone who wants to explore opportunities and experiment in an isolated and safe test environment. 
+You can read more about the overall framework and conditions for participating in the sandbox, as well as other related projects in Digdir, on the Digital wallet project site.
+On these pages you will find technical documentation on the sandbox. 
+Me recommends that you start by reading more about the architecture of the sandbox, before taking a look at an overview of services that are found in the sandbox as of no.
+When you are ready to participate and create your own services in the sandbox, you have to get into how you make a proof or use evidence.

@@ -1,0 +1,32 @@
+title: about these pages
+Description: About these pages
+Summary: "A little meta-info about these pages"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_about
+
+About the pages
+These pages are the documentation of the ID port's OpenID Connect Provider.  The documentation is openly accessible and maintained on the github repoe https://github.com/difi/idporten-portc documentation. Issues and Pull Requests are welcome!
+Technical
+
+The pages are published by github pages at https://difi.github.io/idporten-oidc documentation/
+The pages are written in Markdown and use a theme/layout based on Jekyll Documentation Theme by Tom Johnson.
+Graphs and sequence diagrams are generated directly in user browser, based on Mermaid.
+Atom with Markdown Preview Enhanced plugin is recommended for writing.
+
+Adjustments
+To get a good workflow, we have made the following adjustments.
+Mermaid in Documentation-Theme-Jeal
+To get Mermaid support in Documentation-Theme-Jukkel, the following must be added to the headland in the  
+`` `html
+
+
+`.
+Preview of mermaid in atom
+In order for Markdown Preview Enhanced to be able to preview Mermaid-Syntax, without kicking it off for Kramdown at Github Pages who is to process and publish Markdown file, the following semi-pig Hack into Parser.
+mermaid ")
+    Markdown = Markdown.REPLACE (/<\/DIV>/GM, ($ 0) => "
+It makes it easier by pressing Ctrl+Shift+P and searching for the "Markdown Preview Enhanced command: Extend Pares".
+So you should not write the tag directly such as the documentation of Markdown Preview Enhanced victory.
+Chop git passwords in atom
+Driving in the current repo.

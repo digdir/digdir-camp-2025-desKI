@@ -1,0 +1,12 @@
+Title: Machine Gate
+Description:
+Product: Machine gate
+Redirect_From: /Machine gate_index
+
+The machine gate is a service that offers a simple model for API protection based on the OAUTH2 protocol and the use of JWT-Bearer Grants, inspired by Google's System accounts.
+The machine gate allows API providers to define access to their API, modeled as Scopes, based on the consumer's organization number.
+This can be done via the machine gate self -service therapy or web solution.
+-
+Invisible comment
+-
+Visible comment

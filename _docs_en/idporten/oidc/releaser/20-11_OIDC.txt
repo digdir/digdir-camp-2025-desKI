@@ -1,0 +1,27 @@
+title: 20-11 oidc
+Description: 20-11 Oidc
+Sidebar: Oidc
+Redirect_From: /20-11_oidc
+
+Improvements in access dialog for "User -controlled data sharing"
+Releasen was production -made Dec 10, 2020
+New functionality:
+Improvements for user -controlled data sharing (Ready to Ship)
+The texts in the access dialog (the consent dialogue) for user -controlled data sharing becomes clearer and focuses on access to applications and websites. The user now also sees how long the access is given to the application will last.
+API provider can register a Markdown formatted that can be used to give users a longer explanation of which accesses are requested.
+The API provider also has the opportunity to specify one that limits the life of the authorization itself. This means that a provider can now control life both on access_tokens and the entire authorization.
+Scope descriptions can also now be stated with translations into the same languages that the ID port supports (New Norwegian, English, Sami). If translations are not specified, it is Fallback to Default that is bookmark.
+API provider may require psedonymization (Shipped)
+An API provider can now put the flag on a scope. This will mean that both ID_Token and Access_Token that clients receive will never contain personal identifier (PID). Provider is therefore no longer dependent on the manual routines of Gigdir to put no_pid functionality on clients.
+Clients with the same orgno who own the scop will be given PID at Token IntroSpect.
+Improvements:
+Oidc Provider should no longer accept base64 padding in pkce code_challenge (PBLEID-21272)
+Introduce stricter validation in OIDC providers so that Base64 padding sign (=) at the end of the code_challenge parameter is no longer accepted at Token-End point.
+Oidc Provider should accept the Token-End point URL as an audience for client authentication with JWT (PBLEID-20928)
+In client authentication with JWT against endpoints requiring client authentication, the URL of the Token Point must be accepted as an audience value in addition to our ice seas.  
+Ref spec: https://openid.net/specs/openid-connect-core--------- _0.html#ClientAutthentication: 
+"The Audience Should Be The Url of The Authorization Server's Token Endpoint."
+Error corrections:
+Not possible to use delegation with accessible_for_all scope (PBLEID-21170)
+If Scope is, it is not possible to use delegation in Altinn today through the machine gate.  This is an unnecessary restriction.  The finest valid scenario where a customer wants to explicitly say that a supplier should be able to act on its behalf, also up to an accessible-for-all API.   Access management and API response (data minimization) may be judged to depend on the woman who is a legal consumer.
+We solved this by allowing delegation also for accessible-for-all scopes.

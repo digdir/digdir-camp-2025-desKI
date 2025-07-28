@@ -1,0 +1,26 @@
+URL: https://eid.difi.no/nb/minid/hvord-lage-nytt-passord-minid
+Title: How to create a new password for MinID | Help sites for common solutions
+
+Sámegiella
+How to create new password for MinID
+
+If you are registered as a user from earlier, you will receive one-off codes by SMS and email to create a new password.
+
+How to create a new password:
+
+Go to https://login.minid.no/new-password
+Enter the birth number or D-number. Click "Next"
+Enter the code received by email, 5 characters. Click "Next"
+Enter the code received by SMS, 5 characters. Click "Next"
+Create new password, at least 8 characters (allowed characters are A-Å, 0-9 and special characters)
+You can now log in with your new password. Go to the service you wish to log in to
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

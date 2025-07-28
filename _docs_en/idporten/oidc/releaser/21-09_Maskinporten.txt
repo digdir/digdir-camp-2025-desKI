@@ -1,0 +1,17 @@
+title: 21-09 machine gate
+Description: 21-09 Machine Gate
+Sidebar: Oidc
+Redirect_From: /21-09_maskorten
+
+Support for the SeID2 profile for business certificates (ie qualified seal according to Eidas)
+Releasen was production -proof Oct 26, 2021
+New functionality:
+Seid 2.0 support in the Machine Gate (Shipped)
+The machine gate today only supports "old" business certificates. Must be expanded with support for new qualified certificates according to Eidas according to Seid2.0 profile
+Pilot sub -units (shipped)
+Machine gate support for sub-units. Initially, only intended pilot in e-mediation where one should test out message exchange for sub-units that do not have an organization number.
+Possible judgment on identifier for a sub -unit:
+0192: 991825827: ER // 987464291: 1 # Digdir's sub -unit for the business at Leikanger, which belongs to Digdir
+0192: 986186999: MP // The Guardianship Board: 1 # the Guardianship Board, whether the State Civil Administration (98618699) belongs to
+Self-service therapy with support for the machine-gate-tokens (Shipped)
+It will now be possible to use tokens from the machine gate against the self-service apple

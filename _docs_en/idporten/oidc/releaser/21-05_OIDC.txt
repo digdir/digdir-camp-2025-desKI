@@ -1,0 +1,19 @@
+title: 21-05 oidc
+Description: 21-05 oidc
+Sidebar: Oidc
+Redirect_From: /21-05_oidc
+
+The refresh-token support for public clients
+Releas was production -to -May 19, 2021
+Improvements:
+La spa clients and native could use refresh_tokens (PBLEID-21673)
+Today, spa clients do not get any refresh_token.  This creates some problem for some of user-controlled data sharing cases.
+Change behavior in line with https://tools.ietf.org/html/draft-eif-eautth-browser-based-apps-07#section-8, ie spaer can
+- get handed out the refresh_token
+- use the refresh_token without client authentication
+- force rotation of the refresh_token by use
+The client must be registered as a grant type before it will receive the refresh_token.
+API providers who will not allow the use of long lifetime spases on the refresh_tokenet should put restrictions, possibly block the API requests where the token has -claimed the same "none".
+Error corrections:
+Error in Caching of Par-Requester (PBLEID-22012)
+An error was discovered in distributed caching of pair-wrquester, which caused Browser-Redirect on subsequent /authorize calls in some cases.

@@ -1,0 +1,16 @@
+title: get started
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+
+Introduction to eForsing
+Overview of functionality
+Overview of properties
+Get started with the integration point
+Get started with development
+Get started with testing
+Demos
+Demonstration of agreed message exchange
+Demonstration of automatic upgrade (cosmos)

@@ -1,0 +1,21 @@
+Title: Isolated SSO session
+Description: Isolated SSO session
+Summary: "A customer can configure his integration not to participate in the ID port's Circle-of Trust."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_nosso
+
+Background
+Since its inception, the ID gate has offered Single-Signon (SSO) in that all services in the Federation belong to the same Circle-of Trust (COT). This is an important functionality for the citizen to have a friction-free experience when using public digital services, by avoiding frequent re-authentication.  Especially for unified services where a citizen "jumps" between different agencies as part of a complete service delivery, SSO is a key functionality.
+At the same time, the SSO in the ID port has in many ways become its own enemy from a security perspective, provided the large number of services that are now integrated. Not all residents understand that when they log in through the ID port, they are also potentially logged in in over 3000 different digital services, and we also see that relestively few inhabitants (10-15%) actually make an active login from the services.  
+Although some services use forced re-authentication (Saml Forceauth or Oidc Prompt = Login), an active SSO session is still being created in the ID port. This entails a risk that an attacker that can control user Device (either physically, or remote access of the compromised device), can utilize an active SSO session to enter into services.
+About "Isolated SSO session"
+In the new ID port, a customer can choose that an integration should not participate in the ID-part's joint SSO session, but rather have their own, "selfish" session.
+Note that an "isolated" session is SSO to itself.  That is, at the first login to an isolated client, the citizen will have to authenticate (or re-authenticate if the browser already has a joint SSO session), but by subsequent login to the same client, the inhabitant does not have to re-authenticate, given that the time windows for inactivity or maximum session length have not been overditred.
+Vice Versa will also have to authenticate for the first time to an ordinary client in a joint COT, if Browser has only an active, selfish session from before.
+It may be worth noting that although the selfish session (s) will be separated from the joint SSO session as described above, both the session types share the same HTTP session cookie in the ID port.  It also means that timers for inactivity and max length are common.
+Logging is still global
+We have chosen to make logging global.   This is both to avoid partly extensive implementation complexity, but also to counteract a functional risk of a citizen: Citizen has no idea whether a service belongs to an isolated SSO session or not (or that such a technical concept exists at all), but perhaps over the years have been taught to believe that logging into the ID port is logging out of all public services.  By limiting the logging to just apply to the isolated service, we risk that the citizen thinks they are logged out everywhere, even though joint SSO is still active.   To avoid this, we have chosen that logging logs out of all services we can, regardless of whether the initiative service was isolated or belonged to joint COT.
+Configuration
+The customer puts the flag into self-service on the OIDC client to activate the functionality.
+Isolated SSO session login is not supported for SAML clients.

@@ -1,0 +1,172 @@
+Title: Login and access to self -service via the collaborative portal
+Description: Login and access to self -service via the collaborative portal
+Sidebar: Self -Service_sidebar
+Product: Self -Service
+Redirect_From: /Self -Service_Web_Glogging
+
+This document shows how to log in to the web interface for self-service of Digdir's joint solutions on the collaborative portal.
+
+
+TOC
+{: toc}
+
+Login and access
+Login
+The collaborative portal is the entrance to the online self -service. A prerequisite for using this is that your business is registered with us and terms of use are signed. When you create a user, you are linked to the business registered with the domain in your email address. For example, you log in with @igdir.no, and you will be linked to the Norwegian Digitalisation Agency.
+Create a user
+To create a user on the collaborative portal. Do the following:
+
+Go to my profile
+Tap “Sign Up” in the login window
+Register user with your job address
+Confirm the user by pressing the link that comes by email. (NB! Check spam if the email does not arrive).
+
+Already have a user? Log in with your user.
+Select the environment
+On my profile you can choose which environment you want to self -service in.
+Access in the test environment
+Initially, all users who are connected to a business have access to self -service in the test environments Ver1 and Ver2. Some companies have introduced restrictions and have stricter access management.
+Delegate Printer Products in Production Environment
+Access to production is secured with the ID port, and access must be delegated by an authorized person in the business. (Director/leader/other person with role "main administrator" in Altinn).
+Procedure for access through Altinn authorization. Anyone who is to delegate access must have a role as the main administrator.
+
+Go to altinn.no
+Tap “Log In”
+Choose the business you are going to represent
+Tap “Profile”
+Press "Others with Rights to Business"
+Enter the birth number and last name of the person who will have access.
+Search the "Machine Gate" in the search box on "Provide new rights"
+Select "Self-Service of Integrations in the ID port/machine gate" (see table below for explanation of the rights)
+Tap all the rights
+Press “Give Rights”
+
+Table for available rights:
+| Rightness | Function |
+| - | - |
+| Self-service of APIs in the ID port/machine gate | Provides access to administration and access management of scopes for API providers |
+| Self-service of integrations in the ID port/machine gate | Provides access to create, change and delete clients and integrations against KRR, the ID port and the machine gate |
+| Self-service for suppliers in the ID port/machine gate*| Opens the field "to a customer" so that suppliers can create clients customers' organism number |
+*NB! Self -service for suppliers requires "self -service of integrations ..." as well.
+Videotutorial: https://vimeo.com/433540385
+
+Deprive writing rights in the production environment
+Procedure for deleting access through Altinn authorization. Anyone who is to delegate access must have a role as the main administrator.
+
+Go to altinn.no
+Tap “Log In”
+Choose the business you are going to represent
+Tap “Profile”
+Press "Others with Rights to Business"
+Find the person you are going to deprive rights of
+Tap “Give or Remove Access”
+Press “Remove one or more rights”
+Press "Remove" on the right to be removed.
+Press “Done to Confirm”
+
+Videotutorial: https://vimeo.com/433540358
+
+Self-service as API provider
+Assumptions
+In order to create subsecopes in the machine gate, it assumes that the business is registered with a prefix. Prefix must be created by the Norwegian Digitalisation Agency when ordering. For ordering to the test environment, send an email to serviceedesk@dir.no.
+For ordering to the production environment, submit a form:
+Machine gate - Obtaining information.
+Login (Scopes/APIs)
+To get to the API administration interface, do the following:
+
+Log in to the collaborative portal.
+Touch "business services" in the left menu.
+Touch "Administration of Services" in the left menu.
+Choose "My API" in the environment you want to create scope.
+
+Create Scopes
+
+Complete the steps in "Login"
+Press "New Scope".
+Select Prefix and complete registration.
+Press "Create" to save.
+
+Videotutorial: (https://vimeo.com/427689809)
+
+Access management
+
+Complete the steps in "Login"
+Press the scop to access control.
+Scroll down to under the configuration and press "Add access".
+Enter Organization Number and press "Add"
+To delete an access, press the garbage can icon to the right of the organization with access.
+
+VideoTutorial: (https://vimeo.com/427689702)
+
+Disable Subscopes
+NB! So far, access should be removed before a scope disabled. If not, those who have accessed will still get the scop listed on their available scopes.
+
+Complete the steps in "Login"
+Tap the scop to disable.
+Tap “Change”
+Tap "Disable" and confirm that you want to disable.
+
+VideoTutorial: (https://vimeo.com/427689583)
+
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the integration of the "API provider" and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+VideoTutorial: (https://vimeo.com/397388041)
+
+Self-service as API consumer
+Interior logging (integrations)
+To get to the administration interface for integrations/clients, do the following:
+
+Log in to the collaborative portal.
+Touch "business services" in the left menu.
+Touch "Administration of Services" in the left menu.
+Choose "integrations" in the environment you want to create self -service in.
+
+Create client to consume API
+
+Complete the steps in "Login"
+Press "New Integration".
+Select "Machine Gate" on "Difi Service".
+Tap "Add Scopes" to add the scop to consume. (If the scop is not in the list, then the API provider has not shared access to the business you represent.)
+Complete the registration.
+Press "Create" to save.
+
+VideoTutorial: (https://vimeo.com/427689834)
+
+Erase client
+
+Complete the steps in "Login"
+Tap the client to delete.
+Press "Change".
+Tap "Disable" and confirm.
+
+Videotutorial: (https://vimeo.com/427689782)
+
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the client in the list and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+VideoTutorial: (https://vimeo.com/397388041)
+
+Often asked questions
+The "prefix" field is empty when I create a new scope.
+If the prefix field is empty, then your business has not created a prefix. Then you will not create a scope. Contact serviceedesk@dir.no.
+The scop I will consume deficiencies when I press "Add Scopes".
+Most likely, API provider has not shared access with the business you represent, or they have provided access to another environment. Contact API provider.
+"New integration" is grayed into the production environment.
+To manage in the production environment, you have to log in with the ID port. This assumes that we have entered your social security number in advance. About "new integration" is still gray after logging in with the ID port. Contact serviceedesk@dir.no
+I see the integrations of a business other than what I expect.
+Access to the collaborative portal and the self-service solution is provided on the basis of your email domain, which in turn is connected to a business on our site.  For large businesses and companies, it may be that email domains are reused across multiple companies. Contact serviceedesk@dir.no.

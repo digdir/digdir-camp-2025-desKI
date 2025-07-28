@@ -1,0 +1,21 @@
+Title: Multiple e-insight clients at the same integration point
+Description: Multiple e-insight clients at the same integration point
+Summary: "Here you will find information on how to use multiple e-insight clients at the same integration point"
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_ flex_ clients
+
+When using multiple integration points or e-insight clients on the same server, you must use different gates. If you are going to use one integration point and several e-insight clients, you must change the ID, name and port of the EVAR's client service. In addition, each e-insight client must have its own inputdirectory folder. 
+All of this changes in the e-insight-client.xml file. In addition, you need to add an extra argument:
+
+
+
+If you are to have several integration points installed on the same server, change the server.Port in the integration point-Local.Properties for each instance. This must be unique. You must also point to go towards the correct integration point and gate. The gate that the integration point and the e-insight client use need not be the same. 
+
+Here you will find the same file without comments in:
+
+If you are experiencing problems with the Tomcat Port 7000 already in use at the start of several clients then you can put the following in the e-insight-client.xml file: 
+
+Make sure is set to the same port as.
+
+How to turn off receipt of access requirements
+One can turn off the receipt of access requirements at a given e-insight client. We recommend turning it off on everyone except one insight-client by entering the following in the e-insight-client.xml file:

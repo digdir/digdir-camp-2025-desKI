@@ -1,0 +1,32 @@
+Url: https://eid.difi.no/nb/minid/hvord-kan-verger-fa- access-to-clients --sin-minid-login
+Title: How can guardians access your clients Minide Login | Help sites for common solutions
+
+How can guardians access clients minide login
+
+If you are the guardian of the "Tax" area, you will have automatic access to the person's tax conditions. You can choose to represent the person you are guardian of when you log in to "My Tax". You can read more about it on the Tax Administration's pages.
+
+In order for you as a guardian to have access to your clients your mini-user, you must submit a guardian authority or future power of attorney who is confirmed by the State Manager. We only need the authorization if the guardian has a mini -profile from the past that the guardian does not have access to. There is currently no power of attorney in the ID port.
+
+MinID has a significant level of security (level 3) and can only be used on certain services. If there is a requirement for login at the highest security level (BankID, Buypass or Commfides), contact the service in question. As a guardian, you cannot get a login at the highest security level to the guardian.
+
+Guardian authorities are sent to:
+
+Norwegian Digitalisation Agency
+Printer Road 2 
+6863 Leikanger
+
+We do not store guardian authorization that is sent to us and therefore cannot give you access without the authorization being resubmitted to us. Once the authority is received, mini -activation letters are sent to the guardian's person -registered postal address.
+
+You must register contact information (mobile number and email address) when registering a MinID user. You and your client must agree on who their contact information should be registered.
+
+If you need help or want more information about MinID as a guardian, contact user support for the ID port at number: (+47) 800 30 300.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

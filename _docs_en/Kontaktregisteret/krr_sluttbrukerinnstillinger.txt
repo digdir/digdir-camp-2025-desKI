@@ -1,0 +1,37 @@
+Title: Link Services
+Description: 
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /KrR_Slot user settings
+
+Min profile - Administration of contact info
+In a minimum profile, the end user can update their contact information (mobile number, email, digital mailbox, reservation against online communication, language/target form). You as a customer (business) can link to min profile in your service, to get updated contact info to your users:
+| Environment | Link (URL) |
+|-|-|
+| TEST | https://minprofil.test.contaktregisteret.no/ |
+| PRO | https://minprofil.contaktregisteret.no/ |
+How you as a customer can send the end user back to your service after updating contact info in a min profile, is discussed in the "Gotourl" section below.
+Upgraded service and new URL for min profile
+Previously, the end user could update his contact information in the user profile service (user profile.difi.no/minprofil). This service has now been replaced with a min profile (see Urles in the section above). 
+"Gotourl"
+After the end user has updated his contact information in a min profile, you as a customer (business) can send the end user back to your service. This is done by using the "Gotourl" service. In order to use this service, your business must submit a valid URL to serviceedesk@igdir.no. Note the submission with "KRR - Gotourl". 
+New Request Parameter
+The "Gotourl" service has the following http request parameter that can be used:
+| Request parameter | Description |
+|-|-|
+| Gotourl | Link (URL) for the service as an end user should be sent back to |
+
+Note! 
+- Request parameter is not required.
+- If nothing is submitted, the service is linked to "log out" in the ID port. 
+- Request parameter must be URL-ENCODES.
+- Old Request Parameter "Goto" is replaced with "Gotourl" (https://minprofil.contaktregisteret.no/?gotourl=https://www.teneste.no)
+
+Validation of Gotourl
+Example value: http://www.tjerventeier.no/tjeneste-for-sender-som-sltklutker-v
+Validation rules:
+- Valid URL with protocol.
+- All input should be a lower case.
+Service for reservation
+The service has no special input parameters. The service can be found here:
+* http://www.norge.no

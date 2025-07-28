@@ -1,0 +1,26 @@
+Title: Troubleshooting
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring offers several tools that allow a troubleshooter e -dissemination:
+
+The integration point offers support services below. Feel free to see:
+Spring Boot's support services (external link)
+Integration point produces log (both to file and stdout)
+The integration point sends logs to eForsing central log service so that digdir can troubleshoot across
+Sender's integration point, recipient's integration point and e -dissemination's central services
+The Integration Point's interface offers services to retrieve message metadata including the status of messages
+Emsynings Central Services offers email notification for messages that fail and expire, and the expense certificate expires
+
+Most error situations that arise are well -known and outside of e -officing control such as network problems,
+Downtime and other error situations of the messaging services used, discontinued certificate of sender/recipient, etc.
+Contact our service desk if necessary:
+
+serviceedesk@dir.no
+
+Next step
+
+Famous errors
+Questions and answers

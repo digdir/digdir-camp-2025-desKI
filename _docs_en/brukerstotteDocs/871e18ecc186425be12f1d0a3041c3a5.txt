@@ -1,0 +1,79 @@
+URL: https://eid.difi.no/nb/esignering/ord-og-kjon
+Title: Words and terms | Help sites for common solutions
+
+Words and concepts
+
+E-ID = electronic ID. To get services from the state and municipality online, you must have an electronic ID, e-ID, in order to log in. An electronic ID is important to confirm that you are the one you are pretending to be.
+
+Electronic signature = data in electronic form associated with other electronic data and used as authentication method. In the signing service, electronic signature is produced using identification in the ID port. The signature is witnessed and sealed by a third party; Posten.
+
+Signing deadline = time available to sign the document.
+
+Expire = If you do not sign within the set deadline, the document will be removed from the signing service. You must then contact the service owner to receive a new document.
+
+Reject the document = to announce to the service owner that you do not want to sign the document.  This may be, for example, because you have received the wrong document, or that you do not want to sign the document for other reasons.
+
+The signing portal = to find the document to sign, go to the signing portal (https://signering.posten.no). You can log in via the ID port to see an overview of documents for signing, and a list of any documents that you have signed in the last 24 hours
+
+Advanced electronic signature = an electronic signature as:
+a) is unambiguously linked to the signer,
+b) can identify the signer,
+c) is made using funds that only the signer has control over, and
+d) are linked to other electronic data in such a way that it can be detected if these have been changed after signing.
+
+Signatar = the person signing.
+
+Multisignatars = the people signing by multi -party signing.
+
+Integrity = When a document is signed in such a way that the content of the document cannot be changed without this being revealed by validation.
+
+Validation = (here :) to examine the validity of a signed document. Pades validation can be done using an advanced PDF reader.
+
+Incare = when a signature is made in such a way that the person signing (the signator) cannot deny that it is she/he who has signed. In the signing service, the inequality is secured by the signature being made with qualified person's certificate
+
+Authentication = it is to prove that you are the one you pretend to be. Authentication confirms the identity of the person in this case logs into the signing service, and confirms the identity of the person signing the document electronically.
+
+Qualified Certificate = A Qualified Certificate shall contain the following information in accordance with the following information:
+a) an indication that the certificate is issued as a qualified certificate,
+b) the identity issuer's identity and the state in which it is established,
+c) the signer's name or pseudonym with information that it is a pseudonym,
+d) Any additional information about the signer, if relevant to the use of the certificate,
+e) the signature verification data, corresponding to the signature production data that is under the signer's control,
+f) the entry into force and expiry date of the certificate,
+g) The identification code of the certificate,
+h) the certificate issuer's advanced electronic signature,
+i) any restrictions on the application of the certificate, and
+j) Any amount limitations in the certificate with regard to the transactions the certificate can be used for.
+
+ 
+
+Pades = (PDF Advanced Electronic Signature); Is a set of extensions of PDF and ISO 32000-1 that adapt PDF to advanced electronic signature. Pades is a representation of the signed document and the electronic signature with front and "watermark" which makes it clear to the user that the document is signed. Pades also contains a xades (see separate definition). The Pades package is signed with a certificate that allows you to validate signature and document in an advanced PDF reader
+
+XADES = ("XML Advanced Electronic Signature): A set of XML extensions that adapt XML to advanced electronic signature. Xades is in practice a signed XML containing a hash calculated over the signed document. In the signing service, the Xadesen signatures have been signed. LTV-SDO (see separate definition)
+
+LTV-SDO = Long Term Validation SDO. This is a signed data object (SDO) expanded to support long -term validation, including by adding validation data such as. TTP log (see separate definition). LTV-SDO is an XADES (see separate definition), and is used to pack the SDO from the E-ID providers that produce the signature (BankID and Buypass). LTV-SDO is described in more detail at https://developer.signicat.com/documentation/sigting/sigting-result/xades/ltv-sdo-specification---
+
+Personal Certificate- Electronic Certificate containing a person's private keys used for signing and authentication (see separate definition).
+
+Turned third party, (or thrusted Third Party, TTP) = an actor (third party) that allows two parties to interact when they trust the third party. In the signing service, the post guarantees the validity of the signing process and the signed document.
+
+Hash Function = a cryptographic size calculated over a static amount of data. A hash function is a check -in that can be used to check that the original amount of data, in this case a document, is unchanged.
+
+ 
+
+
+ 
+
+ 
+
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

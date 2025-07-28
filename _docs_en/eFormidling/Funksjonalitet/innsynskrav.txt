@@ -1,0 +1,79 @@
+Title: Authority requirements from e -insight
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring allows your business to receive access requirements from e -insight.
+
+TOC
+{: toc}
+
+Introduction
+Evisation is a search service for anyone looking for information related to the public sector. If a document not
+Is available in its entirety, residents can send access requirements from e -insight to the business that owns the document.
+
+The use of e -insight is compulsory for the state -owned enterprises covered by the regulations of section 6 of the Public Act.
+Digitization Circular (external link)
+The use of e -insight is recommended for state enterprises that are not covered by the regulations of section 6 of the Public Act.
+Digitization Circular (external link)
+
+Emypesing is used to send access requirements from e -insights to the right recipient. Typically used e -dissemination through
+The e-insight client, but this is a temporary solution forward suppliers to a greater extent support integration directly
+Through e -handling.
+Read more about e -insight at:
+
+This is e -insight (external link)
+Use e -insight (external link)
+Technical documentation for e -insight (external link)
+
+Access requirements are represented with the following process for the recipient:
+| Process name | Process identifier |
+| ----------------- | --------------------------------------------------- |
+| Access requirements | URN: NO: DIFI: Profile: E -insight: Authority requirements: ver1.0 |
+Access requirements are represented with the following process for sender:
+| Process name | Process identifier |
+| ----------------- | ------------------------------------------------- |
+| E-Insight response | URN: NO: DIFI: Profile: Evisation: Response: Ver1.0 |
+A business always acts as a recipient, while the sender of access requirements is always an insight at Digdir.
+Message content
+There is only one document type supported to send access requirements from e -insight and this is only supported by e -insights
+messaging service.
+| Document Type | Message Services |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Access requirements | E -Insight messaging |
+Address messages
+Messages are addressed from DIGDIR's organization number to the recipient's organization number.
+Because the process is supported by a single document type supported by a single messaging service there is none
+Business rules related to choosing these.
+Receive messages
+The company's professional system receives continuous incoming messages from the company's integration point that in turn receives
+The messages from Evisyn's messaging service.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS E -Insights messaging service
+C->> B: Incoming Message *Available requirements *
+B->> A: Incoming message *Available requirements *
+
+Further description of the relevant messaging services can be found at:
+- e -insights messaging service
+Notification
+Sender System receives status messages when a message is delivered. Sender's system also receives status messages at
+error situations and when a message is not delivered within the defined life. Sender's system can notify
+The sender of both successful broadcasts and deviations.
+Assumptions
+
+Interface E -Mediation 2 must be used (Best/Edu is not supported)
+The use of e -insight requires appointment
+
+Configuration
+The following configuration is required for full functionality:
+
+Minimum configuration of the integration point
+Configuration of e -insights messaging service
+
+Development
+
+Example of access requirements from e -insight

@@ -1,0 +1,11 @@
+title: 20-06 oidc
+Description: 20-06 OIDC
+Sidebar: Oidc
+Redirect_From: /20-06_oidc
+
+Maintenance release with minor error corrections and improvements. Exposed to Aug/Sep.
+Scheduled production setting: 2020-06-23
+Improvements:
+Configured client authentication method must be used on all OIDC endpoints (PBLEID-17855)
+As of today, a client's configured client authentication method is only validated on /token.
+This is improved to include validation also on Token Introspection, Token Exchange and Revocation.

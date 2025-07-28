@@ -1,0 +1,10 @@
+Title: 18-11 ID port
+Description: 18-11 ID port
+Sidebar: Oidc
+Redirect_From: /18-11_ID port
+
+Upgrading to Openam 13.5
+Releasen was production -proof Nov 20, 2018
+New functionality:
+Openam upgrade (Shipped)
+Upgrading the ID port to Openam 13.5

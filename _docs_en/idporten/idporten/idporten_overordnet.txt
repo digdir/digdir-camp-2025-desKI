@@ -1,0 +1,118 @@
+title: overall architectural description
+Description:
+Summary:
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Idporten_Roverordinated
+
+The ID port makes logging in to digital services safe for residents.  See the product page for the ID port on the collaborative portal for overall information on what the ID port is, what it costs and how to enter into terms of use in order to use it.
+Introduction
+The ID port offers the following uses to customers:
+
+
+Authentication of residents to web services, to mobile apps or to Javascript applications
+
+
+API protection in the context of a logged in user, popularly called user-controlled data sharing.
+
+
+Architecture
+The architecture of the ID port looks like this:
+
+graph lr
+  Subgraph Norwegian Digitalisation Agency
+    IDP [ID port]
+    Saml [saml-proxy]
+    SADM [Self -Service Client Registration]
+  end
+  subgraph customer
+     SP [SAML service Service Provider]
+     Rp [oidc service relying party]
+     Adm [Administrator]
+  end
+  RP --- | Oidc | IDP
+  SP-- Saml2 --- Saml
+  Saml-- Oidc --- IDP
+  Manag
+  SADM-- Synchronization 5 min-> IDP
+
+  Resident-- user --- SP
+  Resident-- user --- RP
+
+The ID port itself is based on a modern OAuth2/OIDC authorization server from Connect2id.
+The SAML interface is based on a simple proxy that translates the customer's SAML messages into the OIDC protocol.
+Authorized employees or systems use Digdir's joint self -service solution on the web or over API
+ to record and maintain customer integrations.
+The following players are included in the solution:
+| Actors | Description |
+| --- | --- |
+| End user | Citizen with Eid |
+| The ID port | The ID port is a trusting anchor for public companies. The ID port links public companies and E-ID suppliers. |
+| Customer | Public enterprise that has accepted terms of use |
+| Service provider | Supplier that provides services to a public business |
+| API provider | Customer offering APIs secured with the ID port. |
+| E-ID provider | One of the 4 E-ID players available in the ID port: MinID, Commfides, Buypass, BankID |
+| MinID | MinID is a significant publicly issued e-ID at level, which offers authentication based on disposable codes by SMS or app. |
+| Certificate issuer | Certificate issuer who meets the requirements for business certificates in accordance with the Trust Services Act. |
+Authentication of the end user
+The ID port offer for authentication can functionally be summarized as follows:
+Supported Protocols
+
+Openid Connect
+Saml2 is only available to those who cannot use OpenID Connect
+
+Federation / SSO
+If the end user is logged in with service owner A and chooses to proceed to a service owner B without logging out, the user will automatically be logged in without the user having to authenticate.
+Session upgrade
+It is possible for an end user to carry out an authentication of level 3 and later go to a service that requires a higher level of security. In this case, the ID port will ask the user to upgrade security level.
+European users
+The ID port supports European users to log on to Norwegian services.  The EIDAS Regulation in the EU allows authentication to take place across national borders
+The ID port also supports foreign users to log on to Norwegian services with a self-registered email address.
+User -controlled data sharing
+The ID port can also control access to APIs at 3rd.
+The API access may be login-based (implicit consent) or user-controlled (explicit consent).  In both cases, the authorization only applies to a single citizen, unlike the machine gate that is intended for home -based data sharing.
+API access in the ID port is modeled as OAuth2 Scopes. For access-controlled scopes, an organization number (= API consument) is given access by API provider.  The API consumer must then actively register the assigned scopet on one of its integrations.
+How to access the ID port
+Follow the process on the collaborative portal to integrate with the ID port.
+Use self -service to register your integration
+The customer uses the self -service solution to record required information about their integration. This is described in more detail during client registration
+Send us your logo
+The customer must send us their own logo that is used in the login image. The Service logo must meet the following requirements:
+| --- | --- |
+| File format | .png .jpg or .gif |
+| Size | Maximum height 90 pixel and a width that should not exceed 135 pixel. |
+| Color | The background color on the ID port is #F3F4F4, so the logo should either have this background color or possibly have a transparent background. |
+Test your own solution
+The customer must perform a number of verification tests to confirm that the integration meets the requirements of ID port.
+Verification tests can be found here.
+Test users can be found here.
+Open for IP addresses
+If the customer has an outgoing firewall, it must be opened for the IP address IP address.
+Provide adequate your own logging
+It is recommended that the customer logs the following information on attempts at authentication:
+* Date and Time
+* Which action was attempted
+* The result of the action
+* User's IP address
+* Sessionindex / sid
+* Birth number
+The customer's specific need for logging up to privacy considerations must be assessed by the individual customer himself.
+Establish good IT security routines in business
+It is important that the customer protects his integration and establishes routines so that only authorized personnel have access to it. See eg recommendations for certificate processing, logging and tracking from the supervisor for business authentication
+The customer will also make a risk assessment of his own solution, here we recommend the section on the choice of security level from the supervisor for identification and traceability in electronic communication with and in the public sector
+Provide safe handling of keys
+It is central to the safety of the solution that the service provider plans and designs procedures for good key management (Key management, whether these are static secrets (Client_Secret), own-generated asymmetrical keys or business certificates.  
+If a key is compromised, an attacker may pretend to be a customer in the dialogue with the ID port and decrypt personal data sent from the ID port. Such security breaches will presumably affect the confidence in the customer, but may also be conceivable to weaken confidence in the entire federation.
+The following points are important to think through in connection with key management:
+* How are private keys stored and how is access to them? For optimal protection, a key can be stored in cryptographic hardware (HSM - Hardware Security Module), but often used encrypted files are used as a cheap but less safe option.
+* How is the backup of keys handled and how are these re -established if needed?
+* What personnel have access to servers with private keys, and who has any access to passwords that can be used to decrypt the keys to appear in clear text? Can individuals obtain access to private keys? Is a password for access to key warehouse unprotected in configuration files?
+* How is keys renewed when associated certificates expire? If a service provider does not renew the keys/certificates within the expiration, services for the service owner may suddenly stop working.
+* What is the procedure of a private key is compromised, or whether it is suspected that this has happened?
+* How is the key management process logged from the service provider?
+A customer should analyze these issues carefully and prepare appropriate operating procedures that implement the organization's IT security policy.
+Use of business certificate
+We recommend that customers use a business certificate to connect to the ID port. For customers who have many integrations, one should also consider using the business certificate to automate the integration maintenance so that each individual integration instead uses an assymetrical key to connection and it is rotated frequently.
+Note that certificate issuers of business certificate have some ordering time. Service providers are encouraged to order a certificate well in advance.
+Problems?
+If you are experiencing problems with your integration: Contact serviceedesk@dir.no Enter Client_ID and the environment and explain the problem.

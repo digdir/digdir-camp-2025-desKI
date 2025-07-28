@@ -1,0 +1,13 @@
+title: 22-01 machine gate
+Description: 22-01 Machine Gate
+Sidebar: Oidc
+Redirect_From: /22-01_maskorten
+
+Maintenance release of the machine gate
+Scheduled production setting: Feb 1, 2022
+Improvements:
+As the machine-gate client I should be able to request a resident-bound tokens (PBLEID-22951)
+The machine gate is expanded with support to limit a token to a specific birth number.
+Initially, this is just a case between client and MP, ie no scope trait.  API-EIGAR must post validation in the API if it required a birth number
+The client asks for restriction by including the Grantet.
+The machine gate validates that the task PID is syntactically valid, and puts as a new claim in the token.

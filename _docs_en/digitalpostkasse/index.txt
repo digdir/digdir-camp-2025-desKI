@@ -1,0 +1,9 @@
+Title: Digital Mailbox
+Description: Digital mailbox to residents
+Summary: "DPI - Digital Mailbox to residents"
+Product: Digital Mailbox
+Redirect_From: /Digipost_index
+
+In order to make it easy for the administration to communicate digitally, the Norwegian Digitalisation Agency has established a safe digital mailbox for the inhabitants (DPI). The resident selects the mailbox to receive digital mail from the public, among the market participants Posten and e-Boks
+The solution is suitable for sending confidential and other protective information. Digital mail sent through this solution will be encrypted to the mailbox, and the inhabitant logs in via the ID port. Printing and shipping is part of the service, so businesses can dispatch both digital mail and paper mail to the inhabitants of the same channel.
+Description of service, prices and additional services can be found in the collaborative portal

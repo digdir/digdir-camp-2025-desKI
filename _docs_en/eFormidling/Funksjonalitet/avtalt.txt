@@ -1,0 +1,87 @@
+title: agreed message exchange
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape allows your business to send messages as part of the agreed message exchange.
+
+TOC
+{: toc}
+
+Introduction
+The agreed message exchange allows the sender and recipient to exchange predetermined messages that may be structuring or
+unstructured. The messages are not predefined in the context of e -officing, but are agreed directly between sender (s) and
+Recipient (s).
+
+Demo of agreed message exchange
+
+The agreed message exchange is represented with the following process for the recipient:
+| Process name | Process identifier |
+| --------------------------- | --------------------------------------------- |
+| Agreed message exchange | URN: NO: DIFI: Profile: Agreed: agreed: ver1.0 |
+The agreed message exchange is represented with the following process for sender:
+| Process name | Process identifier |
+| ----------------- | ----------------------------------------------- |
+| Agreement-Response | Urn: No: Difi: Profile: Agreement: Response: Ver1.0 |
+Usually, a business acts both as a sender and the recipient, but it is also possible to act only as a sender.
+Message content
+There is only one document type supported for agreed message exchange and this is only supported by e -moldings
+messaging service.
+| Document Type | Message Services |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Agreed | E -Design Service Service |
+Address messages
+Messages are addressed from the sender's organization number to the recipient's organization number.
+Because the process is supported by a single document type supported by a single messaging service there is none
+Business rules related to choosing these.
+Send messages
+Before a business sends a message a voluntary capability lookup to see if the recipient supports
+the agreed process. In that case, document type and messaging service are provided. The business then builds the message before it is sent
+to the integration point. The integration point Routes the message to the Emsynings messaging service.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS Address Service
+Participant D AS eFormidling's messaging service
+A->> B: Capability lookup
+B->> C: Capability lookup
+A->> B: Outgoing Message
+B->> D: Outgoing Message
+
+Further description of the relevant messaging services can be found at:
+- Emsydidling's messaging service
+Receive messages
+The company's professional system receives continuous incoming messages from the company's integration point that in turn receives
+The messages from the Emsynings messaging service.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant D AS eFormidling's messaging service
+D->> B: Incoming Message
+B->> A: Incoming Message
+
+Further description of the relevant messaging services can be found at:
+- Emsydidling's messaging service
+Notification
+Sender System receives status messages when a message is delivered. Sender's system also receives status messages at
+error situations and when a message is not delivered within the defined life. Sender's system can notify
+The sender of both successful broadcasts and deviations.
+In addition, E-Mozening sends an email notice of any deviations to the sender's defined notification point. Notification is collected
+and is sent periodically.
+Assumptions
+
+Interface E -Mediation 2 must be used (Best/Edu is not supported)
+Use of eFruely messaging messaging requires appointment
+
+Configuration
+The following configuration is required for full functionality:
+
+Minimum configuration of the integration point
+Configuration of eFruing messaging service
+
+Development
+
+Example of agreed message exchange

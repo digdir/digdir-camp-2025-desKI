@@ -1,0 +1,18 @@
+URL: https://eid.difi.no/nb/ recognizable-error- and-loses/en-wrong- has
+Title: "An error has occurred" | Help sites for common solutions
+
+"An error has occurred"
+The error message "An error has occurred" may come from using a favorite link or bookmark to go straight to the website.
+Often you need to delete cookies in your browser. You can find guidance on how to do it here.
+It may be due to an error in the link you use.
+You can get the error if you use the navigation buttons (back and forth) in the browser during login.
+The error message will also occur if you have been automatically chopped due to inactivity. You must then restart the login.
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

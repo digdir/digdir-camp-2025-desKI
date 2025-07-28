@@ -1,0 +1,9 @@
+title: elma
+Description: Elma User Manual for Service Providers
+Summary: "Elma User Manual Service Providers"
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_user_manual
+
+Updated: 20.01.2022
+Please visit the manual for your current user role in the sidebar menu.

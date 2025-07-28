@@ -1,0 +1,27 @@
+Title: Receipt at Publishing
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_kvites_Ved_Publizing
+
+Publishing message
+Anyone who uses the integration point and can receive access requirements can also bring down receipt messages for publications.
+The receipt says whether a document has been processed and published in e -insight.
+The messages come as a receipt per document in the Standard Convolute for SBD, without the payload on the message.
+Companies who wish to receive receipts must register this in the business administration at eilsyn.no.
+
+By direct integration:
+The system must be arranged to receive the "Response" process and document type "e -insight_ receipt", in accordance with the Emsynings Documentation.
+Probably the integration is already set up to obtain access requirements, and receipts are collected in the same way, but with another process identifier.
+What happens next with the receipt will be up to the system owner.
+When using client:
+The client (v.2.1.0 and later) comes with functionality to collect receipt messages, but it requires that the environmental variable "scalpica receipts" is set for true (standard setting).
+The status of publication is logged in the application log, as well as a separate log file for receipts with daily rolling. Today's log file is called receipts.Log, and gets date stamp when it is rolled over to the next day.
+Placement for receipt logs is placed in e-insight-client.xml (parameter "Receipts.logging folder").
+Reading of receipt:
+The information is located in the business message (document type e-insight_vites) in SBDH, in "Status", and is in JSON format.
+ 
+Non-published and validation notification (from 23.03.2023)
+A corresponding receipt message will now be sent as over when a publication could not be performed due to validation errors. The "published" field will be "false".
+A receipt message has also been added that gives "Warning" if a publishing message does not validate. This one does not say whether the publication is actually successful. This is because we have some adjustments that make some files that do not validate anyway. We want to remove these adjustments later, so "warning" errors must be corrected for these to be published in the future as well.
+Example of a "warning" receipt (validation message):

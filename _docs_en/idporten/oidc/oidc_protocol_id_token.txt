@@ -1,0 +1,67 @@
+Title: "ID_TOKEN from the ID port"
+Description: "This Page Documents The ID_Tokens Issued by ID port ID port Oidc Provider"
+Summary: 'His Page Documents The ID_Tokens Issued by Id Port Id Port The Oidc Provider'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_id_token
+
+The id_token
+The id_token is the assertion of the authenticated user identity.  It tells you "Who the User Is", but not "What the User Can Access".  
+The ID_TOKEN IS MEANT TO BE CONSUMED AND VALIDATED BY THE CLIENT IN ORDER TO BUILD A LOCAL Session at the Client.  It is not intended to be passed around to enable api access towards other parties/systems.
+Please see auth0's guide to id and access tokens to learn more of the difference between these tokens.
+Structure of an id_token
+Two Request an id_token, use the /token endpoint.
+The id_token is a jwt structure, as documented in oidc core, 3.1.6.  The client must validate the id_token according to oidc core, 3.1.7.  
+In Addition, The Client Must Validate That The Security Level () is sufficiently high for the donor service.
+Example:
+
+
+
+id_token header claims
+| Claim | value |
+| --- | --- |
+| KID | "Key Identifier" - Unique Identifier for The Key and Certificate Used by ID port. The Public Key and the Certificate Must Be Fetched From Our .well-Known Endpoint. |
+| ALG | "Algorithm" - algorithm used for signing the token. Supported values are published on the .well-known endpoint.  |
+id_token body claims
+| Claim | Value |
+| --- | --- |
+| ISS | The Identifier of ID port as can be verified on the .well-known endpoint |
+| Aud | "Audience" - The Client_id of the Client Receiving This ID_Token |
+| Sub | "Subject Identifier" - an unique identifier for The Authenticated User.  The Value is pairwise, meaning a donor client will always get the same value, whilst different clients do not get equal values for the same user.  |
+| PID |  "Personal identifier" - The Norwegian National ID Number (Birth Number/D number) of the authenticated end User. Note that some owned providers (IE: Foreign Users) in the ID port May Not Supply a Pid. |
+| ACR | "Authentication Context Class Reference" - The Security Level of Assurance for the Authentication. Possible Values Documented Below.  The Level Must be validated by the client. |
+| AMR | "Authentication Method References" - Method of Authentication. Possible Values Can Be Seen Below.  The Available Values May Change Over Time, So The Client Should Not Validate This Value. |
+| Auth_Time | Timestamp indicating when the authentication was performed.  |
+| IAT | Timestamp when this token was issued. IF Different From, This Indicates A Federated/SSO login. |
+| Exp | Expire - Timestamp When This Token Should Not Be Trusted Any More.  |
+| JTI | JWT ID - Unique Identifer for a Given Token |
+| Locale | The Language Selected by the User during the Authentication in ID port. ISO 639-1 Values Are: NB (Norwegian Bokmål), NN (Norwegian New Norwegian), a (English), see (Northern Sami) |
+| SID | Session ID - An Unique Identifier for End User Session at the ID port. Clients Should Store The Value To Be Able To Shop Front Channel Logout Notifications. Note that will only be included if the client is registered with.  |
+Amr values
+Authentication Method Can Have The Following Values:
+|  Value | Description |
+| ----------------------- |-|
+|             | Minid Using Pin-Codes From Letter (Deprecated) |
+|             | Minid Using One-Time-Code Received via SMS |
+|             | Minid Using Notification in the Minid-app on Android/iOS |
+|            | Minid Using Timebased One-Time Passwords |
+|        | Minid Using Security Keys |
+|                | BankID Using Code Generator or App |
+|          | BankID on Mobile |
+|               | Buypass |
+|             | Commfides Using SmartCard |
+|                 | A European Approved Eid Through The Eidas Network |
+|  | A European Approved Eid Through The Eidas Network |
+|                |  An owned for testing purposes. Not used in production.  |
+Acr Values
+The Security Level of Assurance Can Have The Following Values:
+|  Value | Description |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|         | A "Low" Level of Assurance According to Norwegian Legal Framework ("Self -Declaration Regulations"). Login Can Be Without Multi-Factor Authentication. For Example With Only Password |
+|  | A "Substantial" Level of Assurance According to Norwegian Legal Framework ("Self -Declaration Regulations"). Multi-Factor Login With An ID That Has Beed Issued According To The 'Substantial' Demands. For Example Minid App or Minid With One-Time-Code from SMS. |
+|        | A "High" Level of Assurance According to Norwegian Legal Framework ("Self -Declaration Regulations"). Multi-Factor Login With An ID That Has Beed Issued According To The 'High' Demands. For Example BankID, Buypass or Commfides.                                 |
+|    | A "Substantial" Level of Assurance According to the European Eidas Regulation. Multi-Factor Login with an Eid that has been notified in the eidas network. For Example BankID, Buypass or Commfides.                                                              |
+|     | A Self-Registered Email -user With No Standardized Level of Assurance.                                                                                                                                                                                             |
+In 2023, these values were changed to the Norwegian Legal Framework Introduced in 2018, see supervisor for identification and traceability in electronic communication with and in the public sector.
+The Actual Values Are Inspired From The Iana Registry of Level-of-Essurance Profiles, IE. Comprised of.
+If more eids and loas should be added in the future, the id port will strive to use the same level postfix for eids we consider Having the more-or-loves the same level even if the legal frontworks are different. As an example: Most Public Agencies Will Consider An Eidas-Notified Eid on Legally Comparable To A Norwegian, and Can Thus in Their Validation Logic Only Validate on the Postfix.

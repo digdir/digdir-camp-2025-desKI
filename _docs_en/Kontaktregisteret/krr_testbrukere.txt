@@ -1,0 +1,56 @@
+Title: KRR test users
+Description: KRR test users
+Summary:
+TOC: FALSE
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_test users
+Phasing out of “regular” birth number
+As part of improving information security and privacy, the digdir is phased out the use of the birth number that follows regular syntax. We encourage everyone to switch to synthetic birth numbers in testing.
+What do we mean by synthetic test user?
+Synthetic test users have a personal identifier where, as a general rule, plus 80 have been placed on the month of birth and the control digits are calculated from it.
+Register/Create Test User in KRR
+Minid test users
+By creating a minID user, the user will at the same time be registered in the contact and reservation register (KRR).
+Procedure:
+
+- Log in and pick up the birth number of the current tenor test user in tenor test data search.
+- Register the test user in KRR by following the recipe Create test user (synthetic PID) even in the test environment test.
+- Check if the test user is registered in KRR through the minimum profile service in the test environment. You can log in with both test time and minID.  
+Test User outside Tenor Test Database
+If you want a test user that does not exist in tenor, you can, for example, use the service for Norwegian test data (external service). 
+Note! In order for these to be used in the ID port and KRR, these must be created with +80 in the monthly field in the birth number. 
+Change contact information on synthetic test user in KRR
+It is possible to change contact information on synthetic test users by logging into a min profile.
+To change contact information on synthetic users, select Test time as a login method.
+
+{% Include note.html Content = "If you enter your own contact information on a test user, you may risk receiving notifications from companies that use KRR in the test environment." %}
+
+KRR Test users with various attributes in the test people.
+We have a set of "static" users. These test users can now be found in tenor test data searches and are test users with synthetic birth numbers (+80 a month). The test users hold the following attributes from KRR reset every day:
+
+With mobile, email and digital mailbox
+With mobile and email
+Mobile only
+Email only
+Deleted from KRR
+Expired on 18 months rule
+
+Note! Mailbox must be tested by other tests/test users.
+Mass ordering of test users in KRR
+It is possible to monitor the registration of tenor test users (+80) in KRR for use in the test environment. 
+To order, send an email to serviceedesk@dir.no with a CSV file containing information about users.
+Format and requirements for content
+
+There must be one line per test user.
+All fields must be filled in.
+If you do not need a real email address or mobile number, you can use the examples below.
+
+
+Routine for SMS envoy in the test environment
+Use of fictitious mobile number
+One must use the following fictional number series: 68050000 - 6805999. Number from this series ensures that no real persons receive SMS -AR during testing. 
+Use of real mobile number
+In order to avoid unwanted SMS years from the test environment, a quit list has been created. Number to receive Test-SMS must be reported to serviceedesk@igdir.no to be added.
+
+{% Include note.html content = "If one uses SMS to log in to test users, this will not be possible unless one is added to the white list." %}

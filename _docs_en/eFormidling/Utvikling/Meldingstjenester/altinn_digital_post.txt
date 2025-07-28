@@ -1,0 +1,57 @@
+Title: Altinn Digital Post
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring supports the following processes and document types with the Altinn Digital Postal Message Service.
+| Process | Document Type | Example |
+| --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------
+| Case processing | Archive Message | Example |
+| Confidential Case Management | Archive Message | Example |
+| Information for citizen | Digital DPV | Example |
+| Decision to citizen | Digital DPV | Example |
+Whether Altinn Digital Post is part of a recipient's capabilities or does not depend on several factors such as
+described for the individual process.
+To use Altinn Digital Mail, the integration point must be configured with necessary access to APIt Altinn Digital
+Post offers.
+The integration point converts the document types archive message and digital DPV to call against APIt Altinn Digital Post offers.
+See the document types for details. For the case processing processes (including confidential case processing) it is reshaped
+Current process for similar service in Altinn Digital Post (Service Code & Service Ditoncode) so that the receiving
+Companies may have different access management depending on the process.
+By using the interface Best/Edu converter the integration point first from Best/Edu to archive message, before the message
+Shipped as described above.
+The integration point converts the messaging statuses from Altinn Digital Post to Emsynidling's Message Statuses and
+Archive message receipt.
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B -> | Archive Message | C ("FA: FA server" integration point)
+C ---> D ("FA: FA server Altinn Digital Post")
+C ---> | Status | B
+C ---> | Archive Message receipt | B
+D -> c
+
+Flow sketch for:
+
+graph lr
+A ("FA: FA-U-Case Manager")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B -> | Digital DPV | C ("FA: FA server" integration point)
+C ---> D ("FA: FA server Altinn Digital Post")
+C ---> | Status | B
+D -> c
+
+Message Statuses
+Message Statuses for Messages Sent with Altinn Digital Post:
+| Status | Comment | 
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Created | The integration point receives BestEDU message from the Case Archive System and creates a DPV message |
+| Sent | Integration point has sent the shipment to Altinn's DPV service and AppreceiTT is returned to case/archive |
+| Delivered | When DPV message is delivered to Altinn's DPV Service and Status Blit Updated | 
+| Read | When the recipient has opened and read the message in Altinn, the status is updated to Lest | 
+Next step
+
+Product documentation for Altinn Digital Post (external link)
+Technical documentation for Altinn Digital Post (external link)
+Multiple messaging services

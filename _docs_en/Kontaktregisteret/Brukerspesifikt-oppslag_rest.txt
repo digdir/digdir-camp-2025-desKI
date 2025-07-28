@@ -1,0 +1,51 @@
+Title: Lookup by logged in user (user -controlled data sharing)
+Description: OAuth2-Protected User-Specific Residual API for the Contact and Reservation Register
+Summary: "Contact information from the contact and reservation register of the logged in the user is available on a separate OAuth2-protected residual API."
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /User -Specific_ -Lesset_krr_rest
+
+Introduction
+Contact information from the contact and reservation register is most often provided globally through the reference service. However, customers can also receive contact information only related to the logged user, and in some contexts it is more appropriate and use this service.
+The use of oauth2
+Logged lookups User is based on user -controlled data sharing. In addition to the IDPort scopes OpenID and Profile, one or more of the following scopes must be requested:
+| Scope | Description |
+|-|-|
+| KRR: User/Contact Information.READ | Returns email address and mobile number + time for last update |
+|  | Returns the status of whether the contact info can be used for notification in accordance with. The Emergency Regulations §32 |
+| | Returns the user's preferred language for communication with the public.  |
+| KRR: User/Digitalpost.READ | Returns address for digital mail to citizen |
+| | Returns the user's encryption certificate when sending digital mail |
+| Krr: User/Spraak.Write | Changes the user's preferred language for communication with the public. |
+API endpoint
+| Environment | URL |
+|-|-|
+| Test | https: //test.contaktregisteret.no/rest/v1/person |
+| Prod | https: //contaktregisteret.no/rest/v1/person |
+{% Include note.html content = "Mark the small difference between 'person' (this endpoint) and 'persons' (machine-to-machine endpoint). The two services also have different domain names." %}
+The following header parameters must be used on Request:
+| Parameter | Value |
+| --- | --- |
+| HTTP method: | Get |
+| ACCEPT: | Application/Jose (possibly Application/Json) |
+| Authorization: | Bearer \ <Issued Access_token> |
+Example of response:
+See https://bentrep.difi.no/ lookup service/person for the definition of the Code.
+
+Example of change of language: {#spraak}
+The betting below will change the logged in use its preferred language in the contact register of English:
+`` `
+Patch/Rest/V1/Person
+Content-Type: Application/Json
+Authorization: Bearer Swdq_PVCT3Hizsiac3zhdummerqffr4ORR508N3P0MTG =
+{
+ "Spraak": "a"
+}
+`` `
+It is important that customers who use write-api inform the user that changes are happening in a national register and not just for this service.
+Swagger
+Openapi documentation.
+| Environment | URL |
+|-|-|
+| Test | https: //test.contaktregisteret.no/swagger-ui/index.html |
+| Prod | https: //contaktregisteret.no/swagger-ui/index.html |

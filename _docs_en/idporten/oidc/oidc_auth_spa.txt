@@ -1,0 +1,37 @@
+title: authentication to spa's
+Description: Use of Idporten's Openid Connect Provider for Authentication to Single Page Applications
+Summary: "When logging into a spa, it is recommended to use Code Flow with PKCE and State"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_Auth_spa
+
+Overall description of the application
+Single-Page Applications (SPA) have increasing popularity. These differ from traditional web services in that the spa is realized as a pure JavaScript application in user browser, versus traditional web services where a central application server generates HTML shown in the Browser.
+One challenge with spas is that they are unable to protect the client secret (possibly the business certificate's private key) since the entire client lives in the user's browser. Spaer is thus what in the OAuth2 world is called public clients. For such clients, it was previously recommended to use Implicit Flow, but the latest recommendation is to use Code Flow with PKCE and State.
+Also note that the often used method of "Silent Renewal" is not supported by the ID port.  This method is also on the way "out", as the major Browser players are about to block access to 3Djparts cookies that destroy Silent Renewal.
+Recommendations / Requirements for the use of spas
+The threat picture is different when using SPA versus services that use ordinary authorization code flow. Since the access_token is exposed into the user's browser, there is an increased risk that the token can more easily get lost or replaced/manipulated.
+Service owners must:
+
+
+Consider a backend-for-front (BFF) architecture, ie establish a thin API-gateway component operating as OAuth2 client and turns the ID-port ID_Token into its own session (own cookies) between BFF and Spa. This is the recommended architectural pattern when using the ID port.
+
+
+If you rather choose the spa's backend apis to be secured by the ID port's access_token directly, the customer must create a separate OAuth2-scope for the purpose and not just use (otherwise all valid ID ports can be used for all other services also used against your API)
+
+
+One should use short-lived access_token, and relatively short_ lived refresh-tokens
+
+
+We also recommend reading the latest IETF recommendations and following the recommendations in this.  This should be part of its own risk assessment of the data export of the API and assess whether the hedging mechanisms that the above offer offers provides adequate protection.
+Setup in self -service
+SPAs using ID porten's access_tokens as a hedging mechanism against their own API must be created as in the self-service solution.  Then one gets the opportunity to control the life of authorization, access_token and refresh_token.
+Flow
+In practice, the flow is the same as ordinary authorization code flow, but there:
+
+The client must be registered with the client authentication method in the ID port (see client registration) (if not BFF pattern)
+Use of PKCE is required
+Use of -claimed in Authorization Request is required
+
+Excample
+See example with React client

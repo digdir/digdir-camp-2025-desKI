@@ -1,0 +1,14 @@
+Title: The Contact and Reservation Register
+Description: 
+Product: Contact Register
+redirect_From: /krr_index
+
+The contact and reservation register is a register of the residents 'digital contact information, and the status of the citizens' possible reservation against digital communication with the administration. The register, and the use of it, are based on the e -government regulations. 
+The lookup service is a web service that provides public administration access to make lookup against the register. The service can be used by public companies and companies that perform services on behalf of the public. The service is a superstructure on existing registers for the management's electronic communication, initially the contact and reservation register. In the long term, the reference service can also provide access to other registers.
+The register contains information about:
+
+residents have reserved themselves against digital communication against the public or not
+preferred email address, mobile number and secure digital mailbox
+
+Registration and updating the information lies to the various registers and is not part of the lookup service.
+More information on the contact and reservation register can be found at the collaborative portal

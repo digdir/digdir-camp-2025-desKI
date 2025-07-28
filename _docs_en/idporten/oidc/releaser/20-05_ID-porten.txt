@@ -1,0 +1,11 @@
+Title: 20-05 ID port
+Description: 20-05 ID port
+Sidebar: Oidc
+Redirect_From: /20-05_ID port
+
+The ID port is expanded with new owned for selected service owners (ie. New process for online user-creation of MinID based on self-service verification of passports.
+Releasen was production that May 19, 2020
+New functionality:
+Support Korona-owned in the ID port (Ready to Ship)
+There are several players considering creating temporary crisis owners now ifbm with the corona situation. These eids are primarily intended for foreign workers who have been laid off and have to return to their home country without the opportunity to log into, for example, NAV's services.
+To help such service owners, it is appropriate to distribute these eids as standalone owned through the ID port.

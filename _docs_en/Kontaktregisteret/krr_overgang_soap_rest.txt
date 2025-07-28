@@ -1,0 +1,25 @@
+Title: Transition from Soap to Rest
+Description: Transition from Soap to Rest for KRR
+Summary:
+TOC: FALSE
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /Krr_ Transport_Soap_rest
+The SOAP interface to KRR was phased out on 01.11.2022
+In this connection, everyone must make sure to use KRR's residual API.
+The REST API contains the same data and functionality as the SOAP interface, but can also offer self-service for the creation and administration of KRR clients.
+Background:
+There are several reasons why we want to phase out the SOAP interface.
+
+Easier to use and maintain
+Better performance
+Residue is the preferred protocol for web service today in public
+Support for several data format including Json
+Supporting both SOAP and residual challenges with both resources and expertise
+Supplements via Soap are today closely integrated with the ID port, REST goes against an API secured with the machine gate.
+
+What needs to be done?
+Here comes some information about what the businesses need to do to get over to the residual interface.
+Create client via self -service
+This is described under "Get Started":
+https://docs.digdir.no/docs/contakt Registeret/krr_ Record_Client

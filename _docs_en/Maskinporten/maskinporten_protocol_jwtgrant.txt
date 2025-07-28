@@ -1,0 +1,48 @@
+Title: "Jwt Grant"
+Description: "A Grant Is Sent By The Client to Machine Gate In order to get an access token"
+Sidebar: Machine gate_sidebar
+Product: Machine gate_sidebar
+redirect_From: /Machine gate_protocol_jwtgrant
+
+About
+The jwt grant is a requested late by the client towards machine gate, in order to obtain an access_token.  
+JWT Grants Are Documented in RFC7523. Both the Grant Request and the Returned Access_token Are Jwt Structures Looking Almost Identical, So Take Care Not to Mixed Them Up.
+Grant Structure
+Header:
+| Claim | Cardinality | Description |
+| --- | --- | --- |
+| ALG | Required | , and are supported by machine gate. | 
+| X5C | OPTIONAL | The Business Certificate/Eseal (business certificate of the organization. Full Certificate Chain, See RFC7517 Chapter 4.7. |
+| KID |  OPTIONAL | Key Identifier to A Previously Registered Certificate / Asymmetric Key Bound to the Client.     |
+Either 'Kid' or 'x5c' must be present. 'Kid' can and must be used by clients Having a pre-registered certificate / asymmetric key.
+Note that Production Certificates Are Not Supported In Test Environment.
+ 
+Body:
+| Claim |  Cardinality | Description |
+| --- | --- | --- |
+| Aud | Required | The intended target for this jwt grant, IE. The identifier for the machine gate.   The Value in Production IS |
+| ISS | Required | Issuer - Your Client ID |
+| IAT | Required | Issued at - hourly stamp when generating this jwt.  Note: UTC time. To Allow for Clock Skew and Network Delays, the machine gate Will Only Accept Grants Where Iat Is Less Than 10 Seconds Ahead/After Our Clock.  |
+| Exp | Required | Expiration Time - Timing for The Expiry of This JWT, in UTC time. Note: Maximum 120 Seconds Allowed. (Exp - IAT <= 120) |
+| JTI | Recommended | JWT ID - UNIQUE ID FOR THIS JWT. Note: A JWT Cannot Be Reused. |
+| Scope | Required | Whitepace-separated list of Scopes Requested.  When Using Jwt Grants, The Client Must Have Pre-Registered With Rights To All the Scopes (Unless Using Delegation in Altinn, See Below.) |
+| Resource | OPTIONAL | The target api that the client intend to use the token. Only used by some apis, and the actual value to use must be obactained from the api owner. Please See Audience Restion for Details. Currently only array supported.  |   
+If the Client (or the intended api) wants to utilize enduser-Restriced tokens, The Following Claim May Be Included in the Body:
+| Claim |  Cardinality | Description |
+| --- | --- | --- |
+| PID | OPTIONAL | The Target End -us "Birth Number" That The Access Token Should Be Bound to. This Claim Might Be Required by some apis. |
+If the Client Belongs to A Supplier Requesting a Token on Behalf of Another Organization (Legal Consumer), The Client Should Use Scope Delegation By Including This Claim: 
+| Claim |  Cardinality | Description |
+| --- | --- | --- |
+| Consumer_org | OPTIONAL |  String Value Carrying the Norwegian Organization Number of the Legal Consumer The Client Wants to Get A Token for. The machine gate will validate Against Altinn that the Consumer-Supplier delegation exists.  |
+(Note: Previously, A simply internal delegation Mechanism could be used. This is now degrecated, and Will be removed in future.)
+Machine gate ALSO Supports A Couple of Fine-Grained Authorization Extensions.  These are: 
+| RAR-TYPE |  Cardinality | Description |
+| --- | --- | --- |
+|  | OPTIONAL | System User Token |
+|     | OPTIONAL | Consent Token |
+Example Jwt Grant
+The Final Jwt May Look Like This:
+
+Example Jwt Grant When Using Delegation
+If the client rely on delegation of scope access in Altinn, The Client Needs to Include The -claim in the Grant:

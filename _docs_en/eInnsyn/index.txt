@@ -1,0 +1,14 @@
+Title: About e -insight
+Description: Documentation for e -insight
+Summary: "Documentation for e -insight"
+Sidebar: Main_sidebar
+Redirect_From: /E -Insyn_index
+This is the technical documentation for e -insight. The purpose is to support architects, developers and operating personnel at
+public companies and their suppliers in the introduction and use of e -insight.
+
+Technical documentation
+
+Feel free to see the collaborative portal for a completely overall non-technical introduction to e-insight:
+
+This is e -insight (external link)
+Use e -insight (external link)

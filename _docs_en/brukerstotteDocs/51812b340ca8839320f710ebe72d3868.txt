@@ -1,0 +1,22 @@
+URL: https://eid.difi.no/nb/sikkyness-og--spresign/menpetting-v-contact information
+Title: Recovery of Contact Information | Help sites for common solutions
+
+Recovery of contact information
+
+Norwegian Digitalisation Agency may remove your contact information on suspicion of identity theft or abuse.
+
+If your contact information (phone number, email address and digital mailbox) has been deleted in the contact and reservation register, you must log in with an electronic ID to re-register contact information.
+
+If you have an asset agreement with BankID, Buypass or Commfides, you can re -register contact information by logging in to norge.no
+
+If you want to use MinID, please contact the ID port support (+47) 800 30 300.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

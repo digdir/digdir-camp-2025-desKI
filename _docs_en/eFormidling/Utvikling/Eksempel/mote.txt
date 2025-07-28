@@ -1,0 +1,28 @@
+title: Example of meeting to e -insight
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of a meeting for e -insight.
+
+TOC
+{: toc}
+
+Send messages
+Create Standard Business Document (SBD) for message
+
+Attach the file fashion.json
+
+Send the message from the integration point
+
+Follow the status of the message
+
+Receive and Delete Receipt
+
+Next step
+
+Functional description of meeting to e -insight
+The document type publishing
+The interface e -forming 2
+Several examples

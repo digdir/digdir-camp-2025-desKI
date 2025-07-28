@@ -1,0 +1,34 @@
+Title: "Document Type: Status"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD).
+The document type has the identifier.
+The document type is an internal receipt used in the Emsynidling's messaging service and e -insights messaging. Messages
+With this document type, the integration point is produced to signal a status back to the sender. If a
+If chooses to integrate against e -mediation without integration point, the integration must send these status messages themselves.
+When using Emsynings messaging, the document type is sent to the process.
+When using e -insights messaging, the document type is sent to the process.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to the recipient's organization number.
+Business message
+The business message is described below.
+
+ (required)
+Describes what is the result of the message the receipt applies.
+| Legal values | , |
+| Standard value | (none) |
+| Configuration of Standard Value | Not supported |
+
+Next step
+
+Example of case processing

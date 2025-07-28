@@ -1,0 +1,9 @@
+title: new system architecture
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_sysark
+
+Digdir's project for new system architecture ensures that in the future we can handle higher volume and greater traffic in our solutions, and facilitate new applications.
+At the collaboration portal https://so co-work.digdir.no/kontaktregisteret/contakt-og-eservation register/1314 you will find information on what is new and what customers who use the contact and reservation register must do in the transition to new system architecture.

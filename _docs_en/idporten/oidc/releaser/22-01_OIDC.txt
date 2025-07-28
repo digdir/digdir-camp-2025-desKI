@@ -1,0 +1,10 @@
+title: 22-01 oidc
+Description: 22-01 Oidc
+Sidebar: Oidc
+Redirect_From: /22-01_oidc
+
+Seid2 support
+Scheduled production setting: Feb 1, 2022
+New functionality:
+SEID2 support (in Development)
+OIDC provider is expanded with support for Seid2-based business certificate for client authentication.

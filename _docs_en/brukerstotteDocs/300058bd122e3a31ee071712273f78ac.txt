@@ -1,0 +1,47 @@
+Url: https://eid.difi.no/nb/minid/hvord-- Register-minid- User-with-app#main-Conentent
+Title: How to Register MinID user with app | Help sites for common solutions
+
+Sámegiella
+How to record MinID user with app
+
+To register as a mini-user, you need the following:
+
+Birth number or D-number
+Mobile phone and email address
+Minide activation letter
+
+If you are missing a mini -activation letter, you can order it here. MinID activation letter is valid for 60 days after ordering. 
+
+MinID activation letter is only sent to the address you have registered in the Norwegian National Register. If you have both a postal address and a residential address, it will be sent to the postal address.
+
+Normal delivery time for minid activation letters are 10 business days (inside Norway).
+
+ 
+
+To register MinID user with app, do the following:
+
+Open the Minide app
+Click "Get Started"
+Enter birth number. Click "Next"
+Scan the activation code (QR) with camera. NB! You must allow camera to use the app
+Create a personal password
+Enter mobile number. Click "Next"
+Enter email address. Click "Next"
+You are now registered as Minid App uses. Next time you log in you can use your phone to approve login
+
+
+The password must satisfy the following requirements: 
+
+must be a minimum of 8 characters long
+must consist of letters and numbers 
+Guide
+Video
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

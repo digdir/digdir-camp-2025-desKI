@@ -1,0 +1,53 @@
+Title: Example of confidential case handling
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of confidential case handling.
+This page shows an example of message exchange in connection with case processing. The recipient of the example is
+The Directorate for Administration and Financial Management (DFØ) with organization number.
+
+TOC
+{: toc}
+
+Send messages
+Create Standard Business Document (SBD) for message
+
+Attach the file archive message.xml
+`` `
+Curl -xput http: // localhost: 9093/API/Messages/Out/93F530E3-0D4F-4273-94CD-E0D64019E83 \
+-H 'Content-Type: Application/Json' \
+-H 'Content-Disposition: Attachment; NAME = archive message; Filename = archive message.xml '-d \
+'xml version = "1.0" Encoding = "UTF-8"?
+
+Samock
+3380ED76-5D4C-43E7-AA70-8ED8D97E4835
+2017-05-23T12: 46: 00
+1
+'
+`` `
+Attach the file my.PDF
+
+Send the message from the integration point
+
+Follow the status of the message
+
+Receive and Delete Receipt
+
+Receive messages
+Check incoming messages
+
+Download message
+
+Erase message
+
+Send receipt
+
+Next step
+
+Functional description of confidential case handling
+The document type archive message
+The interface e -forming 2
+The interface Best/Edu
+Several examples

@@ -1,0 +1,98 @@
+title: dpop
+DESCRIPTION: ID port's functionality for DPOP - Demonstration of Proof of Possession
+Summary: "DPOP provides protection against stealing and abuse of tokens by tying them to the client"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_dpop
+
+About the functionality
+DPOP - Demonstration of Proof of Possession - is a mechanism that protects against the abuse of tokens by tying them cryptographically to the client who retrieved them.
+The method makes it more difficult for an attacker to use tokens that has been stolen, for example via man-in-the-medium attack. An ordinary token can be used by anyone who gets it via leakage or the like, before it expires on time.
+DPOP is defined in RFC9449, and we refer to this for detailed documentation.
+DPOP is used like this:
+
+The client generates a DPOP JWT with a short life (eg 1 minute) that is bound to method and URL, and the client signs it with a private key.
+The JWT is sent in the HTTP header along with calling /token.
+The ID port validates that the DPOP heads are correctly signed and match the request.
+The return token returned is tied to the client's public key and can only be used with a valid DPOP header.
+
+DPOP requires the client to support:
+
+Generation and handling of key pairs (Public/Private). Key can be autogenated or lie on a safe area depending on client type
+Signing of JWTs
+Inclusion of fields in Header
+
+The access token you get in return should contain with one that is a "thumbprint" of the public key used earlier.
+Requests against API that supports DPOP must use Authorization type DPOP and include DPOP proof in the header.
+Refresh tokens with dpop
+When DPOP is used, Refresh Tokens will also be bound to the client's public key, if the client does not use client authentication.
+It involves:
+
+Refresh Tokens can only be used with a valid DPOP header that matches the original key.
+When rotating a key pair, a new refresh Token must be picked up with the new key.
+Clients must therefore ensure safe and stable key management over time.
+
+If DPOP is not used correctly when renewal of tokens, the request will be rejected.
+NB: For clients using client authentication, you can choose to use the Refresh Tokenet to regain an access token that is tied to DPOP or not.
+API support for dpop
+In order for DPOP to provide full security, the APIs that the access token must also be used, support and validate the DPOP token bond.
+This entails:
+
+Access Tokens must be DPOP-bonded: The API must expect the access token to be used only with a valid headhead in each request.
+Validation of DPOP heads: API should verify that:
+The JWT -One in the header is correctly signed
+ and the fields match the HTTP method and the URL of the API-Kall
+JWT is not reused (Replay Protection)
+
+
+Confirmation of token bonding: The Access Token field must contain a JWK Thumbprint (), which will match the JWK in the header.
+Response by error: In case of error in DPOP validation, the API should return with header describing the error, eg:
+  
+
+API suppliers must therefore provide for:
+
+Libraries/Tools that support DPOP verification
+Option to retrieve the field from the token
+Robust validation and incorrect handling
+
+Example
+A DPOP certificate SKL is included in the http header named DPOP in all calling to the token- endpoint and in all calls to APIs that require DPOP.
+The DPOP Header is called DPOP and the content is the DPOP certificate in BASE64 format.
+
+When you decoder the DPOP certificate, it looks like this:
+`` `
+{
+  "Typ": "DPOP+JWT",
+  "Alg": "ES256",
+  "Jwk": {
+    "KTY": "EC",
+    "X": "L8TFRHX-34TV3HRCRDY9ZCKDLPBHF42UQUFWVAWBFS",
+    "Y": "9ve4jf_ok_o64zbttlcunjajhmt6v9tdvru0cdvgrda",
+    "CRV": "P-256"
+  }
+}.
+{
+  "JTI": "-BWC3ESC6ACC2LTC",
+  "Htm": "Post",
+  "Htu": "https://server.example.com/token",
+  "IAT": 1562262616
+}.
+{
+[Signature]
+}
+Typdpop+Jwtalgjwkhtmhtuiat`: is a Unix Timestamp that tells when the JWT was created
+The JWT is signed with the private key belonging to the public key. One must take care of the private key in a safe way.
+The response will look like this:
+
+And in the access token there will be a thumbprint of the public key:
+
+After token Response:
+*: When using the DPOP-bound token, you have to include a hash of the access token in the Claim 
+*: If there is a nonc value in the token response, the dop evidence must also contain it.
+Example of API request:
+
+Where the DPOP certificate looks like this when you decoder it:
+
+We recommend using a library. See examples in Java here
+
+For help or questions, contact us via Digdir's support channels.

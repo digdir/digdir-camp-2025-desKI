@@ -1,0 +1,7 @@
+Title: About the ID port
+Description: About the ID port
+Product: ID port
+redirect_From: /idport_index
+The ID port is a common login solution for public services on the Internet. Through the digitization circular, state companies are instructed to use the ID port for "digital services that require login and authentication".
+How to access the ID port
+See the collaborative portal for the process you need to follow to use the ID port: https://so co-cooperation.digdir.no

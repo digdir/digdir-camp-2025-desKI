@@ -1,0 +1,24 @@
+Title: "/Userinfo Endpoint"
+Description: "This page Sumarizes the Protocol Options Availalbe for On The /Using Endpoint for the ID port Oidc Provider"
+Summary: 'This Page Sumarizes The Protocol Options Availalbe for On The /Userinfo Endpoint for the ID port Oidc Provider'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_userinfo
+
+About
+The Endpoint Is Thoroughly Documented in Oidc Core Specification, Chapter 5.3
+Note that ID port does not contain any useful Additional Information About The User Beyond The (National ID Number) Which is Already Included in the ID_TOKEN.
+Request
+All Clients Can Request The Profile Scope and Will Get An Access_token That Can Be Used To Call the Userinfo-Endpoint.  The location of the endpoint is published in the metadata as the claim.
+The Following Header Parameters Apply:
+| Parameter | Calue |
+| --- | --- |
+| Http method: | Get |
+| Authorization: | Bearer \ <access_token> |
+Response
+The Response is a Json Structure with Claims:
+| Claim | Description
+|-|-|
+| Sub | "Subject Identifier" - an unique identifier for The Authenticated User.  The Value is pairwise, meaning a donor client will always get the same value, whilst different clients do not get equal values for the same user.   |
+| PID | Norwegian National ID Number - Always Present Unless a Pseudonymous Scope was Requested. |
+| Locale | The Language Used During Authentication |

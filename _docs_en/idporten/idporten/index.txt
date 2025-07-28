@@ -1,0 +1,13 @@
+Title: Use the ID port for login to web services
+Description:
+Summary:
+Sidebar: Main_sidebar
+Product: ID port
+Redirect_From: /Idporten_bruksavrer_index
+
+The ID port supports the following services:
+
+Login to Web service (OpenID Connect/OAUTH2 and SAML2 Protocol)
+Login to Mobile app (OpenID Connect/OAuth2 Proscollen)
+Login to Single-Page Application (OpenID Connect/OAUTH2 Proscolle)
+API fuse

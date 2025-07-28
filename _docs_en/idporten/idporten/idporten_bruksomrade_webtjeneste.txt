@@ -1,0 +1,110 @@
+Title: Use of the ID port for login to web services
+Description: 
+Summary: 
+Sidebar: Idporten_sidebar
+Product: ID port
+Redirect_From: /Idporten_brukomrade_webterve
+
+Overall description of the application
+The ID port offers functionality for authentication of end users. OpenID Connect is available interface in the ID port for this purpose. OpenID Connect is the recommended protocol for all new integrations. Saml2 is available to those who cannot use the OpenID Connect interface. The documentation on this page will mainly be based on the OpenID Connect Protocol. 
+The way you integrate towards the ID port will vary depending on which application or type of service you as a service provider wants to offer.
+With the application "Login to Web Services" as described on this page we mean traditional web services where most of
+The application logic is handled on the server side, unlike single-Page JavaScript applications (SPAs) or mobile applications.
+The authentication is performed by the ID port's Openid Connect Provider that issues ID Token to the current service.
+
+graph lr
+  End_user (end user)
+  OP (OpenID Connect Provider)
+  RP (web service)
+  End_user -. authenticizes at .-> op
+  Op -. issuer id_token .-> rp
+  End_user -. logs into .-> rp
+
+The following players are included:
+| Actor | Description | Terms in OpenID Connect |
+| -|-|-|
+| End user | Want to log in to a public service | End User |
+| Web service | End user service offered by a public agency | Relying Party (RP) / Client |
+| The ID port | The ID gate's authentication service as an insistence id Token to the current service | Openid Provider (OP) |
+Description of Authorization Code flow
+
+sequence chart
+  End User ->> Relying Party: Clicking Login button
+  Relying Party ->> End user: Redirect with authentication request
+  End User ->> Openid Provider: Follow Redirect ...
+  Note over the end user, Openid Provider: End user authenticates (and possibly consent to the requested scopes)
+  Openid Provider ->> End User: Redirect with Authorization Code
+  End User ->> Relying Party: Follow Redirect ...
+  Relying Party ->> Openid Provider: Inquiry Token (/Token)
+  Openid Provider ->> Relying Party: id_token (possibly more tokens)
+  Note over the end user, Relying Party: logged in to the service
+
+
+The flow starts with an end user trying to access a given service (client)
+The service requires login and a redirect URL to the OpenID Connect provider is generated and returned to the end user. This redirect represents an authentication request and has parameters that identify the current service for the provider.
+The end user comes to the authorization point of the provider where the request is validated (eg valid service and valid redirect_uri back to the service).
+The user conducts login in the provider
+Provider Redirects the user back to the service. The Redirect URL has set an authorization code.
+The service uses the received authorization code to make a direct look against the provider's token-endpoint. Service must authenticate against the token- endpoint (either with Client_Secret or a signed request)
+If the service can be authenticated, the received authorization code and an ID token are validated to the service.
+The user is now authenticated for the service and the desired action can be performed
+
+Note: OpenID Connect is based on OAUTH2, and this flow is derfinted in the OAUTTH2 specification. Since authentication is not a term in OAuth2, one will often see that the term authorization is used even if one really talks about authentication
+1: Authentication Request to the Authorization Point
+The client sends an authentication request by the Redirectter end user to the authorization point.
+See detailed documentation for the authorization point for choices.
+Example of request
+`` `
+Get /Authorize
+Scope = OpenID &
+  ACR_VALUES = LEVEL3 &
+  Client_ID = TEST_RP_YT2 &
+  redirect_uri = https: //eid-exttest.difi.no/idporten-portc-ilient/authorize/espons
+  Response_Type = code &
+  State = min_fine_state_valu &
+  Nonce = min_fine_NONCE_VERDY &
+  ui_locales = nb
+`` `
+After the user has logged in, a redirect url will be sent back to the client. This URL will contain an authorization code parameter that can be used for posting to retrieve tokens.  The code is Base64-Eenkoda and URL-SAFE.
+Example of response: {#Auth response}
+
+2: Issuing token from the token- endpoint
+The token endpoint is used to issue tokens.
+The use of the endpoint varies slightly with which client authentication method is used. The following authentication methods from OIDC Chapter 9 are supported:
+
+Client_Secret_Basic / Client_Secret_Post - client authentication based on Client_Secret
+Private_Key_JWT - Client Authentication based on JWTs signed with business certificates (recommended)
+
+See detailed documentation for the token peak for choices in the request.
+Example of request
+`` `
+Post /token
+Content-Type: Application/X-WWW-Form-URENCODED
+Authorization: Basic DGVZDF9YCF95DDI6CGFZC3DVCMQ =
+Grant_Type = Authorization_code &
+  redirect_uri = https%3a%2f%2feid-exttest.difi.no%2Fidporten-Oidc-Client%2FAuthorize%2Fresponse &
+  Code = 1jzjkycph4Mipp9ywxrFL-IIVWBLFKDIRLJKZTJFMT0%3D
+`` `
+If the request is validated as valid, it will return one or more token:
+
+id_token: authentication certificate, "who the user is"
+Access_token: Access token tells "What the user can access"
+Refresh_token: Used by the client to renew Access_token without user interaction (as long as the authorization is valid)
+
+Example of response:
+
+Structure on id token {#idtoken}
+The returned ID Tokenet is a signed JWT structure according to the OpenID Connect specification:
+
+
+
+See detailed documentation of the content of the ID_TOKEN for documentation of the various Claims in the ID_TOKENET.
+Validation of ID token
+Proper validation of ID token on the client side is critical for the safety of the solution. Service providers who use the service must carry out validation in accordance with Chapter 3.1.3.7 - ID Token Validation in OpenID Connect Core 1.0 specification.
+Userinfo- endpoint
+By requesting the scoped profile, the client service along with the ID Tokenet will also be issued an access_token (and possibly the refresh_token) will also
+which can be used for the provider's userinfo- endpoint. This endpoint can be used to retrieve additional data on the user than what is exposed via the ID token.
+As the ID port in general, little data on the end user has this endpoint limited value for this service. The social security number and selected language during login are they
+The data that will be exposed here.
+See /Userinfo endpoint for further documentation.
+Example of response:

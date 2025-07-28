@@ -1,0 +1,79 @@
+Title: Eidas
+Description: Eidas support over Oidc
+Summary: "OIDC-integrated services in the ID port can receive login from European users in accordance with the Eidas Regulation."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_eidas
+
+About Eidas
+The ID gate is linked to the EU infrastructure for authentication across borders. This means that European users with "EU approved" can log on to Norwegian public services.  The services must actively activate support for international users themselves.
+In order to be integrated into production, a country must be formally notified and peer reviewed by the European Commission. 
+Customers can see updated status on which countries are connected to the EU's Eidas Dashboard
+What information do I get about Eidas users?
+In an eidas login, the following core attributes come with the following core attributes:
+
+First name
+Surname
+Date of birth
+Eidas identifier, unique and "as persistent as possible"
+
+No guidance has been provided on which identifier to be used as an Eidas indentifier. Each member states decide for themselves. 
+This has led to some countries focusing on interoperability (such as Estonia) and sending an identifier that is also found on physical ID evidence or in registers, typically national social security number or passport number.
+Other countries have focused on privacy (such as Germany) and send derived identifiers.
+In some of the countries, the Eidas identifier is connected to the Eid. This can mean that for some countries, the user will get a new Eidas identifier if he or she renews his own.
+Can I have Norwegian birth or D number?
+The ID port will normally try to find the Norwegian birth/D number on the European user, by searching the National Register for the Eidas identifier.
+A successful recognition depends on:
+1. The person is found in the National Register from before
+2. Foreign identifier can be found in the National Register from before (typically registered by application for D-number, source is the passport/ID certificate that was shown by identity check)
+3. The country sends the same identifier in Eidas login recorded in section 2
+If recognition was not successful, the ID port will still log in the user, but the login will be missing a Norwegian personal identifier.
+How to activate Eidas login?
+A service activates the Eidas button in the ID port's login window by including the value or in the attribute in the login request.  
+If only the Eidas value is stated in the ACR, the ID port will jump directly to the land selector. In this way, the service can create its own login button for Eidas users if this should be desirable.
+As of today, Eidas login is not activated as standard, so this must be activated per service.
+Example of Request:
+
+In an eidas login, the tokens will be slightly different ordinary tokens:
+
+ are set to 
+The 4 core attributes in Eidas will be included, the prefix with "Eidas"
+Norwegian personal identifier will only be included if recognition against the National Register was successful
+
+Example of response:
+`` `
+{
+  "SUB": "Q4DQZB7XHPSGQ_EKZ9S8VWZ4FUJNX-TT_9MNJAKD_FFM7LORZIBUC2KFDGCFWOYZMIL2VJLG2GP87X_LNANHBRUGX5A0",
+  "AMR": ["Eidas"],
+  "ISS": "https://test.idporten.no",
+  "Locale": "NB",
+  "Nonce": "W4gogkl8awguhpauyumtxvpuhatiiuhrdoxygxtkys",
+  "Page": "Ohsw69uusq-F7rql5Gyullvpguefkn_gcprmxr7-EH8",
+  "Aud": "Democlient_idport_test",
+  "ACR": "Eidas-Loa-Substantial",
+"Eidas_identifier": "Ca/No/11111",
+  "Eidas_LastName": "Phil",
+  "Eidas_firstname": "Claude",
+  "Eidas_date_of_birth": "1965-01-01",
+"Auth_Time": 1727693610,
+  "Exp": 1727693730,
+  "IAT": 1727693610,
+  "JTI": "Mr5RHSGM-IT"
+}
+`` `
+Can I ask for extra attributes belonging to foreign user?
+Not as of today.
+Eida's core attributes
+See Eidas Eid Profile for description of Eida's core attributes.
+The core attributes prefixes of the ID port with "Eidas_".  There are 4 compulsory attributes that will always be present:
+| Claim | Eidas attribute | Description |
+| --- |  --- | --- |
+| Eidas Personal Identifier | Personal Identifier | Eidas identifier ("as persistent as possible") |
+| Eidas-Dateofbirth | Dateofbirth | Date of Birth |
+| Eidas-Firstname | FirstName | First Name |
+| Eidas-Family Nyname | Family Name | Surname |
+Note that the "Eidas Identifkator" has a slightly special syntax there:
+- is 2-letter code for the country where the user has its electronic ID (note that this is not guaranteed to also be the user's home country/citizenship) 
+- is a variable length identifier in the country in question.
+Foreign test users
+Unfortunately, not many countries offer dedicated test users yet.  We recommend service owners to choose Sweden as a login country, and then select "Test ID-Tjänst", here you will get a drop-down list with available test users.

@@ -1,0 +1,37 @@
+Title: "Document Package"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document package is an encrypted and signed archive with one or more documents.
+
+graph td
+Subgraph encrypted document pack CMS
+  SUBRAPH ZIP-ARKIV ASIC-E
+      A (Document1.pdf)
+      B (Document2.html)
+      C (Document3.xml)
+      D (signature.p7s)
+  end
+end
+
+The document pack is encrypted with Cryptographic Message Syntax (CMS) Enveloped data. This is a format for encrypted
+Messages where the message content is encrypted with a symmetrical disposable key. The symmetrical disposable key is encrypted
+With the recipient's public key with the RSA-OAEP algorithm. The recipient's public key is retrieved from the Emsynings
+Address Service (Service Registry). The message content is encrypted with a symmetrical disposable key with the algorithm AES256
+CBC.
+
+RFC5652 Cryptographic Message Syntax (external link)
+
+The message content is on the Associated Signature Container Extended (ASIC-E) format. This is in practice a zip archive that
+Contains one or more documents, as well as signature for these documents. The signature is on the format CMS Advanced
+Electronic Signatures (Cades).
+
+ETSI TS 102 918 v1.3.1 Associated Signature Containers (ASIC) (external link)
+ETSI TS 101 733 V2.2.1 CMS Advanced Electronic Signatures (Cades) (External Link)
+
+The Emsynings Message Service and Evisyn's messaging use document packages as described here. Digital mail to
+Citizens use similar document packages but with slightly different choices of algorithms. The other messaging services have their
+Own ways to protect the messages. The integration point stores both outbound and incoming messages that
+Document packages. For outgoing messages, the integration point that builds the document packages.

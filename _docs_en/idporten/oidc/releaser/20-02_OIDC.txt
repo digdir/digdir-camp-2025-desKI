@@ -1,0 +1,14 @@
+title: 20-02 oidc
+Description: 20-02 OIDC
+Sidebar: Oidc
+Redirect_From: /20-02_oidc
+
+With this release, everyone must scop as a client can request, registered in advance on the client. Introduces new endpoint for event -based notification of revocated authorization.
+Releasen was production -taxed Mar 4, 2020
+New functionality:
+Endpoint for Revocated Authorizations (Shipped)
+There is a new endpoint in OIDC that publishes revocated app authorizations.
+The functionality is primarily intended for customers who have apps with very high spread, and/or have very high at the same time use, so that standardized token Introspection to check if an authorization is still valid can make performance challenges
+Require all scope to be recorded (shipped)
+As of today, customers must follow various procedures depending on whether their integration is to consume scopes directly, versus scopes available to all or scopes that support external delegation.
+This is confusing, and therefore we change it so that all Scopes as a client should be able to request, must always be registered on the client.

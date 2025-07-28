@@ -1,0 +1,31 @@
+Title: Download
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_Download_IP
+
+Download the integration point as .jar file or docker image. Download Kosmos as .jar file.
+The integration point
+
+The Integration Point 2.28.5 (Jar)
+The signature can be found here
+The Integration Point 2.28.5 (Docker Container Image) 
+
+
+You can find change logs here.
+Cosmos
+
+Kosmos 1.2.0 (Jar)
+The signature can be found here
+
+e -Design Public Coding Signing Key
+
+Download public key
+
+Next step
+The first time you install the integration point? Here you will find information on how to install or upgrade the existing integration point.
+
+Get started with the integration point
+Installation
+Upgrade

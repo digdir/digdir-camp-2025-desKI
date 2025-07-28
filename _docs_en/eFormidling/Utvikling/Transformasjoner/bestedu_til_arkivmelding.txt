@@ -1,0 +1,65 @@
+Title: Transformation from Best/Edu to archive message
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The table below shows how the integration point transforms outbound messages from Best/Edu to Emofideids
+messaging service. The integration point supplements incoming messages with information from configuration,
+Standard values and spreads in third parties. Outbound messages from Best/Edu to KS Svarut and Altinn Digital Post
+Transformed first to archive message before archive message is transformed into KS Svarut or Altinn Digital mail.
+| From eFormidling Message | From Emsydling Best/Edu | From configuration | From default value |
+| ----------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------- | -----------------------------------------------------------------------
+| Message identifier in SBD |                   | - | Generates UUID if the value is not already there |
+| Conversation identifier in SBD |                   | - | Generates UUID if the value is not already there |
+| Process in SBD | - |        |  |
+| Document Type in SBD | - |  |              |
+| Organization number for sender in SB D |                     | - | - |
+| Organization number for recipients in SBD |                   | - | - |
+| Scope in SBD |                       | - | - |
+| Scope in SBD |                     | - | - |
+|  In SBD | - | - | Security level is obtained from the Address Register |
+|  In SBD | - | - |                                        |
+|                                    |                           | - | - |
+|                          |                          | - | - |
+|                              |                       | - | - |
+|                         |                        | - | - |
+|                            |                      | - | - |
+|                                   |                             | - | - |
+|                                   |                           | - | - |
+|                                     |                         | - | - |
+|                                 |                         | - | During treatment () |
+|                          |                         | - | - |
+|                               |                         | - | - |
+|                       |                             | - | - |
+|                         |                        | - | - |
+|                     |                           | - | - |
+|                   |                       | - | - |
+|           |                          | - | - |
+|              |                        | - | - |
+|                |                       | - | Incoming Document () |
+|                  |                         | - | Completed from case manager () |
+|              |                         | - | - |
+|                  |                         | - | - |
+|                |                     | - | - |
+|                |                           | - | - |
+|                    |                           | - | - |
+|                |                        | - | - |
+|      |                  | - | - |
+|          |               | - | - |
+|               |               | - | - |
+|                 |               | - | - |
+|                  |                | - | - |
+|                    |              | - | - |
+|      |                | - | - |
+|                        |                  | - | - |
+|                   |                 | - | - |
+|    |              | - | - |
+|                   |              | - | - |
+|                     |              | - | - |
+|             |                 | - | - |
+|  |                | - | - |
+|              |             | - | - |
+|                     |             | - | Production Format () |
+Further description of the functionality of Best/Edu can be found at:
+- Best/Edu

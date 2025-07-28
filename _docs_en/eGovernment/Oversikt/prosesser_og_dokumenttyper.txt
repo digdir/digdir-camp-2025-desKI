@@ -1,0 +1,51 @@
+title: processes and document types
+Description: "Overview of processes and document types"
+Summary: ""
+Product: egovernment
+Sidebar: egovernment_sidebar
+
+Overview of the various processes and associated document types available over the self -overnament domain.
+Processes
+Resident post_digital_1_0
+| --- | --- |
+| Title | Citizen Post_Digital_1_0 |
+| Description | Letter to residents' digital mailbox |
+| Domain | E-Government |
+| Identifier | URN: FDC: digdir.no: 2020: Profile: Ego overnment: Citizens' Post: Digital: Ver1.0 |
+| Schema | Cenbii-Procid-Ubl |
+Documents
+| --- | --- |
+| Document type | Identifier |
+| Citizen Post_dpi_digital_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Digital :: 1.0 |
+| Citizen Post_DPI_Fright receipt_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Error :: 1.0 |
+| Citizen Post_dpi_delecommunications receipt_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Delivery receipt :: 1.0 |
+| Citizen Post_dpi_aapning Review_1_0 | Urn: FDC: digdir.no: 2020: Citizens' Post: Schema: Aapping receipt :: 1.0 |
+| Citizen Post_dpi_vARling error receipt_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Alert error receipt :: 1.0 |
+Resident post_ print_1_0
+| --- | --- |
+| Title | Citizen Post_ Print_1_0 |
+| Description | Physical letter to recipient |
+| Domain | E-Government |
+| Identifier | URN: FDC: digdir.no: 2020: Profile: Ego Overnment: Citizens' Post: Print: Ver1.0 |
+| Schema | Cenbii-Procid-Ubl |
+Documents
+| --- | --- |
+| Document type | Identifier |
+| Citizen Post_dpi_ Print_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Printing :: 1.0 |
+| Citizen Post_DPI_Fright receipt_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Error :: 1.0 |
+| Citizen Post_DPI_MOCEMPTEVITATION_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Reception receipt :: 1.0 |
+| Citizen Post_dpi_delecommunications receipt_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Delivery receipt :: 1.0 |
+| Citizen Post_dpi_Returpostk receipt_1_0 |  URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Return post receipt :: 1.0 |
+Resident post_foldpost_1_0
+| --- | --- |
+| Title | Citizen Post_ Moving Post_1_0 |
+| Description | Letter moved from one digital mailbox to another |
+| Domain | E-Government |
+| Identifier | Urn: FDC: digdir.no: 2020: Profile: Ego overnment: Citizens' Post: Moved: Ver1.0 |
+| Schema | Cenbii-Procid-Ubl |
+Documents
+| --- | --- |
+| Document type | Identifier |
+| Citizen Post_dpi_folded_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Moved :: 1.0 |
+| Citizen Post_DPI_Fright receipt_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Error :: 1.0 |
+| Citizen Post_DPI_MOCEMPTEVITATION_1_0 | URN: FDC: digdir.no: 2020: Citizens' Post: Schema: Reception receipt :: 1.0 |

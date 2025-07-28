@@ -1,0 +1,16 @@
+Title: This is Peppol ei -Overnment
+Description: ""
+Summary: ""
+Sidebar: egovernment_sidebar
+Product: egovernment
+
+PEPPOL EIVERNMENT is a solution for message exchange across sectors. PEPPOL EIVERNMENT Prepare to be able to send structured messages and letters between professional systems across sectors, including the private sector.
+Over time, several different sector solutions have developed for message exchange in Norway. The solutions work partly well within their sector. The challenge is when messages are to be sent across sectors. It has not been a coordinated way of doing this. PEPPOL EIVERNMENT is a solution that standardizes the exchange of messages across sectors. Technical transport and fuse are carried out in a standardized way. In addition, the solution adds that one standardizes the processes and messages to be sent. One important component of the solution is SML/SMP, also called the Cap Application Register. Here, the type of process and document is registered a company supports to accept the infrastructure, and the address of these messages should be sent to.
+PEPPOL EIVERNMENT is a solution implemented according to the European reference architecture and solution component Edelivery. Emblem is a Norwegian depiction of this pattern for message exchange. The digitization circular for 2024 recommends that emails are used for the development of new solutions where the exchange of notification is included.
+Since 2012, Peppol has been used for the exchange of electronic invoices and other structured, standardized documents in the procurement process.
+In 2022, a new domain was created in Peppol, Peppol egovernment. The application for the new domain is the exchange of notification related to case handling in the public.
+PEPPOL EIVERNMENT is in the first place registered as a local Norwegian domain in Peppol. But since it is in accordance with the Edelivery reference architecture, it is possible to expand to cover message exchange with other countries.
+The first application for Peppol egovernment is as a transport infrastructure for digital mail to residents. As of 2024, 900 public companies are linked to the solution through the use of digital mail to residents. In 2023, 22.9 million messages were sent on Peppol egovernment.
+State companies are linked to the solution through the access point agreement provided by Tietoevry. KS has established an access point that links the municipalities to the solution. It is also possible to establish access points itself, or buy this tenesta from other service providers.
+The architecture facilitates the use of the supplier market for the delivery of access point services and the development of services that use the infrastructure. Public and private companies can associate with the solution through agreements with suppliers of the subject system, corresponding to the way they do today for receiving and sending an electronic invoice on Peppol.
+Do you have suggestions for processes and notification types that can be used for use on Peppol egovernment? Contact serviceedesk@dir.no

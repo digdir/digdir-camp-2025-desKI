@@ -1,0 +1,8 @@
+Title: 20-10 Machine Gate
+Description: 20-10 Machine Gate
+Sidebar: Oidc
+Redirect_From: /20-10_maskorten
+
+Support for rotation of the machine gate's signing certificate.
+Support to use qualified seals according to Eidas in addition to today's business certificates.
+Scheduled production setting: 2020-10-27

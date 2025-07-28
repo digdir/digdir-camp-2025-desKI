@@ -230,9 +230,9 @@ class LLMService:
             response = self.client.complete(
                 messages=[
                     SystemMessage(
-                        content='Please clean the query by extracting the actual question that the user needs help with, and only that. Remove any unnecessary characters or formatting. Only return the cleaned query without any additional text or formatting. Respond in Norwegian, Bokmål. Do not return any other text.'
+                        content='Clean the query by extracting the actual question that the user needs help with, and only that. Remove any unnecessary characters or formatting. Only return the cleaned query without any additional text or formatting. Respond in English. Do not return any other text.'
                     ),
-                    UserMessage(content=query),
+                    UserMessage(content=f'Gather the question from this text: {query}'),
                 ],
                 model=self.llm_model_name,
                 max_tokens=self.max_tokens,

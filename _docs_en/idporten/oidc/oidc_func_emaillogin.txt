@@ -1,0 +1,48 @@
+Title: Email login
+Description: Email login support over OIDC
+Summary: "OIDC-integrated services in the ID port can receive login from users with self-registered email."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_emaillogin
+
+About email login
+// todo
+What information do I get about email login users?
+An email login comes with the following core attributes:
+
+Email login identifier
+
+No guidance has been provided on which identifier should be used as an email login indentator as long as it is a valid email. Each user decides which email address they use. 
+// todo
+Can I have Norwegian birth or D number?
+No, the ID port will not try to find Norwegian birth or D number on email login users. Email login users are self-registered users who do not necessarily have any connection to the National Register.
+How to enable email login login?
+A service activates the email login button in the ID port's login window by including the value or in the attribute in the login request.  
+If only the email login value is stated in the ACR, the ID port will jump directly to email login. In this way, the service can create its own login button for email login users if this should be desirable.
+As of today, email login is not enabled by default, so this must be activated per service.
+Example of Request:
+
+In an email login login, the tokens will be slightly different ordinary tokens:
+
+ are set to 
+ are set to 
+ becomes a unique identifier based on email address and client ID.
+
+Example of response:
+`` `
+{
+  "Sub": "0k8zrc1dzgfh4auogp6cdw-iOTgwtellbkviu7n89or0qyn0am7H6uax45rwbzrgxn4oxcyppnmyqlmqkvojl9uwmadvhumt4".
+  "AMR": ["Selfregistered-Email"],
+  "ISS": "https://test.idporten.no",
+  "Locale": "NB",
+  "Nonce": "W4gogkl8awguhpauyumtxvpuhatiiuhrdoxygxtkys",
+  "Page": "Ohsw69uusq-F7rql5Gyullvpguefkn_gcprmxr7-EH8",
+  "Aud": "Democlient_idport_test",
+  "ACR": "Selfregistered-Email",
+"email": "test@test.no",
+"Auth_Time": 1727693610,
+  "Exp": 1727693730,
+  "IAT": 1727693610,
+  "JTI": "Mr5RHSGM-IT"
+}
+`` `

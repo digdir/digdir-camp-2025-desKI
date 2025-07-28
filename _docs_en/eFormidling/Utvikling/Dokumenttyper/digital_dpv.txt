@@ -1,0 +1,79 @@
+Title: "Document Type: Digital DPV"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD), one or more documents and possibly one or
+More extensions.
+The document type has the identifier.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to the recipient's birth number.
+Business message
+The business message is described below.
+
+ (required)
+Title for the message.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Summary for the message.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Main content of the message.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+The instruction determines whether the recipient should be notified of incoming mail at reception or both at reception and one week after
+Reception. Read more at:
+
+Notice and possibly reef warning for Altinn Digital Post (external link)
+
+| Legal values |  or |
+| Standard value |                                |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+The instruction determines whether the notice of incoming mail should be sent to the recipient with e-mail, SMS or both e-mail and
+SMS.
+| Legal values | , or |
+| Standard value |                                              |
+| Configuration of Standard Value |  |
+ (voluntary)
+The instruction determines which text to be used for notice for the recipient of incoming mail.
+| Legal values |                                                  |
+| Standard value |  |                      |
+| Configuration of Standard Value |                                 |
+ (voluntary)
+The instruction determines which text to be used for notice for the recipient of incoming confidential mail.
+| Legal values |                                                                                                                                                                                                                                                                                                                                                                                           |
+| Standard value |  |
+| Configuration of Standard Value |                                                                                                                                                                                                                                                                                                                                                                 |
+ (voluntary)
+The instruction determines how many days will go before the reef warning is sent to the recipient of incoming mail.
+| Legal values | Integer |
+| Standard value |                          |
+| Configuration of Standard Value |  |
+
+One or more documents
+The types of documents supported depend on the recipient and are not known in advance. This means that attempts to
+Sending documents that are not supported by the recipient fails first upon reception.
+File format that is supported: HTML and attachment with arbitrary format.
+Enriching and transformation
+The integration point transforms and enriches messages sent by Altinn Digital Post:
+
+Transformation from Digital DPV to Altinn Digital Post
+
+Next step
+
+Document type under example of a resident's decision

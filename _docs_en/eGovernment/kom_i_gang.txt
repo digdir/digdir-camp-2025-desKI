@@ -1,0 +1,34 @@
+Title: Use PEPPOL EGOVERNMENT
+Description: ""
+Summary: ""
+Sidebar: egovernment_sidebar
+Product: egovernment
+
+Corleis one as a business or a service provider uses Peppol egovernment.
+PEPPOL EIVERNMENT is a solution for message exchange across sectors. PEPPOL EIVERNMENT Prepare to be able to send structured messages and letters between professional systems across sectors, including the private sector.
+For service providers
+In order to offer tenesters on Peppol ego overnment, you must have an agreement with Peppol on the delivery of tenesters before the domain Peppol egovernment. You will find information about how you enter into an agreement with Peppol in the table below:
+Step 1 of 3 - Planning
+| Step | Activity | Responsible |
+| 1.1 | Seek membership in OpenPeppol and pay membership fees. | Customer |
+| 1.2 | Signed Peppol TIA agreement and company certificate from the Brønnøysund Register Center are sent to DFØ at Peppolmyge@dfo.no - see details from DFØ. In agreement document Complete Peppol Service Prov, in Annex 4 Authorised Peppol Service Domains must enter Peppol ego overnment in the list of authorized Peppol Service Domains. | Customer |
+Step 2 of 3 - Integration and Testing
+| Step | Activity | Responsible |
+| 2.1 | Set up access point. | Customer |
+| 2.2 | Apply for a test certificate from OpenPeppol when you are ready to test the access point | Customer |
+| 2.3 | Do an acceptance test in Peppol -Testbed - See OpenPePPol Acceptance Test. | Customer |
+| 2.4 | Deliver test result to PEPPOL via creating "Test and Onboarding" issue. | Customer |
+| 2.5 | Once the test is approved - apply for a production control by creating the "PKI Certificate Request" Issue. | Customer |
+| 2.6 | Inform Dfø at Peppolmyge@dfo.no that you are ready to use the access point in production. | Customer |
+Step 3 of 3 - Management
+| Step | Activity | Responsible |
+| 3.1 | Register and maintain contact information in ELMA, this is used as a warning point. | Customer |
+| 3.2 | Monthly reporting to DFØ within the 10th month. | Customer |
+| 3.3 | Renew access point certificate every 2 years - the customer is responsible for this being done before the certificate expires. | Customer |
+If you are a service provider and have thoughts on new processes and document types that can be suitable for Peppol egoverment, please contact serviceedesk@igdir.no
+For business boards
+Businesses that will use Peppol egovernment must contact a Peppol service provider. The service provider provides integration between the Peppol access point and the subject system that will send and receive the messages. The service provider also registers what processes and document types the activities support to receive. This is registered in the Cap Application Register (SML/SMP).
+It is also possible for a work to be a service provider himself. See chapter "For service providers" "
+Digdir is responsible for processes, document types and other relevant artifacts being documented and maintained. Digdir controls CMB (Change Management Board) for processes and document types in Peppol egovernment.
+Overview of current processes and document types within the Peppol Egovernment domain can be found here processes and document types.
+Contact Norwegian Digitalisation Agency by e-mail: serviceedesk@dir.no

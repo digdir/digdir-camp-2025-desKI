@@ -1,0 +1,86 @@
+Title: "User -controlled data sharing"
+Description: "User -controlled data sharing"
+Summary: 'In connection with a login in the ID port, the user can also allow the service to retrieve the citizen's data from APIs offered by the 3rd party'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_Auth_oAuth2
+
+Overall description of the scenario
+In this pattern of use, a citizen logs into a service, and the service needs to retrieve data on the logged in the user from an API located with a 3rd part.  
+
+ graph lr
+   Subgraph 3dePart
+     API
+   end
+   subgraph digdir
+     Oidc [ID port]
+   end
+   subgraph customer
+      new [service]
+   end
+   End User -> | 1. Will use | New
+   Oidc ---> | 3rd Exit Token | New
+   End user -> | 2. logs in through | Oidc
+   New -> | 4. User Token against | API
+ 
+There are several good reasons for API providers to use this pattern of interaction:
+
+One wants the user to check their data themselves.
+One wishes to facilitate standardized interaction with external parties, and can do so in the same way both against ordinary web services and against end-user systems such as PC programs or mobile apps.
+Provides private companies to access public API/data, controlled by the citizen themselves. By combining with pseudonymized login, the private business releases treatment responsibility for birth number.
+The potential for abuse from the API provider is reduced in terms of machine-to-machine scenario, since one does not allow for access to the entire data set, but only for those users who are actually present in selected services at the ID port.
+
+Examples of using the solutions:
+ * Update the Preferred Language of Company in the Contact Register
+ * Employed at Municipality who will have access to data stored at the FIKS platform for KS
+User -controlled access
+User -controlled data sharing is realized in the ID port at the classic OAuth2 flow, where the citizen approves - either explicitly or implicitly - for the service to use an API on behalf of itself.
+
+
+In the case of implicit consent, it is the authentication act that is interpreted in itself ("By logging into the service you agree that we will obtain information about you from NAV").  We therefore use the term authentication -related authorization about this solution pattern.
+
+
+In the case of explicit consent, it is the user himself who approves whether the service is allowed to act on his behalf up to the API.  We therefore use the term user -controlled data sharing on this solution pattern.
+
+
+For explicit consents that will last "long" ("I agree that my bank can obtain income information from the Tax Administration for the next 3 years") we refer to the use of the consent solution in Altinn.
+Which API/resource to be accessed is controlled by Scopes.  The client must know which (t) scope belongs to the current API operation and must request this scop in the authorization request.   If the scop has the property set, the ID port will show a simple approval dialog for the citizen when authentication is completed.  See example below:
+
+The authorization itself is handed out by the ID port as an access_token (the dataddy token).   The service then uses this access_tokenet to access the apia.  If the user does not accept, the user will still be logged into the service, but the current scop will not be included in the access_token.
+Description of flow:
+The following players are included:
+Actor | Description | Term Oidc | Term oauth2 |
+ End user | Want to log in to a service | End User | User | 
+ Web service | End user service offered by a private or public agency | Relying Party (RP) | Client | 
+ The ID port | The ID gate's Openid Connect Provider as the Unster Access_token of the Current Service | Openid Provider (OP) | Authorization Server (AS) | 
+ API | 3.part, which offers an API that the end user service wants to use | - | Resource Server (RS) |
+
+sequence chart
+  Note over the end user, client: click Login button
+  Client ->> End user: Redirect with authentication request
+  End User ->> Openid Provider: Follow Redirect ...
+  Note over the end user, Openid Provider: End user authenticates (and possibly consent to the requested scopes)
+  Openid Provider ->> End User: Redirect with Authorization Code
+  End User ->> Client: Follow Redirect ...
+  Client ->> Openid Provider: Inquiry Token (/Token)
+  Openid Provider ->> Client: id_token + access_token (possibly refresh_token)
+  Note over the end user, client: logged in to the service
+  Client ->> API: Use API with Access_token
+  API ->> Openid Provider: validate token
+  Openid Provider ->> API: Token information
+  API->> Client: Result of API operation
+
+The start of the flow is identical to the authorization code flow for authentication (see this for details), with the following addition:
+
+In the authentication response from the ID port, the client is also given an access_token (and possibly a refresh_token) that provides access to requested scopes.  
+After logging, the client can then use the access_tokenet against the relevant API.  
+Access_Token usually has a short life (30 seconds). If the token has expired, the client may request a new acess_token by using the refresh_token against the token- endpoint of the Openid provider.  It is then carried out a client authentication, to ensure that tokens is not delivered to the wrong party.
+
+The difference in authentication (OpenidConnect) and authorization with "Plain" OAUTH2 is thus minimal:
+1. To ensure that the authentication behavior is according to. The OpenID Connect specification must be used 'OpenID' scop
+2. Openid Connect does not relate to resource servers /APIs, but you can ask extra scopes in an OIDC authentication request, and thus obtain combined authorization and authentication.
+For further details on the contents of Access_Token, see the interface definition of Access Tokens.   See also documentation of scopes.
+Finally, note that a single user can only have an authorization against the same client in the hallway.  If the client has a valid authorization with Gitte Scopes, and then performs a new authorization with other scopes, then the new Access_Token will only contain the scopes from the latest authorization.  The ID port "remembers" does not consented scopes of several authorizations.
+Relationship to SSO session
+It is important to be aware that Access_token+Refresh_token is independent of the login and associated SSO session in the ID port.  Although the user completes a logging, or the SSO session hours out, the authorization with associated Access_Token and Refresh_Token will normally be valid until their lifetime expires.
+The client must explicitly revoke an authorization if it wants to invaluate these token.

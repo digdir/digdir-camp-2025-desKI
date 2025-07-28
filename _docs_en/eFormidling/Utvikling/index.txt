@@ -1,0 +1,127 @@
+title: get started with development
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From:
+- /eFrasing_nm_message
+- /eFrasing_nm_custominintegation
+
+The purpose of this site is to help developers start using the functionality of e -molding.
+
+TOC 
+{: toc}
+
+Get started with development
+The very first one should do is read the introduction to eFrue and the overall description of the functionality
+One should use.
+
+Introduction to eForsing
+
+Emsyring supplies an intermediate product (integration point) that gives a professional system a single interface for message exchange
+Regardless of what types of messages are exchanged with whom. Before one can get started with development one should have access to
+an integration point to develop courage. Emsyring offers a public test environment along with the messaging services used in
+Em shape, and the integration point must be configured with necessary access to these. Feel free to see:
+
+Get started with the integration point
+Testing
+
+In some rare cases, a business wants to communicate with businesses on e -officing without even running a
+Integration point. This is possible, but not recommended. Feel free to see:
+
+Get started with e -officing with no integration point
+
+The integration point offers two programming interfaces. The interface is recommended for all new development.
+The second interface, phased out and is therefore not mentioned more on this page. The interfaces are in
+The starting point is not protected, but can be configured with http basic auth and https.
+ Is JSON-based and supports the following functionality:
+
+Receive messages
+send messages
+See the status of sent messages
+
+The same API calls are used regardless of current processes, document types and messaging services involved. Before
+Examples follow a publication to e -insight the same flow as a shipment to the inhabitant. This facilitates that
+Client implementations can use programming models that make it easy to expand to new use cases.   
+To support this model, all messages are built with the same basic structure.
+
+graph lr
+subgraph message
+  Subgraph Standard Business Document 
+    EL1 [Standard Business Document Header Standard Addressing Information]  
+    EL2 [Business Report Extra Addressing Information and Instructions Depending on the Document Type]
+  end
+  Subgraph encrypted document package
+    EL3 [Associated Signature Container Extended Zip archive with structured and/or unstructured content]
+  end
+end
+
+See more about the Emsynings Standard Business Document (SBD) at:
+
+Standard Business Document
+
+SBD has a given document type and an associated business message:
+
+Document types
+
+See more about the Emsydidling Document Package at:
+
+Document pack
+
+See more about the integration point's programming interface at:
+
+Emofide 2
+
+Examples are often a good way to get started. See examples of the use of the various processes in eFonsidling:
+
+Examples
+
+--[Sample client at GitHub] (https://github.com/felleslosinger/efm-meDoging- Client) (external link)
+Development for service providers
+Emsyring has functionality to facilitate service providers offering e -officing as part of their
+Services.
+
+A supplier can send messages on behalf of multiple businesses so that no one is required
+Integration point for each sender business
+A single business can use multiple integration points for various purposes so that a business services can be distributed
+On several service providers
+
+Read more about delivery models in eFonsidling:
+
+Get started with the integration point
+On behalf of others
+Channel
+
+Get started with e -officing with no integration point
+In some rare cases, a business wants to communicate with businesses on e -officing without even running a
+Integration point. This is possible, but not recommended.
+To use e -mediation without integration point:
+
+Lookup against Emsynings Address Service must be implemented to know which businesses can receive what content
+Emsynidling's address service
+An integration must be set up against the Esmofling's messaging service
+Emsynidling's messaging service
+Delivery of notification statuses to eFrue Message Status Service must be implemented
+Emsynings Message Status Service
+Business rules to ensure that messages are sent where the recipient wants them, required notification, etc. must be implemented
+The flow in the desired process must be implemented including integrations with any other messaging services required by
+a process
+Any other message functionality (queue, error handling, ...) that is desired to be implemented
+
+Support by development
+
+Emsydling on the Docs Docs
+General support for e -mouring is offered by serviceedesk@dir.no
+If necessary, e -dissemination wants to offer extended support to those who implement integrations against eForsing. Toe
+   Contact with serviceedesk@igdir.no and ask for the opportunity to get a Slack channel towards the Emsynings team.
+
+Development of eForsing
+Emsyring is developed continuously in accordance with. Current strategy. New needs and specific change wishes are welcomed and prioritized 
+running.
+Open source
+Most of the e -officing is available as an open source:
+
+The integration point of GitHub (external link)
+Address Service (Service Registry) at GitHub (external link)
+Everything from eForsing at GitHub (external link)
+Implementation of Associcated Signature Container Extended (ASIC-E) on GITHUB (external link)

@@ -1,0 +1,40 @@
+Title: OAuth2 Protected Residual API for residents' login level
+DESCRIPTION: API for residents' highest used login level in the ID port
+Summary: "Citizen's highest used login level in the ID port can be extradited over an OAuth2-protected residual interface."
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Oidc_api_Authlevel
+
+{% include note.html content = "This functionality disappears on a new platform, about 29 September 2023." %}
+Introduction
+Customers can order the extradition of the citizen's highest used login level in the ID port. The information provided is whether the citizen has completed a level-4 login through the ID port since a date customer states. If no date is stated, the search takes place within the last 18 months.
+The customer receives the information to adapt his or her dialogue with the inhabitant, based on the knowledge of the citizen with a high degree of probability can perform a level 4-login or not.
+How to access?
+This service is an additional service in the ID port. See the collaborative portal for general conditions for additional services.
+The use of oauth2
+The residual interface is secured using. Server-to-server OAuth.
+The following scopes are accepted by the interface:
+| Scope | Description |
+| - | - | 
+|   |  Read out resident who logged in user has for my services |
+The customer must in the order in the organization number used in the business certificate that generates the JWT feed.  The certificate must be a business certificate from Buypass or Commfides, with Key Usage: Digital Signature.
+For test environments, business certificates from Buypass / Commfides are used's test value chains.
+The residual interface
+The residual interface is based on spreads on individual persons and is documented using. Openapi Specification (Swagger) on the following URL:
+https://contactinfo-ws-ver2.difi.no/authlevel/swagger-ui.html#!/Auth-Level-Controller-Impl/postusing post
+Unless the date is stated in the request, the search occurs within the last 18 months in accordance with. §32 of the Emergency Regulations.  
+Note that if you apply for a person not found in the ID port, you will only get HTTP Response Code 404 back.
+People who may be blocked in the ID port will be elected as Harbruknivaa4 = False.
+Possible error codes are:
+| CODE | Description |
+| --- | --- |
+| 400 | Bad Request - Syntactic Invalid Request Body. |
+| 401 | Invalid access token, e.g. Expired |
+| 403 |  Valid access token but tied to the wrong scope (special error situation) |
+| 404 | Requested user is not registered as the ID port uses |
+## Sample code
+
+Examples of use of service can be found here:
+[https://github.com/difi/idporten-Authlevel-example =( 
+Information on environments
+Service is available in Ver2, YT2 and the production environment of the ID port

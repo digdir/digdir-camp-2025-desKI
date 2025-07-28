@@ -1,0 +1,13 @@
+Title: Example of information to citizen
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of information to the citizen.
+Corresponds to the example of a decision to a citizen if one states the process
+ instead.
+Next step
+
+Functional description of information to the citizen
+Several examples

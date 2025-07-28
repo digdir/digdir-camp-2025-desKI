@@ -1,0 +1,46 @@
+title: sso and beat
+Description: SSO and beat
+Summary: "The ID port offers single signon (SSO) and single logout (SLO)"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_sso
+
+About the functionality
+Since its inception, the ID gate has offered Single-Signon (SSO) in that all services in the Federation belong to the same Circle-of Trust (COT). This is an important functionality for the citizen to have a friction-free experience when using public digital services, by avoiding frequent re-authentication.  Especially for unified services, such as so -called link services, where the inhabitant "jumps" between different agencies as part of a complete service delivery, SSO is a key functionality.
+Just as important as single signon is single logout.  It is essential for the security of the citizen that they are logged out of all services when they click logout. An error-configured logout management with one customer can ruin the logging in other customers, and makes a citizen vulnerable to attacks.
+Single Signon (SSO)
+The SSO session is common to both Oidc and Saml-based services, and is from NOV. 2023 governed by the new ID port (OIDC). Session life is common to all services regardless of security level, and this is 30 minutes, but can be extended without user interaction for a maximum of 120 minutes, by sending a new authentication request.
+All services are initially included in the same Circle-of Trust, but services can force re-authentication by prompting the attribute in the authentication request (corresponding to the Forceaut in Saml2).  In a new solution, it is also possible to configure an integration to use isolated SSO session.
+Note that the service life of the SSO session has no connection with the life of the Access-Token issued and any refresh-tokens issued.
+Single logout (beat)
+All OIDC integrations against the ID port must implement support for the following two logging scenario:
+
+Logging initiated from own service (end session)
+Logging initiated from other services (Front-Channel Logout)
+
+Note that clients who perform end session will also receive a front channel login shell for themselves if the client has registered one.
+Also note that the ID port does not support the back-channel logout.
+For Saml-based services, both logging scenarios must also be supported, but the behavior is different-where the OIDC sends the front channel peels from IFramer on an IDPort-controlled side, then Saml will make a chain of redirects from service to service. The Saml variant is more vulnerable.
+1: Logging from own service (/logout)
+When the user wants to log out of your service, you must send a redirect (preferably post it) to the ID-port endession. See detailed interface definition here.
+Example:
+`` `
+Post https://idporten.no/logout
+id_token_hint = Eyjrawqioijpz2i1q3lgt ...
+post_logout_redirect_uri =
+state =
+`` `
+Upon receipt of the Endsession-Redirect, the ID port will log the user out of all other services in the Active SSO session, both OIDC and SAML. Finally, the ID port redirect the user of post_logout_redirect_uri will be stated in the request if it is specified and defined for the client, and id_token_hint is included.  If these are missing, the user will end up in the ID port.
+Logging from your own service is based on the OIDC Session Management specification.
+Interaction between sessions and tokens by logging
+The ID gate will also invalid all tokens that belong to pure logins (ie that only has the scopes "OpenID" and/or "Profile"). Note that this means that tokens containing further scopes will still be active after logging.  The motivation behind this behavior is that a logging from web service associated business A, should not naturally lead to long-distance app access related to Business B withdrawal, if these two were happened to be issued based on the same SSO session.
+2: Handle Logging from the ID port (Front-Channel Logout)
+If the user logs out of another service, the ID port will trigger logging from all other services, ie both OIDC services configured with support for the Front Channel Logout and SAML services. 
+The ID port collects information about which services a user uses within a session.  For OIDC clients who support the Front Channel Logout, the ID port sends a Get request to the client's front channel_logout_uri.  The parameters iss and SIDs are included for clients who require front channel_logout_session_required.  SID has the same value as Claim Sid in ID_Token.  The ID gate creates a dynamic page where each logged in the OIDC client gets its own ifframe and is sent a front-channel logout call in parallel.
+Note that since the Browser players are constantly tightening up to access to the 3rd party cookies, you can no longer expect their own cookie to follow in the Front_Channel_logout call. The use of is therefore the only forward -looking solution to find your own local user session.
+Also note that the client starting logging with calling at the end session end point will also receive calling on the front channel logout.
+Example of calling from the ID port to client:
+
+ Is the user's session ID that the client received as Claim in the ID token.
+Front-channel logout in the ID port is based on the OIDC Front Channel Logout specification.
+If a client is not configured with the Front Channel Logout, the client will not receive a logging request from the ID port if the user logs out of another service in the Circle-of Trust and the ID token will also not contain.

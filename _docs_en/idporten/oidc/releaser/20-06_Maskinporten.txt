@@ -1,0 +1,15 @@
+title: 20-06 machine gate
+Description: 20-06 Machine Gate
+Sidebar: Oidc
+Redirect_From: /20-06_maskorten
+
+Maintenance release for machine port
+Releasen was production of Jun 23, 2020
+Improvements:
+Remove Client_orgno from the Machine Gate tokens (PBLEID-20254)
+In the event of a miss, the claim "Client_orgno" was included in the access_token in the first version of the machine gate.  It is decided at the national architectural level that it is the "Consumer" claim that will be used by API provider to find the woman who is the legal consumer of an API (see: https://difi.github.io/felleslosinger/19-09_oidc.html#TheFormat-Format-Format-Format-Format-Format-Format-Format-Format-Format-Format-Five
+Unfortunately, there are more players who use this Claim itself about documentation say that it is not fine. 
+"Client_orgno" is removed from the machine gate to ensure correct use.
+Error corrections:
+Response from the token endpoint in the machine gate uses the authorization life to set the Expires_in field (Pbleid-20596)
+The machine gate should use the lifetime of the access_tokenet, and not authorization life for the client, to put Expires_in - the field on the response from the token

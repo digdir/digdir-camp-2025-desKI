@@ -1,0 +1,33 @@
+Url: https://eid.difi.no/nb/minid/hvord-logge-in-sd-ed-minid-app
+Title: How to log in with MinID app | Help sites for common solutions
+
+Sámegiella
+How to log in with MinID app
+Go to Google Play or Apple Store
+Seek up "Minid app"
+Download the app
+Remember to accept that the app gets access to notifications
+Register phone: Fill in social security number. Click "Next"
+Up in passwords. Click "Next"
+Post the code received by SMS. Click "Next"
+
+Next time you log in with MinID you can use the app instead of SMS
+
+Go to the service you want to log in to (eg at: www.nav.no, www.altinn.no, www.skatteaten.no)
+Choose MinID
+Enter your birth number or D number and your password. Click "Next"
+You will now receive a push notification on your phone. Confirm this using fingerprints, face recognition or personal pin associated with your phone
+
+MinID provides access to public services at a significant level of security (level 3).
+ 
+
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

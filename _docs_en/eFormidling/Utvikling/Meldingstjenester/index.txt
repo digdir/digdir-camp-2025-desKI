@@ -1,0 +1,15 @@
+title: messaging services
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_selfhelp_Traffic_Flow
+
+Message Services used in eForsing:
+
+Altinn digital mail
+Digital mail to residents
+Emsynidling's messaging service
+e -insights messaging service
+KS FIKS IO
+KS Svarut and Replyer

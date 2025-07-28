@@ -1,0 +1,7 @@
+Title: 21-05 ID port
+Description: 21-05 ID port
+Sidebar: Oidc
+Redirect_From: /21-05_ID port
+
+Refactoring of the functionality in which the inhabitant confirms its contact info at login.
+Scheduled production setting: 2021-05-04

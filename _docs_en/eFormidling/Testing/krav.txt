@@ -1,0 +1,288 @@
+Title: Requirements and test descriptions
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The purpose of this page is to provide an overview of requirements for integrations against e -dissemination, with associated test descriptions.
+Information on the necessary test layouts can be started with testing.
+
+TOC
+{: toc}
+
+Common claim
+These requirements apply regardless of which process (s) are supported.
+Supports viewing the latest status of sent message (must)
+
+Verify that user who sent the message can see the last status of this one
+
+Supports notification of sender for messages that get the status failed or lifetime expired (must)
+
+Fill in insufficient or incorrect metadata for message
+Send message to a recipient using eFonsemidling
+Verify that the message is marked as failed
+Verify that the user who sent the message is told that message failed without requiring the user even actively checking the status of the message
+
+Verify that the following categories are incorrectly handled:
+
+Synchronous errors, for example if address lookup fails, send e.g. to address that does not exist
+Asynchronous errors, for example, if authentication fails to the current messaging service, add e.g. in the wrong username of the messaging service in the configuration before sending a message
+Lifetime expired, for example if the recipient leaves/fails to process message, send e.g. to QA integration point and wait for lifetime expires
+
+Verify that the system follows asynchronous statuses (including error statuses) related to a message until it has received one of the following statuses:, or. Note that the status will be able to come several days and weeks after the message has been sent and that one must therefore pollen over an undefined period if it is desired.
+Supports display of sent messages and status for these (must)
+
+Fill in insufficient or incorrect metadata for message
+Send message to a recipient using eFonsemidling
+Verify that user himself can display a list of shipments that have failed
+Verify that the failed message is in this list
+
+Uses the interface e -mediation 2 as described in the documentation (must)
+
+Verify that the integration point API (e -officing 2) is used
+Verify that the integration point's old API (best/edu) is not used
+Verify that one sends messages with one of the strategies described at the integration point API (Emofide 2)
+Verify that one follows the status of sent messages with one of the strategies described at the Integration Point API (Emofolding 2)
+Verify that one receives messages with one of the strategies described at the Integration Point API (EMORKING 2)
+Verify that one has facilitated troubleshooting by providing the name and version of your own system when creating a message
+Verify that one does not use one -step strategy for sending small messages if one is to send messages over 5 MB
+Verify that policing is used to receive incoming statuses (webhook subscriptions are just a supplement)
+Verify that policing is used to receive incoming messages (webhook subscriptions are just a supplement)
+Verify that one does not treat successful confirmation that message has been put on queue for sending such as the message has been sent or delivered successfully
+Verify that one does not process successful confirmation that message has been sent as the message has been delivered successfully
+Verify that one can receive such large messages as described in the threshold values described under the properties
+Verify that one can send such large messages as described in the threshold values described under the properties
+Verify that it is not possible to send messages exceeding the threshold values described under the properties
+
+If on-ways-of-offs are used, then this setup is tested (must)
+Feel free to look on behalf of.
+
+Verify that current tests have been carried out with on-weigh-of-sets
+
+If channel is used, then this setup is tested (must)
+Feel free to see channel.
+
+Verify that current tests have been conducted with channel setup
+
+Produces and consumes messages as expected (must)
+
+Verify that communication also works with system other than one's own
+Verify that special characters work as expected in titles, filenames, etc.
+Verify that limitations as lengths of text field work as expected
+See restrictions on the document types
+See restrictions on the integration point API (Emofide 2)
+Verify that consignment and reception work when only required information is provided
+Verify that consignment and reception work when all possible information is provided
+Verify that communication works with desired file sizes
+Verify that communication works with desired file format
+Verify that valid messages are produced both when all information is provided and when only required information is provided
+Verify that incoming messages that are missing required information are still not rejected
+Verify that one does not send files with names containing characters that do not work well in file names, such as colon
+
+Requirements for any operation of integration point
+These requirements apply to any operation of the integration point.
+Have satisfactory access control and securing of interfaces, messages and secrets (must)
+
+Verify that installation and configuration are made according to descriptions
+Verify that transport is adequately secured, e.g. With the help of transport protection
+Verify that access to the interface is sufficiently secured, e.g. With the help of http basic auth
+Verify that secrets are protected satisfactorily, e.g. With the help of Hashicorp Vault
+Verify that the interface of the integration point is only available to authorized users and system
+
+Have routines to keep the integration point updated (must)
+
+Verify that there is a routine for regular updating of the integration point
+
+Have automated routines to keep the integration point updated (can)
+
+Verify that automatic update is configured
+Verify that update time is well thought out
+
+Handling
+These requirements apply if case processing is supported.
+Supports consignment to recipients with e -officing (DPO) (must)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to a recipient using eFonsemidling
+Verify that the message is marked as sent
+Verify that the message arrives at the recipient
+Verify that the contents of the recipient are as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+Select message as read with the recipient (varies from system to system how - eg first when assigning case number)
+Verify that the message is marked as read
+
+Supports sending to recipients with KS SvarUT/Responsible (DPF) (must)
+
+Fill in the desired metadata for message (remember 1.7)
+Send a message to a recipient using KS SvarUT/Replyer
+Verify that the message is marked as sent
+Verify that the message arrives at the recipient
+Verify that the contents of the recipient are as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+Select message as read with the recipient (varies from system to system how - eg first when assigning case number)
+Verify that the message is marked as read
+
+Supports consignment to recipients with Altinn Digital Post (DPV) (must)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to a recipient using Altinn Digital Mail
+Verify that the message is marked as sent
+Verify that the message arrives at the recipient
+Verify that the contents of the recipient are as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+Select message as read with the recipient (varies from system to system how - eg first when assigning case number)
+Verify that the message is marked as read
+
+Supports reception from submitters with eFruely (DPO) (must)
+
+Fill in the desired metadata for notification in a system using eMespecting (remember 1.7)
+Send message to the recipient using your own system (the system being tested)
+Verify that the message is marked as sent by sender
+Verify that the message arrives at the recipient
+Verify that the contents of the recipient are as expected (remember 1.7)
+Verified that the message is marked as received and eventually delivered to the sender
+Select Message that read at the recipient
+Verify that the message is marked as read in sender
+
+Supports reception from submitters with KS SvarUT/Replyer (DPF) (must)
+
+Fill in the desired metadata for message in a system using KS Svarut (remember 1.7)
+Send message to the recipient using your own system (the system being tested)
+Verify that the message is marked as sent in KS Svarut
+Verify that the message arrives at the recipient
+Verify that the contents of the recipient are as expected (remember 1.7)
+Verified that the message is marked as received and eventually delivered in KS Svarut
+Select Message that read at the recipient
+Verify that the message is marked as read in KS Svarut
+
+Supports receiving answers directly to case and journal entry (should)
+
+Fill in the desired metadata for message
+Send message to a recipient using eFonsemidling
+Verify that the message arrives at the recipient
+Reply to the message from the recipient's system
+Verify that the answer appears, linked to case and journal entry as expected
+
+Supports sending answers directly to case and journal entry (should)
+
+Fill in the desired metadata for notification in a system using e -officing
+Send message to the recipient using your own system (the system being tested)
+Verify that the message arrives at the recipient
+Reply to the message from the recipient
+Verify that the answer appears, linked to case and journal entry as expected
+
+Confidential case handling
+These requirements apply if confidential case processing is supported.
+Confidential case processing follows similar flow as case processing, with some additional requirements.
+
+Requirements and test descriptions for case processing
+Addition
+SCRAV for confidential case handling
+Verify that it is possible to mark the message as a confidential
+Verify that it is possible to state DPV notification text for confidential message
+
+Decision to residents
+These requirements apply if decisions for residents are supported.
+Supports consignment to recipients with DPI (must)
+
+Fill in the desired metadata for message (remember 1.7)
+Verify that it is possible to state notification text
+Send message to recipient using DPI
+Verify that the message is marked as sent
+Verify that the message arrives at DPI
+Verify that the content of DPI is as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+
+Supports consignment to recipients with Altinn Digital Post (DPV) (should)
+
+Fill in the desired metadata for message (remember 1.7)
+Verify that it is possible to state notification text
+Send message to recipient using DPV
+Verify that the message is marked as sent
+Verify that the message arrives at DPV
+Verify that the content of DPV is as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+
+Supports consignment to recipients with postal address (print) (should)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to recipient who does not use DPI or DPV
+Verify that the message is marked as sent
+Verify that message arrives at print
+Verify that the contents of print are as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+
+Supports consignment to recipient with postal address (print) and unknown birth number (should)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to other recipient who does not use DPI or DPV
+Verify that the message is marked as sent
+Verify that message arrives at print
+Verify that the contents of print are as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+
+Supports the DPI extension "link outside letters" (can)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to other recipients using DPI
+Verify that the message is marked as sent
+Verify that the message arrives at DPI
+
+Verify that the content of the message is as expected (remember 1.7)
+
+
+
+Verify that link outside letters works as expected
+
+
+Supports the DPI extension "Proof" (can)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to other recipients using DPI
+Verfise that the message is marked as sent
+Verify that the message arrives at DPI
+Verify that the content of the message is as expected (remember 1.7)
+Verify that evidence works as expected
+
+Supports the DPI extension "Arrangement" (can)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to other recipients using DPI
+Verfise that the message is marked as sent
+Verify that the message arrives at DPI
+Verify that the content of the message is as expected (remember 1.7)
+Verify that arrangement works as expected
+
+Supports configuration of sender identifier for DPI (should)
+
+Verify that it is possible to configure sender identifier for DPI
+
+Publishing of meeting to e -insight
+These requirements apply if the publication of a meeting to e -insight is supported.
+Supports the publication of meeting to e -insight (must)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to e -insight
+Verify that the message is marked as sent
+Verify that the message arrives at e -insight
+Verify that the content of e -insight is as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+
+Publishing of journal entry to e -insight
+These requirements apply if the publication of journal entry to e -insight is supported.
+Supports the publication of journal entry to e -insight (must)
+
+Fill in the desired metadata for message (remember 1.7)
+Send message to e -insight
+Verify that the message is marked as sent
+Verify that the message arrives at e -insight
+Verify that the content of e -insight is as expected (remember 1.7)
+Verify that the message is marked as received and eventually delivered
+
+Reception of access requirements from e -insight
+These requirements apply if the receipt of access requirements from e -insight is supported.
+Supports receiving access requirements from e -insight (must)
+
+Send access requirements from e -insight
+Verify that the access requirement arrives
+Verify that the content of the access requirement is as expected (remember 1.7)

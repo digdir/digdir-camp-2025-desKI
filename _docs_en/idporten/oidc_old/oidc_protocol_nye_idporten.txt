@@ -1,0 +1,97 @@
+Title: "Changes to the new ID port in 2022-2023"
+Description: "The ID port undergoes a comprehensive modernization race in the period 2020-2023, where the entire core of the solution is written about. There is a stated main goal for the project that the transition should be done without negative consequences for customers. At the same time, we see that a new solution cannot be 100%-back overall with today's solution, and this page documents the changes will be."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_nye_idport
+
+This Page is Also Available in English. Changes in the New ID port in 2022-2023.
+Background
+The ID port undergoes a comprehensive modernization race in the period 2020-2023, where the entire core of the solution is rewritten.  It is a stated main goal for the project that the transition should take place without negative consequences for the customers.  See the status side of the project at the Collaborative Portal, where it is regularly published, trail reports and schedules for migration are published.
+At the same time, we see that a new solution cannot be 100%-back cover compatible with today's solution, and this page documents the changes we see will come.  This is especially true of proprietary mechanisms that we have introduced, or in areas where our use of the protocol differs from what is common in the industry.  For example, we have been early to use some OAuth2 specifications even though they were in the early draft phase, and we see in some areas that standard libraries and programs do not use the mechanisms as we thought.
+Today's operating agreement with Tietoevry on the operation of the ID port expires in the fall of 2023. On a new operating agreement, we only want to run a new system architecture. The new architecture will be based on Kubernetes platform where we also draw in SAAS services where appropriate.  The "heart" in the new solution will have been based on a modern OAUTH2/OIDC authorization server from Connect2id.
+Migration plan
+Schedule
+See the Status page for the new ID port on the Cooperation Gate for the supplementary schedule. As it approaches, there will also be published notice on status page
+The transition to a new solution will take place in 4 steps:
+| Step | Date | Description |
+|-|-|-|
+| 1: Test operation | March 2023 | The new ID port is put into production, ready for real services. It is not SSO to old platform |
+| 2: Ordinary operation | May 2023 | The new OIDC solution will now have full functionality and performance.
+| 3: Saml moves | September 2023 | All SAML integrations are moved seamlessly from the old ID port to a new proxy solution. There will be SSO between old and new platform at the same time. |
+| 4: Remediation | December 2023 |  The old Oidc-Missuer is turned off.
+When should I migrate?
+If you are dependent on SSO to other services, such as Altinn, you must wait until after September 2023.
+If not, we recommend that you migrate as early as possible from March.  National critical services will migrate from May, and Digdir will have direct dialogue with important single services.
+How to migrate in practice?
+There are two cases:
+A: Customer has OIDC integration today
+For the vast majority it will be sufficient to carry out the following steps:
+
+Open any own outgoing firewall to new IP address
+Switch to ID porten's new Issuer URL: (TBD).  
+Some IAM products will then automatically download updated metadata and establish Trust to our new certificate.
+
+
+If the previous step did not go automatically, you must manually configure up the new endpoints that you find in our metadata, as well as add Trust to our new signing certificates
+Configure your integration to use PKCE
+You reuse the same as you use today
+You reuse the same as you use today, possibly the same business certificates / asymmetrical key.
+
+B: Customer has SAML integration today
+If you want to remain on the COL, you must open for a new IP address and verify that the collection of your integration is compatible in the test environment during the period March September. This is especially important since Saml Proxy has reduced functionality compared to today's version.
+However, we recommend that everyone migrates to OIDC, in practice the customer must then establish a new OIDC integration from Scratch according to. Our integration guide.
+Detailed changes to the protocol:
+The new ID port aims to follow the OAuth2.1 specification, unlike today's solution based on 2.0. The reason for this change is that we want to follow the updated safety requirements that are in 2.1.  Standard flow For all integrations, OIDC and Code-Flow with forced use of PKCE and State and Nonce are.
+Collecting is continued only for existing services, but with limited functionality, and phased out in the long term.
+New ice seasies
+The new ID port will come to a new domain, and will then have a new ice sauer value, and will use a different signing certificates than today's.  The value is p.t. Not determined, probably.  Introducing a new ice sow enables the customer to gradually migrate to the new solution adapted to their own schedules.
+At the same time, this makes it more complex for API providers who use user-controlled data sharing, which must then rely on the access_token from two ice sosers if they are unable to demand/coordinate that their consumers coordinated to the new ID gate while the APIs threatening the new ice sow.
+At the expiry of the migration period, old ice creams will be phased out completely.  Those who have not yet moved their OIDC integration will stop working.
+New ip
+The new ID port will also drive on a different IP ad dress than today's, so that customers who have an outgoing firewall against us must open up.
+SSO
+As today, the new ID port will offer SSO between all integrations both over Oidc and Saml.
+Note that during the trial period and at the start of the migration phase, clients who have moved to a new solution will not have SSO to integrations on the old solution.
+Isolated SSO session
+The new ID port will offer new functionality for isolated SSO session. This will happen by the customer through self-service choosing whether or not the client to participate in the SSO session.
+onbehalfof
+Onbehalfof is an ID port proponary mechanism for suppliers.  This is continued for both Oidc and Saml.
+New ACR values
+New values for security levels are introduced on login.  The new values are and.  These values can be used by the client to ask authentication at the minimum level v.hj.a. The parameter.  The ID token will include level I in Claim.
+This table shows the difference between new and "old" ACR value.
+| Old ID port | New ID port | Description |
+|-|-|-|
+| | Idport-loa-Low | The ID port has no ownership that delivers such a low security level as of now. This must be assessed against the "Act on Trust Services" |
+| Level3 | IDPORTE-LOA-SUBSTANTIAL | Corresponds to security level "Substantial" after Eida's preface. In the ID port we have mini at this security level |
+| Level4 | Idport-loa-High | Corresponds to the security level "High" after Eida's Preannigen. The ID port offers BankID, Buypass and Commfides at this level of security |
+Forced use of PKCE and State and Nonce
+All client integrations must use the PKCE functionalitis and in addition send with instance-unique state and nonce values.  Today, this is required only for public clients, but voluntarily, but highly recommended, for confidential clients.
+ change
+With a new solution, the value that a client receives in for a given birth number will be changed. Although the vast majority of the ID-part's customer integrations are primarily to the birth number in the field, their IAM software may be using the sub-value internally, and in cases where the IAM software automatically also creates local user bases (Keycloak, among other things), the customers will be generated.
+I will also get new values.
+Changes in single logout and revocation
+There have been changes in the OIDC specification mhp logout.  We are considering p.t. Whether we are going to change today's behavior to be more in line here:
+
+Is it appropriate that the revocation of access_token/refresh_token also causes the SSO session to be terminated, such as today?
+Is it appropriate that logging from SSO session also invalidates all tokens to all clients belonging to the session?
+Should we, as the Spec demand, introduce a "do you really want to log out" screen in the ID port as part of the logging?
+How strict requirements should we be able to send Browser back to the stated post_logout_redirect_uri?
+
+More frequent redirect back to client with wrong
+In an old OIDC solution, error situations will often cause the user to get an error page in the ID port and stop with us.  In the new solution, to a greater extent than the previous user will be Redirecta back to the client with a descriptive error message.
+Support for Implicit Flow is removed
+Implicit-flow is not recommended for security reasons in the latest IETF recommendations.  Already today, implicit is not offered for new integrations, only for existing ones.  In the new ID port, the support for Implicit is completely removed, so that those who use it today must write about their solution to use Code Flow with PKCE. We are considering whether we should introduce support for DPOP in the long run.
+Tightening client authentication with private_key_jwt
+JWT for the parameter must contain both Claim and Claim.  The parameter must be specified at the token peak, in addition to.  This is how it is documented on the old solution, but new solution enforces this more strictly.
+New parameter ISS in response from the authorization point
+Responses from the authorization point will contain the parameter with the value of the ID portion's ice sauce in the current environment.  This can be used to avoid "mix-up attacks" and is specified in RFC 9207.
+Parameter Client_ID required using Request_uri towards the authorization point
+When using Pushed Authorization Request, it must be specified in addition to the authorization point.
+Congregation
+In a new solution, a rudimentary SAML support will be offered, whose purpose is only to continue existing integrations. We will create a simple SAML-to-Oidc-proxy, which we place in front of new Oidc-Missu.
+This will support the Saml Web Browser SSO 2.0 with Artifact Resolution binding.  There will only be support for 1 assertionconerurl, and one combined signing and encryption certificate.
+We will not support the update of SAML metadata, so that when a customer's metadata expires (typically at the end of business certificate), we expect the integration to be rewritten instead to use the OIDC.
+In the long run, Saml will be phased out completely.
+Pseudonymization
+Pseudonymization will be affected by the prey of, see above.  
+The scope itself is not continued, so customers must use either opaque tokens or pseudonymizing scopes.

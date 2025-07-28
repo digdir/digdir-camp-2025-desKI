@@ -1,0 +1,50 @@
+Title: OAuth2 Protected Residual API for login history in the ID port
+Description: API for login history in the ID port
+Summary: "The citizen's login history from the ID port can be consumed via API and is made visible to the inhabitant of other services. This provides the citizen access to the use of its own data the Directorate of Figitalization Directorate's solutions"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_api_logg history
+
+Introduction
+{ % Include note.html content = "This APIs give P.T. Just out log history on old platform." %}
+The inhabitant's login history from the ID port can be consumed via API and made visible to the inhabitant of other services.
+The customer receives the information that the citizen can more easily detect abuse of Eid.
+How to access?
+This service is an additional service in the ID port. See the collaborative portal for general conditions for additional services.
+User interface
+Residents can go to https://uerkerprofil.idporten.no/ to see their login history.
+The residual interface
+The residual interface is protected with OAUTH2 and is based on the incoming access token belonging to the logged user, so-called authentication-close authorization, therefore the customer should not provide the birth number himself.
+The following OAuth2 Scopes is accepted by the interface:
+| Scope | Description |
+| - | - | 
+|   |  Read out login history that logged in user has for my services |
+The customer can only see login history for services associated with their own organization number.
+The interface is documents using. Swagger https://api.idporten-ver2.difi.no/logginger/swagger-ui.html#/.
+URL to service:
+| Environment | URL |
+|-|-|
+| Prod | https://api.idporten.difi.no/logginger/logg/idporten |
+| Ver2 | https://api.idporten-ver2.difi.no/logginger/logg/idporten |
+| YT2 | https://api.idporten-yt2.difi.eon.no/logginger/logg/idporten |
+Example
+`` `
+Get/Login/Log/Idport? Maxhits = 5 HTTP/1.1
+Authorization: Bearer U_3ui4gjxkbhc4jo54MBNOZBSZBSZDHLYW28ZQGNXSSCMI =
+[
+    {
+        "Time": "2019-03-07T09: 26: 36",
+        "Service": "Directorate for Management and ICT",
+        "Eid": "Minid Pin",
+        "Integration_id": "Oidc_Authorization_api_Client_test",
+        "Orgno": "991825827"
+    },
+    {
+        "Time": "2019-03-06T16: 04: 40",
+        "Service": "Directorate for Management and ICT",
+        "Eid": "Federated",
+        "Integration_id": "Oidc_Authorization_api_Client_test",
+        "Orgno": "991825827"
+    }
+)
+`` `

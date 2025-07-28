@@ -1,0 +1,16 @@
+Title: About eFormidling
+Description: ""
+Summary: ""
+Sidebar: Main_sidebar
+Product: eFormidling
+Redirect_From: /eFormidling_index
+
+This is the technical documentation for e -dissemination. The purpose is to support architects, developers and operating personnel at
+Public companies and their suppliers in the introduction and use of e -mourning.
+
+Technical documentation
+
+Feel free to see the collaborative portal for a completely overall non-technical introduction to eForsing:
+
+This is e -officing (external link)
+Use e -Design (external link)

@@ -1,0 +1,11 @@
+Title: 2022
+Description: 2022
+Sidebar: Oidc
+
+| Release | Production Set | Description |
+|-|-|-|
+| 22-01 Machine gate | Feb 1, 2022 | Maintenance release of machine gate |
+| 22-01 Oidc | Feb 1, 2022 | SEID2 support |
+| 22-02 Employee Gate | Feb 15, 2022 | Simple organizational selector for Altinn Authorization |
+| 22-03 ID port Saml | Mar 20, 2022 | The ID port Saml's certificate expires. Customers must update their solution with our new metadata (IDP5) by this date. |
+| New ID port 2022/2023 | Dec 20, 2022 | The ID port's modernization project where we develop a new ID port solution from scratch is in full swing.  By the summer of 2022, the new Kubernetes-based operating platform will be established.  |

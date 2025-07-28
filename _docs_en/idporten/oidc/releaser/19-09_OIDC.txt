@@ -1,0 +1,13 @@
+title: 19-09 oidc
+Description: 19-09 Oidc
+Sidebar: Oidc
+Redirect_From: /19-09_oidc
+
+New access_token format that supports the e-lookup reference architecture, as well as the possibility of whitelisting of access.
+Releasen was production -made OCT 3, 2019
+New functionality:
+Token format for e -lookup (shipped)
+New Claims in Tokens to support the "e-look" reference architecture.
+"Consumer" should now be used to find organizational as a legal consumer (treatment manager) of an API. If the consumer has chosen to use a possible supplier (data processor), this is stated in the "Supplier "claim, and then" Delegation_Source "will tell the authorative source that underlies the consumer-the supplier relationship. Finally, I introduce "client_amr" that used the client authentication method.
+Scopes without access management (shipped)
+Some APIs can be accessed by everyone. It must be possible for API provider to set a scope to be accessed by all its machine gate OAuth2 clients, ie a form of whitelisting of access.

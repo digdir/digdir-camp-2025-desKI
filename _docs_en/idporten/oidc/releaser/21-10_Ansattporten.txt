@@ -1,0 +1,10 @@
+Title: 21-10 Employee Gate
+Description: 21-10 Employee Gate
+Sidebar: Oidc
+Redirect_From: /21-10_ Management Gate
+
+A first version of pilot for the employee port
+Releasen was production -proof Nov 24, 2021
+New functionality:
+Employee gate as a separate IDP (Shipped)
+Employee Pilot is established as a separate IDP. Supports login without SSO functionality, but has no employee/representation source yet.

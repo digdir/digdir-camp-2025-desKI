@@ -1,0 +1,43 @@
+Url: https://eid.difi.no/nb/personvernerklaering-minid#main-content
+Title: Privacy Statement for MinID | Help sites for common solutions
+
+Privacy Statement for MinID
+
+Processing
+
+The Manager is the Directorate of Digitization, org.no. 991 825 827. Digdir can be contacted by phone (+47) 800 30 300, usstotte@digdir.no, or at chat http://eid.difi.no/nb.
+
+Privacy Ombudsman is reached at privacy ombud@dir.no.
+ 
+
+Purpose, treatment basis and recipients
+
+Digdir processes personal information about you to issue an electronic ID - MinID, and to use it to authenticate you with services that accept MinID as authentication. Treatment basis is the conditions for the use of minid according to GDPR Art 6 letter b.
+
+The birth number is shared with the services that have a basis for treatment for it and need it to ensure unequivocal identification of you.
+
+We also remind you of the registered right to access, correction, and in some cases deletion, according to GDPR Chapter III.
+ 
+
+Information processed
+
+Digdir processes the following information to identify you, cf. section 3.1 above:
+
+Birth number or D-number
+Name and Populated Postal Address (Deleted When Activation Code Letter is used)
+Mobile number (shared with the contact and reservation register)
+E-mail address (shared with the contact and reservation register)
+
+As part of the safety, Digdir records the times you log in with MinID, as well as IP address and other information about the device from which you use mini-ID. Logging in login is deleted after 13 months.
+
+When logging in, cookies that are further described here: https://eid.difi.no/nb/sikkyness-og- Privacy
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

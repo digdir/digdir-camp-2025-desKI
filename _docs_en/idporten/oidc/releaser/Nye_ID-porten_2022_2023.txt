@@ -1,0 +1,31 @@
+Title: New ID port 2022/2023
+Description: New ID port 2022/2023
+Sidebar: Oidc
+Redirect_From: /New_ID port_2022_2023
+
+The ID port's modernization project where we develop a new ID port solution from scratch is in full swing. By the summer of 2022, the new Kubernetes-based operating platform will be established.
+Scheduled production setting: Dec 20, 2022
+New functionality:
+Notify Norske Eid to Eidas (in Design)
+Conduct a peer review of Norwegian Eid solutions to the EU, so that Norwegian citizens can use their eider on European services.
+New system architecture for the ID port (in Development)
+The transition from SAML integrations to OIDC integration is fast. As a result, Difi decided in a project in 2019 that ID porte's system architecture must be changed to the OpenID Connect / OAUTH2 section becoming the core of new architecture. One must look at whether it is possible to use a shelf product IAM product instead of today's proprietary solution.
+Rewriting into a new system architecture begins now, and will continuously until the current operating agreement expires in late 2021.
+By 2021, we envision doing the following:
+
+
+Development of the first version of "New ID port". 
+
+
+Trial operation of the new ID port in the form of pilot on the employee gate.
+
+
+Trial operation in production in Public Cloud (Azure)
+
+
+New ID port ready for trial operation (under Consideration)
+New ID port will be available for test operation on new operating platform after summer 2022
+New ID port Full SLA (under Consideration)
+The new ID port is made available to all customers at the turn of the year 2022/2023. All customers must now migrate their integrations by the summer of 2023.
+Transition to Reduced SEGL service (during Consideration)
+In connection with the modernization of the ID port, today's Openam-based SAML solution will be phased out Q2-2023. All existing SAML integrations will then be transferred to a limited functionality SAML proxy solution.

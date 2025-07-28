@@ -1,0 +1,64 @@
+Title: Access Point Provider Manual
+Description: Elma User Manual for Access Point Providers
+Summary: "Elma User Manual for Access Point Providers"
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_access_point_provider_user_manual
+
+Updated: 03.04.2023
+Access Points
+At the Top of the Access Point Page a List of Your Access Points Will Be Displayed. If you have no access points, a 
+"Get started!" Box Will Be Displayed, Making It Easy To Initiate The Creation of Your First Access Point.
+At the bottom of the page you will see a list of all access points in elma.
+
+Add Access Point
+To add an access point, you can press the "add access point"-button. Then you can choose a title for your access point.
+
+After pressing the "Save" -Button, you Will See Access Point Page.
+
+Please Notice The Empty Endpoint Table. The Next Task Will Be To Create One or More Endpoints.
+Add endpoint
+There Can Be One Endpoint for Each Transport Profile. Two add an endpoint, press the "add endpoint" button.
+
+After pressing the "Save" -Button, you Will See Access Point Again. This Time The Endpoint-Table Will Show The Newly 
+created endpoint.  
+
+Agreements
+Here you Will See Agreements for the Usage of Your Access Point by the Service Providers. 
+
+The Service Providers Initiate An Agreement. The Service Provider Will Not Be Able To Activate The Agreement Before You As The Access Point Owner Has Added The
+Public Key Certificate Belonging to the Service Provider. This should only be done after you have installed the key-pair in your access point.
+Adding a Public Key Certificate
+Select the Agreement You Want To Add a Public Key Certificate to By Clicking the "View" Boss. Then you will see the Agreement Page:
+
+Then you press the "add Certificate" -Button:
+
+Select the Correct Certificate Type and the Certificate Itself and Press the "Save"-Button.
+
+Now the Agreement is Ready for Activation by the Service Provider.
+
+Certificates
+This is where you can see all the certificates belonging to one or more agreements.
+To add, update or delete a certificate, you need to go to select an agreement first.
+The Certificates should be of a PEM format with a .crt orcer file type.
+
+
+Service providers
+Here you will find the different service providers in elma and their contact information.
+
+Access Point Providers
+Here you will find the different access point providers in elma and their contact information and access points.
+
+
+Faster
+When you make a new user it will be automatically added to the same access point provider you are logged in as. 
+Add/Edit New User
+Make You Fill in All The Fields Before You Click Save.
+
+After you have successfully added a new user you can edit this user, add another or view log of the current added users.
+
+
+Event
+Here you will find all the create, update and delete events related to you as an access point provider.   
+
+If you have any questions don't hesitate to contact us elma@digdir.no

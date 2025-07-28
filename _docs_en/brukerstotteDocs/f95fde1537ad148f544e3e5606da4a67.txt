@@ -1,0 +1,18 @@
+URL: https://eid.difi.no/nb/esigning/how-kan-h-pne-et-signert document
+Title: How can I open a signed document? | Help sites for common solutions
+
+How can I open a signed document?
+
+You can use any PDF reader, this also includes browser to read a signed PDF document.
+You need to use Adobe Reader to see signature and certificate information.
+To read a signed .txt document, you can use a browser or notepad (notepad).
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

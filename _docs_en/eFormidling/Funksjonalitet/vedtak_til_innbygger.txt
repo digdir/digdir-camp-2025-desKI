@@ -1,0 +1,134 @@
+Title: Decision to citizen
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring allows your business to send decisions and other important inquiries to the citizen.
+
+TOC
+{: toc}
+
+Introduction
+The Public Administration Act defines a decision as a decision made during the exercise of public authority and as
+in general or specifically determining the rights or obligations of private persons (individuals or other
+private legal entities). A decision is the result of a case processing. The Administration Act makes demands on
+Content of a decision and how a decision should be communicated. the euthority regulations and the digitization circular
+places further requirements on how a decision should be communicated digitally.
+Notification requirements:
+
+The business shall use contact information from the contact and reservation register when notification of residents of and
+Submission of individual decisions and other important digital inquiries, cf. section 8 of the Emergency Regulations.
+Digitization Circular (external link)
+The information system should record the time when the party has obtained access to the individual decision, and data
+confirming that he or she has the right to familiarize himself with the decision. Has the party not obtained access to
+The single decision within one week from the time the decision was made available and notice was sent, the party shall
+is notified again in accordance with the third paragraph.
+The Emergency Regulations (external link)
+
+Requirements for the use of digital mail to residents:
+
+Business should use digital mailbox for residents for sending mail to residents who have chosen digital
+Mailbox, and which has not reserved. The requirement for the use of digital mailbox to residents applies all services
+where letters are sent that have documentation value for the inhabitant. Such letters can be both decisions and other important
+Inquiries. The company will consider which letters have important documentation value for the inhabitant.
+Digitization Circular (external link)
+
+Possibility to use Altinn Digital Post for residents without a digital mailbox:
+
+Companies that, by establishing a digital mailbox to residents, used Altinn's message box for sending
+Post to residents, from October 1, 2016, would use a digital mailbox for residents. Has the inhabitant not chosen
+Mailbox and not reserved for digital mail, mail can still be sent to Altinn's message box.
+Digitization Circular (external link)
+
+The supporting of the e -officing to send decisions and other important inquiries to the citizen makes it easy to comply with the current
+Regulations and guidelines.
+Decisions to citizens are represented by the following process:
+| Process name | Process identifier |
+| ----------------- | ------------------------------------------------- |
+| Decision | URN: NO: DIFI: Profile: Digital Post: Ver1.0 |
+Message content
+The content that can be sent depends on which document types the recipient supports for decisions to the citizen. One
+Document type is supported by one or more messaging services.
+| Document Type | Message Services |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Digital | Digital mail to residents |
+| Print | Digital mail to residents |
+| Digital DPV | Altinn Digital Post |
+Address messages
+Messages are addressed from the sender's organization number to the recipient's birth number. For prints, the recipient's birth number can be omitted if not known or if the recipient does not have a birth number.
+For recipients who have selected Digital Mailbox, this is preferred. For recipients who have not selected mailbox must sender
+Even choose whether the message can be sent to Altinn Digital mail or whether it must be sent as physical mail. Recipients that are
+Reserved for digital mail or which cannot be notified due to lack of contact information should in all cases
+Receive physical mail. When sending physical mail, the sender may choose to use the printing service in digital mail to
+Residents or handle these messages with their own printing service.
+
+graph lr
+A {reserved?}
+B {possible to notify?}
+C {have selected digital mailbox?}
+D ("a) printing service in digital mail to residents) Altinn digital mail")
+E (digital mailbox)
+F (the printing service in digital mail to residents)
+A -> | yes | F
+A ---> | No | B
+B -> | Yes | C
+B -> | no | F
+C ---> | Yes | E
+C -> | no | D
+
+Some residents cannot be reached with these messaging services. This applies, for example, to foreign residents. In such
+Cases can nevertheless send physical mail to the inhabitants with the help of the printing service in Digital Post to residents (DPI).
+Read more about how this works below:
+
+Document Type Print
+
+Send messages
+First, a capability look is made to see which document types the recipient supports. If more than one document type can
+Used, the company's professional system must decide which one. The company's professional system then builds a message with the desired
+Document type. Finally, the message is sent.
+
+sequence chart
+Participant A AS Business System System
+Participant B AS Business Integration Point
+Participant C AS Address Service
+Participant D AS Digital Post to residents
+participant e AS Altinn Digital Post
+A->> B: Capability lookup
+B->> C: Capability lookup
+A->>+B: Alt 1) Outgoing Message *Digital *
+B->>-D :.
+A->>+B: Alt 2) Outgoing Message *Print *
+B->>-D :.
+A->>+B: Alt 3) Outgoing Message *Digital_DPV *
+B->>-e :.
+
+Further description of the relevant messaging services can be found at:
+- Digital mail to residents
+- Altinn digital mail
+Notification
+Sender System receives status messages when a message is delivered. Sender's system also receives status messages at
+error situations and when a message is not delivered within the defined life. Sender's system can notify
+The sender of both successful broadcasts and deviations.
+Upon receipt of digital mail to residents, the citizen can be notified of reception of notification. Notification goes to the inhabitant's
+Registered contact information in the contact and reservation register.
+Upon reception to Altinn Digital mail, the citizen can be notified of reception of notification. Notification goes to the inhabitant's
+Registered contact information in the contact and reservation register.
+Assumptions
+
+Interface E -Mediation 2 must be used (Best/Edu is not supported)
+Use of digital mail to residents requires agreement
+Use of Altinn Digital Post requires agreement (limited availability for the time being)
+
+Configuration
+The following configuration is required for full functionality:
+
+Minimum configuration of the integration point
+Configuration of digital mail to residents
+Configuration of Altinn Digital Post
+
+There is also support for partial configuration. Partial configuration means that one does not reach all recipients. Such as
+Can not configure Altinn Digital Post if one does not want to reach recipients that are routed to this service.
+Development
+
+Example of decisions to citizen

@@ -1,0 +1,98 @@
+title: architecture for digital wallet
+Description: Architecture for Digital Wallet
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_architecture
+
+On this page, I try to give an overall explanation of the architecture of the wallet and the sandbox.
+Through revision of the Eidas Regulation, the EU Member States will be required to:
+- Offer a digital identity wallet to all residents and businesses by November 2026
+- the wallet should be free to get and use for residents
+- the wallet should be able to use for login
+- Pocket Book should be able to use to exchange evidence (such as driver's license, vaccination card, company certificate, etc.) for services
+The EU wallet ecosystem is largely inspired by technology for decentralized identity and own control over data through the use of the Sokalla Verifiable Credentials, as shown in the figure below:
+
+graph lr
+  Direction LR
+  In ["issuing 
+(ice sows) "]
+  H ["wallet 
+(holder)"]
+  V ["userstad 
+(Verifier / Relying Party) "]
+
+  I -. issuing proof to .-> h
+  H -. presents evidence to .-> v
+
+Obated "issu, holder, verifier" comes from W3c's data model.  Me has tried to find some suitable Norwegian sales that you can see in the figure above.
+The European Commission publishes a reference architecture, the so-called "Arf", which depicts the ecosystem and roles and processes included. Me recommends that those who are interested in sitting deeper into architecture read this.
+One can note that the arf is not formally a legally binding document, it is the law and the acts (implementing acts) that are, and these are, in turn, point to adopted standards from ETSI, ISO and Openid Foundation.  But in practice, it is the arf that gave the best picture of how things were connected.
+Norwegian sandbox:
+This is how Digdir looks to us that the sandbox looks in Norway:
+
+graph lr
+  subgraph ak [authorative sources]
+  F (the National Register)
+  E (unit register)
+  D (computer sources)
+  end
+
+  subgraph u [issuers]
+  PID (PID issuer, Digdir)
+  Di (digdir issuer)
+  In (other issuers)
+  end
+
+  subgraph l [wallets]
+  Direction LR
+  DW ["DIGDIR
+demo pocket book ”]
+  W [“other 
+wallets "]
+  end
+
+  Subgraph B [User City]
+  Direction LR
+  DRP ["DIGDIR DEMO
+User City "]
+  Rp ["other
+User Stages "]
+  end
+
+
+
+  F -. source to personal identity .-> pid
+  E -. source of business identity .-> pid
+
+  D -. source to evidence .-> di
+  D -. source to evidence .-> in
+
+  U -. gave evidence to .-> l
+
+  L -. presents evidence against .-> b
+
+
+
+In order for this ecosystem to function, the components depend on a common confidence framework that determines the woman who is approved players.  These confidence lists are in the process of being established by the European Commission as central European joint services.  Since the Norwegian sandbox will already work in 2025, which is earlier than the central registries from the EU are completed, but also legally be independent of the introduction of the Eidas law in Norway through the EEA process, Digdir will offer a Norwegian sandbox-specific trust framework that must be used:
+
+
+graph
+
+subgraph ak [trust framework from digdir]
+  Tli [(register of issuers)]
+  Tlw [(register of pocket books)]
+  Tlrp [(Register of User City Registers)]
+  Drpr [(digdir userstad register)]
+end
+
+  RPR [(Other User City Registers)]
+
+Tlrp ---> drpr
+Tlrp ---> rpr
+
+
+The trust framework in the sandbox
+
+
+
+As a result of registration on the confidence list, the player is given a certificate to be used for authentication in the case of interaction. The interaction itself is based on two closely related protocols from the OpenID Foundation, namely OpenID4VCI to make a evidence or open time4VP to use a evidence.

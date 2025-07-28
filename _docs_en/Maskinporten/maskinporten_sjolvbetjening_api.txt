@@ -1,0 +1,109 @@
+title: self -service of the machine gate via API
+Description: Self -service of the machine gate via API
+Summary: 'Here you will find guides and tutorials on how you can self -cater the machine gate via API'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine Gate_jolv Serving_api
+
+This document shows how you can self-care in the machine gate as API provider and API consument.
+
+
+TOC
+{: toc}
+
+Login and access
+Access (Administration of API)
+In order to use self-service via API, the company must be awarded an administrative client from Digdir. The API is secured with OAuth2 with the use of a business certificate. Note that a valid test business certificate must be used in the test environments.
+To manage APIs, the administration client must have access to the scopet Idport: Scopes.Write.
+Contact serviceedesk@dir.no to access.
+Also read "Basic procedure for API protection".
+Create API - OAuth2 -Selven operating client
+If you want to automate the administration of Scopes and access from your own API Management solution, you must create an OAuth2 client that uses the self-service therapy for the machine gate.  See {{Site.baseurl}/Docs/Idporten/Oidc/Oidc_Api_admin_maskporten for details.
+Example of creating scope
+
+Access management
+Access is given and removed by simple residual call:  
+Example of providing access
+
+which gives organization number access to the scop.
+Send Delete to withdraw an access.
+Example of viewing access
+Request:
+
+Response:
+
+We have chosen to add scope as a Query parameter, as there are specific standards that require the use of the slash "/" in the scope definition, and this will be unnecessarily cumbersome for users of the API to support this as part of the PATH component.
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the integration of the "API provider" and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+Tutorial:
+Self-service as API consumer
+In order to use self-service via API, the company must be awarded an administrative client from Digdir. The API is secured with OAuth2 with the use of a business certificate. Note that a valid test business certificate must be used in the test environments.
+To manage integrajons/clients, the administration client must have access to one or more scopes:
+| Scope | Description |
+|-|-|
+| Idports: DCR.Read | provides access to read client registrations for clients bound to the same org.no. As given in the access_token. Also provides reading access to Onbehalfof registrations |
+| Idports: DCR.Modify | Provides access to change client registrations for clients bound to the same org.no. As given in the access_token. Also provides reading access to Onbehalfof registrations |
+| Idports: DCR.Write | Provides access to create new client registrations for clients bound to the same org.no. As given in the access_token. Also provides reading access to Onbehalfof registrations |
+| Idports: DCR/Onbehalfof: Write | Provides access to view, create, change and delete the onbehalfophophophonia belonging to a given client. Does not allow to change other parameters on the client itself. |
+| IDPORT: DCR.SUPPLIER | Gives suppliers access to view, create, change and delete independent OIDC integrations for other organizations. Own org.no is linked to these integrations.  |
+Contact serviceedesk@dir.no to access.
+Register the client
+Record client using business certificate
+In order to register a client through our self-service apia, you must first create a self-service client.  See {{site.baseurl}/docs/idports/oidc/oidc_api_admin.
+Then you can create the machinery integration as follows:
+`` `
+Post https://api. Cooperation.digdir.no/Clients/
+{
+   "Integration_Type": "Machine Gate",
+    "Client_name": "Oidc_difi_jb_test",
+    "Description": "New Integrajson again.",
+    "Token_endpoint_Auth_method": "Private_key_jwt",
+    "Grant_Types": [
+        "Urn: IETF: Params: OAuth: Grant-Type: JWT-Bearer"
+    ], ],
+    "Scopes": ["Difitest: API3", "Difitest: API4"]
+}
+`` `
+The machine gate will respond with an auto-generated client_id, for example  
+Registering client using your own key
+To avoid spreading the business certificate around to many systems, you can create your own asymmetrical keys related to a single integration.
+This must be done in two steps: First you create a client who in the example above, and then you create a key set on this:
+`` `
+Post/Clients/238259D7-F0AB-4BD5-B253-0F0159375096/JWKS
+{
+  "Keys": [
+    {
+      "KTY": "RSA",
+      "E": "Aqab",
+      "Use": "Sig",
+      "Kid": "My_egen_nokkel",
+      "Alg": "Rs256",
+      "N": "LGC-DGNL9L9PCSB6EW5MF23AISS09Q7MXRE9Q9DAZSIN9IJQJQJMKWDYSPOYW3G_RSX2A74CG_Q3ITSSM0CO9IJ0 Lqp8gjoii9i8syi6anbkk6fisr1adzbsggrm1-zmrnvsj811sntdkbgx8zxvrjm4f6d2kwl3Tenv0crrvtpho 0SRMIMKBVBDAWPYQC64SQDVARY6XILPHD-DA2N2N2CL6VRQVNS7DYD8-C2TEYGGB_TASRVSORX9GF5CZ-HLNHF IgG2qqyzaljyfowppg5RYBP9BAWG9VFLLUFD_Y6VVZ0TQVFAYJ67NFZ_W4RXY-MDRGERKHJCQ81GKMVZQ5FQ "
+    }
+  )
+}
+`` `
+'Kid' values must be unique within the client's key set. 
+Note! There are different software for key creation and exporting of public key. This will not be mentioned in Digdir's technical documentation.
+Public key in PEM format must be converted to JWK using, for example, JWK Creator before it can be put on the client. 
+Maintenance of mercantile data
+Maintenance of invoice information and notification points is important for us to always have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the client in the list and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+Tutorial:
+Often asked questions
+I get 401 unauthorized when I try to post a change via the API.

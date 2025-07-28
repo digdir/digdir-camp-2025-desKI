@@ -1,0 +1,38 @@
+Title: "Document Type: Agained"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD) and possibly one or more documents.
+The document type has the identifier.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to the recipient's organization number.
+Business message
+The business message is described below.
+
+ (required)
+Identifier for a given type agreed message. Agreement between the sender and the recipient. Enables businesses to
+Separate different types of agreed message exchange.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Content for agreed message. What content supported for a given type of agreed message is agreed between the sender and
+recipient. Enables businesses to include the necessary content in business messages.
+| Legal values | Objects with arbitrary content |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+
+One or more documents
+The types of documents supported for a given type of agreed message are agreed between the sender and the recipient.
+Next step
+
+Example of agreed message exchange

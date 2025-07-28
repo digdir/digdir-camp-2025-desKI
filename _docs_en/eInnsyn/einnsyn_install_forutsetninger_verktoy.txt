@@ -1,0 +1,29 @@
+Title: Prerequisites for installation and tools
+Description: Prerequisites and tools
+Summary: "Here you will find information about programs that need to be downloaded and installed to use the e-insight client"
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_ Preservations
+
+You can find the latest version of the Esssyn client here
+How does the e-insight client work
+In most cases, it will be natural to set up both the integration point and e-insight client on the same server. This guide is based on that.
+The integration point is the canal of the outside world and must have a door opening through the firewall. At the same time, both e-insight-client and integration point must be within the firewall since communication goes unencrypted to the Esvision client and the archive system. The integration point must also have access to the archive system in order to function for alternative 1, and in cases where content provider should send messages other than e-insight messages.
+The e-insight client communicates over HTTP with the integration point and thus needs access to it. Since access requirements are sent by e-mail from e-insight client to archive system or other e-mail box, the client also needs access to an SMTP server. More about this here
+The file catalog (inputDirectory) is the archives for archives. The e-insight client must be able to monitor and write to this catalog. At the same time, archives must have access to this in order to upload files. This reserves that the files are located on a server that both archives have access to and communicate with the other components.
+Read more about the integration point here
+You must have this in place before installing
+
+Minimum Java Runtime Environment 11 installed
+A business certificate issued to business
+XML editing tools. For example, notepad, notepad ++ or sublime text.
+Integration point installed on the same server. See guidance here
+
+You need to download this to install the e-insight client
+To install the e-insight client, you must download 3 files from our GitHub. 
+
+Sender-%Version no.
+e-insight-client.exe (client application)
+e-insight-client.xml (configuration file for client)
+
+You can download all these files here 
+Then put the files in the desired directory. For example, c: \ e -insight

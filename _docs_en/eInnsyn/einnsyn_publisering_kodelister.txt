@@ -1,0 +1,59 @@
+title: code lists
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Product: e -insight
+Redirect_From: /E -Insyn_Publizing_codelists
+
+Code lists rdf
+Namespace Archive = http: //www.arkivverket.no/standarder/noark5/arkiv structure/
+Journal
+Record type
+
+Archive: Internet document
+Archive: Released Document 
+Archive: Organized Document Follow -up
+Archive: Organ internal document route follow -up
+Archive: Case presentation
+
+Access restriction
+
+Archive: ungraded
+Archive: Except publicity
+
+Correspondence
+Correspondence type
+
+Archive: Sender
+Archive: Receiver
+
+Meeting case registration
+Meeting case type
+
+Archive: Delegated case
+Archive: Interpellation
+Archive: Orientation case
+Archive: Political Case
+Archive: Minutes
+Archive: Approval
+Archive: meeting case type_annet
+
+Meeting document registration
+Meeting document registration type
+
+Archive: Notice
+Archive: Protocol
+Archive: Additional Notice
+Archive: Meeting document registration type_annet
+
+Document description
+Associated tregisation -owned
+
+Archive: Main Document
+Archive: Attachment
+Archive: Case Protocol
+Archive: Main Document Meeting Protocol
+Archive: Main document proceedings
+Archive: Front Page Nove Document
+Archive: Concert a letter
+Archive: Second supplement document

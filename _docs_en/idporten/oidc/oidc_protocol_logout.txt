@@ -1,0 +1,51 @@
+title: "/logout endpoint"
+Description: "A Logout Will Invalidate The Central SSO Session at the ID port and log the user out of all other activities."
+Summary: 'A logout will invalidate the Central SSO session at the ID port and log the user out of all other active clients. '
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_logout
+
+About
+When the User Wants to Log Out of a Client, The Client Redirects The Browser to the Logout Endpoint in ID port.  ID port will then invalidate the Central SSO Session, and Try to Log The User Out of All Other Clients, Before Optionally Redirecting the Browser Back to the Originating Client.
+Most Clients in ID port Should Implement Logout Support, But There Are Special Cases, Fe.x Mobile Apps, Where Logout Support May Not Be Desirable.  A RISK ASSESSMENT MUST BE Performed by Customers Chosing Not to Implement Logout Support. 
+Endpoints
+The Logout Endpoint Can Be Found from the ID port Metadata AS Parameter. 
+The Endpoint Is Thoroughly Documented in OpenID Connect RP-Initized Logout 1.0 Specification. 
+Behavior
+When the end -us wants to logout, The Client Must Redirect the Browser to the /Logout-endpoint.  Upon Reciving The Request, ID port will try to log the end -us out from all other Active Clients in the SSO session AS FOLLOWS:
+
+Termate the Current SSO session in ID port
+Invalidate All Tokens for Pure Authentication Clients (IE Tokens Having Only and/OR Scopes)
+Construct a Dynamic Page Where Each Oidc-Client in Parallel Are Sent A Front-Channel Logout Request (One Ifframe Per Client)
+Redirect the browser to each collar service provider in the session, in turn, with a collector logoutrequest
+Finally redirect the browser back to the Supplied by the Initiating Client (IF provided). Clients May Need to Explicitly URL-DECODE The Value IF It was Provided 
+
+We call this process "to perform single logout (beat)"
+Please note the following:
+* Clients Can Not Expect to Get Its Own Cookie Included In The FrontChannel-Notification in Step 3, As Browsers Increasingly Implement Limitations on the Support of 3rd Party Cookies Due To Privacy Reasons.  Clients Should Store The Value From The ID_Token 
+* If One of the Saml Service Springs Don't Redirect The End-Ukser Back to ID port, The Logout-Chain Is Broken, and the End User Will Stop at That Service Provider.
+* The Client Initiation The /Logout Will Also Receive A FrontChannel Notification in Step 3. 
+* Any tokens Issues to 3rd-party scopes (Beyond /) Will Still Be Active After A Logout. For most scenarios in the ID port, this is the desired behavior, and thus the default behavior.  But a page effect of this design is that ex. Single-Page Applications (SPA) /Javascript which have chosen to use id port access_tokens with their own scope directly as their session Mechanism, must use the revoke-endpoint instead (or in addition to) the /logout-endpoint to ".
+Request
+The Client Requests A Logout by Redirecting The Browser to The /Logout Endpoint. This can happen in two ways:
+| Parameter | Value | Comment |
+| --- | --- | - |
+| Http method | Post | Recommended |
+| Http method | Get | Supported |
+We recommend to use post, as the will then not be included in the web browser history or server page access logs.
+These query parameters should be part of the request: 
+| Attribute | Cardinality | Description |
+| --- | --- | --- |
+|                   | Recommended | Can be used by the client to detect legitimate calls on the, and also transfer relevant user-state information if needed when action the logout response.  |
+If The Client Wants ID port to redirect the end User back to the client, The Following Query Parameter Must Be Present:
+|           | OPTIONAL | The Client Initiation Logout Request |
+|           | OPTIONAL | The ID_TOKEN Correling to the End User That Wants to Logout. |
+|| OPTIONAL | Must match one of the pre-registered post logout redirect uris on the client.   Must be combined with and/or. |
+About state
+
+Valid Regex: ^[\ x20- \ x7e]+$
+IE. Accepts Valid Ascii-Characters Having Hex-Value Between 20 and 7e, ref. Ex. http://www.asciithable.com/
+
+Error Cases
+If the ID port cookie is not included by the browser when redirecting to the /logout endpoint, the id port will not accept the logout and show an error page.
+If no or was provided, the ID port will perform slo of all other clients in the session, but will not redirect the browser back to the client.  This Behaviour is definitely in the oidc specification.

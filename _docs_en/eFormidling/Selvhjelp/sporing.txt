@@ -1,0 +1,173 @@
+title: Tracking of messages
+Description: "" 
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_api
+
+This page aims to explain how to track messages.
+
+TOC
+{: toc}
+
+Check Shipments - Graphic User Interface
+A graphical user interface has been created to the integration point (available from version 2.0.7). The idea behind it is that the businesses, possibly an operating supplier, should easily be able to check the status of incoming and outgoing messages from the integration point.
+How?
+If a shipment hours out or fail, the sender will be notified within 24 hours. Registered notification point will get an email that looks like this:
+
+Dear Business Name
+Following messages in e -mediation have failed.
+Time of Error: 2020-07-09 09: 18: 19.323
+Time Created: 2020-07-08 09: 18: 07.825
+Message ID: 1CBE29FB-20CE-46D2-A774-6707034BA6D9
+Conversation ID: 1CBE29FB-20CE-46D2-A774-6707034BA6D9
+Service Identifier: DPO
+Status: Lifetime_utlopt
+Process ID: URN: NO: DIFI: Profile: Archive message: Administration: Ver1.0
+Sender: Sender Orgnr
+Receiver: Recipient orgnr  
+
+Open browser, go to. Port 9093 is set as a default, but check with technician which server port is used. This can be checked in the .Properties file that is in the integration point folder.
+
+Here you will get all the shipments sent to or from the integration point. Copy the Conversation ID from the email and check Reference to see the reference from the case/archive system.
+
+NB! One must be able to reach the integration point either directly on server or via url from the computer or server you use. 
+
+Explanation to the interface
+
+
+ConversationID: This is unique ID for the message - see more info here
+
+
+Title: The title of the document sent.
+
+
+Date: Time and date of shipment.
+
+
+Sender: Sender of the shipment.
+
+
+Receiver: Receiver of the shipment.
+
+
+Reference: Messagerference taken from case/archive.
+
+
+Service: What type of shipment is. See terminology
+
+
+Load status: Current status of the shipment.
+
+
+Process and DocumentType: If you do not have to deal with, but it is okay to note that is a receipt on a shipment and is therefore not notified.
+
+
+Color codes and statuses
+
+NB! Different statuses are logged depending on whether one is the recipient or sender of a shipment. These can be found during the relevant messaging service.
+
+
+Red = this shipment has failed
+Yellow = this shipment is not completed yet.
+Green = This shipment is delivered and completed.
+
+One can check all statuses on a message by pressing the conversation side in the interface:
+
+The search feature
+In the search field, a hairdresser can be made below the values mentioned above. In addition, a distinction can be made between incoming and outgoing trafficks, as well as search for date.
+
+One can also search for several values using logical operators. 
+
+&& means 'and'. 
+This returns all shipments where both values are correct.
+|| means 'or'.
+This return all shipments where one of the values is correct.
+
+
+
+Should there be things that are unclear when it comes to the use of the graphic user interface, please send an email to serviceedesk@dir.no.
+
+Check Shipments - API test tools
+Before you start
+
+Make sure you can reach the integration point either directly on server or via URL from the computer or server you use. 
+You must have a browser or API test tool (F.E. Postman via Get Request) to ask against the API.
+Example of request against local integration point API. One can also use server name or an exposed URL. 
+If you delete Activemq data folder or database files located in the main folder integration point, you will not find data. Information and statuses about shipments are stored there.
+
+Pick up all shipments
+
+/API/Conversations
+Example: 
+
+At this end point, you can see all incoming and outgoing shipments via this integration point, such as in the graphic user interface. The content is displayed in JSON format and is easily accessible for machine reading. 
+Each block contains one consignment (ID), and can tell important things like: Which sender is, who the recipient is, service/shipping method ,,, 
+It is important to understand that the statuses here tell how far the shipment has come and whether the recipient has received the shipment or shipment has failed. This can be used as a tool to track the shipment if it has reached the recipient. See the link above to find a list of statuses for all types of services. 
+
+Note: One has one or more 'is associated with the same shipment/conversation.
+
+Not yet delivered shipment
+
+The easiest way to check if a shipment is still being shipped is to see if the parameter is set to False.
+Marked on lines 7 and 8 are and which is the organization number of the sender and recipient in it. On line 15 is set to DPO which means that this shipment went via DPO. Line 14 indicates that = which means this is an incoming shipment, on outgoing shipments will be. 
+In line 16 starts containing all statuses registered for this DPO Shipment in the context of this integration point (the other party in the shipment may have other statuses. For this shipment, the statuses are and registered with the recipient which means that the sender should have had statuses updated in their integration point. This shipment has not been completed yet.
+Shipped Shipment
+
+Here is an outgoing DPO shipment indicated by = and = =. Here we see that the statuses have been updated respectively, and. Note that and come at about 1 second intervals, but and have several minutes in between. This may be due to several different things, F.E. That the recipient's integration point is off, or that the case archive system has not yet imported the shipment, but in this example the last two steps were manually performed at minutes. The status indicates that this shipment is delivered to the recipient's case archive system. 
+Failed Shipment
+Shipments can fail and these will get one of the following statuses: or.
+Lifetime_utlopt
+Lifetime_utlopt is a status indicating that the shipment has spent too long, and the delivery has been rejected.
+
+Note that the outlet time is put on line 13 in the field, and this time can be compared with the time of creation of the shipment, ie when the integration point received the shipment and status was set. Here was the shipment alive for 24 hours before it was given status in line 30. How long a message will live can be overridden via Properties, see the link above. 
+ERROR
+Shipments can fail for several different reasons and a brief description is often reproduced as part of the status message. 
+
+Here is an example of a DPO shipment that failed at sending and never gained status. Instead, it received a status with an error message indicating that the integration point fails to deliver the shipment to the recipient via DPO and that it is moved to a DLQ.
+More Conversations
+
+Examples of what a look can look like with several Conversations divided into each block of information and statuses.
+Retrieve shipment at MessageID
+
+/API/CONVERSATIONS/MESSAGEID/{MESSAGEID}
+Example: 
+
+It is possible to look up one specific conversation by using as a parameter in the URL. This can be found on the third line in all Conversations, possibly by looking up.
+
+Note that on line 4 is used as a parameter in the URL and that one with it can retrieve the entire conversation for granted. This shipment is a upload to e -insight indicated by line 12 and 13 wood = and =. The status indicates that the message has only been sent, but the recipient has not responded yet. This may be because the message is not taken down from the service bus and thus not processed by the receiving integration point centrally in e -insight. 
+Both and are set to the same organization, it is happened to be the Directorate of Immigration is a data processor for journal entries uploaded on www.evysyn.no. It is also quite possible to send DPO messages to themselves. 
+Retrieve statuses
+
+/API/Statuses
+/API/Statuses/{}
+Example: And 
+
+This API-call shows statuses and associated and. One can see what statuses are connected by seeing the number indicated by the field. 
+Retrieve the status with 
+
+Note that this lookup on a given Messageid has the statuses, and. Everyone has corpses and indicates that they are connected in a shipment.  Shows how many elements and pages are in this search meeting. 
+Fetch all statuses
+
+This lookup lists all registered statuses on all shipments via this integration point. Here, not all statuses are necessarily in the same shipment in order, there may be others who have been registered before the next status arrives. The image shows three statuses with = before two statuses from another shipment with = before the shipment with = receives status. 
+Retrieve Raw Receipt
+Through the API call (/API/Statuses) you can extract Raw Receipt on a status message. The Raw Receipten (JWT) can be decoded to provide further details on the status message. This is especially useful in status errors where the description is "General notification that there has been an error". By retrieving and decode the Raw Receipten, you will get a more accurate description of what has failed. The company itself is responsible for decoding Raw Receipts.
+Example of API-Kall: Localhost: 9093/API/Statuses/402835D6-2E09-6B02-651B-de470baa59b1
+Example of response to API call:
+
+Example of decoded RAW Receipt:
+
+Incoming messages
+
+/API/MESSAGES/IN
+/API/MESSAGES/IN/PEEK
+/API/MESSAGES/IN/POP/{}
+/API/MESSAGES/IN/{} (Delete-Request)
+
+Arrive
+Outbound messages
+
+/API/MESSAGES/OUT
+/API/MESSAGES/OUT/{}
+
+Arrive

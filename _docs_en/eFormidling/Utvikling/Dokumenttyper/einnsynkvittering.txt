@@ -1,0 +1,47 @@
+Title: "Document Type: E-Insight receipt"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD).
+The document type has the identifier.
+The document type is sent in response to a publication.
+The document type is always sent with the process, regardless of which process
+The original publication had.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to Figdir's organization number.
+Business message
+The business message is described below.
+
+ (required)
+Identifier for the published document.
+| Legal values | String |
+| Standard value | (none) |
+| Configuration of Standard Value | Not supported |
+ (required)
+The status of the published document.
+Note that this field is a JSON object widowed as String. See description on:
+
+Receipt of Published Data (External Link)
+
+| Legal values | String |
+| Standard value | (none) |
+| Configuration of Standard Value | Not supported |
+ (required)
+Reference type.
+| Legal values |  or |
+| Standard value | (none) |
+| Configuration of Standard Value | Not supported |
+
+Next step
+
+Example of journal entry to e -insight
+Example of meeting to e -insight

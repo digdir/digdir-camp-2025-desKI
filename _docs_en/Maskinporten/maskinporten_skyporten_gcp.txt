@@ -1,0 +1,155 @@
+Title: Skype with GCP - machine gate for sharing sheltering resources
+Description: Skype with GCP - the machine gate for sharing sheltering resources
+Summary: 'Recipe to use the cloud port with GCP'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_skyport
+
+
+
+TOC
+{: toc}
+
+For those who will offer via GCP
+At GCP, it is WORKLOAD Identity Federation used for its Skyporten OAuth2/OIDC integration.
+Now follows a recipe for how it can be done via Gcloud. Contact us if you want help getting started.
+Log into Gcloud
+Here you need to log in with the cloud user your organization has given you. It should have wide enough privileges (roles, policies)
+to be able to perform the tasks below.
+
+Put Google Project
+This is the name of the GCP project you want to set up the SkiPort access in.
+
+Create a new WORKLoad Identity Pool
+It is this that is used to access the machine port using Oidc.
+`` `
+You may want to replace the name Skyportpoc
+Export Workload_pool_ID = Skyportenpoc
+GCLOUD IAM WORKLOAD-IDENTITY-POOLS CREATE "$ WORKLOAD_POOL_ID" \
+    -Location = "Global" \
+    ---description = "Pool for the Skype POC" \
+    --Display-Name = “Skyportenpoc try”
+`` `
+Define Oidc Identity Pool Provider
+Note that we specify here. A specified Audience is required
+By GCP and thus we recommend choosing a cloud of prefix for your own domain. This does not need to be a functioning
+Domain.
+This forces consumers to specify that the machine-gate token should have. This is specified
+in when the consumer builds up his JWT-Grant.
+`` `
+Export Required_Audience = "https: // Skype."
+Export Provider_ID = SkiPort provider
+GCLOUD IAM WORKLOAD-IDENTITY-POOLS PROVIDERS CREATE-OIDC $ Provider_ID \
+    -Location = "Global" \
+    --WORKLOAD-IDENTITY-POOL = $ WORKLOAD_POOL_ID \
+    --attribute mapping = "attribute.maskepartenscope" = "assertion.scope", "Google.subject" = "assertion.consumer.id", "attribute.clientaccess" = "\" Client :: ::::
+    --sisuer-Uri = "https://test.sky.maskanporten.no" \
+    -allowed Audiences = $ Required_Audience \
+    -Description = "Oidc Identity Pool Provider for the Machine Gate"
+`` `
+The definitions under folders over to the following examples.  is here organization number to
+Consumer organization. These can be used in policies, to assign Service Account to either an organization number,
+a scope, or the combination of organization and scope. See Under Policy Binding
+For examples
+
+Create a Service Account to be used in the pool
+
+Extract the email from the created said
+`` `
+GCLOUD IAM SERVICE-ACCOUNTS LIST
+The SkyPortSagesa Skype Earage Consumer@[Project_id] .iam.gserviceAcount.com False
+Export SaEmail = "Skype Earage Consumer@[Project_id] .iam.gserviceAcCount.com"
+`` `
+CREATE POLICY BINDING
+Retrieve the project number for the WorkLoad Identity Pool project
+`` `
+Find Proj Num in Projects List
+Gcloud Projects List
+Export Project Number
+Export Projnum = [Number]
+`` `
+Tie Scope and Organization Nunmer from Federert login to Service Account and set the role 
+which allows Impersonate Service Account.
+In the example below, access to organization number is defined in and scope in.
+
+This is the most finger -ranulated access management in the cloud port, where you get a service account per consumer and Per Scope.
+It provides the opportunity to withdraw access from consumers that abuse, without affecting other consumers.
+Options for definitions of Principal Set:
+| Attribute | Mapping | Description |
+| ------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Attribute.Clientaccess |  | Provides access to Service Account for exactly a particular organization when identifying with this scopet | 
+| Attribute.Mainer Espartenscope |                                   | Provides access to Service Account for all organizations when identifying with this scopet |
+| Google.Subject |                                | Provides access to Service Account for a particular organization regardless of the scop that is sent |
+Define the resource to be shared
+To show how to share a shelter, we continue here with a newly created bucket.
+If you have already created the resource to be shared, you can skip it.
+
+And uploading a file to demonstrate
+`` `
+Echo "Bar"> Foo.txt
+GCLOUD STORAGE CP FOO.TXT GS: //$bucket/foo_remote.txt
+Copying File: //foo.txt to Gs: //skyportenbucket/foo_remote.txt
+  Completed Files 1/1 | 4.0b/4.0b
+GCLOUD STORAGE LS GS: // $ BUCKET
+gs: //skyportenbucket/foo_remote.txt
+`` `
+Tie Service Account along with the resource to be shared
+Here we give the service-accending access to the resource to be shared. If you are going to share something existing you only need to
+Do this step for service Account to have the right role or permission on the resource in question.
+The example here shows that we give the service accounten the right role for access to the newly created bucket.
+`` `
+GCLOUD STORAGE BUCKETS Add-IAM-POLICY-Binding GS: // $ BUCKET--Member = SERVICEACCOUNT: $ SAEMAIL--ROLE = ROLES/STORAGE.OBJECTVIEWER
+`` `
+Enable IAM Service Account Credentials API
+In order for consumers to use Impersonation, IAM Service Account Credentials API must enables for the project
+
+For those who are going to consume from GCP
+Layoff
+The project requires that you have a real machine-gate to the right environment.
+Here is information on how to get started with the machine gate.
+Here is a node.J's example of token generation for the cloud port.
+The unpacked token looks like this:
+
+Authentication with the machine-gate token with Gcloud
+Either you can get a -file that is output from the provider,
+or you can create a self provided information on the following variables from the provider
+`` `
+Export Projnum = [Number]
+Export saemail = ""
+Export Workload_pool_ID = ""
+Export Provider_ID = ""
+Export Provider_full_Ididifier = Projects/$ {Projnum}/Locations/Global/WORKLOADIDIDITYPOOLS/$ {WORKLOAD_POOL_ID}/Providers/$ {provider_id}
+Export machine port_token_file = token.json
+GCLOUD IAM WORKLOAD-IDENTITY-POOLS CREATE-Cred-Config $ Provider_full_Ididifier--Service-Account = $ SAEMAIL-Credential-Source-type = Json-Credential-SOURCE-FIELD-NAME = ACCESS_TOKEMEFILETOCEFECTIAL-SOURCE --output file = Credentials.json
+`` `
+Now Credentials Json will look like the example here
+
+Now the file must only contain the JSON response from the machine gate with the token itself. This can you see examples of in
+These code examples.
+If you have a different text file with only the Accesstoken in you can change the parameters to 
+Login with Gcloud will then look as follows
+
+And retrieval of sample file
+`` `` `Bash
+GCLOUD STORAGE LS GS: // $ BUCKET
+gs: // [bucket name] /foo_remote.txt
+Gcloud Storage CP GS: //$bucket/foo_remote.txt foo_local.txt
+Copying gs: // [bucket name] /foo_remote.txt to file: //foo_local.txt
+  Completed Files 1/1 | 4.0b/4.0b
+`` `` `` `
+Example of consumer
+If you want to test out consuming from a file bucket, there is an open scope in the machine gate's test environment as you
+can use.
+The scop is called and is a public scope that does not need any form of allocation.
+Required Audience in the Machine Gate token is.  Located on Slack
+And expect the Fila Token.Json to be found and contains the machine-gate token in the atribut.
+Then drive and welcome!
+🎉
+
+Troubleshoot
+Invalid Jwt Claim
+This may be due to final slash in.
+When the JWT token is generated with the audience, it must be done without any final slash (trailing slash).
+If the query against the machine gate has trailing slash in the token for the value, you will get the error:
+
+The solution is thus to remove the final slash in the audience when generating the JWT token.

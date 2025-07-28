@@ -1,0 +1,47 @@
+title: oidc system architecture
+Description: System architecture in the ID port
+Summary: "The Oidc Provider of the ID port is realized as a standalone application 'in front of' ID port SAML SERVICE”
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_arch
+
+Authentication services in the ID port
+The ID port offers authentication of end users up to web services.  
+The customer can choose the OIDC protocol when connecting to the ID port.  All services participate in a common Circle-of Trust with Single Signon (SSO) among themselves.
+Securing APIs
+The OIDC interface to the ID port The OpenID Connect Provider can also issue API access authorizations at 3rd.    
+
+graph lr
+  Subgraph 3dePart
+    API
+  end
+  Subgraph Norwegian Digitalisation Agency
+    Oidc [oidc provider]
+  end
+  subgraph customer
+     new [service]
+  end
+  Oidc ---> | 3rd Exit Token | New
+  Inhabitant --- | 2.Autentize and authorize | OIDC
+  New -> | 1. Power access | Oidc
+  New -> | 4. User Token against | API
+
+The API access can be login-based (implicit consent), user-controlled (explicit consent), or machine-to-machine-based. In the first two cases, the authorization applies only to a single citizen, while the latter case is intended for home -based authorizations.
+OAuth2-Protected APIs from Norwegian Digitalisation Agency
+
+graph lr
+  subgraph existing functionality
+    IDP [ID port]
+    The lookup service
+  end
+  Subgraph OAuth2-Protected APIs
+    Krr [krr-oauth2]
+    Authlevel
+  end
+  Authlevel --- IDP
+  KRR-SOAP --- the lookup service
+
+Norwegian Digitalisation Agency offers two oauth2 protection APIs:
+
+KRR offers the contact and reservation register of a residual interface.
+Authlevel is a new API for the extradition of the citizen's highest used secure level in the ID port.

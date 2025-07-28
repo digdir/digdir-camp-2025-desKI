@@ -1,0 +1,14 @@
+Title: Digdir's issuer
+Description: 
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_demo_utsteder
+
+Digdir offers a simple demo issuer in the sandbox.  
+It is primarily designed to issue the PID document, but currently has the opportunity to issue a proof of power and a daily-lease certificate.  Me has focused on making it work against the EU's demo -book, and has not spent any particular time testing against other wallets.  Today, it can only be in MDOC format.
+Me is working to generalize it so that it can easily hook up on other data sources and offer more evidence.  Me will also expand it to issue evidence in SD-JWT VC format.
+User interface:
+You can go to https://emo-resort.test.eidas2sandkasse.net/ to test issuance.
+Metadata
+You should find everything needed to interact with the issuer via the Credential Metadata Point:
+https://emo-resorts.test.eidas2sandkasse.net/.well-known/openid-credential-issuer

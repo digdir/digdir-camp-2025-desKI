@@ -1,0 +1,39 @@
+Title: Authentication to mobile apps
+Description: Use of the IDPort's OpenID Connect Provider for authentication to mobile apps
+Summary: "When logging in to a mobile app, it is recommended to use PKCE along with the Authorization Code flow"
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Oidc_Auth_App
+
+Overall description of the application
+Similar single-Page applications, a mobile app cannot protect their letters in a satisfactory way. It is thus an OAuth2 Public client, and is often called native app in the OAuth2 documentation.
+In OAuth 2.0 for native apps, recommendations have been made on how to use OAUTH2/OpenID Connect on mobile apps. We recommend customers to study this document carefully. We will highlight the following:
+* Authentication must be done in external browser (not embedded web-view).
+* PKCE must be used to protect themselves from apps that can sniff the traffic and steal the dialog.
+* Implicit flow is not recommended for mobile apps.
+A mobile app will typically integrate with the customer's own API ("App Backend"). It is up to the customer whether he wants to use the ID port access_token to secure this APIs directly, or translate the ID-part's token into his own tokens.
+Usually it is the backend that is registered as a client in the ID port, not the app itself.
+Central overview and revocation
+The Norwegian Digitalisation Agency requires that customers who turn over the point authentication from the ID port to a long-distance login meet the following requirements:
+
+Has local app using app using. Touchid, face recognition or the like. similar
+Active Login should be displayed on central overview in ID port's user profile
+Handles central citizen-initiated revocation of login from ID port's user profile
+
+An overview of login with reefination option for logged in resident is also available on a separate API, so that the customer can choose to also offer such functionality integrated into his own self -service solution.
+Technical description
+The easiest way to handle the above requirements is to use a long-lived access_token as a manifestation of the long login.  In practice, this will result in:
+1. Customer records its own OAuth2 scope in the ID port.  This must have the following properties:
+    - a citizen-friendly description
+    - a lifetime, based on the customer's own risk assessment
+    - Flag that decides whether the ID port should ask the citizen for consent to the long login.
+2. When logging in, the client receives an access_token associated with the resident with this scop and stores it safely in his own backend as long as the login is valid.
+3. Valides that the access_tokenet is still valid by checking it against ID port /tokeninfo- endpoints by user actions. Alternatively, the /reefo-listing point can be used for bulk overview of revocated access token, filtered on Clientid.
+4. Due to the long life, the token token should not flow out to the app, but instead translated into its own token for securing between the app and its own backend.
+Alternatively, the customer can use a variant with short-lived access_token in combination with refresh_tokens.
+Description of the login flow for mobile apps
+The flow is identical as for the authorization code flow, but using PKCE:
+In addition, the customer must request his own scope, which belongs to the long-lived login and treat this as explained in the previous section.
+Structure on the token
+The ID token is identical as using the authorization code flow.  Although it is the access_tokenet to be used further, the customer must first validate the id_token in accordance with the usual best practice for Oidc.
+The access_token will contain the birth number of the inhabitant, the scoped registered, and the outlet time of the token.

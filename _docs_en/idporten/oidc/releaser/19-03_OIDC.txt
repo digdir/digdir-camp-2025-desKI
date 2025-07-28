@@ -1,0 +1,10 @@
+title: 19-03 oidc
+Description: 19-03 Oidc
+Sidebar: Oidc
+redirect_From: /19-03_oidc
+
+Removing support for implicit-flow in OIDC
+Releasen was production -taxed Mar 19, 2019
+New functionality:
+Updated Security Requirements for Javascript clients (Shipped)
+IETF has published updated security requirements for so-called "single-page applications" / JavaScript applications, and the ID port is adapted to these. It is no longer possible to use implicit flow in the ID port.

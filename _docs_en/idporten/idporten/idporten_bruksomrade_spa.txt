@@ -1,0 +1,25 @@
+Title: ID port for login to SPA
+Description: 
+Summary: 
+Sidebar: Idporten_sidebar
+Product: ID port
+Redirect_From: /Idporten_bruksamrade_spa
+
+Overall description of the application
+Single-Page Applications (SPA) have increasing popularity. These differ from traditional web services in that the spa is realized as a pure JavaScript application in user browser, versus traditional web tests where a central application server generates HTML shown in the browser.
+One challenge with spas is that they are unable to protect the client secret (possibly the business certificate's private key) since the entire client lives in the user's browser. Spaer is thus what in the OAuth2 world is called public clients. For such clients, it was previously recommended to use Implicit Flow, but the latest recommendation is to use Code Flow with PKCE and State.
+Recommendations / Requirements for the use of spas
+The threat picture is different when using SPA versus services that use ordinary authorization code flow.  Since the access_token is exported in the user's browser, there is an increased risk that the token can more easily get lost or replaced/manipulated.
+Service owners must:
+ * Read the latest recommendations from IETF and follow the recommendations in this
+ * Perform a risk assessment of the data export of the API and assess whether the fuse mechanisms offered by above provides adequate protection.
+Flow
+In practice, the flow is the same as ordinary authorization code flow, but there:
+
+The client must be registered as a "public" client in the ID port (see client registration)
+No Client-Secret is recorded
+Use of PKCE is required
+Use of -claimed in Authorization Request is required
+
+Excample
+See example with React client

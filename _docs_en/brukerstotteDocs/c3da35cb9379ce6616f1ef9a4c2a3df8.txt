@@ -1,0 +1,22 @@
+Url: https://eid.difi.no/nb/esigning/hvormin-vinner- The-signed document- after-40 days
+Title: Why does the signed document disappear after 40 days? | Help sites for common solutions
+
+Why does the signed document disappear after 40 days?
+
+Once you have signed a document in the signing service, the document will only be available for download for 40 days after signing. The reason for this is that the signing service does not offer stored documents beyond 40 days. The signed document is sent back to the public business that created the document for further storage.
+
+It is therefore recommended that you download the document and save it on your computer as soon as you sign it. 
+
+NB! Although the service owner receives and stores your signed document, you cannot expect to receive a copy of the document in PDF format at a later date. For any questions about the signed document, you must contact the relevant service owner.
+
+Those who have a digital mailbox will in most cases receive the document signed in the digital mailbox. It is up to each service owner if they send out the signed document to the digital mailbox.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

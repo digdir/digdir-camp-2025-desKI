@@ -1,0 +1,35 @@
+Url: https://eid.difi.no/nb/esignering/how-sign-i
+Title: How do I sign? | Help sites for common solutions
+
+How do I sign?
+
+Go to the signing portal, https://signering.posten.no, and log in via the ID port to get an overview of which documents are waiting for your signature. You will also be able to see a list of any documents that you have signed for the last 24 hours.
+
+Read the document
+You can find the document you can sign electronically when you have logged into the signing service.
+Click "Show Document" to see what to sign (preview), or click directly on "Start Signing". Then you will get the document.
+Sign in the ID port
+Under the document you will find the "Sign Document" button. If you want to sign, click "Sign Document". If you do not want to sign the document, click "Cancel".
+When you sign the document, you are sent to the ID port where you identify with the selected e-ID. The sender of the document determines which e-ID can be used to sign the document. When the identification in the ID port is complete, you have signed the document.
+Fill
+Once you have completed the signing, you get confirmation that the document is signed and you are offered the opportunity to download the signed document. The document is available for download for 24 hours after the signing time and is found in the "Signed Documents" list. If you have a digital mailbox, you will in most cases receive the document in your digital mailbox. It is up to each service owner if they send out the signed document to the digital mailbox.
+
+You will receive a SMS or email notification when you have new documents waiting for your signature.
+
+Direct signing:
+Some public companies use the signing service as part of a process. You first log into a public service via the ID port. After you are logged in and shared information in a form of the public service, you are automatically forwarded to the signing service. When the document is signed, you are sent back to the original service where you can download the signed document. Here, there will be no time -limited download of the signed document.
+
+Advanced E-signature with BankID or Buypass:
+Sometimes the sender can decide that the document should be signed with so-called advanced e-signature. In these cases, you will be asked to sign with E-ID from BankID or Buypass, (and thus the document cannot be signed with MinID or Commfides)
+
+NB! If you sign with BankID, you must first open and read the document in the signing solution, before you can check the "content understood and I am ready to sign". It is electronic ID from BankID and Buypass that can be used for e-signature. 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

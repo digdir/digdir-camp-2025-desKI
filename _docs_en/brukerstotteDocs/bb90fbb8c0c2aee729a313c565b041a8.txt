@@ -1,0 +1,31 @@
+Url: https://eid.difi.no/nb/bankid#main-content
+Title: BankID | Help sites for common solutions
+
+Bankid
+BankID provides access to public services at the highest security level (level 4).
+
+BankID can be used with code chip and BankID with app.
+
+BankID with code chip
+How to order BankID
+How to log in with BankID with code chip
+BankID with app
+How to get started with BankID with app
+How to log in with BankID with app
+Passwords and codes
+One -time code to BankID
+Forgot password
+How to Change Password
+Blocking BankID
+Familiar mistakes and solutions
+Bid- and c-codes
+"Incorrect data entered"
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

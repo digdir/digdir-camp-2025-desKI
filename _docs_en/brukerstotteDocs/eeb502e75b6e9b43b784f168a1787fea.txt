@@ -1,0 +1,48 @@
+URL: https://eid.difi.no/nb/sikkyness-og-sprivertvern#MAIN-Content
+Title: Security and Privacy | Help sites for common solutions
+
+Security and privacy
+The ID port is a common login solution for public services. You can use electronic ID from MinID, BankID, BankID app, Buypass or Commfides. With Electronic ID, you confirm in a safe and secure way who you are when using public services on the Internet.
+
+ID theft
+
+In order to prevent ID theft, it is important to be aware of who you provide personal information to and in what context you provide the information. 
+
+In order for your security in the ID port to be safeguarded in the best possible way, you should be aware of the following:
+
+Make sure the electronic device you are using is updated
+Secure your electronic device with password/PIN code
+Have updated anti-virus on your computer
+Log out when done
+
+More information about data security can be found on NorSIS's homepages: www.norsis.no 
+
+If you suspect you are exposed to an ID theft, it is important to respond quickly to limit the scope. Start by reporting the relationship with the police, phone 02800. 
+ 
+
+Second contact point:
+
+MinID: Contact the ID port support on phone number (+47) 800 30 300 to block user profile. We can close your user profile and retrieve logs for activity in the ID port. 
+
+BankID: You can find information on how to block BankID on your bank's websites. 
+
+Buypass: You can block your Buypass ID at Buypass.no
+
+Commfides e-ID: You can block your Commfides e-ID by contacting Commfides. 
+
+Security in the ID port
+Privacy and cookies
+Different security levels
+Blocking minide
+Recovery of contact information
+Information about others
+Processing
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

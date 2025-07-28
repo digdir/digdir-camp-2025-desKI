@@ -1,0 +1,10 @@
+Title: 19-05 Eidas
+Description: 19-05 Eidas
+Sidebar: Oidc
+Redirect_From: /19-05_eidas
+
+Support for unambiguous recognition of European users through modernized national register
+Releasen was the production of May 7, 2019
+New functionality:
+Eidas: Unique recognition against modernized Population Register (Shipped)
+Norsk Eida's node is linked to modernized population register, so that it will be possible to clearly recognize the Norwegian F/D number when an Eidas user tries to log in to Norwegian services.

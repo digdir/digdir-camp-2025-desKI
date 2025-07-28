@@ -1,0 +1,85 @@
+Title: REST-API for authorizations in OIDC provider
+Description: API for authorizations in Oidc Provider
+Summary: "Citizens' authorizations in the ID port's Oidc Provider are available on a residual API, for the customer's own overview. Typical authorizations are so-called long-lived logins to mobile apps."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_api_autorizations
+
+Introduction
+{ % Include note.html content = "This API provides p.t. Just out authorizations on old platform." %}
+The inhabitant's active authorizations in the ID port Oidc Provider is available on a single residual API.
+Typical authorizations available over the API are authorizations where the inhabitant has through explicit access to user -controlled data sharing, ie the inhabitant has been shown an access dialog and the print "approval".  API-BY DOG Filtration options so that the customer can retrieve other types of authorizations.
+The customer receives the information to refer to these to the citizen in their own solutions, and possibly give the citizen the opportunity to revoke an active authorization from the customer's own self -service solution.  Another typical usage pattern is where the inhabitant contacts the customer's support, who then needs to remove an authorization on behalf of the citizen.
+Use of common solution
+If the customer does not want to build their own user interface, they can link to https://uerkerprofil.idporten.no/.  Here, the inhabitant can see their active logins and authorizations for all services, as well as withdraw them.
+This service is an additional service in the ID port. See https://so co -work.digdir.no for general conditions for additional services.
+How to access?
+The customer even creates an integration with the ID port with the right scope.
+The residual interface
+The residual interface offers two main methods:
+| Endpoint | Description |
+|-|-|
+|  | Retrieves all authorizations that the user have provided to integrations (clients) belonging to the customer's organization number |
+|  | Retrieves all authorizations that the user have given to APIs (Scopes) belonging to the customer's organization number |
+The endpoints are protected with the OAuth2 access_token from either the ID port or the machine gate.   Correct HTTP verb must be used depending on the token you have:
+| Http verb | Description |
+|-|-|
+| Get | Expect Access_token to belong to logged in user (so -called authentication -related authorization) |
+| Post | Expect the Machine Gate-based access and that the personal identifier is part of Request-Body |
+| Delete | Supports both token types.  |
+The following OAuth2 Scopes is accepted by the interface:
+| Scope | Description |
+| - | - | 
+|   |  Read out all the authorizations that use have for my services or my APIs, as well as withdraw them.  |
+The interface is documented in accordance with Openapi here: https://api.idporten-ver2.difi.no/authorizations#swagger-ui.html.
+URL to service:
+| Environment | URL |
+|-|-|
+| Prod | https://api.idporten.difi.no/authorizations |
+| Ver1 | https://api.idporten-ver1.difi.no/authorizations |
+| Ver2 | https://api.idporten-ver2.difi.no/authorizations |
+| YT2 | https://api.idporten-yt2.difi.eon.no/authorizations |
+Filtration
+By default, the APIA only returns authorizations given to scopes that has equal true.  It is possible to extend the search by including "request_user_consent = false" as a query parameter.  You can also search the scope property.
+Note that it is always the complete authorization representation as it was reflective in the issued token that is returned, even if you use searches.  It is therefore sufficient that one of the scopes belonging to an authorization has hits on the search criteria.
+Examples
+With the use of the ID port token:
+`` `
+Get /Clients /Authorizations
+Authorization: Bearer 
+[
+    {
+        "Authorization_ID": "Aetqv82Aacy5Sfn5GFB5MV38Z6C3C3C5P1T7WTLYWN0LMU",
+        "Client_id": "Test_rp_Systest",
+        "Client_name": "ID port test client",
+        "Description": "A Fantastic End User Service"
+        "Authorized_at": 1611555774085,
+        "Expires": 1611559375085,
+        "Scopes": [
+            {
+                "Name": "Digdir: Test2",
+                "Description": "Digdir Test Scope With User Consent",
+                "Long_description": "",
+                "Requires_user_consent": True,
+                "Visibility": "Public",
+                "Owner_orgno": "991825827"
+            }
+)
+`` `
+Corresponding Request using the Machine Gate token (provides the same response as above)
+`` `
+Post /Clients /Authorizations
+Authorization: Bearer 
+Content-Type: Application/Json
+{
+    "PID": "20914695016"
+}
+`` `
+Delete an authorization
+Normally, a customer will delete an authorization in that the client who was issued the relevant token calls /Revoke- endpoint of the ID port with the tokenet (access or preferably refresh) to be deleted.
+This API call, on the other hand, gives the customer the opportunity to revoke from a client other than the one who had the token distributed.  When deleting authorization, all associated active Access_Token and Refresh_token are invalid. (Note that any Self-Contained Access_Token will still be issued as valid, if they are not validated via network shell against the ID-port /tokeninfo peak).
+
+The Bearer token in the request must have scope.
+Reef list
+The endpoint /reefo list provides an overview of the authorizations that have been revoked in recent times. Typical use is clients with many long-lived token where one wants to reduce the number of calls against /tokeninfo. Normal use of /tokeninfo is the preferred for most people. The end point is open and does not require authentication.
+URL to Revokelist Endpoint: https://oidc.difi.no/idporten-dorten-portc-provider/revokelist

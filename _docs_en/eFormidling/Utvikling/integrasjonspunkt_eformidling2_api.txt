@@ -1,0 +1,242 @@
+Title: The Integration Point API (Emofide 2)
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From:
+- /Emforing_dev
+- /eFormidling_nm_meldingsflyt
+- /eFormidling_nm_restdocs
+- /eFormidling_nm_swagger
+
+This page describes the API () and usage patterns for this.
+
+TOC
+{: toc}
+
+See API definition for details:
+
+API documentation (external link)
+
+Send messages
+The interface supports two strategies for sending messages. A one -step strategy is supported for messages up to 5 MB.
+This strategy is primarily relevant to mass broadcasts of small messages. Machine-to-machine messages belong
+Often this category. For larger messages, only a multi-stage strategy is supported. Implementations where there is
+End users who control the content (and thus the message size) are recommended to implement the multi -stage strategy so that
+Both small and large messages are supported. It is only recommended to implement one of the strategies.
+One-step strategy results in fewer HTTP requests and may be a little faster to implement. One -step strategy
+is intended for small messages, while the multi -step strategy is intended for large. For all practical purposes, the two strategies provide almost equal performance.
+When a message is sent, the implementation must wait for the message status before sending can be considered successful. The
+Are several strategies to monitor message statuses. These are described for themselves.
+One -step strategy for small messages
+One -step strategy for small messages supports message sizes up to 5 MB.
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+Participant SR AS Servicegistry
+Participant MF AS Message Provider
+
+
+    FS->> IP: Get API/Capabilities/{Receiverid}
+    IP->> SR: Get /Identifier /{Receiverid}
+    SR->> IP: Capabilities
+    IP->> FS: Capabilities
+    FS->> FS: Select Capability  
+
+    FS->> FS: CREATE MESSAGE   
+    FS->> IP: Post API/MESSAGES/OUT/MULTIPART
+    IP->> FS: Conversation Response
+
+    IP->> MF: Upload
+    loop 
+        IP->> MF: Get Status
+        MF->> IP: Status
+    end
+    FS->> IP: Get API/Statuses/{Messageid}
+    IP->> FS: Statuses
+
+
+Multi -step strategy for big and small messages
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+Participant SR AS Servicegistry
+Participant MF AS Message Provider
+
+    FS->> IP: Get API/Capabilities/{Receiverid}
+
+    IP->> SR: Get /Identifier /{Receiverid}
+    SR->> IP: Capabilities
+
+    IP->> FS: Capabilities
+    FS->> FS: Select Capability   
+    FS->> FS: CREATE MESSAGE      
+    FS->> IP: Post API/Messages/
+    IP->> FS: Conversation Response
+    FS->> IP: PUT API/MESSAGES/OUT/{MESSAGEID}
+    FS->> IP: Post API/MESSAGES/OUT/{MESSAGEID}
+
+    IP->> MF: Upload
+    loop 
+        IP->> MF: Get Status
+        MF->> IP: Status
+    end
+
+    FS->> IP: Get API/Statuses/{Conversationid}
+    IP->> FS: Statuses
+
+
+Follow up on the status of sent message
+When a message is sent, the implementation must wait for the message status before sending can be considered successful.
+An outgoing message goes through a number of statuses:
+| Value | Description |
+| ----------- | ---------------------------------------------------------------------------
+| Created | Message received at the integration point from the subject system and put on queue |
+| Sent | Message Sent |
+| Received | Message Downloaded and put on queue with the recipient |
+| Delivered | Message Downloaded from the recipient's queue |
+| Read | Receiver has read the message / sent application receipt |
+Deviation:
+| Value | Description |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| Lifetime_utlopt | Message has not been delivered and within the delivery deadline and must be resubmitted |
+| Error | Unexpected error situation occurred |
+There are several strategies to keep up with message statuses. The simplest strategy is to regularly turn up on status
+For the messages sent but not yet confirmed delivered. In case of larger amounts of messages this will result in larger quantities
+look and thus be able to limit how often one can look up the status of a given message. A user who has sent a message
+will thus be able to find that it goes unnecessarily long from a message sent to the user get confirmed that it is
+Delivered. A more effective strategy is to look up all relevant message statuses and browse through. Another strategy is to
+Look up the next incoming message status without specifying which message you want the status of. If more clients share
+The same integration point cannot be used this strategy. One can also set up supplementary webhook subscription for
+Statuses.
+Lookup on statuses for given message page
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+
+    loop periodically
+        FS->> IP: GET/API/STATUSES/{MESSAGEID 1}
+        FS->> IP: GET/API/STATUSES/{MESSAGEID 2}
+        FS->> IP: GET/API/STATUSES/{MESSAGEID N}
+    end
+
+
+Search all relevant statuses
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+
+    loop periodically
+        FS->> IP: Get /API /Statuses? Status = {Status}
+        FS->> IP: Get /API /Statuses? Status = {Status} & Page = {1}
+        FS->> IP: Get /API /Statuses? Status = {Status} & Page = {n}
+    end
+
+
+Retrieve the next status until it is empty
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+
+    loop periodically
+
+        loop until it is empty
+            FS->> IP: Get/API/Statuses/Peek
+            FS->> IP: Delete/API/Statuses/{ID}
+        end
+
+    end
+
+
+Supplementary Webhook subscription for statuses
+Supplementary webhook subscriptions for outgoing statuses can be used in the same way as for incoming messages. See
+Fancy:
+
+Supplementary Webhook subscription for incoming messages
+
+Receive messages
+The interface supports a main strategy to receive messages: regular pickup. In addition, this strategy can
+is supplemented with webhook subscription so that the integration point actively sends messages on to an endpoint of
+The client. The Webhook Implementation does not guarantee delivery in cases where the integration point is restarted or
+There forwarding messages fail (for example, if the client's endpoint is down). This strategy is therefore
+Only a possible supplement to regular pickup.
+Both strategies support filtration for what types of messages are to be retrieved so that one integration point can have
+More consumers for different purposes. For example, one may receive access requirements from e -insight while another client can receive
+Messages related to case processing. This requires all clients only consuming the messages the individual client
+Should have (and not the messages the other clients should have). 
+Regular pickup of messages
+When downloading messages from the integration point, this must be initiated with a peek, which locks led the message in
+The queue. If one is looking for messages of a particular type, this can be done by sending with filters for this.
+After locking the message, this can then be downloaded via the end point.
+After the message is downloaded, this one can be deleted via calling delete against or it can
+Unlock again.
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+Participant MF AS Message Provider
+
+    loop
+        IP->> MF: GetMessages
+        MF->> IP: Messages
+    end
+
+    FS->> IP: GET/API/MESSAGES/IN/PEEK [? Process = {ProcessName}]
+    IP->> FS: SBD
+    FS->> IP: GET/API/MESSAGES/IN/POP/{MESSAGEID}
+    IP->> FS: ASIC
+    FS->> IP: Delete/API/MESSAGES/IN/{MESSAGEID}
+
+
+Supplementary Webhook subscription for incoming messages
+By setting up a supplementary webhook subscription for incoming messages achieves a better responsiveness than about a
+Only is based on regular collection of incoming messages. When one is notified of an incoming message one must
+through the main strategy to retrieve the message.
+A subscription is created using the Subscription API. These are stored in a database so they continue to work
+after a possible restart of the integration point. The idea is to create a smaller number of webhooks, which will live
+Long. Often it will hold a webhook. It is not intended to create one webhook per message.
+When creating a subscription, a ping event will be sent to the URL one chooses, to check that
+The integration point gets in touch.
+If you want to test out webhooks before you have an endpoint ready, then you can use a service such as
+https://webhook.site. This website generates its own URL that you can use as a pushendpoint.
+Then you will be able to see the events received in the browser.
+
+
+sequence chart
+Participant FS AS subject system
+Participant IP AS integration point
+Participant MF AS Message Provider
+
+    FS->> IP: Create Subscription: Post /API /Subscriptions
+
+    loop
+        IP->> MF: GetMessages
+        MF->> IP: Messages
+    end
+
+    IP->> FS: Post http://my.webhook.no/my- endpoint
+
+    FS->> IP: GET/API/MESSAGES/IN/PEEK? MESSAGEID = {MESSAGEID}]
+    IP->> FS: SBD
+    FS->> IP: GET/API/MESSAGES/IN/POP/{MESSAGEID}
+    IP->> FS: ASIC
+    FS->> IP: Delete/API/MESSAGES/IN/{MESSAGEID}
+
+
+See:
+
+Example of creation of webhook subscription
+
+Facilitate troubleshooting
+In order to facilitate troubleshooting, it is encouraged to state HTTP heads using the API integration point. It is desirable to provide the name and version for the system that integrates, as well as the platform on which it runs.  treated as free text, but some examples that use regular convention are:

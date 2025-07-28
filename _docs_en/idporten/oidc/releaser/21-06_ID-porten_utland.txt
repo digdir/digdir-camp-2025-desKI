@@ -1,0 +1,10 @@
+Title: 21-06 ID port abroad
+Description: 21-06 ID port abroad
+Sidebar: Oidc
+Redirect_From: /21-06_id port_utland
+
+The IFBM Korona situation is needed to establish a login solution to helsenorge.no for users who lack F/D number.
+Releasen was production of Jun 15, 2021
+New functionality:
+Establish Idport-Utland as its own IDP (Shipped)
+The ID gate abroad is established as a separate IDP.

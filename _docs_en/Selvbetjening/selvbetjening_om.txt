@@ -1,0 +1,35 @@
+Title: About self -service of Gigdir's joint solutions
+Description: Self -service of Gigdir's common solutions
+Sidebar: Main_sidebar
+Product: Self -Service
+redirect_From: /self -service_om
+
+On this part of the documentation pages you will find information on how to self -service our common solutions.
+As of today, the following joint solutions can be self -serving:
+- the ID port
+- the machine gate
+-API clients (ID port + API)
+- the contact and reservation register
+We currently offer 2 interfaces for self -service.
+
+Self -service through graphic interface on the collaborative portal.
+Easy to get started
+Access controlled via Altinn
+Clients can be created with few keystrokes
+
+Authentication with the same user as the collaborative portal.
+
+
+Self -service via machine API.
+
+Client with access must be issued by digdir (serviceedesk@dir.no)
+Using business certificate as authentication
+Enables automation of eg access control of APIs in the Machine Gate for API providers.
+Can be used as a basis for building a separate graphic interface for self -service.
+
+Self -service is available in 3 of our environments.
+PRO: The production environment
+Ver1: Production like test environment
+Ver2: Development environment running pre-releases of upcoming versions
+
+The prerequisites for using self -service are that your business is registered with us and that the terms of use are signed.

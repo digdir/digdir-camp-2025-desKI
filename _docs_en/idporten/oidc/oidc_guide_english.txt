@@ -1,0 +1,130 @@
+Title: Summary in English
+Description: Summary in English
+Summary: "The ID port victim Authentication Services from Norwegian Citizens Towards Service Providers in the Norwegian Public Sector. Most Services Should Use The Authorization Code Flow AS Standardized by Openid Connect for Integration Toward's ID port.
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_guide_english
+
+This English Summary is intentionally kept Very Brief.  We Advice English Speaking Companies to Study The Openid Connect Specification for Details. ID port implements a subset of this specification, conforming more-or -less to a basic Openid provider.
+The Authorization Code Flow Is Recommended From Almost All Services which Integrates Towards ID port.  
+The Integration Activities is Described in This List of Activities at the collaborative portal
+Overall description
+
+graph lr
+  End_user (User)
+  OP (ID port)
+  RP (Relying Party / Service Provider)
+  End_user -. Authenticates Towards .-> OP
+  Op -. Issues id_token .-> rp
+  End_user -. Logging Into .-> RP
+
+The following players are included:
+| Party | Description | Term in Oidc |
+| -|-|-|
+| User | Wants to Log In To A Public Service | End User |
+| Service | Web-based service offered by A Norwegian Public Body | Relying Party (RP) / Client |
+| The ID port | The Authentication Service Offered by ID port | Openid Provider (OP) |
+Authorization Code Flow:
+
+sequence chart
+  User ->> Relying Party: Clicks "Login" -Button
+  Relying Party ->> User: Redirect With Authentication Request
+  User ->> Openid Provider: Follow Redirect ...
+  Note over User, Openid Provider: End User Authenticates Himself (Opt. Consents to Scopes)
+  Openid Provider ->> User: Redirect With Authorization Code
+  User ->> Relying Party: Follow Redirect ...
+  Relying Party ->> Openid Provider: Request Token (/Token)
+  Openid Provider ->> Relying Party: ID_TOKEN (OPT. Other tokens)
+  Note over User, Relying Party: User is logged in to the service
+
+See The Description in Oidc Core for Details.
+It is of UTMOST Importance That The Client Performs All Validations Steps Described in the Specification.
+Some relevant paraments in the Authentication Request:
+| Parameter | Comment |
+| --- | --- |
+| Response_Type | Only is Supported by ID port |
+| Client_id | ID port will provide you with a client ID |
+| redirect_uri | The End User Will Be Redirected Here After A Successful Authentication.  Only pre-registered uris can be used.  |
+| Scope |  Whitespace-separated List of Requested Scopes.  Normally just "Openid".  |
+| State | Value set by the client and returned in the callback.  Recommended two uses two implement CSRF protection. |
+| Nonce | Value set by the client and returned in the ID token. Recommended to use two protect from replay attacks. |
+| ACR_VALUES | Requested Security Level, Ealk Idport-loa-Substical or Idporten-loa-High |
+| Ui_locales | Requested Language in the User Interface, We Support NB, NN, an OR SE |
+| Prompt | Optional, used to govern end User involvement.  Only is Supported by ID port |
+Session action
+Please note that id port and the relay party holds individual http sessions.  It is the responsibility of the relying party to transform the id_token into a local session suitable for their service.
+The ID port session is used to sacrifice single signon (SSO) Between All Federations Members.  A Relying Party May Override SSO by using Prompt = Login in the Authentication Request, However the SSO Session is Still Created in the ID port, and the User Is Vulnerable to SSO Towards Subsequent Relying Parties.
+Session Lifetime in ID port is AS FOLLOWS:
+- inactivity time: 30 minutes
+- Maximium lifetime: 120 minutes
+Composite Services that rely on SSO to sacrifice a Seamless End User Journey Between Individual Services, Must Make Sure to Refresh The Session Before the Inactivity Time Expires.
+Note that the 'Exp'-Claim in the id_token is not related to the http session.
+Logout
+Relying Parties Must Sacrifice Single Logout Functionality from Their Own Service, City Sending An -Call According to Oidc Session Management Specification.   Post-logout Redirect Uris Must Be ProSegistered on the Client in ID port.
+In Addition, Relying Parties Must Also Be Able To Handle Logout Request From ID port Conforming to the Oidc Front Channel Logout Specification.  A Front-Channel Logout Uri Must Be ProSegistered on the Client in ID port.
+Client authentication at the token endpoint
+The use of the token endpoint differ somewhat Depending on which client authentication method is being used.  The Following Authentication Methods from Oidc Chapter 9 is Supported:
+Using Static Client Secret
+A Static Symmetric Key (Client_Secret) must be obactained from the Norwegian Digitalisation Agency. Production Secrets Will Not Be Handed over by email.  The Relying Party is responsible to rotating the secret before it expires at the ID port.
+The client auth is performed by addding a standard http basic authentication header. (BASE64-ENCODED CONCATED STRING BY CLIENT_ID, A Colon and the Client_Secret).
+This Method is in General Not Recommended for Sensitive Services, and Digdir Recommends Going for Instead.
+Excample
+`` `
+Post /token
+Content-Type: Application/X-WWW-Form-URENCODED
+Authorization: Basic DGVZDF9YCF95DDI6CGFZC3DVCMQ =
+Grant_Type = Authorization_code &
+  redirect_uri = https%3a%2f%2feid-exttest.difi.no%2Fidporten-Oidc-Client%2FAuthorize%2Fresponse &
+  Code = 1jzjkycph4Mipp9ywxrFL-IIVWBLFKDIRLJKZTJFMT0%3D
+`` `
+Using jwt token
+This is the recommended method for client authentication.
+The Client Must Generate A JWT Token Having Claims AS Defined in the -section in Chapter 9 of the Oidc Specification, and Sign This Using a Valid X.509 Norwegian Business Certificate ("Business Certificate").
+The Following Claims in the Jwt Is Of Interest:
+| Claim | Comment |
+| --- | --- |
+| Aud | Audience - The Identifier for the ID port.  See The Claim at The Well-Known-endpoint for Correct Value. Only a single value, not a list |
+| ISS | Issu - Your Client ID |
+| Sub | Subject - Your Client ID |
+| IAT | Issued at - Timestamp when this jwt was generated. Note: UTC time. |
+| Exp | Expiration Time - Timestamp When This Jwt Expire. Note: UTC time.  Max allowable lifespan is 120 seconds (Exp - IAT <= 120) |
+| JTI | OPTIONAL - JWT ID - UNIQUE ID FOR THIS JWT. A JWT CAN NOT BE REUSED |
+The Following Header Claims in the Jwt Should Be Noted:
+| Claim | Comment |
+| --- | --- |
+| X5C | The Certificate used for signing the jwt.  |
+| ALG | , or.  |
+Example:
+`` `
+Post /token
+Content-Type: Application/X-WWW-Form-URENCODED
+Grant_Type = Authorization_code &
+   Code = N0ESC3NRZE7LTCU7IYZS6A5ACC3F0OGP4 &
+   Client_assertion_Type = URN%3Aietf%3Aparams%3AOAUTTH%3ACLIENT-SASSERTYPE-Type%3ajwt-Bearer &
+   Client_assertion = <jwt>
+`` `
+ID token
+The Relying Party Must Validate the ID token AccoSing to https://openid.net/specs/openid-connect-core-1_0.html#idtokenvalidation
+The Following Claims in the ID token Should Be Noted:
+Header:
+| Claim | Comment |
+| --- | --- |
+| KID | "Key Identifier" - Unique Identifier for The Signature. Key and Cerificate Must Be Fetched From The Well-Known Endpoint.  |
+| ALG | "Algorithm" - Sigting Algorithm, RS256, RS384, RS512 Are Supported |
+Body:
+| Claim | value |
+| --- | --- |
+| Sub | "Subject Identifier" - Unique Identifier for the End User. A pairwise value, meaning that a client will always get the same value for the same user, but different clients get different values.  |
+| Aud | "Audience" - your client_id |
+| ACR | "Authentication Context Class Reference" - The Security Level Used.  Possible Values are "Idport-loa-Substential" (IE. Minid) or "Idport-loa-High". This must be verified by the relying party.  |
+| AMR | "Authentication Methods References"-Possible Values Minid-OTC, MinID-app, MinID-Totp, MinID-WebAutthn, Commfides, Buypass, Eidas, BankID or BankID mobile, this May Change over hour. |
+| ISS | The Identifier of ID port |
+| PID | Personal identifier-proprietary Claim, for the Norwegian National Identifier ("F-Number" OR "D-Number") |
+| Exp | Expire - A Client Must Not Accept the ID token After This Time Stamp.  |
+| Locale |  The Language Used by the End User during the Authentication Process. |
+| IAT | Timestamp when this token is issued |
+| JTI | JWT ID - Unique Identifier for this Token |
+| SID | Sessionide - a unique identifier the session for this end uss. SHARD BE KEP BY THE CLIENT TO AID SINGLE LOGOUT |
+Userinfo-endpoint
+By Requesting the Profile Scope in the Authentication Request, an access_token for the Userinfo-endpoint Will Be Included in the Response.  
+Please note that our userinfo endpoint does not contain any claims of value, and is solely victims in order to be compliant to the oidc specification.  ID port does not know the name or other profile details for the end users.

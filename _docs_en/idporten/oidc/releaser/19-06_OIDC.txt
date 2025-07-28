@@ -1,0 +1,15 @@
+title: 19-06 oidc
+Description: 19-06 Oidc
+Sidebar: Oidc
+Redirect_From: /19-06_oidc
+
+Support for asymmetrical keys.
+Support for the Audience limit token.
+Releasen was production -on Jun 11, 2019
+New functionality:
+Client Automation with asymmetrical key (Shipped)
+Support for client authentication with asymmetrical keys that do not necessarily belong to a PKI infrastructure.   Asymmetrical keys can only be registered using. Self-service therapy, and it is assumed that the business itself takes responsibility for life-cycle security for the key corresponding to the regulations that apply to business certificates.
+Clients can drain 'Audience' (Shipped)
+Let the client request an arbitrary audience value and put this in the access token.
+The ID port has no relation to the values, Mao. We assume that permitted values are agreed bilaterally between consumer and API provider.
+At the same time, today's incorrectly implemented 'Aud' Claim from Access_token is removed.

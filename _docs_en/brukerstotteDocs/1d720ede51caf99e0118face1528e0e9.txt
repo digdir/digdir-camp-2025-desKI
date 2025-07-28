@@ -1,0 +1,33 @@
+Url: https://eid.difi.no/nb/id port#main-content
+Title: ID port | Help sites for common solutions
+
+Sámegiella
+The ID port
+The ID port is a common login solution for public services on the Internet. The ID port provides access to over 1000 services from the state and municipality. The ID port is operated by the Norwegian Digitalisation Agency.
+
+To log into services from the state and municipality on the Internet, you must have an electronic ID (e-ID). An electronic ID is important to confirm that you are the one you are pretending to be.
+
+In the ID port you can choose between different options for electronic ID: 
+
+Minid
+Bankid 
+Buypass
+Commfides
+New user of public services online
+How to get Electronic ID
+What you can use your electronic ID for
+When MinID is not a login choice in the ID port
+A joint contact and reservation register
+Check that you are registered with the correct mobile number and email
+For the management
+Collaboration
+Contact information
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

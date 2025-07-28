@@ -1,0 +1,14 @@
+Title: Token request 
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_token_request
+
+Forcing on the ACCESS-Token for use against the residual reference service
+In order to get an access_token to use for authorization against the residual reference service, a JWT Grant must be sent to the machine gate. If your business has gained the right access and layout of both the client and the JWT-Grantet is correct, /token- endpoint in the machine gate will be able to respond to request with an access token. 
+We have our own page that describes JWT Grant against the machine gate (JWT Grant.).
+{ % Include note.html content = "In the test environment, the lookup service to Token supports from test.makerporten.no and not ver2.maskarport.no" %}
+Well-Known Endpoints for the Machine Gate
+Forcing the Access token for use against user logging (user-controlled data sharing):
+In order to get an access_token to look when logging, a login must be made and further can be accessed to Token from/token- endpoint for the ID port https://idport.no/.well-known/openid-configuration.

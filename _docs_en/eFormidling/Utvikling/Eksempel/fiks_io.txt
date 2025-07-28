@@ -1,0 +1,36 @@
+Title: Example of FIKS IO message exchange
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of FIKS IO message exchange. Recipient in the example is a FIKS IO account with ID
+. Sender and recipient have agreed in between that they should use
+Fix iO message exchange to communicate. They have also agreed to use the FIKS iO protocol
+. Sender must build and send messages with content as defined for this protocol.
+
+TOC 
+{: toc}
+
+Send messages
+Create Standard Business Document (SBD) for message
+
+Attach the Message.json file
+
+Send the message from the integration point
+
+Follow the status of the message
+
+Receive messages
+Check incoming messages
+
+Download message
+
+Erase message
+
+Next step
+
+Functional Description of FIKS IO-CEOING EXCHANGE
+The document type fix io
+The interface e -forming 2
+Several examples

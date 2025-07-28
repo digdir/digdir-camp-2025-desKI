@@ -1,0 +1,24 @@
+Url: https://eid.difi.no/nb/digital-postkasse/how-logger- i-in-in-e-e-box-s-to-e-public
+Title: How do I log into an e-box to read public mail? | Help sites for common solutions
+
+How do I log into an e-box to read public mail?
+
+To read mail from the public, you must choose to log in with the ID port.
+
+How to log in:
+
+Go to www.e-boks.no
+Click "Log in via the ID port"
+Choose one of the login methods
+
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

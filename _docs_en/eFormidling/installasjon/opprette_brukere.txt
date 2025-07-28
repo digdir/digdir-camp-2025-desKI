@@ -1,0 +1,91 @@
+Title: Create users to eFruely
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_create_users
+
+Some of the messaging services used by e -dissemination require the business itself to create a user with username
+and password.
+
+TOC
+{: toc}
+
+Create User for Altinn Dissemination (required by Emsynidling's messaging service)
+(Only applies to digital mail to public enterprises)
+The integration point runs as a computer system against Altinn's message intermediary. The integration point must be registered as a computer system Altinn's portal. Information on how this is done can be found here. En person som representerer virksomheten må logge inn på Altinn for å gjøre dette.
+When creating the computer system, it is important that it is done by a person who can represent the business. You can read the business here.
+During the creation of a computer system, select Passwords and be assigned to User ID (ID), these will later be used in the Properties file described further down. These are the properties and.
+Example
+
+You can give the computer system exactly the name you want. We have chosen to call it "move". Call it e -mandant_ditt organization number or other optional name.
+In the drop -down menu, select "Dissemination"
+The ID you get is the username that is going into the integration point-Local.Properties. The password you choose will also enter this file. This applies to DPO. 
+
+Record computer system:
+
+Computer system registered:
+
+Information on how to log in to Altinn Portal can be found https://www.altinn.no/hjelp/logging/.
+Create users for KS Svarut and Responseinn
+Once the description below is performed, the username/password for both Svarut and Replyer must be entered in the integration point-Local.Properties. In addition to everything described in the table here under "Specific for Digital Post to Municipalities (DPF)".
+See the collaborative portal for everything about agreements, justifications, relationships and the like not technically. Agreements must be in place before you start configuring. 
+Configuration of KS Svarut Management (sender)
+The management interface that the administrator is able to access (informed by KS) is designed for municipalities and others who use all the functions of Svarut and Replyer.  
+KS will send a login address to the administrator after the business is created as a user.
+
+All of the setups and screens below are examples. This applies correspondingly to your business - only with their own name and organization number. Only information mentioned here must be completed in the configuration. 
+
+
+Go to fix management and log in.
+
+Click "Configuration" and then select your organization.
+
+
+Then click "Fix Svareut".
+
+
+
+You can find the name of your account below. Tap it.
+
+
+
+These points must fill in:
+
+Return Address/Front page
+Enter the organization number and address. Cover text must not be filled in. 
+Altinn
+Select "No Notification" 
+Print
+Select "Manual Print" 
+Username and Service Passwords
+Under "Authentication for Soap/Rest Service" you will find your username and generate passwords.
+== Important that one notes both of these ==!
+
+The rest of the confidence can be disregarded.
+Configuration of Replies (Recipient System)
+Go to Svarut.Ks.no and log in. Click "Recipient System" in the menu on top and look at your organization in the menu on the left side
+ 
+Service
+Here you will find the user name for Replyer and can generate passwords. This is password # 2 you have to note. Make sure you do not change this later by clicking on "Generate" again!  
+Public key / business certificate:
+Her må en også laste opp den offentlige-nøkkelen til et virksomhetssertifikatet, det kan godt være den samme som integrasjonspunktet bruker.
+
+Administration
+This field should be filled in advance. Check that the email addresses are entered right. They are used for notice of operating problems or if KS wants to notify you of something they capture as nonconformities. 
+
+Access
+Here, too, other users can be added.
+Organizations
+Here you enter the organization number for the business and any sub -units. This ensures that electronic Svarut mail sent to the organization number to a sub-unit is also imported to the case/archive system. If you do not do this, such mail will continue to get to Altinn. Overview of the sub -units and organizational numbers can be found in Altinn.
+
+As of today, e -dissemination does not support shipments from sub -units, only to the org number registered at the integration point. So shipments to the response to the undercourse number must be picked up manually in Reply. Functionality for this will come. This will be the first quarter of 2019.
+
+One must wait to enter the organizational numbers for configuration of the integration point is done, because SvarUT will try to send to the integration when the numbers are entered. They can only be entered by the administrator who has a valid post/archive role for all organizational numbers.  
+
+Check if DPF password is correct
+Navigate to KS Shipment Service. Here you are asked for usernames and passwords. Enter the username and password you think you have received. If this results in the service again asking for usernames and passwords, the password is wrong. If you have entered the correct username and password, you get a response that can vary slightly from browser to browser.
+Create user for Altinn Digital Post
+This is done by Altinn after the Norwegian Digitalisation Agency sends orders. In order for the Norwegian Digitalisation Agency to send the order, the customer must fill out an information form. Passwords are received by SMS.
+Information form
+More info

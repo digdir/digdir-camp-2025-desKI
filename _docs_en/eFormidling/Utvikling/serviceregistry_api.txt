@@ -1,0 +1,58 @@
+TITLE: Address Service (Service Registry) API
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_sr_restdocs
+
+This page describes the address service's (Service Registry) API and patterns of use for this.
+
+API documentation (external link)
+
+The address service is a key component offered by e -mouring.
+The integration point uses the address service under the hood, and the capability reports the integration point offers bases
+themselves on information from the address service. It is usually not necessary to integrate directly to the address service but in
+Some rare cases want a business to communicate with businesses on eFonsemidling without even running a
+Integration point.
+The address service is a facade against the address services for the various messaging services supported by eFo -mediation. IN
+additions are business rules for what are the recipients' preferred channels in different contexts implemented in
+The address service.
+The address service also provides access to the certificate catalog (operated) in e -molding.
+
+graph lr
+I1 ("Integration Point 1")
+I2 ("Integration Point 2")
+I3 ("Integration Point N")
+A ("Address Service (Service Registry)")
+P ("Peppol Service Metadata Locator & Provider (SML & SMP)")
+FI ("KS FIKS address service")
+K ("Contact and Reservation Register")
+E ("Unit Register")
+FO ("The Population Register")
+V ("Certificate Catalog (Virksert)")
+
+I1 -> a
+I2 -> a
+I3 -> a
+A -> p
+A ---> fi
+A ---> k
+A -> e
+A ---> fo
+A ---> v
+
+Service Registry API uses OAuth2 for authorization and expects self -sufficient JWT from the machine gate. JWT requests to
+The machine gate is expected to contain the X5C for the Norwegian Business Certificate (Seidv1 or Seidv2) JWT request
+was signed with.
+
+Machine gate (external link)
+
+Emsyring creates OAuth clients in the machine gate as part of the onboarding process:
+
+The client ID is 
+One or more of the following scope is awarded to the client:
+Move/DPO.Read (e -Designing Message Service)
+Move/DPE.READ (E -Insights messaging service)
+MOVE/DPI.READ (Digital Post to residents)
+Move/Dpf.read (KS Svarut and Replyer)
+Move/DPV.READ (Altinn Digital Post)

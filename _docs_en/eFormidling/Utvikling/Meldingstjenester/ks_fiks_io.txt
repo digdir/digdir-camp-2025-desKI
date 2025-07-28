@@ -1,0 +1,55 @@
+title: ks fix io
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape supports the following processes and document types with the KS FIKS IO (DPFIO).
+| Process | Document Type | Example |
+| ------------------------------------------- | ------------------------------------------- | ----------------------------------------------- |
+| Fix io | Fix io | Example |
+All FIKS IO messaging protocols are valid processes in eFoching. KS FIKS IO is not a visible part of the recipients
+Capability. Sender must know that the recipient supports a given fix io protocol and can be reached with a given fix io
+Account identifier. Emorting validates that this is true, but does not have any opportunity to know which
+Protocols A given recipient supports in advance to present it as part of the recipient's capabilities.
+To use KS FIKS IO, the integration point must be configured with necessary access to APIT KS FIKS IO offers
+The integration point packs the messages and sends them unchanged through the APIs KS FIKS IO offers. See the document types for
+Details.
+The integration point converts the message statuses from KS FIKS IO to Emofide Message Statuses.
+Flow sketch for from state to municipality:
+
+graph lr
+A ("FA: FA-USer Case Manager State")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B-> | FIKS IO message | C ("FA: FA-Server Integration Point")
+C ---> | FIKS IO message | D ("FA: FA server KS FIKS IO")
+D-> | FIKS IO message | E ("FA: FA-Server Case/Archive")
+E ---> F ("FA: FA-UR Case Manager Municipality")
+C ---> | Status | B
+
+Flows for from municipality to state:
+
+graph lr
+A ("FA: FA-UR Case Manager Municipality")-> | Fill in | B ("FA: FA-Server Case/Archive")
+B-> | FIKS IO message | C ("FA: FA server KS FIKS IO")
+C ---> | FIKS IO message | D ("FA: FA-Server Integration Point")
+D-> | FIKS IO message | E ("FA: FA-Server Case/Archive")
+E ---> F ("FA: FA-USer Case Manager State")
+
+Message Statuses
+Message Statues for Messages Sent with KS FIKS IO:
+| Status | Comment |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Created | The integration point receives Best/Edu or eFormidling 2.0 message from the Case Archive System and creates a DPE message. |
+| Sent | Integration point has sent the shipment to message providers.                                                     |
+| Received | The sender receives confirmation that the receiving integration point has received the message.                               |
+| Delivered | The shipment (access requirements) has been sent by e-mail to the recipient's postal reception.                                             |
+Message Statues for Messages Sent with KS FIKS IO:
+| Status | Comment |
+| --------------------- | ----------------------------------------------------------------------------- |
+| Created | Integration point downloads from KS down and creates the message with him |
+| Inbound_mottatt | The message is converted to internal format |
+| Incoming_Delever | The message is delivered to the Case Archive System |
+Next step
+
+Technical documentation for KS FIKS IO (external link)
+Multiple messaging services

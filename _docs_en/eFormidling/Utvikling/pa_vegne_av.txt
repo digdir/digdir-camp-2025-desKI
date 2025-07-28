@@ -1,0 +1,71 @@
+title: on behalf of
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+A supplier can use one integration point to act on behalf of one or more companies.
+Such a setup requires that:
+
+The integration point is configured with the supplier's business certificate and organization number
+The supplier gets the necessary access from e -officing
+The supplier gets delegated access from the business the supplier will act on behalf of
+Integration point interface Emsyring 2 is used
+When sending a message, it must be stated which of the businesses are the sender
+Upon receipt of a message status, it must be linked to the right message in the right sender
+Upon receipt of a message it must be linked to the right message in the right sender
+
+For a description of how the sender is specified, see below:
+- Standard Business Document Header (SBDH)
+How to configure on-weigh-ups depends on the message service in question.
+On behalf of for Altinn Digital Post
+When using Altinn Digital Post, all authorized senders are allowed to send on behalf of others. Altinn digital mail
+Therefore, support on behalf of without any configuration or delegation of access.
+On behalf of for digital mail to residents
+When using digital mail for residents, authorization certificates are used from the machine gate to authorize the sender. These
+The authorization certificates can be issued to a supplier on behalf of a customer. This assumes that:
+
+Digdir has allocated the supplier access to send digital mail to residents
+Digdir has allocated customer access to send digital mail to residents
+Customer has delegated his access to send digital mail to residents to the supplier
+The Supplier has informed Digdir about the delegation relationship between the supplier and the customer
+
+The layout requires no additional configuration of the integration point.
+The business must delegate the following access to the supplier using Altinn:
+
+
+
+On behalf of for KS Svarut and Responseinn
+KS Svarut and Svarinn do not have built -in support for a supplier to act on behalf of a customer. Such a delegation
+In practice, solve by providing the customer's username and password to KS Svarut and Reply to the Supplier. This is supported by
+The integration point in that one can configure many usernames and passwords for KS Svarut and Replyer.
+Organization number, username and password for the businesses that the integration point should send and receive on behalf of must
+is stated in configuration. See and below:
+
+Configure KS Svarut and Responseinn
+
+
+NB: On behalf of KS Svarut and Replyer, can first be used by version 2.9.0 of the integration point.
+
+On behalf of for the Emsynings Message Service
+The Emsynings Message Service is realized with Altinn dissemination. Customer can delegate his access to e -offers
+messaging service to the supplier.
+Organization number for the companies that the integration point must send and receive on behalf of must be stated in configuration.
+Look below:
+
+Configure Emsyding's messaging service
+
+The business must delegate the following access to the supplier using Altinn:
+
+
+
+On behalf of for the sights messaging service
+Unlike the other messaging services, the supplier must be stated as sender in SBDH using e -insights
+messaging service. The on-wetting ratio is specified in the business report for the publication. See:
+
+Publishing
+
+The supplier must notify the delegation relationship between the supplier and the customer.
+The layout requires no additional configuration of the integration point.
+On behalf of for KS FIKS IO
+KS FIKS IO addresses at system level so that on behalf of is not relevant.

@@ -1,0 +1,59 @@
+Title: What is the Employee Gate?
+Description: Employee gate is a copy of the ID port but where the functionality is adapted to login in employee/representation context.
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee gate_om
+
+The employee gate is a separate login service with functionality that is adapted to use as an employee or in other situations where an Internet service or an API needs the end user to act in a representation relationship on behalf of businesses.
+
+graph lr
+  In (ID port)
+  A (Employee Gate)
+  IRP (Service of Citizens)
+  ARP (service for employees)
+
+  Eid ["Private Eid supplier 
+  (Minid, BankID, etc ...) "]
+  AK [("Authority Source
+(Altinn Authorization) ")]
+  AID ["Employee-owned
+(Pilot: Microsoft Entra ID) "]
+
+  IRP -. integrated courage .- in 
+  I -. disseminating login from .- Eid
+
+  ARP -. integrated against .-> a
+  A -. Removing the login from .-> Eid 
+  A -.-> | retrieves representation from | AK
+
+  A -...- | Refersive login and representation from | AID
+
+
+These most important features of the employee gate are as follows:
+Own "port"
+The employee gate is an independent service that is independent of the ID port.  This means that services in the ID port are not possible to reach from the employee gate and vice versa. 
+At the same time, the ID port and employee port share the same source code base, so in practice it is just a little configuration and customized functionality that separates the two gates technically.  As a general rule, updates, bug fixes and new functionality will be rolled out more or less at the same time to both gates. The employee gate also offers the same electronic IDs offered by the ID port, ie MinID, BankID, Buypass and Commfides.
+Protocol -wise we say that the employee gate is a separate OAuth2 Authorization Server / Openid Provider, identified by its value.
+No SSO functionality between services
+As explained above, the ID port and employee gate are isolated from each other as separate openid providers. It is therefore not possible to get Single-Sign on (SSO) between employee services in the employee gate to citizen services in the ID port.  
+But unlike the ID port, the Employee Gate does not offer SSO between the various services either.  This is realized by the fact that all clients are given the forced flag that activate the functionality isolated SSO session.
+Authorative sources of representation
+The employee gate can be used either for ordinary point login, or to require that the login user must have a specific representation relationship for a business.   The employee gate does not have - and will never get - its own database/register of roles/rights, but is based on external, authorative sources of representation relationship.
+If the service requires representation, the employee port will show an organizational voter to the user, who is pre -populated based on the authorative source.
+Today, only Altinn authorization is supported as an authorative source. 
+Who can use the employee gate?
+All customers who have entered into DODIR's terms of use for joint solutions can use the employee port for ordinary point authentication in the same way they do in the ID port today.
+But only customers who are also a service owner in Altinn can use the functionality of organizational voters and access management based on representation conditions in Altinn authorization.
+What does the employee gate cost?
+P.T. Has the employee port the same financing model as the ID port.  The 200,000 login quota is common to the two gates.
+Note that the financing model is likely to change in the future.
+How do I manage the employee gate?
+Just as for the ID port, but you have to make sure the integrations you create in self-service have set.
+Is the employee gate still in pilot status?
+From 2025, the employee gate switches to more ordinary operations.  SLA in the form of uptime will be the same as for the ID port, and bug fixes will be prioritized in accordance with the ordinary routines around the common solutions.
+What use scenario is supported?
+The employee gate now offers three user trips:
+
+Regular login (with isolated SSO)
+Login on behalf of business
+Data Sharing on behalf of business

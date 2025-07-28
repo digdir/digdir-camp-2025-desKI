@@ -1,0 +1,46 @@
+title: "Token Introspect endpoint"
+Description: "This Page Sumarizes the Protocol Options Available for On The Token Introspection Endpoint for the ID port"
+Summary: 'This Page Summarizes The Protocol Options Available for On The Token Introspection Endpoint for the ID port'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_tokenintrospect
+
+About
+A resource server can introspect an access token to determine the Active State of the token and or to determine meta-information about this token.
+Two Avoid Information Leakage, Three Conditions Must Be Fulfilled for Introspection To Work:
+
+The Scope (s) in the token must be configured with the client_id of the resource server that should be allowed to introspect ()
+This Client_id Must in Addition Be Registered With The Scope
+The Client Must Perform Client Authentication on the Introspection Endpoint
+
+Breaking Change: Note that the Behaviour Above is a breaking change from the Old ID port.
+The Endpoint Is Thoroughly Documented In RFC 7662 OAuth 2.0 Token Introspection 
+Request
+The Following Header Parameters Must Be Used:
+| Parameter | Value |
+| --- | --- |
+| Http method: | post |
+| Content-Type: | Application/X-WWW-Form-Urlencoded |
+The Client Calling /Tokeninfo Must Be Pre-Registered, and Must Authenticate Itself using the Registered Method of Client Authentication (IE).
+The Following Json PayLoad Must Be Submitted:
+| Claim | Value |
+| --- | --- |
+| Token | \ <the token that should be validated> |
+Response
+The most important parameter in the repense is the -claim.  If Its Value is False, The Submitted Token Is Not Longer Valid, and Must Not Be Used or Trusted by the Sending Party.
+| Claim | Value | Description |
+| --- | --- | --- |
+| Active | TRUE / FALSE | Authorative statement from the ID port Wher the submitted token is valid or not. |
+The Response Will Also Include A Number of Claims Related to the Submitted Token, and Are Equal to the Claims Available for Self-Contained Access Token.
+Please note that the response from the token introspection-endpoint is not an access_token, even though it is a jwt.
+Sample Request:
+`` `
+Post /tokeninfo
+Content-Type: Application/X-WWW-Form-URENCODED
+Authorization: Basic Xxxxx
+token = Fk0dhs5vquaugull2wxbxeqse91xboal3foy5vr0uk =
+`` `
+Sample Response:
+
+Introspection of pseudonymous tokens
+If the scope in the access token was configured to trigger Issuance of pseudonymous tokens, then the norwegian person identifier (-claim) will be included in the introspection response.

@@ -1,0 +1,38 @@
+URL: https://eid.difi.no/nb/sikkyness-og--priverves/ Manager Manager
+Title: Treatment Manager | Help sites for common solutions
+
+Processing
+
+Norwegian Digitalisation Agency (DIGDIR) is responsible for processing personal data that is processed in joint login to public services (ID port). The Norwegian Digitalisation Agency is also responsible for processing information used to manage MinID.
+
+Suppliers of electronic ID at the highest security level (BankID, Buypass and Commfides) are responsible for processing personal data necessary to manage their login solutions.
+
+If you have questions about privacy for a particular service, which you can access with login via the ID port, you must contact the agency responsible for the service. If you have general questions about privacy and security in the login, you can contact user support.
+
+What personal information is processed
+When logging into electronic services with the ID port, the birth number and time of login are stored. The login history is stored for a limited period.
+
+Access, correction and deletion
+According to the Personal Data Act, you are entitled to access your personal data. You are also entitled to information on how they are treated and stored, in addition to how to correct or delete incorrect information.
+
+Only the birth number and an overview of your login history are stored. The birth number is obtained from the National Register and the login history shows your actual use of login via the ID port. Therefore, there is a limited opportunity to correct information stored.
+
+Extradition to others
+When you log in to a service, your birth number and login information will be released to the business or agency responsible for the service you log in to.
+
+Contact information
+Contact information for the processing of personal data processing:
+
+Norwegian Digitalisation Agency
+Printer Road 2
+6863 Leikanger
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

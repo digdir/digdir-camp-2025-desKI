@@ -1,0 +1,13 @@
+Title: Backlog 2020
+Description: Backlog 2020
+Sidebar: Oidc
+Redirect_From: /Backlog_2020
+
+Backlog contains development measures that have not started yet.
+Scheduled production setting: 2020-12-31
+New functionality:
+Further Development Machine Gate (under Consideration)
+Need -driven further development of the machine gate.
+With the delivery of delegation in e -posting at the turn of the year 2019/2020, we estimate that the main emphasis of the necessary functionality for the machine gate is completed, and the product is entering a quieter phase characterized by the focus on increasing the use. It will certainly emerge during the year that will be considered important to resolve.
+RAR support (in design)
+Rich Autorization Requests (RAR) is an upcoming OAuth specification that makes it possible to request transaction-based consents or more complicated authorizations in a standardized manner. Initially, we intend to use this to build the so-called "employee gate", but there is also an identified need to be able to use this to offer the disagreement/proxy-based login.

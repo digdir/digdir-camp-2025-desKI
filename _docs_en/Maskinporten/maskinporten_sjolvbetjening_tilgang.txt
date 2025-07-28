@@ -1,0 +1,12 @@
+Title: Access to self -service in the machine gate
+Description: Access to self -service in the machine gate
+Summary: 'Here you will find guides and tutorials on how you can self -care the machine gate via the collaborative portal'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine Gate_jolv Service_ access
+
+This document shows how you can self-care in the machine gate as API provider and API consument.
+Login and access
+Login
+Access in the test environment
+Access in the production environment

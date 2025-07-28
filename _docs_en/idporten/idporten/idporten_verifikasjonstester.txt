@@ -1,0 +1,122 @@
+Title: Verification Tests ID port
+Description: Verification tests
+Summary: "Verification tests"
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Idporten_verification tests
+
+About the tests
+This document shows the tests to be carried out in connection with an integration with the ID port for service providers requiring safety level 'substance' and 'high'.
+Most tests must be completed. Some are optional, depending on whether one supports the functionality or not.
+Detailed description of each single test is given in "Test sets - Verification tests for integration with the ID port".
+
+URL to the ID port test client 
+https://emo-lient.test.idporten.no 
+URL to "Your Contact Information" ("User Profile") 
+https://minprofil.test.contaktregisteret.no/
+
+Tests that need to be completed
+Test 1: Single Sign-On (SSO) from own service with safety level 3
+Test 3: SSO to own service with security level 3
+Test 6: Single Log-Out (beat) from its own service
+Test 7: beat from other service
+Test 8: beat after timeout
+Tests that can be completed
+These tests should be completed if one supports the functionality.
+Test 2: SSO from own service with security level 4
+Test 4: SSO to own service with safety level 4
+Test 9: Authentication Request-Attribute \ (Forced Re-A-A-Auttonization)
+Test 10: Authentication Request - Attribute \ ("On behalf of")
+Test 11: Authentication request - attribute \ (language)
+
+Test set - Verification tests for integration with the ID port
+1. Single sign-on (SSO) from own service with safety level 'substantial'
+1.1 - Start a new web laser session and go to your own service.
+1.2 - Verify that you are being redirected to the ID port for authentication.
+1.3 - Well minID or test time as a login option and complete login.
+1.4 - Verify that you return to your own service.
+1.5 - Change URL in browser to https://emo-lient.test.idporten.no/. 
+1.6 - Verify that you come to test -service owners without a new login.
+1.7-Verify in the field "Validated ID_Token", that the Security Level (AMR) is the Idport-loa-Substential and that the authentication method is the current Eid. 
+2. SSO from own service with security level 'High'
+2.2 - Verify that you are redirected to the ID port for authentication.
+2.3 - Well one owned at level 'High' as a login option and complete login.
+2.4 - Verify that you return to your own service.
+2.5 - Change URL in browser to https://emo-lient.test.idporten.no/. 
+2.6 - Verify that you come to test -service owners without a new login.
+2.7-Verify in the field "Validated id_token", that the security level (AMR) is the Idport-loa-High and that the authentication method is the current Eid. 
+3. SSO to own service with safety level 'substantial'
+3.1 - Start a new browser session and go to "Your Contact Information".
+3.2 - Verify that you are being redirected to the ID port for authentication.
+3.3 - Well minID or test time as a login option and complete login.
+3.4 - Verify that you are logged in.
+3.5 - Change URL in browser to your own service.
+3.6 - Verify that you come to your own service without a new login.
+3.7 - Verify that you are logged in with safety level 'substantial'.  
+4. SSO to own service with security level 'High'
+4.1 - Start a new browser session and go to "your contact information". 
+4.2 - Verify that you are being redirected to the ID port for authentication.
+4.3 - Well one owned at level 'High' as a login option and complete login.
+4.4 - Verify that you are logged in. 
+4.5 - Change URL in browser to your own service.
+4.6 - Verify that you come to your own service without a new login.
+4.7 - Verify that you are logged in with security level 'High'.  
+5. Upgrading of security level
+5.1 - Start a new browser session and go to your own service.
+5.2 - Verify that you are being redirected to the ID port for authentication.
+5.3 - Well minID or test time as a login option and complete login.
+5.4 - Change URL in browser to the ID port test client.
+5.5 - Well owned at level 'High' in config.
+5.6 - Verify that you are redirected to the ID port.
+5.7 - Log in with level 'High' Eid.
+5.8 - Verify that the login was successful.  
+6. Single log-out (beat) from own service
+6.1 - Start a new browser session and go to "your contact information"  
+6.2 - Verify that you are being redirected to the ID port for authentication.
+6.3 - Log in with any owned.
+6.4 - Verify that you are logged in "Your Contact Information".
+6.5 - Change URL to your own service.
+6.6 - Verify that you come to your own service without a new login.
+6.7 - Log out.
+6.8 - Verify that you are logged out with your own service.
+6.9 - Change URL to the ID port's test client and verify that you are also logged out here.  
+PS: Verify in addition that it is possible with active logging for all users who try to log in to the tenesta themselves if they do not have access to the service. 
+7. Struck from other service
+PS. For OpenID Connect integrations, the front-channel logout specification must be supported (front channel logout URI) for the impact from other to their own service to work.
+7.1 - Start a new browser session and go to your own service.
+7.2 - Verify that you are being redirected to the ID port for authentication.
+7.3 - Log in with any owned.
+7.4 - Verify that you are logged in.
+7.5 - Change URL to "Your Contact Information".
+7.6 - Verify that you come to "your contact information" without a new login.
+7.7 - Log out.
+7.8 - verify that you are logged out from "your contact information" 
+7.9 - Change URL to your own service and verify that you are also logged out here.  
+8. Test of timeout in the application
+8.1 - Start a new browser session and go to "your contact information". 
+8.2 - Verify that you are being redirected to the ID port for authentication.
+8.3 - Log in with any owned.
+8.4 - Verify that you are logged in
+8.5 - Wait for over 30 min.
+8.6 - Verify that you are the log of your own service. (Given that you have set 30 min as an inactive timeout).  
+9. Authentication Request - (Forced Reumenderenization)
+9.1 - Start a new browser session and go to the ID port test client.
+9.2 - Verify that you are being redirected to the ID port for authentication.
+9.3 - Log in with an arbitrary owned.
+9.4 - Verify that you are logged in.
+9.5 a) - For Saml: Change URL to your own service (must send with attribute \ = true in authentication request to the ID port).
+9.5 b) - For OIDC: Change URL to own service (must send with parameter Prompt = login in authentication request to the ID port).
+9.6 - Verify that you are asked to log in again.  
+10. Authentication request - "Onbehalfof" ("on behalf of")
+10.1 a) For Saml: Start a new browser session and go to your own service (must send with attribute \, where xxxx is the name is ID for the one for which the authentication request is on behalf of.)
+10.1 b) For OIDC: Start a new browser session and go to your own service (must send with extra parameter onbehalfof = xxxx, where xxxx is the ID for the one that the authentication request is on behalf of.) 
+10.2 - Verify that you are being redirected to the ID port for authentication.
+10.3 - Log in with any owned.
+10.4 - Verify that you are logged in.  
+11. Authentication request - (language)
+11.1 a) For Saml: - Start a new browser session and go to your own service (must send with attribute \). 
+11.1 b) For OIDC: - Start a new browser session and go to your own service (must send with parameter ui_locales = language).
+11.2 - Verify that you are being redirected to the ID port for authentication.
+11.3 - Verify that the ID port is in the correct language (which you sent in the authentication request).
+11.4 - Log in with any owned.
+11.5 - Verify that you are logged in.

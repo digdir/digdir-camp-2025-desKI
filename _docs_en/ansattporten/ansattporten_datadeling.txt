@@ -1,0 +1,56 @@
+Title: Data Sharing in Employee Gate
+Description: An API protected with the employee gate may require the login user to represent a business
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee port_datadeling
+
+The application for logging in on behalf of business for web service can also easily be utilized to support representation also in data sharing / against APIs.  The service to which the user has logged in will be able to exchange data on behalf of the selected organization against an API with an API provider. 
+You can find more overall information about the employee port by clicking here
+Description of the use scenario
+On this page, we describe how an API provider can require an end user to be able to represent a business when logging in to an external professional system that will use the API. 
+This scenario builds on the login on behalf of business to web service
+User journey
+When representation in data sharing, the user journey is identical as with representation login, but it is added to two steps in the end of the flow:
+
+User click Login button at an external service. The service requests a type of representation.
+Uses authenticates with Eid through the employee gate.
+User chooses which business will represent.
+User is sent back to the service.
+The service sends an API call against an API.   
+API-ET Valids that the user has representation of required type
+
+By requiring the service to send an employee gate to step 5 to access the API, the API provider can be sure that the user who logged into the service is allowed to represent the business. Note, however, that the chosen business does not necessarily have to match the organization that owns the service:
+
+Example: Ola logs into the road of Oslo municipality to a service from Visma that will use an API at the Tax Administration
+
+Protocol-flow
+
+sequence chart
+
+Participant B AS uses
+Participant C AS SERVICE
+Participant A AS Employee Gate
+Participant S AS Authorized Source
+Participant T AS API
+
+B->> C: Clicking "Login" on service
+C->> A: /Authorize with representation type (redirect)
+Note above A: End user authenticates themselves
+A->>+S: Does the end user have this type of representation?
+S->>-A: List of businesses
+Note above A: End user chooses a business
+A --- >> C: Redirect with Code
+C->>+A: /Token
+A->>-C: id_token, access_token
+Note over B, C: logged in on behalf of selected business
+
+C->>+T: API-call w/access token
+Note above t: validate representation type
+T->>-C: Data
+
+
+Just as with representation logging, representation by data sharing has communicated using. So-called Rich Authorization Request (RAR) structures, ie the claim.
+It is important to note the following:
+
+The service (the OAuth2 client) will pass on the access_tokenet and not the id_tokenet.
+The apia must validate that the access_tokenet has the requested type of representation.

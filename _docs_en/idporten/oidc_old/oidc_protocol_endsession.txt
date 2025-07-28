@@ -1,0 +1,23 @@
+Title: "/Endsession Endpoint"
+Description: "Clients Call the /Endsession Endpoint to Logout the User From ID port"
+Summary: 'Clients Call The /Endsession Endpoint to Logout The User From ID port'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_revoke
+
+{% Include note.html content = "In 2022, non-back cover compatible changes will be on the ID port." %}
+About
+The Endpoint Is Thoroughly Documented in OpenID Connect RP-Initized Logout
+Clients Participating in the SSO Circle-of-Trust in ID port must support this endpoint.
+When the end -us wants to logout, the client redirects the browser to the /end session-endpoint.  Upon Reciving The Request, ID port will try to log the end -us out from all other Active Clients in the SSO session AS FOLLOWS:
+1. Constructing a Dynamic Page Where Each Oidc-Client in Parallel Are Sent A Front-Channel Logout Request (One Ifframe Per Client)
+1. Invalidating all tokens 
+1. Termining the SSO session in ID port
+1. Redirecting the Browser to Each Saml Service Provider, in Turn, With A Collector LogoutRquest
+1. Redirect the browser back to the supplied by the initiating client (if an id_token_hint was provided)
+Note that if one of the collectively serviceproven don't redirect the end-buser back to id port, The Logout-Chain Is Broken.  
+Note that ID port currently has an "aggressive"
+When Clients Participating
+When the Client Calls the Revoke Endpoint With Valid Token (Einher an access_token or a refresh token), all token's linked to the grant are invalidated in the ID port.  Additionally the end -us session is invalidated.
+Request
+Response

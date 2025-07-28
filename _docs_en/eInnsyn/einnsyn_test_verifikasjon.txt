@@ -1,0 +1,30 @@
+Title: Testing and verification of the installation
+Description: Test and Verification
+Summary: "Here you will find information on how to verify the transfer between the case/archive system and e-insight after the installation of the integration point and the e-insight client"
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_test_verification
+
+Test and verify
+After the installation of the integration point and the e-insight client is completed, you are ready to test the transfer between your case/archive system and e-insight. To log in, you need use names and passwords for Admin in the sight. If you have not received a username and password, contact serviceedesk@dir.no.
+The first time you log in to e -insight Admin click on "Forgot Password". Then you can create a self -selected password for your admin user in e -insight. It may take a few minutes to receive the email activation of the user profile. Check spam filter in your email if you do not receive the email within 10 minutes. 
+The following functionality should be tested
+Transfer journal entries
+Make an OEP extract to e-insight. In versions 0 and 0+, the file directory (inputDirectory) is the archives for archives. The e-insight client must be able to monitor and write to this catalog. At the same time, archives must have access to this in order to upload files. This assumes that the files are located on a server that both archives have access to and which communicate with the other components.
+The folder is defined as file directory (inputDirectory) in e-insight-client.xml
+Ex: 
+
+You upload content to e -insight by copying the desired document to this directory.  The insights client monitors this catalog and automatically uploads documents that lie there at the integration point.
+Verify that the journal entries are transferred to e -insight
+Verify by searching in sight 
+Search in journal entries and searches in access
+You cannot be logged in to eilsyn.no as an administrator when asking for access to a journal entry. Therefore, be sure to log out as Admin before testing this.
+Search for the journal entries in e -insight and search access. Send the access requirement to your own business. Also verify that the access requirement is sent to its own business. Send the access requirements to your own business and not to other businesses. 
+Test e -insight admin
+
+Create a new admin user for business
+Update information for business (phone number, email address etc.)
+Deleting a case in e -insight
+Hide business and verify that business disappears from the search
+Occupate hiding of business
+
+Once the points above are completed, you send an e-mail to serviceedesk@dir.no and verifies that e-insight works satisfactorily in production. Also assume that the terms of use are accepted and the notification point is reported to the Directorate of Digitization.

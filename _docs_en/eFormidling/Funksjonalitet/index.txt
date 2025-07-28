@@ -1,0 +1,161 @@
+Title: Functionality
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The purpose of this page is to provide an overview of the functionality available in e -officing and which
+Collaboration patterns this supports.
+
+TOC
+{: toc}
+
+One-way communication with residents
+A business sends a message to a citizen using eForsing. A single pattern that fits well when whatever
+General rule is not expected to be further communication on the part of the recipient. 
+
+graph lr
+V (Business User Use eFormidling)
+In (resident)
+V ---> | Emsydling | IN
+
+
+Information to resident
+Decision to citizen
+
+One-way communication with businesses
+A business sends a message to another business using e -officing. A single pattern that fits well when
+As a general rule, further communication is not expected on the part of the recipient.
+
+graph lr
+V1 (business -as -use e -officing)
+V2 (other business)
+V1 -> | Em shape | V2
+
+
+Handling
+Confidential case handling
+
+Two-way communication between businesses using e-dissemination or KS FIKS
+A business sends a message to another business using e -officing. The second business answers it
+the original message using eMespecting or KS FIKS. A single pattern that fits well with interaction between
+Companies.
+
+graph lr
+V1 (business -as -use e -officing)
+V2 (other business which uses e -dissemination or KS FIKS)
+V1 -> | Em shape | V2
+V2 -> v1
+
+
+Handling
+Confidential case handling
+
+Request information from residents
+A business sends a message to a citizen using eForsing. The message contains a request for
+Information from the inhabitant and a clear "call to action" that the citizen is encouraged to follow on to a
+Third -party service that allows the citizen to provide requested information. The service can be made by the business itself, one
+form service at Altinn or something else. After the resident has provided requested information can be sent
+Back to the business with the help of eMesming if it is desirable and supported. Alternatively may the information
+The resident has stated available to the business in a different way.
+
+graph lr
+V (Business User Use eFormidling)
+In (resident)
+S (third party service)
+V ---> | Emsydling | IN
+I -> | follows link | S
+S ---> | Emsydling | V
+
+
+Handling
+Confidential case handling
+Information to resident
+Decision to citizen
+
+Request information from businesses
+A business (sender business) sends a message to another business (receiving business) using
+Em shape. The message contains a request for information from the receiving business and a clear "call to action"
+As the recipient business is encouraged to follow on to a third -party service that allows the receiving business to state
+requested information. The service can be made by the sender business itself, a form service at Altinn or something
+other. After the receiving business has provided requested information, this can be sent back to the sender business
+With the help of eForsing if it is desirable and supported. Alternatively, the information may the reception business has
+The stated is made available to the sender business in a different way.
+
+graph lr
+V1 (business -as -use e -officing)
+V2 (other business)
+S (third party service)
+V1 -> | Em shape | V2
+V2 -> | follows link | S
+S ---> | Emsydling | V1
+
+
+Handling
+Confidential case handling
+
+The citizen initiates dialogue
+A citizen seeks out a third -party service that allows the citizen to design a general inquiry, fill in a
+Application form or something else. The service can be made by the receiving business itself, a form service at Altinn or
+something else. After the resident has designed the inquiry is sent to the reception business with the help of
+Em shape.
+
+graph lr
+V (Business User Use eFormidling)
+In (resident)
+S (third party service)
+I -> | Seeker | S
+S ---> | Emsydling | V
+
+
+Handling
+Confidential case handling
+
+Business initiates dialog
+A business (sender business) seeks out a third -party service that allows the sender business to design a general
+Inquiry, fill in an application form or something else. The service may be made by the receiving business itself, one
+form service at Altinn or something else. After the sender business has designed the inquiry is sent to
+the receiving business with the help of e -mouring.
+
+graph lr
+V1 (business -as -use e -officing)
+V2 (business)
+S (third party service)
+V2 -> | Seeks | S
+S ---> | Emsydling | V1
+
+
+Handling
+Confidential case handling
+
+Mass broadcast to residents
+A business may need to communicate with a larger amount of residents. The communication needs can be triggered by
+dates (eg sending out election cards), events (eg birth) or other. Anything may be needed from annual
+Mass broadcasts to completely dynamic volume with automated messages. Both parts are supported by eFonsidation. Both the simple
+And more composite patterns of use are supported by mass envoy to residents.
+
+Information to resident
+Decision to citizen
+
+Mass broadcast to businesses
+A business may need to communicate with a larger amount of other businesses. Communication needs can be triggered
+of dates (eg annual reporting), events (eg birth) or other. Anything may be needed from annual
+Mass broadcasts to completely dynamic volume with automated messages. Both parts are supported by eFonsidation. Both the simple
+And more composite patterns of use are supported by mass envoy to residents.
+
+Handling
+Confidential case handling
+
+Machine-to-machine communication between businesses
+One company's systems may need to communicate with another company's systems without people being involved.
+Such communication is usually characterized with highly structured content. Examples may include dissemination of
+Events (eg birth) and information collection (eg statistics). e -insight is an example of use
+Of e-handling to machine-to-machine communication and another is the support for the protocols in FIKS IO. co -operation
+Also supports "lightweight" protocols that are agreed directly between those who are to interact and who do not require coordination
+with or adaptation of eFonsidling.
+
+Authority requirements from e -insight
+Journal mail to e -insight
+Meeting to e -insight
+Agreed message exchange
+Fix iO message exchange

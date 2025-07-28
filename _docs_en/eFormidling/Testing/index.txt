@@ -1,0 +1,126 @@
+title: get started with testing
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From:
+- /eFormidling_testing_env
+- /Emsydling_verriFring_ Secrets
+
+The purpose of this page is to support those who develop their own integrations against e -officing to test that these are working as they
+toast.
+
+TOC
+{: toc}
+
+Test strategies
+There are several possible strategies to test e -dissemination and they often fit in different phases of the work of using
+Em shape.
+Test in a local mock environment
+Em shape offers setup for a local Mock environment that allows a tested integration point. All external services are
+Mocked away. The Mock environment is recommended as a support for development and early paving testing. It is important to note that
+Testing in the mock environment is not sufficient to verify that an integration towards e-mooring works. See description
+of how to use the Mock environment:
+
+EFM-MOCKS (external link)
+
+Test in the Emsynings Test Environment
+In order to verify that an integration against e -dissemination works, it is necessary to test in the Emsynidling test environment. 
+In order to test in the Emsynings test environment, one must install an integration point and configure it to use the test environment.
+Regular installation guidance can be followed, but before you start, you have to make sure you have a full test business. One
+Must first choose whether one wants to use real or synthetic organization number. If one does not have a need to use
+Real organization number In its test environment, the use of synthetic organization number is recommended.
+Test in the Emsynings Test Environment with Real Organization Number
+The test environment for e -dissemination messaging is realized using a separate messaging service in Altinn dissemination
+Production environment. Altinn dissemination production environment only supports real organization number.
+For Altinn Digital Post and KS Svarut and Replyer, the test environment is used that only supports synthetic organization number. One
+Thus, cannot use real organization numbers against all messaging services used by eMespecting. One can anyway
+Use all messaging services by entering the username and password for test business at Altinn Digital Post with
+An organization number other than the integration point runs. The same goes for KS Svarut and Replyer.
+Test in the Emsyring Test Environment with synthetic organization number
+To use synthetic organization number, a switching test environment for e -dissemination messaging messaging must be changed to an alternative
+Test environment. In this case, one must override the configuration of the Emsyring's messaging service from the Test message service in
+Altinn dissemination production environment for a similar test message service in the Altinn dissemination test environment. This
+Achieves one by adding the following configuration in the integration point:
+
+With such a layout one can use the same synthetic organization number across the messaging services as long as a fits
+on when you order access and test business: Everything needs to be ordered to the same organization number, there is no central
+Coordination of this.
+Test in the Emsynings Production Environment
+A business ready to use e -dissemination or to make changes to its layout is recommended to do
+Some simple tests in the production environment to confirm that communication, access and certificate setup work as expected. 
+When testing before the first use of a new messaging service, it may be okay to keep in mind:
+
+This should be done with a person from the archive who is familiar with the case/archive/professional system of the business.
+Agree with serviceedesk@dir.no when you want to verify so we can open access on our site. Define a time frame for testing.
+Remember to test all messaging services that the business will use
+Feel free to test more shipments per message type and varying size, attachments, etc.
+NB! When testing takes place, the business can receive real shipments during this period. It is important that the business is aware of this so that they do not miss important shipments.
+If something should not work immediately notify serviceedesk@igdir.no so we can remove access and troubleshoot the problem.
+Real shipments received during the test period without everything working must be checked. Notify the sender and ask them to resubmit.
+How do I know it works?
+In case of shipments, one must hear with the recipient that the message has arrived
+Upon receipt, the messages should be pushed from the integration point into the case/archive/subject system
+Once you have verified that both receiving and consignments work, you will report to serviceedesk@dir.no.
+
+Test setup
+Note that if necessary for multiple installations of the integration point (eg two developers with each installation) in
+The same environment will find that the installations "steal" messages from each other if they share test operations. One
+Can solve this by using channels or by using a test business per installation.
+Depending on which messaging services are used, test users and test businesses will be needed to send to and
+receive from:
+| TEST | Test user requirements |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Send mail to resident with Digipost to see what it looks like | Birth number available in Digipost, Contact and Reservation Register (without reservation and selected Digipost as mailbox) and ID port |
+| Send mail to resident with ebox to see what it looks like | Birth number available in ebox, contact and reservation register (without reservation and selected ebox as mailbox) and ID port |
+| Send mail to resident with Altinn Digital Post to see what it looks like | Birth number available in Altinn Digital mail, contact and reservation register (without reservation and without mailbox selected) and ID port |
+| Send mail to business with Altinn Digital Post to see what it looks like | Organization number (a different one than one's own) available in Altinn Digital Mail, birth number with rights to read mail for the business in Altinn Digital mail, contact and reservation register and ID port |                                               
+| Send mail to and receive mail from other business with KS Svarut and Responsible | Organization number (one other than one's own) available in KS Svarut and Replyer, birth number with rights to read mail for the business of KS Svarut and Replyer, the Contact and Reservation Register and ID port |                                               
+|                                                                               | Optionally, one can collaborate with another company that uses KS Svarut and Reply Test Environment | 
+| Sending mail to and receiving mail from other business with eFonsemidling | Organization number (a different one than one's own) available in Altinn dissemination so that one has two test businesses with their own integration point |                                               
+|                                                                               | Possibly you can send to/from oneself | 
+|                                                                               | Optionally, you can send to/from an integration point available in the Emsynidling Test Environment | 
+|                                                                               | Optionally, one can collaborate with another company that uses the Emsyring Test Environment | 
+| Receive mail from citizens and businesses from KS Edialog | Birth number available in the ID port | 
+To test notification and reservation for residents one can even record reservation, mobile number and/or
+E-mail address for own test users in the contact and reservation register.
+To test your business notifications, one can register mobile numbers and/or email address in Altinn.
+To test on behalf of, one must have two test companies in Altinn.
+Desired accesses are ordered from:
+
+Emorting, e -insight and digital mail to residents: serviceedesk@dir.no
+Altinn dissemination and Altinn Digital Post: service owner@altinn.no
+FIKS IO and KS Svarut and Svarinn: Fiks@ks.no
+
+Facilitation for testing of e -offers messaging service
+Alternatively to set up two integration points to test e -dissemination messaging service is also organized
+What a simpler test setup.
+An integration point that can send and receive with the organization number 987464291 is available in eFoStings
+Test environment:
+
+Single user interface for test integration point (external link)
+Test integration point (external link)
+
+Facilitating the Test of Altinn Digital Post
+Alternatively to set up test business to test Altinn Digital Post Integration Point is also
+Facilitated for a simpler test setup.
+Some test companies have been created in Altinn that one can use as recipients. Here one will be able to log in to find
+and see messages one has sent. These businesses and users are common to all businesses in the test environment. Be sure
+Do not send sensitive information during testing with these businesses.
+| Orgnr | Name | Device Type |
+| ----------- | --------------------------- | ----------- |
+| 910624474 | Nesflaten and Borre | Commum |
+| 810624582 | Seljord and Sørvik | BRIKE | 
+| 810568712 | Alta and Cardamom City | BRIKE |
+| 910568655 | Auklandshamn and Elvegard | BRIKE |
+Username and password for test users for the companies above are available by contacting serviceedesk@dir.no
+Links to test environment
+
+Altinn https://tt02.altinn.no
+ebox (digital mail to residents) http://emo2-www.e-boks.no/
+Digipost (Digital mail to residents) http://www.difitest.digipost.no/
+KS Svarut and Reply https://test.svsut.ks.no/
+
+Next step
+
+Requirements and test descriptions

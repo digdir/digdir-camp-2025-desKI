@@ -1,0 +1,40 @@
+title: "How to contribute"
+Sidebar: Main_sidebar
+Product: General
+Redirect_From: /Contributing
+
+We appreciate that you want to contribute to this documentation and welcome all types of feedback (error message, new functionality, correction, additional documentation etc.).
+Below you will find information on how to contribute.
+Report on errors or request new functionality
+We use Github Issue Tracker to report errors or wishes for new functionality.
+Before you submit a case, it is nice if you check through the cases that have already been reported to ensure that no one else has already reported the same.
+Quick editing of existing documents
+Quick editing makes it easier to report and fix small errors and omissions in the documents. We have arranged for this by entering a link that takes you directly to the Github source file, so that small corrections can be made easily.
+
+When you are on a page in the documentation that you want to correct, press the "Change/Edit Content" link at the top of the page:
+
+-{%include image.html File = "Edit-1.jpg" Border = "True" Alt = "Easy Editing" Max-Width = "90%"%}-
+2. You will then be sent to the current Markdown file in the GitHub, and then click on the pencil icon to edit the file. (You must be logged in in GitHub for this to work)
+-{%include image.html File = "Edit-2.jpg" Border = "True" Alt = "Edit File in GitHub" Max-Width = "90%"%}-
+3. Make your changes directly into the browser and check Preview Changes to see what your changes will look like.
+4. Post a title and description of the changes and click Propose File Change
+5. You are then sent to a new page, and here you choose CREATE PULL Request, enter the title and description for PULL The request and press the Create Pull Request again.
+6. The proposed changes will now be treated by Digdir, and there may be feedback or comments that you should follow up.
+Major changes in making a branching
+We appreciate changes or corrections or corrections via Pull request. Before sending a pull request, we ask that you check the following:
+
+You work towards the latest version of Master Branch.
+Check that there is no open, and recently accepted (merged) pull requests that deal with the change/error already.
+Create an ice cream to discuss major changes you propagate so that we can easily have a constructive dialogue.
+
+To send a pull request, follow the steps below:
+
+Make a branching (fork) of the repo.
+Make the changes/corrections you propose.
+Make sure local tests run flawlessly.
+Commit to your branching, and use clear and concise commit messages.
+Send us a pull request
+Participate actively in any questions, dialogs or other regarding your pull request.
+
+Further info on making a branching and
+make a pull request.

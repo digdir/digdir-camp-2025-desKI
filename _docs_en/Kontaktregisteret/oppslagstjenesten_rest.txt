@@ -1,0 +1,75 @@
+title: Oppslagstjenesten REST
+Description: Residual API for the contact and reservation register
+Sidebar: krr_sidebar
+Product: krr
+redirect_from: /oppslagstjenesten_rest
+
+Introduction
+The reference service provides public administration access to citizen's registered contact information. The service can be used by public companies and companies that perform services on behalf of the public. 
+Kontaktregisterets oppslagstjeneste tilbys gjennom et OAuth2 beskyttet REST-API, sikret med Maskinporten. This makes it easy to implement integrations to the register.
+The use of oauth2
+Access control of the API uses the machine gate's functionality for machine-to-machine API authorization
+Note that the residual interface was previously secured with the "built-in machine gate" in the ID port OIDC, but it is now recommended to use the machine gate.
+
+In the test environment, the lookup service to Token from Test.maskanporten.no (not ver2.maskporten.no) supports 
+
+Available Scopes
+API-responsen er avhengig av hvilke scope som er forespurt i tokenet.   Available Scopes are:
+| Scope | Description |
+|-|-|
+| KRR: Global/Contact Information.READ | Returns email address and mobile number + time for last update |
+| | Returns the status of whether the contact info can be used for notification in accordance with. Section 32 |
+| | Returns the user's preferred language for communication with the public.  |
+| KRR: Global/Digitalpost.READ | Returns address for digital mail to citizen |
+| | Returns the user's encryption certificate when sending digital mail |
+Reservation status will always be returned for the user.
+Merk at scopene med -prefix er noe konsolidert i forhold til tidligere.
+Endpoint
+The reference service's residual service offers the following endpoint for search of 1 ... 1000 people:
+| Environment | URL | Date Valid |
+|-|-|-|
+| Test | https: //test.contaktregisteret.no/rest/v1/personer |
+| Test | https: //test.contaktregisteret.no/rest/v2/personer | |
+| Prod | https: //contaktregisteret.no/rest/v1/personer |
+| Prod | https: //contaktregisteret.no/rest/v2/personer | F.O.M. 22.08.23 |
+Note: You will achieve significantly better performance (measured in persons/seconds) by looking up 1000 people once versus 1000 single posts.
+header parameters
+The following header parameters must be used on Request:
+| Parameter | Value |
+| --- | --- |
+| HTTP method | Post |
+| Authorization | Bearer \ <Issued Access_token> |
+The Body in Requesten is a JSON structure with an element that will contain a list of up to 1000 personal identifiers.
+Example of request
+`` `
+Post/Rest/V1/Persons
+Content-Type: Application/Json
+Authorization: Bearer Swdq_PVCT3Hizsiac3zhdummerqffr4ORR508N3P0MTG =
+{
+ "Personal identifiers": ["20914695016"]
+}
+`` `
+Example of response
+
+IP addresses and firewall configuration
+Outbound firewall must be open to these addresses:
+Production
+| DNS name | IPV4 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ------------------------------- | ----------------------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Contact Registeret.no |  139.105.36.169 | 443 | The lookup service KRR | In use Outbound | 
+| DNS name | IPV6 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ------------------------------- | ----------------------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Contact Registeret.no | 2A02: 9CC :: 206 | 443 | The lookup service KRR | In use BC 29.10.2024 | Outbound | 
+Test
+| DNS name | IPV4 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ------------------------------- | ----------------------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Test.contaktregisteret.no | 139.105.36.137 | 443 | The lookup service KRR | In use. Outbound | 
+| DNS name | IPV6 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ------------------------------- | ----------------------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Test.contaktregisteret.no | 2A02: 9CC :: 306 | 443 | The lookup service KRR | In use Outbound | 
+Swagger
+Openapi documentation. 
+| Environment | URL |
+|-|-|
+| Test | https: //test.contaktregisteret.no/swagger-ui/index.html |
+| Prod | https: //contaktregisteret.no/swagger-ui/index.html |

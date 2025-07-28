@@ -1,0 +1,63 @@
+Title: "/Authorize Endpoint"
+Description: "This page Sumarizes the Protocol Options Availalbe for On The /Authorize Endpoint for the ID port"
+Summary: 'This Page Sumarizes The Protocol Options Availalbe for On The /Authorize Endpoint for the ID port'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_authorize
+
+About
+The Endpoint is thoroughly documented in Openid Connect Core, Chapter 3.1.2
+Request
+The Client looked for an Authentication Request by Redirecting the End User Browser User's Browser to the /Authorize Endpoint.
+Supported http headers:
+| Header | Value |
+| --- | --- |
+| Http method | Get |
+ 
+Supported Request attributes for normal, Redirected Authorization Requests:
+| Attribute | Optionality | Description |
+| --- | --- | --- |
+| Response_Type | Required | Only is Supported by ID port |
+| Client_id | Required | ID port will provide you with a client-id out-of-band |
+| redirect_uri | Required | The End User Will Be Redirected Here After A Successful Authentication.  Only pre-registered uris can be used.  LOCALHOST IS ALLOWED ONLY IN TEST ENVIRONMENT. |
+| Scope |  Required | Whitespace-Serated List of Requested Scopes.  Normally just.  |
+| State | Recommended | Value set by the client and returned in the callback. Often used to normal used to if pkce is not used, then state must be used to achieve CSRF protection. Mandatory to use for public clients |
+| Nonce | Recommended | Value Set by the Client and Returned in the ID token. Recommended to use two protect from replay attacks. |
+| ACR_VALUES | OPTIONAL | Requested Security Level of Assurance (s) () |
+| Response_Mode | OPTIONAL | Used If You Want Alternative Way of Return The Authentication Response. The Supported Values Are Published On The .well-Known Endpoint.   |
+| Ui_locales | OPTIONAL | Requested Language in the User Interface, We Support NB, NN, EN OR SE.  Note that if the user manually Changes language in ID port Gui, a Cookie Idporten_Selected_language Will Be Set, Overriding The Requested Ui_Locales. |
+| Prompt | OPTIONAL | Used to govern end User involvement. The Supported Values Are Published On The .well-Known Endpoint.   |
+| Code_challenge | Required* | The pkce is a calculated value based on.  |
+| code_challenge_method | Required | Algorithm for PKCE. Only Supported.  |
+Clients Are Strongly Recommended to Use State, Nonce in Addition to the Mandatory Pkce.
+Sample request
+`` `
+Get https://login.idporten.no/authorize?
+Client_id = min_The service &
+  redirect_uri = https%3a%2f%2fmin.tjeneste.no%2flogin_callback &
+Scope = OpenID+Profile &
+  ACR_VALUS = IDPORTE-LOA-SUBSTANTIAL &
+  Response_Type = code &
+  ui_locales = nb &
+State = SV-423VOKTS9_CZDO9KZSV9XB35MLGZJ_7BPTTT-_KHQ &
+  NONCE = S6TRRJ3TWSILRZL7HQYSOOROSHDQ4L6DU3DXDHXOWC &
+  Code_Challenge = HC9NRZZ4QUAVMVL2TUYRWG_L54PBLON CONCIUX
+  code_challenge_method = s256 &
+`` `
+When using couples, only the following attributes are supported:
+| Attribute | Optionality | Description |
+| --- | --- | --- |
+| Client_id | Required | ID port will provide you with a client-id out-of-band |
+| Request_uri | Required | The Identifier Returned by ID port from a previously pushed pair request. |
+Sample Request When Using Pushed Authorization Requests (Par)
+
+Request Using Request Objects
+The Client Can Pass A Request Using a Using a Jwt Based Request Object, AS Described in Openid Connect Core, Chapter 6.1
+Passing A Request Object By Reference (as Described in Openid Connect Core Chapter 6.2) IS NOT SUPPORTED.
+The Use of Request Objects Requires Use of a Predefined Public Key on the Client Registration, See Client Administration API
+SAMPE REQUEST USING REQUEST OBJECT
+
+Response
+When the User Has Performend A Successful Login, and Optionally Consented to Any Scopes Requiring Such Consent, The Browser Will Be Redirected Back To Client.  The Redirect Will Contain The Authorization parameter which is then used when fetching tokens. The Code is Base64-ENCODED and URL-SAFE.
+The parameter is also included, and must be validated by the client to detect CSRF Attacks if pkce is not used.  Clients May Need to Explicitly URL-DECODE The Value
+Sample Response: {#Auth response}

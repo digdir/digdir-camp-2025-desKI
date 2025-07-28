@@ -1,0 +1,60 @@
+Title: "/Authorize Endpoint"
+Description: "This page Sumarizes the Protocol Options Availalbe for On The /Authorize Endpoint for the ID port Oidc Provider"
+Summary: 'This Page Sumarizes The Protocol Options Availalbe for On The /Authorize Endpoint for the ID port Oidc Provider'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_authorize
+
+About
+The Endpoint is thoroughly documented in Openid Connect Core, Chapter 3.1.2
+{% Include note.html content = "In 2022, non-back cover compatible changes will be on the ID port." %}
+Request
+The Client looked for an Authentication Request by Redirecting the End User Browser User's Browser to the /Authorize Endpoint.
+Supported http headers:
+| Header | Value |
+| --- | --- |
+| Http method | Get |
+ 
+Supported Request Attributes:
+| Attribute | Optionality | Description |
+| --- | --- | --- |
+| Response_Type | Required | Only is Supported by ID port |
+| Client_id | Required | ID port will provide you with a client-id out-of-band |
+| redirect_uri | Required | The End User Will Be Redirected Here After A Successful Authentication.  Only pre-registered uris can be used.  |
+| Scope |  Required | Whitespace-Serated List of Requested Scopes.  Normally just.  |
+| State | Recommended | Value set by the client and returned in the callback.  Recommended to use to achieve CSRF protection. Mandatory to use for public clients |
+| Nonce | Recommended | Value Set by the Client and Returned in the ID token. Recommended to use two protect from replay attacks. |
+| ACR_VALUES | OPTIONAL | Requested Security Level, Either or.  |
+| Response_Mode | OPTIONAL | Used If You Want Alternative Way of Return The Authentication Response. We support, duck. Note that some of these options have security implications, and some other conditions May Apply.   |
+| Ui_locales | OPTIONAL | Requested Language in the User Interface, We Support NB, NN, an OR SE |
+| Prompt | OPTIONAL | Used to govern end User involvement.  Only is Supported by ID port |
+| Code_challenge | Recommended | The pkce is a calculated value based on.  Mandatory to use for public clients |
+| code_challenge_method | Recommended | Algorithm for PKCE. Only Supported.  |
+| login_hint | OPTIONAL | Set two "Eidas: True" two trigger Authentication by European Users According to Eidas |
+| Claims | OPTIONAL | Currently only used for Eidas |
+| Request_uri | OPTIONAL | The Identifier Returned by ID port from a couple request. NO Other attributes shold then be present |
+Clients Are Strongly Recommended to Use State, Nonce and Pkce.  In the future, these parameters will be mandatory to use when the protocol baseline in the ID port is upgraded from ouath2.0 to oauth2.1.
+Sample request
+`` `
+Get /Idporten-Oidc Provider /Authorize
+Scope = OpenID &
+  ACR_VALUES = LEVEL3 &
+  Client_ID = TEST_RP &
+  redirect_uri = https: //eid-exttest.difi.no/idporten-portc-ilient/authorize/espons
+  Response_Type = code &
+  State = my_csrf_protection_value &
+  Nonce = Some_string_only_Used_once &
+  ui_locales = nb
+`` `
+Sample Request When Using Pushed Authorization Requests (Par)
+
+Request Using Request Objects
+The Client Can Pass A Request Using a Using a Jwt Based Request Object, AS Described in Openid Connect Core, Chapter 6.1
+Passing A Request Object By Reference (as Described in Openid Connect Core Chapter 6.2) IS NOT SUPPORTED.
+The Use of Request Objects Requires Use of a Predefined Public Key on the Client Registration, See Client Administration API
+SAMPE REQUEST USING REQUEST OBJECT
+
+Response
+When the User Has Performend A Successful Login, and Optionally Consented to Any Scopes Requiring Such Consent, The Browser Will Be Redirected Back To Client.  The Redirect Will Contain The Authorization parameter which is then used when fetching tokens. The Code is Base64-ENCODED and URL-SAFE.
+The parameter is also included, and must be used by the client to detect CSRF Attacks.
+Sample Response: {#Auth response}

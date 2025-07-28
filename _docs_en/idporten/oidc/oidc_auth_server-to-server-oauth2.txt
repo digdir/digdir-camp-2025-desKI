@@ -1,0 +1,11 @@
+Title: Server-to-server API authorization with OAUTH2
+Description: Server-to-server API authorization with OAuth2
+Summary: 'The ID port's Openid Connect Provider can also be used to authorize access to APIs without a user context, so-called "server-to-server OAuth2" (or two-legged oAuth2)'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_Auth_server-to-server-oauth2
+
+Introduction
+The ID port no longer offers support for the "Machine Gate-ID port".
+In the introduction of the ID-port's OIDC boundary in 2017, the machine gate was a feature of the ID port.  Later, in 2019, the machine gate was established as a separate OAuth2 Issu.
+Customers who are still using JWT-Grants against the old ID port must switch to using the machine gate.

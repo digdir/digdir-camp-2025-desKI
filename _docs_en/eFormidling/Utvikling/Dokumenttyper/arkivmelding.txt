@@ -1,0 +1,121 @@
+Title: "Document Type: Archive Message"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+Redirect_From: /eFormidling_mappings
+
+The document type consists of a standard Business Document (SBD), an archive message and one or more documents.
+The document type has the identifier.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to the recipient's organization number.
+Business message
+The business message is described below.
+
+ (voluntary)
+The instruction only applies when dissemination with KS Svarut, and is ignored by dissemination to the other messaging services.
+The instruction defines which security level the recipient's company user must be authenticated with in order to access
+to read the message.
+| Legal values |  or |
+| Standard value |            |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+The instruction only applies when dissemination with Altinn Digital Post, and is ignored by dissemination to the other
+the messaging services.
+The instruction determines whether the recipient should be notified of incoming mail at reception or both at reception and one week after
+Reception. Read more at:
+
+Notice and possibly reef warning for Altinn Digital Post (external link)
+
+| Legal values |  or |
+| Standard value |                                |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+The instruction only applies when dissemination with Altinn Digital Post, and is ignored by dissemination to the other
+the messaging services.
+The instruction determines whether the notice of incoming mail should be sent to the recipient with e-mail, SMS or both e-mail and
+SMS.
+| Legal values | , or |
+| Standard value |                                              |
+| Configuration of Standard Value |  |
+ (voluntary)
+The instruction only applies when dissemination with Altinn Digital Post, and is ignored by dissemination to the other
+the messaging services.
+The instruction determines which text to be used for notice for the recipient of incoming mail. 
+| Legal values |                                                  |
+| Standard value |  |                      |
+| Configuration of Standard Value |                                 |
+ (voluntary)
+The instruction only applies when dissemination with Altinn Digital Post, and is ignored by dissemination to the other
+the messaging services.
+The instruction determines which text to be used for notice for the recipient of incoming confidential mail.
+| Legal values |                                                                                                                                                                                                                                                                                                                                                                                           |
+| Standard value |  |
+| Configuration of Standard Value |                                                                                                                                                                                                                                                                                                                                                                 |
+ (voluntary)
+The instruction only applies when dissemination with Altinn Digital Post, and is ignored by dissemination to the other
+the messaging services.
+The instruction determines how many days will go before the reef warning is sent to the recipient of incoming mail. 
+| Legal values | Integer |
+| Standard value |                          |
+| Configuration of Standard Value |  |
+ (voluntary)
+The instruction only applies when dissemination with KS Svarut, and is ignored by dissemination to the other
+the messaging services.
+The instruction determines which advance type in KS Svarut the message should be marked.
+| Legal values | One of the types of shipping available in KS Svarut |
+| Standard value | Omitted |
+| Configuration of Standard Value | Not supported |
+
+The archive message
+The archive message contains archive-specific metadata and is designed for communication between the case and archive system.
+The archive message follows the standard.
+The standard must not be confused with the business report.
+The use of the standard archive message is described on archive reports.
+One or more documents
+The archive message contains document references with file names for one or more documents. Each of these referenced
+The documents must be included. The types of documents supported depend on the recipient and are not known in advance. This
+means that attempts to send documents that are not supported by the recipient fail at reception.
+All file format is initially supported, but in practice the recipient's system will in many cases make stricter requirements.
+Therefore, PDF is recommended. Known restrictions:
+
+Recipients using Altinn Digital Post support HTML and attachments with arbitrary file format
+Recipients using KS Svarut and Replyer basically support only pdf but can be configured to support more 
+file format at the expense of delivery guarantee
+
+Enriching and transformation
+In order to support recipients using messaging services than e -officing messaging service, the integration point must
+Enrich and transform outbound messages:
+
+Transformation from archive message to Altinn Digital Post
+Transformation from archive message to KS Svarut
+
+To support reception from senders using messaging services other than e -officing messaging service must
+The integration point enrich and transform incoming messages:
+
+Transformation from KS Replyer to archive message
+
+When using the Integration Point's interface, the integration point transfers outbound messages to
+Archive message. If the recipient uses KS Svarut or Altinn Digital Post also transforms the archive message to it
+Current messaging service:
+
+Transformation from Best/Edu to archive message
+
+By using the Integration Point's interface, the integration point transforms incoming messages directly
+To Best/Edu:
+
+Transformation from archive message to Best/Edu
+Transformation from KS Replyer to Best/Edu
+
+Differences in the data structures in Best/Edu, the archive message, KS Svarut and Altinn Digital Post in some cases entail that
+Not all metadata from the sender can be delivered to the recipient.
+Next step
+
+Example of case processing

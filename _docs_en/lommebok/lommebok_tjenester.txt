@@ -1,0 +1,20 @@
+Title: Services in the sandbox
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_terves
+
+On this page you will find links to the most useful service that is part of the sandbox.   
+Digdir is working on creating a web-based access service that makes it possible to see what services are registered in the trust list.
+Issue
+
+DEGDIR DEMO issuer.  This is a simple demo service that can issue a PID document, a proxy certificate and a daily duty certificate.  You can also look at the protocol flow.
+https://issuer.eudiw.dev/.  The European Commission offers a relatively technically oriented issuer of PID and mobile driver's license. It is not integrated with the sandbox's confidence list, but is useful to use in your own development.
+
+User site
+
+Digdir Demo Brukarstad Here you can test age verification based on PID, and proxy login based on proof of authority.  You can also study the protocol flow.
+The ID port in the test environment for the ID port, it is possible to log in with a PID document issued by our demo issuer. 
+The European Commission Demo-Userstad A technically focused demo-useastad from the European Commission. 
+
+Testing
+OpenID Foundation Available Conformance Test Suites that can be used in your own Development of Services, see: How to Run Conformance Tests for Openid for Verifiable Presentations.

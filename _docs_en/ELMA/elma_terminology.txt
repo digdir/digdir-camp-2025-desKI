@@ -1,0 +1,36 @@
+title: elma termology
+Description: Elma Termology
+Summary: "Elma Termology"
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_terminology
+
+Updated: 2023-04-11
+Termology
+Here are some terms which will be used through the elma manuals.
+Service Provider (SP)
+: A Company That Connects Organizations to the Peppol Network. A service provider is associated with one or more domains, and participants registered by the provider will only be approved for Message Exchange Within the Provider's Domain (s).
+Access Point (AP)
+: Representative A Physical Access Point Service Endpoint, Accessible Through One or Several Urls.
+Endpoint
+: An access point has one or more physical endpoints represented by a url and transport profile.
+Transport profile
+: The Transport Method that must be used for communicating with a donor ap. As4 is an example of a transport profile.
+Access Point Provider (app) 
+: An access point provider operates aps that the sps can use by making an agreement.
+Agreement
+: An agreement between the SP and an app for the usage of a specific access point.
+Processes
+: Standardized, Maintained Collections of Document Types Used in E-PROCUREMENT.
+Participants
+: Organizations that are connected to the peppol network. (An organization Might Act as Its Own Sp.) You can think of this as a "Contract" Between an organization and an SP, that connects the sp's custom organizations to the Peppol Network by the Means of the Sp's Associated App's Ap.
+Certificates
+: Your Peppol SP Certificate.
+Domains
+: Collections of Processes Used in e-Rocurement.
+Document Types
+: Standardized Message Types Belonging to Processes, Used in Communication Between Aps.
+Identifier
+: Identifier for A Participant, Consisting of a Set Prefix and an Organization Identifier. E.G. 9908: 991825827
+SML (Service Metadata Locator)
+: A dns that returns the address of the smp that holds the metadata of a donor pepper. The SML is the only Centrally Operated Component in the Peppol Transport Infrastructure. It is Managed by OpenPeppol and Operates Out of Brussels by DG/Digit.

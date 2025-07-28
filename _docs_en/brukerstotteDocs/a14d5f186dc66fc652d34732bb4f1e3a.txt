@@ -1,0 +1,20 @@
+URL: https://eid.difi.no/nb/esigning/how-kan-I-se-mo-m document-s-zigned-validation
+Title: How can I see if the document is signed (validation)? | Help sites for common solutions
+
+How can I see if the document is signed (validation)?
+
+When you open the document with a PDF reader, or browser you will be able to see that the document has a front page stating that the document is signed. There you will find information about when the document is signed, by whom and with what electronic ID. In addition, there is a watermark on each page of the document. You will receive an error message if the signature is invalid.
+
+If you use an Adobe Reader (PDF reader), in addition to getting the signature on the front and watermark, you will be able to get a signature panel. There, you can choose to view certificate information about the certificate used to sign the PADES document (the signed PDF document). If the Pades signature is invalid, you will receive an error message. By opening the integrated attachment in the pades, you can see the personal signature in .xml format (XADES). In the Xadesen you will find both the personal signature, the original document on which the personal signature is applied and a TTP log (defined under words and concept). The Xadesen can be opened either in browser, or with notepad (notpad). If the PADES document has been changed after signing, the signature panel does not appear and the integrated XADES attachment will be gone, so that the document validates as a regular PDF (and not as pads).
+
+If the original document is in .txt, the signed document will only appear as Xades.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

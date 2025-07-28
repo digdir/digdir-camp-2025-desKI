@@ -1,0 +1,27 @@
+title: authentication to thick clients
+Description: Authentication to thick clients
+Summary: "Thick clients are applications that are installed and run locally on a computer. They are must use authorization code flow with loopback redirection when logging in."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_Auth_sbs
+
+Overall description of the application
+By thick clients we mean applications that are installed and run locally on a computer. Examples of this are Microsoft .net WPF or Winforms.
+In the OAuth2 context, this is a native client, since it cannot protect a client secret/business certificate, and is treated in the same way as login to mobile apps.
+Thick clients should:
+* Recorded with 
+* Recorded with joint client_id for all bodies
+* Authentication should take place in external browser
+* Use Loopback Interface Redirection (see below)
+Loopback Interface Redirection
+The ID port supports RFC8252, Chapter 7.3.
+If Application_Type is, you are allowed to register a redirect_uri that starts with the client (ie HTTP without S and: 0 as a port number).
+When a instance of the thick client starts up, it must request ownership to a given port number of the operating system.  Client then uses the assigned port number in the authorization request:
+
+The same port number must also be stated on the token call.
+Description of the login flow for thick clients
+The flow is identical as for the authorization code flow, but using PKCE:
+Normal the client will need access to APIs from the 3rd part, see further documentation of user-controlled data sharing
+Structure on the token
+The ID token is identical as using the authorization code flow.  Although it is the access_tokenet to be used further, the customer must first validate the id_token in accordance with the usual best practice for Oidc.
+The access_token will contain the birth number of the inhabitant, the scoped registered, and the outlet time of the token.

@@ -1,0 +1,58 @@
+Title: Protocol flow to make evidence
+Description: Protocol flow for OpenID4VCI
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_protokoll_vci
+
+On this page, I try to explain the protocol flow that you must follow as an issue when making a proof that is going into the wallet.  
+{% Include note.html content = "Note that if you are a data owner, you do not necessarily need to implement this yourself. Instead, you can choose to contact a issuer who does this job for you. Contact Digdir to use our issuer." %}
+The protocol is based on the OpenID4VCI standard. The standard is still under development, but is planned to reach the final before the summer 2025. The company Authlete has published a very good and detailed tutorial for the use of the VCI standard.
+In practice, a VCI flow is a common open-time connect flow that is expanded with an extra step where the wallet itself derives the evidence from a credential issu.   The wallet thus acts as an Oidc client.
+The standard opens for Credential Issu it can be a self-contained component, or it may be built-in functionality in an existing OAuth2/OIDC Authorization server (such as the ID port).
+In practical use
+The wallet must in some way gain knowledge of whether it can obtain a evidence of a given type. This can happen in Hovsak in two ways:
+
+For "popular" evidence, such as e.g. driver's license or digital passport, so expect the wallets to come with pre -configured links, so that the user e.g. Click on "Get my driver's card" inside the app to start the protocol flow. 
+For other evidence so, the user must log in to a web-test associated evidence.   The wallet will be triggered to start the protocol flow antenna by scanning a QR code, or by direct communion using. Digital Credentials Browser API, possibly via close-up detection via NFC or Bluetooth-Le. 
+
+Pre-Authorized Flow
+I believe that alternative #2 above will be the most common way to issue evidence.  This flow differs a lot from the usual Oidc that it has been named: Pre-Authorized Code Flow.   The differences are the following: 
+
+Authentication with Eid normally occurs before the Oidc flow starts
+The OIDC flow starts by the issuer making a Sokalla Credential Sacrifice (proofs)
+The wallet goes directly at the /token peak of the authorization server, it's MAO. No Browser-Redirects via /Authorize- endpoint involved.
+
+The flow can be illustrated as follows:
+
+
+sequence chart
+
+  Actor B AS User
+  Participant L AS Wallet
+  Participant U AS Issues
+  Participant A AS Authorization Server
+
+  B->> U: Going to Web page
+  Note over B, A: Authentication
+  B->> U: Choosing Proof
+
+  Activate U
+  U->>+U: Prepare Proof
+
+  U->> L: Credential Sacrifice 
+  L->>+A: /Token (pre-auth.code)
+  A->>-L: Access_token
+
+  L->>+U: Credential Request (Access_token, Proofs)
+  U->>-L: issued proof
+  DEACTIVATE U
+
+
+A credential victim typically looks like this:
+
+Here we can notice the claim that tells what evidence is offered.  The value points to a pre-defined evidence type (in this case the Norwegian variant of ID document in MDOC format), which together with unique links to this particular user's evidence. 
+Since the proof offer should be consumed by a different application than browsers, there is a risk that an attacker may try to use it instead of the legitimate user, to be judged by the QR code being scanned "over the shoulder".  For this reason, the user in advance has created a PIN or similar that is known to be known, and the cinema contains instructions for the wallet on how to offer the user interface where the PIN should enter.
+Detailed definition of Credential ID metadata for "Norwegian ID document"
+
+
+Make examples

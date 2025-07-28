@@ -1,0 +1,31 @@
+Title: Using Postman With Machine Gate JWT-Grants
+Description: Using Postman With Machine Gate JWT-Grants
+Summary: "This is Short How-To On Using Postman Towards Apis Secured by Machine Gate, Including Digitalization Directorate's Self-Service Apis. A Small Standalone Tool is Used to Generate the JWT-Grant and Exchange It for An Access Token.
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_sample_jwtgrant_postman
+
+Postman is a great tool, but it does not support the jwt authorization grants per RFC 7523 Required by the machine gate.
+The General Process to Use Postman Towards An API Secured With Machine Gate IS:
+1. Use a standalone tool to generate a jwt and exchange it for an access token
+2. Paste this token into postman as a bearer token before performing api operations
+1. Configure the Generator
+Download the jwt grant generator from https://github.com/difi/jwt-grant-Generator.
+Create a Keystore (JKS) Holding Your Business Certificate ("Business Certificate") Keypair.  Both the Certificate and Private Key should be included in the jks.  The Certificate Should Be The One Use for Signing (Not Non-Repuditation).  The JKS SHOLLD LOOK SIMILAR TO THE FIGURE BELOW IN KEKYTOOL Explorer:
+.
+Configure the Properties File with Correct Settings, IE Passwords to the Keystore and Private Key, Your Clientid, and the ìDentifier of the machine gate for the Environment You are using.
+Configure the Properties File with the Scope for the API you want to access (Digitalization Directorate's Self-Service APIS, The Relevant Scopes Are and for Integration Management, and for API Management).
+2. Obtain access token
+Run the Generator - It will generate a jwt, send it to machine gate, and return an access token
+
+(Note that on this platform, The Padding Character is escaped.)
+If the Call Fails, the machine gate will in Most Cases Return an Explanatory Error Message.
+More Obscure Errors Are Typical Coming From Using The Wrong Certificate, or Trying to use the Public Key Instead of the Private Key for SIGNING THE JWT (Pointing to Wrong alias)
+3. Configure Postman
+Open Postman and Create a New Collection.  Set the Authorization type to and paste in the access token Returned by the Generator (note that you might need to replace with the equal sign on some platforms):
+
+Under The New Collection, Create a New Request:
+
+Make Sure The Request Inherits The Authenication Settings From The Parent Collection:
+
+You Shall Now Be Able to use the api.

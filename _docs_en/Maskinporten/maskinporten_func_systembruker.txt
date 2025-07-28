@@ -1,0 +1,101 @@
+Title: System User for Businesses
+Description: System user for businesses
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine Gate_func_System user
+
+The functionality allows suppliers to define their machine-integrations as subject systems in Altinn, which the supplier's customers in turn can allocate only the rights that the subject system needs to be able to act on behalf of the customer for specific purposes.
+Status
+The functionality is launched in a pilot phase early Q1 2025.  
+Background
+The machine gate in its simplest form offers coarse -grained access control between two businesses; an API consument and an API provider. 
+Furthermore, the machine port offers two different delegation extensions for use in customer-supplier conditions on the consumer page:
+
+Delegation of API access to another organization
+Delegation of rights in Altinn to a Machine Gate system (documented on this page)
+
+For both extensions, the customer performs the delegation action itself through user -friendly dialogues in Altinn, and does not have to enter into a customer relationship with Digdir or use the collaborative portal.  Access to Altinn decides who is allowed to carry out the delegation action on behalf of the customer's business. Typically, the delegation occurs as a natural step when establishing the customer relationship when the customer chooses to use a product from the supplier.
+System user for business fits better in scenarios where standard API delegation would have led to the supplier being given too wide rights.  
+What is the difference between system user delegation and API delegation?
+API delegation applies to an entire API access (ie an OAuth2 scope) and is delegated to an organization number (supplier).
+In system user delegation, customers are given the opportunity to delegate a more pointed / defined set of "Altinn rights", and the rights can only be delegated to one specific system at the supplier, instead of to the supplier's organization number. 
+The system must be pre -registered in the System Register in Altinn.  
+The two delegation mechanisms are independent of each other, and there is no central validation that the system in the System Register has specific Scope registered, which should "fit" with the rights being delegated.  Normally, however, the apia will validate both which scopes the system must have, as well as what type of delegated rights is needed to use the API. 
+What does a system user token contain?
+Technically in authorization, the delegated rights are not given directly to the system, but are delegated to a so -called system user associated with the customer. The system user, in turn, points to the supplier's system in the System Register, which in turn is linked to one and only one client_id in the machine gate.
+A system user token differs from a regular machine-gate token in that it contains information about both the system user with the customer and the system of the supplier.  API providers can trust that the system that was issued the token is given necessary delegations in Altinn. 
+For API provider
+In order to use a system user to access control, API provider must construct a call against Altinn Authorization 3.0's PDP point to retrieve the detailed rights delegated from customer to supplier.
+API provider should also validate Scope on their API.
+Interface Definition
+The functionality is based on the OAuth2 extension for FIN-Granulated Authorization (RICE Requests, RAR), where we have defined a new type for the system user pattern.
+The supplier asks to get a token for an alleged customer by providing the customer's organization number, and if a system user delegation is available in Altinn, a machine-gate to the System user identifier that API provider in turn can be returned to constructing queries against Altinn Authorization PDP to find out what provider's system is. 
+
+sequence chart
+    Subject System->>+Machine Gate: Inquiry Token (customer orgno)
+    Machine Gate->> Altinn Authorization: Retrieve System User Information 
+    Altinn Authorization->> Machine Gate: System User Information
+    Machine Gate->>-Subject System: System user token
+    Subject System->>+API: API-KALL w/System User
+    Note over API: Validers Scope, constructing PDP query
+    API->> Altinn Authorization: PDP-Kall with system user, party, resource, action
+    Altinn Authorization->> API: Yes/No
+    API->>-Subject system: API result 
+
+Request
+A professional system asks for the system user token on behalf of a party by including a strange type of type with the party's organizational identifier, in JWT-Grantet:
+The data model for Request looks like this:
+| Claim | Cardinality | Description |
+| ----- | ------------ | ----------- |
+| | Required | Always |
+|  | Required | Organizational identifier in ISO6523 format on the owner of the system user (supplier's customer) |
+|  | Optional | Necessary if the supplier's customer has several system users pointing to the same system, or if one system user is created with an externalref |
+Simplified example of JWT-Grant in Token-Request
+`` `
+{
+  "Aud": "https://maskporten.no",
+  "Scope": "API Provider Scope",
+  "ISS": "My_Client_id",
+"Authorization_Details": [{{
+    "Type": "Urn: Altinn: Systemuser",
+    "Systemuser_org": {
+       "Authority": "ISO6523-actoride-upis",
+       "ID": "0192: 999888777"
+    },
+    "Externalref": "System User #1"
+}]
+`` `
+Note 1: You can only ask a customer/party in the hallway. 
+Note 2: Grantet must also always request one or more OAuth2 scopes.
+Response
+The token will contain a list of system users belonging to the customer's organization number, and is linked to the supplier's professional system through the authenticated subject system (Client_ID):
+The data model for response looks like this:
+| Claim | Description |
+| ----- |  ----------- |
+| |  Always |
+|  | Organizational identifier in ISO6523 format on the owner of the system user (supplier's customer) |
+|  | The system user identifier |
+|  | The identifier of the supplier's system in the System Register |
+Note that is not returned, it is only used to identify the right system user in cases where there are several candidates.
+The supplier's organization number can be found in the Claim as usual.
+Simplified example of Access Token:
+`` `
+{
+  "ISS": "https://maskporten.no",
+  "Scope": "API Provider Scope",
+  "Client_id": "Supplier's Client_id",
+  "Consumer": {"Authority": "ISO6523-actoride-upis", "ID": "0192: Supplier's orgno"},
+"Authorization_Details": [{{
+    "Type": "Urn: Altinn: Systemuser",
+    "Systemuser_id": ["ID for the system user at Customer"], 
+    "Systemuser_org": {"Authority": "ISO6523-actoride-upis", "ID": "0192: System user's orgno"},
+    "System_ID": "ID for the system in the System Register",
+  }],
+"Exp": 1520589928,
+  "IAT": 1520589808,
+  "Jti": "Asdjkl5434jlkfds"
+}
+`` `
+Layoff
+The supplier must first create a regular machine-integration through self-service on the collaborative portal. Subsequently, the supplier must create a professional system in the System Register in Altinn, and link it to its machinery integration.
+Subsequently, the supplier must create a professional system in the System Register in Altinn, and link it to its machinery integration.  This is documented in more detail on the authorization's documentation of system users for system suppliers.

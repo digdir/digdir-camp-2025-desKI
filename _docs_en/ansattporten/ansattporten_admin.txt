@@ -1,0 +1,9 @@
+Title: Employee Gate Self -Service
+DESCRIPTION: Employee gate self -service on the collaborative portal
+Sidebar: Employee gate
+Product: Employee Gate
+redirect_From: /Employee gate_admin
+
+Employee gate is administered in the same way as the ID port, ie via self-service
+You have to make their clients like. 
+If you have never used self-service before, or your business is not a digdir customer, you will find a recipe here.

@@ -1,0 +1,25 @@
+Url: https://eid.difi.no/nb/contakt-og-eservation register/spsala selection
+Title: Language choice | Help sites for common solutions
+
+Language choice
+
+The contact and reservation register contains information on which language you want to receive documents and messages from the state and municipality. It is up to the public business that sends you messages or documents to use the language choice information. 
+
+If you have not made one language choice, the state and municipality can choose what language they want to use in communication with you.
+
+It is you as a citizen who yourself posts and changes language choices during your contact information in the contact and reservation register.
+
+The Norwegian Digitalisation Agency has collected language choices from the Tax Administration, and moved the information to the contact and reservation register. If you have previously checked for languages in the tax return, it is the information that is now registered.
+ 
+
+Here you can log in to check and update your contact information.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

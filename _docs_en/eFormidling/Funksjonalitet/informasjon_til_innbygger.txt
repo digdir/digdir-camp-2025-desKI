@@ -1,0 +1,49 @@
+Title: Information to the citizen
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape allows your business to send information to the citizen.
+
+TOC
+{: toc}
+
+Introduction
+Information to the citizen is all outside decisions and other important inquiries to the citizen.
+eFruely support for sending information to the citizen makes it easy to send information to the citizen without
+The additional requirements and other important inquiries entail.
+The info process does not take into account the resident of the citizen, and should therefore only be used for receipt purposes and other use cases that do not involve the transmission of important information.
+Information to the citizen is represented with the following process for the recipient:
+| Process name | Process identifier |
+| ----------------- | ------------------------------------------------- |
+| Info | Urn: No: Difi: Profile: Digital Post: Info: Ver1.0 |
+Message content
+Corresponds to message content for decisions to the citizen
+Address messages
+Messages are addressed from the sender's organization number to the recipient's birth number.
+For recipients who have selected Digital Mailbox, this is preferred. For recipients who have not selected mailbox must sender
+Even choose whether the message can be sent to Altinn Digital mail or whether it must be sent as physical mail. By sending physical
+Post can the sender choose to use the printing service in digital mail to residents or handle these messages with
+Own printing service. It may be okay to notice that the reservation and the opportunity to notify the inhabitant
+ignored. If the content to be sent requires reservation respected must be respected
+Decisions for citizens are used. 
+
+graph lr
+A {have selected digital mailbox?}
+B ("a) printing service in digital mail to residents) Altinn digital mail")
+C (Digital Mailbox)
+A -> | yes | C
+A ---> | No | B
+
+Send messages
+Corresponds to send messages for decisions to the citizen
+Notification
+Corresponds to notification for decisions to citizen
+Assumptions
+Corresponds to the prerequisites for decisions to a citizen
+Configuration
+Equivalent to configuration for decisions to citizen
+Development
+
+Example of information to citizen

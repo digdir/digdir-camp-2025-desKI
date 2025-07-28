@@ -1,0 +1,51 @@
+title: channel
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+A business can use the same messaging service from several integration points with several suppliers. One must then choose to
+receive to one of the integration points while everyone can send. As a supplier, one can facilitate this by:
+
+Use channel for outbound messages - otherwise the installations will "steal" incoming message statuses and receipts 
+  apart
+Turn off incoming messages - otherwise the installations will "steal" incoming messages from each other
+
+If a third -party service only needs to send messages, it can advantageously use channels. A business can
+use several third -party services with channels but only a third -party service without channel where the business can both
+Send and receive.
+Channels for Altinn Digital Post
+Altinn Digital Post only supports outbound messages. Message Statuses and Receipts are picked up given message identifier
+So that the installations will not "steal" incoming message statuses and receipts from each other.
+Therefore, one does not need to configure channels to run more integration points for Altinn Digital Post for the same
+business.
+Channels for digital mail to residents
+Digital mail to residents only supports outbound messages. Message Statuses and Receipts are picked up a desired
+Number.
+To prevent the installations from "stealing" incoming message statuses and receipts must be configured channel, see
+ under:
+
+Configuring Digital Post to residents
+
+Channels for KS Svarut and Replyer
+KS Svarut supports outbound messages and KS Replyer supports incoming messages. Message Statuses and Receipts
+Retrieved the message identifier so that the installations will not "steal" incoming message statuses and receipts
+apart.
+To prevent the installations from "stealing" incoming messages, one must turn off KS Replies for all installations
+Apart from the person receiving incoming messages. Look below:
+
+Configure KS Svarut and Responseinn
+
+Channels for e -Designing Message Service
+Emsynidling's messaging supports both outbound and incoming messages. Messages, message statuses and
+Receipts are obtained given a desired number.
+To prevent the installations from "stealing" incoming messages, message statuses and receipts must be configured
+Channel, see below:
+
+Configure Emsyding's messaging service
+
+Channels for e -insight messaging service
+The sights messaging service does not support channels and one business can therefore only have one installation using e -insight
+messaging service.
+Channels for KS FIKS IO
+KS FIKS IO addresses at system level so that channel is not relevant.

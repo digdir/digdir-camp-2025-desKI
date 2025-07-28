@@ -1,0 +1,7 @@
+Title: "Glossary"
+Sidebar: Main_sidebar
+Product: General
+Layout: Glossary
+Redirect_From: /Glossary
+
+Glossary

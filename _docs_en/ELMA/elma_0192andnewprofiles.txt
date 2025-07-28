@@ -1,0 +1,18 @@
+Title: ICD 0192
+Description: ""
+Summary: ""
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_icd0192andnewprofiles
+
+All Peppol Addresses in Elma under the ICD 9908 Will Be Deleted From Elma By Thursday 14th December 2024.
+This Step Concludes the Migration of Norwegian Peppol Addresses from ICD 9908 to ICD 0192.
+The Migration Started ~ 5 Years Ago When Elma First Published Information On The Migration Strategy On Behalf of The
+Norwegian Peppol Authority.
+New Profiles Were Made Available Only under ICD 0192.
+ICD 9908 was officially market as deprecated in V8.3 of the Peppol Code Lists, released 19th January 2023. Shortly
+After, in V8.4, it was market for removal at 24 May 2023. 
+Any Questions May Be Directed to:
+
+Your peppol service provider (for end users)
+The Norwegian Peppol Authority at Peppolmydet@dfo.no (for Peppol Service Providers)

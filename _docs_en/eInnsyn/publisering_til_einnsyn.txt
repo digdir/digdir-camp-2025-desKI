@@ -1,0 +1,67 @@
+Title: Publishing to e -insight
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /Publishing_to_e Insight
+
+Eye inspects utensils for transporting data between content providers and e -insight.
+The messages to e-insight are based on Noark, but converted to JSON-LD which is an RDF serialization. Data fields, classes and couplings between them are largely the same, but the format is different
+Evisation has several different types of messages a transmitter through e -dissemination. That the message is an insight message and what type it is is specified IHH for this specification.
+The message content itself, and data to be sent to e -insight, are indicated in Fila Payload.jsonld.
+Here are examples of JSONLD file and corresponding data such as Noark5-XML
+* PayLoad.jsonld
+* Noark5 XML
+Publishing to e -insight can be done in two ways:
+* When using E-Insyn-Client. The client can receive data on Noark4/5 xml format. It will then validate and convert data to Jsonld sent to the integration point. The client can also be used to validate JSON-LD format.
+* Direct integration, ie post messages directly to the integration point. The messages must then be in JSONLD format (both Compact and Extended is supported). There is a maximum size of messages that can be sent on 1 MB, so it is the intention that systems that use direct integration send as much atomic messages as possible (eg one and a journal entry/meeting case). When updating/changing a registration, all relevant information (reference to parent, document description and document object) must be re -sent, otherwise this will be omitted ("deleted").
+Identifier strategy
+By direct integration with JSON-LD
+ID on classes/types (journal entry, case folder, meeting folder, meeting documents registration, meeting case registration, document description and document object) can be defined by the delivery system. The recommendation from e -insight is that UUID used in URI is the same in the previously found system. This is to avoid duplicate and be able to support both deletion and access requirements version 2 (Order-V2.xml) in the future. SystemID in Noark V.5+ is recommended where it is of Uuid version 1.2 or 4.
+Namspace in Uri must be set equally for all classes/types. When using JSON-LD Compact version, this is easily done at the "Base" value in Context:
+
+http://data_test.evysyn.no/ is here just an example, and a supplier should like to put it to something else. 
+When using Extended Json-LD format, the example will look like this:
+ 
+By using client and noark 5 xml
+The client will convert to JSONLD and ID will be generated based on SystemID where it is stated, otherwise it will generate its own UUIDs. Namespace is set equally on all types/classes (http://data.evysyny.no/noark5/)
+By using client and noark 4 xml
+The client converts to JSONLD and ID is generated based on orgnr, case sequence number/scissors and journal numbers/journalas. UuID is generated on document descriptions/document objects.  Namespace is set equally on all types/classes (http://data.evysyny.no/noark4/)
+Id-converter
+There is a function in Admin-Gui that can be used for transition from Noark4 to Noark5 or Jsonld without "sharp distinction". When this feature is turned on, e -insight will check new IDs against the existing ID in the database and at hits it will convert the message to the old format on the way. This is to prevent a new case folder and journal entry based on a new ID.
+Logic in ID converter is as follows:
+If the Incoming Case Folder ID (IRI) starts with “http://data.evysyn.no/noark4/”, it will be passed on without change.
+If it starts with something else, it is looked up based on:
+"Http://data.evysyn.no/noark4/saksfold-" "to see if we have it stored with old ID.
+If it is found in the database, the case folder_iri is checked in the message against the stored ID/IRI. If these are not the same, the message changes to use ID/IRI we have stored in the database.
+If it is not available, the message is passed on.
+Same for journal entry, it is passed on if ID/IRI starts with “http://data.evysyny.no/noark4/”
+If it starts with something else, it is looked up based on business, journalas and medical records (not posts on built -up ID/IRI as for case folder). If there is in the database, the journal entry_iri is checked in the message against the stored journal entry ID/IRI. If these are not the same, the message changes to use ID/IRI we have stored in the database.
+Parent to the journal entry in the message is updated to be ID/IRI on parent from the database.
+If it exists, but has the same ID/IRI as in the database, possibly parented in the message to be parent-IRI from the database.
+If the journal entry is not in the database based on business, journala and journal sequence number, you try to find a possible previously stored case folder based on incoming journal entry's stated parent (lookup against the case folder's external_ID and business).
+If the folder is found with the stated external_ID, the message changes to use our case folder ID/IRI as parent on journal entry.
+ID converter does not support meeting data. This is because meeting data is not supported in our Noark4 data model, and therefore there should be no need to convert ID on this type of data.
+Structuring of the publication
+Eye insights as much as possible to facilitate ongoing transfer. And the structure adds up to this itself in cases where this is not the case.
+The JSON-LD files with data should therefore be centered around a body of registration. For journal entries, a shipment will contain the registration (Journalposten), the case folder (can be left out if we have already received this), correspondence party (s), shielding home, document description and document object (if it is to be shown that are multiple attachments, and in full expublications). If a journal entry is updated, all data must be sent back together, if e.g. omits the correspondence parties by updating, and we will delete the "old" correspondence parties.
+When publishing a meeting case (s), both meeting folders and case submissions (registration, with associated objects) must be sent in the same round. If a meeting has many cases with many attachments to the case submissions, a publishing file with the entire meeting may be too large, so it is recommended to plan to send one and one meeting case to a meeting. There is a size restriction of 3MB through e -dissemination. It can be mentioned that Compact version of JSONLD is about half the size of "Extended" version (see examples).
+Full text publishing
+To fully text publish, it is needed to set up a filler locally that is available from the Internet. One adds the document that is to be full text publishing. In the metadata that is sent to the sight, you then enter a link to the document that is to be full text publishing.
+Full text link is placed in the reference document file, which is below the document object class. The sample files above have an example of how a link in full -text up.
+Partial Full Text Publishing
+It is possible to perform only parts of the document that is associated with a registration. At the same time, it can often be desirable to show that there are no attachments that have not been published.
+To achieve this, one can submit the document description on all documents one will show that exist. For those who are going to be full -text publishing, the document object also included under the document description.
+
+Receipt on Published Data
+Moved here
+Deletion
+Deletion from e -insight can be automated by sending delete notification. This is sent in the same way as a journal entry (the same message type in e -formation) with a delete message as the payload. Example of Deletion:
+`` `
+xml version = "1.0" Encoding = "UTF-8"?
+
+
+FB81A8D1-C78A-4447-9710-B668FD144769
+
+
+`` `
+Example of deletion as Jsonld:

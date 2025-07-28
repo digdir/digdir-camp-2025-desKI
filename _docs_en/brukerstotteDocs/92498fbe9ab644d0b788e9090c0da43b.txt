@@ -1,0 +1,18 @@
+Url: https://eid.difi.no/nb/bankid/engangcode-til-Bankid#main-content
+Title: One -time code to BankID | Help sites for common solutions
+
+One -time code to BankID
+
+There are different types of code generators for BankID.
+
+If you have problems with your code generator or questions about this, contact your bank.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

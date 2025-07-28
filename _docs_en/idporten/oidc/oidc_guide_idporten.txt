@@ -1,0 +1,194 @@
+Title: Integration Guide - Authentication in the ID port over OpenID Connect
+Description: Integration Guide - Authentication in the ID port over OpenID Connect
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_guide_idport
+
+The ID port offers functionality for authentication of end users based on the authorization code flow, as it is specified in OpenID Connect Core 1.0 specification.
+This is the preferred flow of most services that will use the ID port as authentication service. There may be exceptions, such as mobile apps or JavaScript applications, which will have a slightly different way to use this flow.
+Overall description of the application
+The ID port offers authentication of users to end-user services. The authentication is carried out by an openid Connect Provider who issues the ID token of the current service.
+
+graph lr
+  End_user (end user)
+  OP (ID port)
+  RP (web service)
+  End_user -. authenticizes at .-> op
+  Op -. issuer id_token .-> rp
+  End_user -. logs into .-> rp
+
+The following players are included:
+| Actor | Description | Term Oidc |
+| -|-|-|
+| End user | Want to log in to a public service | End User |
+| Web service | End user service offered by a public agency | Relying Party (RP) / Client (= client) |
+| The ID port | The ID gate's authentication service as the ID token of the current service | Openid Provider (OP) |
+Description of Authorization Code flow
+
+sequence chart
+  End User ->> Relying Party: Clicking Login button
+  Relying Party ->> End user: Redirect with authentication request
+  End User ->> Openid Provider: Follow Redirect ...
+  Note over the end user, Openid Provider: End user authenticates (and possibly consent to requested scopes)
+  Openid Provider ->> End User: Redirect with Authorization Code
+  End User ->> Relying Party: Follow Redirect ...
+  Relying Party ->> Openid Provider: Inquiry Token (/Token)
+  Openid Provider ->> Relying Party: id_token (possibly more tokens)
+  Note over the end user, Relying Party: logged in to the service
+
+
+The flow starts with an end user trying to access a given service (Relying Party)
+The service requires login and a redirect URL to the OpenID Connect provider is generated and returned to the end user. This redirect represents an authentication request and has parameters that identify the current service for the provider.
+End user Browser comes to the authorization point of the provider where the request is validated (eg valid service and valid redirect_uri back to the service).
+The user conducts login in the provider
+The Provider Redirect's user back to the service's pre -register Redirect URL with an authorization code.
+The service uses the received authorization code to make a direct look against the provider's token-endpoint. Service must authenticate against the token- endpoint, so-called client authentication (either with Client_Secret or a signed request)
+If the client authentication was successful, the received authorization code and an ID token are returned to the service.
+The service normally turns the ID token into its own local session.
+The user is now authenticated for the service and the desired action can be performed
+
+Note: OpenID Connect is based on OAUTH2, and this flow is derfinted in the OAUTTH2 specification. Since authentication is not a term in OAuth2, one will often see that the term authorization is used even if one really talks about authentication
+Session management
+Note: Customer and the ID port holds their own sessions against end users that are not dependent on each other. But the Norwegian Digitalisation Agency recommends that customers spend the same session times as the ID port.
+Lifetime of the SSO session in the ID port
+In the ID port, the maximum session time for a user's SSO session is measured and it is set to 120 minutes from the first authentication.
+For inactivity over 30 minutes, the SSO session will expire.  The act is measured as the time between two authentication requests against the ID port.
+Note that in the case of passive expiration of session, no calling will be sent to the customer's service.
+Note: ID_Tokenet returned from the ID port will contain an "Expire (Exp)" value. This value only indicates the lifetime of the token itself, ie a client should not accept an ID_Token after it expired. This value is not linked to the SSO session on the ID port and gives no indication of life.
+Lifetime of Customer's local session
+In a federation, the members should configure the systems so that sessions expire by inactivity after a maximum of 30 minutes.
+It is optional if the timeout period is reset each time the user's browser requests one of the customer's service, or whether it is independent of user activity (fixed timeout period).
+After local timeout at a customer, the user's browser should be transmitted to the ID port with an authentication request.
+It should be noted that a local timeout in a customer does not necessarily mean that the user is forced to log on to the ID port. If the user has an active SSO session on the ID port, this can respond to the request from the customer without a user dialog (ie do single sign-on). The user will thus not discover that the session is being renewed (except that his browser possibly "flashes" for a short moment).
+Forced re-authentication
+If a service provider for security reasons will ensure that the user is forced to active login in the ID port, you can put the PROMPT PARAMPT = login in the authentication request to the ID port.  
+It is also possible to configure its service so that it does not participate in a common SSO session (see isolated SSO session).
+Requirements for logging
+The ID port offers single signon functionality (SSO) between all integrated services.  Therefore, all services must also implement support for single logout (beat).
+An error-configured logout management with one customer can ruin the logging in other customers, and makes a citizen vulnerable to attacks.
+The client must handle two different logging scenarios:
+
+
+The user logs out of your service: You need to redirect the user to /end session peak of the ID port.  The ID port makes sure to log the user out of all other services, and the Redirectter finally the user back to you.
+
+
+The user logs out of other service: You will receive a front_channel_logout message with a session identifier that you have previously received in the ID_TOKEN. Based on this you need to find local user session and invalidate it.
+
+
+See full documentation on logging here.
+1: Authentication Request to the Authorization Point
+The service/client sends an authentication request by redirect the end user to the authorization point.
+See detailed documentation for the authorization point for choices.
+The client must be pre-registered in the ID port, see client registration.
+Example of request
+`` `
+Get https://login.idporten.no/authorize?
+Client_id = min_The service &
+  redirect_uri = https%3a%2f%2fmin.tjeneste.no%2flogin_callback &
+Scope = OpenID+Profile &
+  ACR_VALUS = IDPORTE-LOA-SUBSTANTIAL &
+  Response_Type = code &
+  ui_locales = nb &
+State = SV-423VOKTS9_CZDO9KZSV9XB35MLGZJ_7BPTTT-_KHQ &
+  NONCE = S6TRRJ3TWSILRZL7HQYSOOROSHDQ4L6DU3DXDHXOWC &
+  Code_Challenge = HC9NRZZ4QUAVMVL2TUYRWG_L54PBLON CONCIUX
+  code_challenge_method = s256 &
+`` `
+All services must use PKCE, and are highly recommended to use state and nonce in the call.
+In addition, for services with high requirements for security, one should consider using couples to first post the authentication parameters directly to the ID port before a redirecter so that these parameters are not exposed to user browser manipulation.
+2: User authenticates
+User will then authenticate against the ID port.  The language of ID port is prioritized as follows:
+
+Bokmål is standard language if nothing is stated
+If the client has stated, then this language will be used
+If the cookie idport_selected_language cookie is set, this will override other choices. The cookie is set only for users who actively change languages in ID ports GUI.
+
+3: redirect back to service
+After the user has logged in, a redirect will be sent back to the client to the pre -registered.  The redirect will contain an authorization code parameter used for posting to retrieve tokens.  The code is Base64-Eenkoda and URL-SAFE.
+Example of response: {#Auth response}
+
+In the test environment, we allow Redirect back to Localhost.
+4: Issuing the token from the token- endpoint
+The token endpoint is used to issue tokens.
+The use of the endpoint varies slightly with which client authentication method is used. The following authentication methods from OIDC Chapter 9 are supported:
+
+Client_Secret_Basic / Client_Secret_Post - client authentication based on Client_Secret
+Private_key_jwt - client authentication based on JWT's signed with business certificates
+
+The latter method is recommended for clients with high safety requirements.
+Example of request:
+`` `
+Post /token
+Content-Type: Application/X-WWW-Form-URENCODED
+Authorization: Basic Bwlux3RQZW5LC3RLONBHC3N3B3JK
+Grant_Type = Authorization_code &
+  redirect_uri = https%3a%2f%2fmin.tjeneste.no%2flogin_callback &
+  Code = 1jzjkycph4mipp9ywxrFL-IIVWBLFKDIRLJKZTJFMT0%3D &
+  Code_verifier = Gevarfloi5lnyfvgsmhvzcxog_tpzdmxqqgqzkjkz0
+`` `
+See detailed documentation for the token peak for all choices.  
+If the request is validated as valid, one or more token will be returned:
+
+id_token: authentication certificate, "who the user is"
+Access_token: Access token tells "What the user can access"
+Refresh_token: Used by the client to renew Access_token without user interaction (as long as the authorization is valid)
+
+
+id_token
+The id_token contains the identity of the authenticated user - it tells who the user is, but not what access the user has.
+Normal uses the ID_TOKENET only to create its own local session.  The id_token therefore has a fairly short validity period.
+Example:
+
+Correct validation of the ID_Token of the client is critical for the safety of the solution. It is especially important to validate that actually used security levels are at the requested level.
+Service providers who use the service must carry out validation in accordance with Chapter 3.1.3.7 - ID Token Validation in OpenID Connect Core 1.0 specification.
+Click here for full documentation of the ID_Token in the ID port.
+Access_token
+Access_tokenet (access token) gives the client access to APIs at third parties on behalf of the authenticated user.  
+The life of the access_token is usually relatively short (typically 120 seconds). If the token has expired, the client may request a new acess_token using the refresh_token. It is then carried out a client authentication, to ensure that tokens is not delivered to the wrong party.
+Lifetime can also be adapted per client. But note that this can be overridden by API provider depending on which OAuth2 scopes are in the token. 
+It is important to be aware that Access_token+Refresh_token is independent of the login and associated SSO session in the ID port.  Although the user completes a logging, or the SSO session hours out, the authorization with associated Access_Token and Refresh_Token will normally be valid until their lifetime expires.   
+Finally, note that a single user can only have an authorization against the same client in the hallway.  If the client has a valid authorization with given scopes and then performs a new authorization with other scopes, then the new access_token will only contain the scopes from the latest authorization.  The ID port "remembers" does not consented scopes of several authorizations. 
+Click here for full documentation of Access_token format of the ID port.
+5: Userinfo- endpoint
+By requesting the scoped profile, the client service together with the ID Tokenet will also be issued an access_token (and possibly the refresh_token) that can be used against the provider's userinfo endpoint.
+According to the standard, this end point can be used to retrieve additional data on the user than what is exposed via the ID token. As the ID port in general, little data on the end user has this endpoint limited value in most cases. The social security number and selected language during login are they
+The data that will be exposed here.
+`` `
+Get https: // <>/Idporten-Oidc provider/Userinfo
+Authorization: Bearer Eyja ...
+Response:
+{
+  "Sub": "NR8VTTPRM3T7RWF8DXXEWLZPXEMSUSEGUG4E7PXQJUH9WIM =",
+  "PID": "23079421936",
+  "Locale": "NB"
+}
+`` `
+6: Contact information from the contact and reservation register
+Contact information related to logged in user is available at its own endpoint if the Access_Token contains the scop.
+About Openid Connect
+Openid Connect is a protocol for authentication based on OAUTH2. See http://openid.net/connect/faq/ for more information.
+The implemented services are based on (parts of) the following standards and specifications:
+
+Openid Connect Core 1.0-http://openid.net/specs/openid-connect-core---------_0.html
+
+Openid Connect Discovery
+http://openid.net/specs/openid-connect-discovery-1_0.html
+
+
+OpenID Connect Session Management
+http://openid.net/specs/openid-connect- session-1_0.html
+
+OpenID Connect Front-Channel Logout
+http://openid.net/specs/openid-connect-frontchanel-1_0.html
+OAuth 2.0 form post response mode
+http://openid.net/specs/oauth-v2-form-post-post-mode-1_0.html
+OAuth 2.0 token introspection
+https://tools.ietf.org/html/rfc7662
+
+Proof Key for Code Exchange By OAuth Public Clients
+https://tools.ietf.org/html/rfc7636
+
+
+IETF RFC6749 The OAuth 2.0 Authorization Framework - https://tools.ietf.org/html/rfc6749
+
+IETF RFC7523 Json Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants - https://tools.ietf.org/html/rfc7523

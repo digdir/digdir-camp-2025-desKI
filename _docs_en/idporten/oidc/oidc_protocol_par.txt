@@ -1,0 +1,56 @@
+title: "/pair endpoint"
+Description: "This Page Sumarizes The Protocol Options Availalbe for On The /Par Endpoint for the ID port Oidc Provider"
+Summary: 'This Page Sumarizes The Protocol Options Available for On The /Par Endpoint (Pushed Authorization Requests) for the ID port Oidc Provider'
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Oidc_protocol_Par
+
+About
+Couple Lets The Client Send The Authorization Request (See /Authorize) Directly to ID port, Ahead of End -us (Browser) involvement.
+Using couple is recommended for Clients With Stronger Security Requirements.
+PUSHED AUTHORIZATION REQUESTES (PAR) AND THE ENDOPOINT IS THOROGHLY DOCUMENTED IN THE DRAFT IETF-SPECIFICATION DRAFT-ENF-OASTF-OAUTTH PARS-06
+Request
+The Client Pushes An Authentication Request By Post´ing It To The Pares Endpoint.
+Supported http headers:
+| Header | Value |
+| --- | --- |
+| Http method | post |
+| Content-Type | Application/X-WWW-Form-Urlencoded |
+ 
+The Supported Request Attributes Are Identical to Attributes Available On The /Authorize Endpoint, IE:
+| Attribute | Optionality | Description |
+| --- | --- | --- |
+| Response_Type | Required | Only is Supported by ID port |
+| Client_id | Required | ID port will provide you with a client-id out-of-band |
+| redirect_uri | Required | The End User Will Be Redirected Here After A Successful Authentication.  Only pre-registered uris can be used.  |
+| Scope |  Required | Whitespace-Serated List of Requested Scopes.  Normally just.  |
+| State | Recommended | Value set by the client and returned in the callback.  Recommended to use to achieve CSRF protection. Mandatory to use for public clients |
+| Nonce | Recommended | Value Set by the Client and Returned in the ID token. Recommended to use two protect from replay attacks. |
+| ACR_VALUES | OPTIONAL | Requested Security Level, Either or.  |
+| Response_Mode | OPTIONAL | Used If You Want Alternative Way of Return The Authentication Response. We support, duck. Note that some of these options have security implications, and some other conditions May Apply.   |
+| Ui_locales | OPTIONAL | Requested Language in the User Interface, We Support NB, NN, an OR SE |
+| Prompt | OPTIONAL | Used to govern end User involvement.  Only is Supported by ID port |
+| Code_challenge | Required* | The pkce is a calculated value based on.  Mandatory to use for public clients |
+| code_challenge_method | Required | Algorithm for PKCE. Only Supported.  |
+Sample request
+`` `
+POST /PAR HTTP /1.1
+Host: idporten.no
+Content-Type: Application/X-WWW-Form-URENCODED
+Authorization: Basic CZZCAGRSA3F0MZO3RMPMCDBAQNIXS3REUMJUZLZKBUL3
+Response_Type = code &
+  State = AF0FJSLDKJ &
+  Client_id = s6bhdrkqt3 &
+  redirect_uri = https%3a%2f%2fClient.example.org%2FCB &
+  Code_Challenge = K2-LTC83ACC4H0C9W6ESC_REMTJ3BWWW-UCHAOEK1T8U &
+  code_challenge_method = s256 &
+  scope = openide
+`` `
+Response
+The response is a identifier, and an associated expiry time in seconds.
+Sample Response: {#Auth response}
+
+Continue the Authorization
+The client must use the request_uri and its client_id when redirecting the end user to the /authorize endpoint before the request_uri expires.
+
+Request parameters (apart from client_id) must not be repeated in the authorize-wrquest.

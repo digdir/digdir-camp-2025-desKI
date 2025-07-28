@@ -1,0 +1,46 @@
+Title: Trust Framework
+Description: Trust framework
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_ trust framework
+
+In the sandbox, Digdir will manage the national trust list, which will contain what actors are approved as:
+- PID issuers
+- wallet operators
+- Qualified issuers (Qeaa)
+- Public issuers (pub-EAA)
+- User City Certificate issuers
+
+
+graph
+
+subgraph ak [confidence list]
+  Tli [(register of issuers)]
+  Tlw [(register of pocket books)]
+  Tlrp [(Register of User City Registers)]
+end
+
+  Drpr [(digdir userstad register)]
+  RPR [(Other User City Registers)]
+
+Tlrp ---> drpr
+Tlrp ---> rpr
+
+
+The trust framework in the sandbox
+
+
+
+It is worth noting that the very usage parties (relay parties) do not end up on the central confidence list, but that it is a two-level structure: The central list lists only at a PKI managed by approved user city certificates. There may be more such certificate issuers in a country. Eit user city must contact a registrar to obtain a Brukarstad Certificate (relay Party Access Certificate. Normally, registrar and certificate issuer will be the same organization. 
+In the sandbox, Digdir will offer such a user city certificate. 
+Technical depiction
+Technically, the confidence between the actors in the wallet ecosystem is primarily based on PKI, ie the X.509 certificate to meet certain properties and qualities.  
+The main actors must have their signing certificate published on a list of confidence, see the figure at the top of Arf 3.1 and detailed depiction in Arf Chapter 3.5.
+The confidence list is based on the ETSI standard 102 231 and is in practice an XML file that lists the actors and their signing certificate. 
+For a judgment on a real production list list, you can look at the Norwegian list of providers of qualified trust services.
+In the final production ecosystem of the EU, the only member states have access and responsibility for publishing these certificates on the EU's confidence list. 
+Practice
+Contact Digdir to get a user city certificate.  
+Feel free to use the access service to study who is the actors in the sandbox.
+Digdir 
+If the certificate is not included in the confidence list, an attempt at the interaction should be rejected.  to issuers, wallet providers or user city registrars.

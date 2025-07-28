@@ -1,0 +1,16 @@
+Url: https://eid.difi.no/nb/bankid/sperring-vsbankid
+Title: BankID Surcharge | Help sites for common solutions
+
+Blocking BankID
+
+If you want to block your BankID, please contact your bank.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

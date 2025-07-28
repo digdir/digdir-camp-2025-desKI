@@ -1,0 +1,12 @@
+Title: How to access?
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /Krr_ Raising_ access
+
+In order to use the Contact and Reservation Register (KRR), you as a customer must:
+- Basic that the use is in line with the current "Guidelines for the use of the contact and reservation register".
+- Approve Terms of Use 
+If the requirements above are met, you as a customer will have access to KRR.
+Read more about the planning phase at the collaborative portal.

@@ -1,0 +1,17 @@
+Title: Requirements for fresh contact info
+Description: 
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_18mnd
+
+18-month rule
+Section 32 of the Emergency Regulations requires that the citizen's contact information must be "fresher" than 18 months in order for individual decisions and other important letters to be sent digitally:
+
+If information on the individual in the register of digital contact information and reservation has not been updated or confirmed that is correct in the last 18 months, the information shall not be used to notify the person in accordance with section 8, third paragraph. * 
+
+This means that a violation of section 32, second paragraph, will constitute case processing errors in the case the notice was sent. The error will lead to the risk of the citizen suffering rule loss, for example by sent to an email address that is no longer in use.
+It is the individual business's responsibility to comply with §32, and ** Norwegian Digitalisation Agency's clear recommendation is that the companies check the date fields that come with the contact information. ** As long as one of the date fields email_verified_date or mobile_verified_date is newer than 18 months, the contact information can be used for notification under §8. Note that the dates may be different between mobile and email, so, for example, email may have expired, while mobile is still active. Notification cannot be sent to email. A notice is automatically sent out two months before a user is set to the status "can_not_varsles", if the mobile number or email address is still not confirmed.
+We believe the best thing is that the subject system/integration automatically does this control for the caseworker, so that you ensure that decisions are not sent incorrectly.
+At the same time, contact information that has expired can still be used to send service messages of both a serious and less serious nature, such as snow clearing in the street, or requirements for boiling water due to acute pollution. Therefore, the Norwegian Digitalisation Agency cannot refrain from providing expired contact information through the lookup service.
+Information "Notification Status"
+Notification status indicates whether a person can be notified in accordance with §32 of the Eforvaling Regulations. This information requirement triggers filtration in the lookup service, ie contact information, certificate and secure digital mail on persons with expired contact information will not be delivered.

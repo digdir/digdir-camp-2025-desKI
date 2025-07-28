@@ -1,0 +1,96 @@
+Url: https://eid.difi.no/nb/minid/brukerkarkarkar#MAIN-Content
+Title: Terms of Use of MinID | Help sites for common solutions
+
+Sámegiella
+Terms of Use of MinID
+
+ 1. Introduction
+
+MinID is a personal electronic ID, a bit like an electronic passport. You can use MinID to log in to public websites, for example to apply for high school, apply for loans and scholarships at the Loan Fund and much more.
+
+MinID provides access to public services at a significant level of security (level 3).
+
+2. Binding actions
+
+When you use MinID to perform actions, such as digitally signifying, you are committed to the recipient in the same way as if you signed with your physical signature.
+
+3. Rules for the use of MinID
+
+3.1 Who can minide be issued to
+
+MinID is a widely available Eid. The following three criteria must be met for the Norwegian Digitalisation Agency to issue MinID on request from the user:
+
+· The user must have a valid Norwegian birth number or D-number
+
+· The user must be 13 years of age, or turn 13 in the calendar year
+
+For mini -issued over the Internet, the user in addition to the points above must have a registered address for sending activation codes.
+
+For mini-issued at attendance, the user in addition to the points above must be able to show a valid, recognized ID certificate.
+
+See separate information for issuance to people under guardianship: https://eid.difi.no/nb/verger-ma-msende-ende-vergett Attorney-fa-access- to-clients-Sin-minid-user
+
+3.2 Issuing MinID
+
+When you create MinID, you commit to providing complete and correct information.
+
+3.2.1 Issue on the Internet.
+
+When issuing MinID on the Internet, enter the birth number or D number. Birth number or D number is used to retrieve your address from the National Register, and send you a letter with the activation code used to register MinID. Once you have received the Activation Code letter, you must also register your mobile number and email address. For more details See here: https://eid.difi.no/nb/minid/register-minid- User
+
+3.2.2 Issuing by personal attendance.
+
+Persons who do not have a valid Norwegian D number can be issued minid by personal attendance at the Tax Administration, given that they are employees in Norway. The case manager at the Tax Administration carries out identification control, creates D-number and issuer MinID. 
+
+3.3 Measures to ensure the user's mini 
+
+We recommend that the user take steps to secure their personal mini against possible theft and abuse. MinID is personal, and the user does not have to share activation code or password with others, either people or machines. 
+
+Secure mobile devices
+The user should equip their mobile device, which can receive mini-Engang codes by SMS and provide access to the MinID app, with a screen lock secured with a password/PIN/TouchID/FACEID or equivalent.
+
+3.4 Spervation of your MinID
+
+It is possible to enter the barrier on their birth number so that minide cannot be created: http://eid.difi.no/nb/sperring-v-minid
+
+If there is a suspicion of abuse of the user minide, Digdir can on his own initiative Sperre Minid to protect the proprietor's electronic identity. 
+
+If you have not used your MinID to log in to more than 24 months, it will automatically be closed. To open it up again, contact usage support. (+47) 800 30 300 or chat. 
+
+4. Processing of personal data
+
+The Norwegian Digitalisation Agency must process personal information about you to issue MinID and to allow you to use MinID in accordance with these Terms. Read privacy statement for MinID here.
+
+5. Changing the rules for the use of miniID
+
+Digdir has the right to change the rules, without notice, when it occurs as a result of a change in the safety requirements that apply to MinID. The changes come into force when they are published on idporten.no. Other changes are notified by e-mail or SMS at least one month before they take effect.
+
+6. Digdir's responsibility to you as a user of MinID
+
+Digdir's liability for abuse follows the ordinary rules of Norwegian legal legislation.
+
+Digdir is not responsible for indirect losses due to errors or deficiencies, unless the loss is caused by intention on the part of Digdir.
+
+Digdir is not responsible for losses due to unjustified use, for example, if others have been granted access to activation code, password and mobile phone, or you have failed to notify Digdir about irregularities or abuse or suspicion of this. Digdir is not responsible for losses if the user has not complied with the rules for the use of MinID.
+
+Digdir is never responsible for third -party services offered with MinID as authentication.
+
+Digdir's total liability is in any case limited to an amount corresponding to the price of the service provided, yet a maximum of NOK 30,000,- for each injury/every liability triggering event.
+
+7. Dispute resolution
+
+Disputes are decided under Norwegian law by Norwegian courts.
+
+8. Further information
+
+If you need further information, go to http://eid.difi.no/nb/minid.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

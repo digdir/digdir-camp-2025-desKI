@@ -1,0 +1,21 @@
+title: onbehalfof
+Description: Onbehalfof - Supplier support
+Summary: "Onbehalfof allows a supplier to reuse an OIDC integration on behalf of many customers."
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_onbehalfof
+
+About the functionality
+Onbehalfof makes it possible for service providers to offer services to different customers over the same integration.
+
+Provides opportunity to have different names, logo and back-url
+Statistics / Billing goes to the correct service owner
+
+Note that an Onbehalfof integration does not provide access to Scopes that its own customer has accessed.
+Use
+Authentication request must contain additional parameter:
+
+Returned ID token will then contain a new Claim:
+
+Client must validate that returned "Client_onbehalfof" matches the requested onbehalfof value.
+The combination of Client and Client_onbehalfof must be pre-registered with the ID port.

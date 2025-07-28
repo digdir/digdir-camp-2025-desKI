@@ -1,0 +1,12 @@
+Title: 20-10 Employee Gate 
+Description: 20-10 Employee Gate 
+Sidebar: Oidc
+Redirect_From: /20-10_Ensattports_
+
+A first version of pilot for the employee port
+Scheduled production setting: Nov 3, 2021
+New functionality:
+Employee gate as new integration type in self-service (Ready to Ship)
+It will now be possible to create the employee port integration via self-service solution (both web and API)
+Employee gate as a separate IDP (in Development)
+Employee Pilot is established as a separate IDP. Supports login without SSO functionality, but has no employee/representation source yet.

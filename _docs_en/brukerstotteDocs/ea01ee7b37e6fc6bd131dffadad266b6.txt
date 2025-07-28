@@ -1,0 +1,34 @@
+URL: https://eid.difi.no/nb/sikkyness-og---svivvern/person protection-og-informationskapsler#MAIN-Content
+Title: Privacy and Cookies | Help sites for common solutions
+
+Privacy and cookies
+
+The purpose of using cookies
+Cookies are small text files stored in your browser when using a web page. In the ID port, we use cookies to handle login session, and for load balancing the system so that all users are secured the best possible experience.
+
+Who processes the information
+The Norwegian Digitalisation Agency is responsible for processing personal data that is processed in joint login to public services. The Norwegian Digitalisation Agency is also responsible for processing information used to manage MinID.
+
+The suppliers of the electronic IDs (BankID, Buypass and Commfides) are responsible for processing personal data necessary to manage their login solutions.
+
+What cookies are used in the ID port
+The ID port uses five different cookies for login and authentication.
+
+These cookies are automatically deleted when you close your browser. 
+
+Cookies on the help pages eid.difi.no
+These websites are not part of the login solution, and do not record personal information related to your e-ID even if you are logged in.
+
+As an important part of the work of creating user -friendly websites, we look at the user pattern of those who visit the pages. To analyze the information, we use the Google Analytics analysis tool.
+
+Google Analytics uses cookies that provide information about the individual uses their movements on the website. Examples of what the statistics give us answers are how many people visit different pages, what sites users come from and which browsers are used. None of the cookies allows us to associate information about your use of the site to you as an individual.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

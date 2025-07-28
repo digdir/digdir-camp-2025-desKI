@@ -1,0 +1,18 @@
+Url: https://eid.difi.no/nb/id port/nar-minid-nin-s-s-et-et-login selection-i-idport the#MAIN-IDE
+Title: When MinID is not a login choice in the ID port | Help sites for common solutions
+
+When MinID is not a login choice in the ID port
+
+To log in to a service that requires login at the highest security level (level 4), you cannot use MinID. This applies, for example, to login to Helse Norway and some services at NAV.
+
+NB! It is those who own the service who decide which level of security you must use.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

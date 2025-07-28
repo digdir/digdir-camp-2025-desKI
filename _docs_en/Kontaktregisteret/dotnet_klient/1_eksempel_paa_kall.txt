@@ -1,0 +1,72 @@
+title: Example of calling
+Description: 
+Summary: ""
+Sidebar: krr_dotnet
+Product: krr
+redirect_From: /krr_ example_paa_kall
+
+There are only three calls you can do with the lookup service; 
+
+retrieve changes 
+retrieve persons 
+Retrieve print certificate. 
+
+First you need to set up a business certificate and to be used.
+Set up client configuration
+With certificate from thumbprint:
+`` `Charp
+Const String Sender Certificate Humb Print = "Fe14593DD66B2 ...";
+was configuration = new lookup service configuration (
+    Environment. Functional Test Environmental Folishment1,
+    Sender Certificate
+));
+`` `
+
+We recommend loading the Thumbprint certificate because the password is not in the code. Certificate can be installed in for or. See how to install the certificate here.
+
+With certificate from file:
+`` `Charp
+Const String Sender Certificate Path = @"C: \ Sta \ to \ Certificate \ Certificate.pfx";
+was certificate = new x509Certificate2 (
+    File.Readallbytes (Sender Certificate Path),
+    "Password",
+    X509Kystorage flags.exportable
+));
+was configuration = new lookup service configuration (
+    Environment. Functional Test Environmental Folishment1,
+    certificate
+));
+`` `
+Retrieve changes
+`` `Charp
+String Sender Certificate Humb Print = Zero;         // as initiated earlier
+Lookup service configuration configuration = zero; // as initiated earlier
+Was look -up service client = new lookup service client (configuration);
+was personal identifier = new [] {"08077000292"};
+were persons = lookup service client.
+    Information needs
+    Information needs
+    Information needs
+    Information needs
+));
+`` `
+Retrieve persons
+`` `Charp
+String Sender Certificate Humb Print = Zero;         // as initiated earlier
+Lookup service configuration configuration = zero; // as initiated earlier
+Was look -up service client = new lookup service client (configuration);
+was personal identifier = new [] {"08077000292"};
+were persons = lookup service client.
+    Information needs
+    Information needs
+    Information needs
+    Information needs
+    ));
+`` `
+Retrint Print Certificate
+`` `Charp
+String Sender Certificate Humb Print = Zero;         // as initiated earlier
+Lookup service configuration configuration = zero; // as initiated earlier
+Was look -up service client = new lookup service client (configuration);
+Was print certificate = lookup service client.hentprint Certificate ();
+`` `

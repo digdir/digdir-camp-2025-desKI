@@ -1,0 +1,53 @@
+Title: Transformation from archive message to KS Svarut
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The table below shows how the integration point transforms outbound messages to call against the API for KS Svarut.
+The integration point supplements outbound messages with information from configuration, standard values and lookups at
+Third parties.
+| To KS Svarut | From eFormidling Message | From configuration | From default value |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- ------------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------- |
+| The recipient's organization number () | Organization number for recipient as stated in SBD | - | - |
+| The response recipient's organization number () | Organization number for sender as stated in SBD | - | - |
+| The Receipt's Name () |  For correspondence type sender as stated in the archive message | - | Name for sender is retrieved from the Device Register |
+| The response receiver's address line 1 () |  For correspondence type sender as stated in the archive message | - | Sender address is obtained from the Device Register |
+| The Roser's Postcode () |  For correspondence type sender as stated in the archive message | - | Postal code for sender is retrieved from the Device Register |
+| The response recipient's post office () |  For correspondence type sender as stated in the archive message | - | Postal site for sender is retrieved from the Unit Register |
+| The Receiver's Land () |  For correspondence type sender as stated in the archive message | - | Country for sender is retrieved from the Device Register |
+| Identifier for message () | Scope as stated in SBD, otherwise message indentifier stated in SBD | - | - |
+| Type Message () |  As stated in SBD | - | - |
+| External identifier for message | Message Identifier stated in SBD | - | - |
+| Identifier for the message This is a response to () | Scope as stated in SBD | - | - |
+| The message requires level 4 login to be downloaded () |  As stated in SBD | - |                                                  |
+| Title for message () |  As stated in the archive message | - | - |
+| Sender's case sequence number () |  As stated in the archive message | - | - |
+| Sender's case year () |  As stated in the archive message | - | - |
+| Sender Journal year () |  As stated in the archive message | - | - |
+| Sender Secretary Sequence Number () |  As stated in the archive message | - | - |
+| Sender Journal Post Number () |  As stated in the archive message | - | - |
+| Sender Journal Post Type () |  As stated in the archive message | - | Incoming Document () |
+| Sender Journal Status () |  As stated in the archive message | - | Completed from case manager () |
+| Sender Date () |  As stated in the archive message | - | - |
+| Sender Document Date () |  As stated in the archive message | - | - |
+| Sender's title () |  As stated in the archive message | - | - |
+| Avsanders Case Manager () |  For correspondence type sender as stated in the archive message | - | - |
+| File name for the attachment () | File name as stated by uploading to the integration point | - | - |
+| MIME Type for the attachment () | MIME type as stated by uploading to the integration point | - | - |
+| The attachment itself (binary document) () | Binary document as stated by uploading to the integration point | - | - |
+| Which system sent message () | - |        | - |
+| Billing Account for Message () | - |  | - |
+| Indicates if the message is encrypted to KS Svarut () | - |           |                                                   |
+| The recipient's name () | - | - | Recipient name is retrieved from the Device Register |
+| Receiver's address line 1 () | - | - | Address line 1 for recipient is retrieved from the Device Register |
+| The recipient's postal code () | - | - | Postal code for recipient is retrieved from the Device Register |
+| Recipient's post office () | - | - | Postal location for recipient is retrieved from the Unit Register |
+| Recipient's country (| - | - | Country for Recipient is retrieved from the Device Register |
+| Determines whether two -sided printing should be used () | - | - |                                                   |
+| Determines whether color printing should be used () | - | - |                                                  |
+| Determines which postal broadcast to use () | - | - | B-mail |
+| Determines whether the message should only be delivered digitally () | - | - |                                                  |
+Further description of the functionality of KS Svarut is found at:
+
+Technical documentation for KS Svarut (external link)

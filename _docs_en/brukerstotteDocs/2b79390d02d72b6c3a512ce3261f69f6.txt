@@ -1,0 +1,21 @@
+Url: https://eid.difi.no/nb/esigning/how-kan-h-se-se- over document-cal-Signed-Signes-of-Freere-of-People
+Title: How can I see if the document should be signed by several people? | Help sites for common solutions
+
+How can I see if the document should be signed by several people?
+
+Once you have logged into the signing service, you will get an overview of the documents you are going to sign.
+There you will see if the document has a multi -party signing to be signed by several people, and whether any of them have already signed the document.
+
+If you are wondering who the others will sign the document, you will either see it in the message field or you will see it in the document itself if you open it.
+
+When the document is signed, the person who has an active digital mailbox will in most cases receive the document with all the signatures. It is up to each business if they send the signed document to the digital mailbox.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

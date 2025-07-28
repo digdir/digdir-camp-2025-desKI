@@ -1,0 +1,51 @@
+Title: "ID_TOKEN from the ID port"
+Description: "This Page Documents The ID_Tokens Issued by ID port ID port Oidc Provider"
+Summary: 'His Page Documents The ID_Tokens Issued by Id Port Id Port The Oidc Provider'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_id_token
+
+Request
+Two Request an id_token, use the /token endpoint.
+The id_token
+The id_token is the assertion of the authenticated user identity.  It tells you "Who the User Is", but not "What the User Can Access".  The ID_TOKEN IS MEANT TO BE Consumed and validated by the client, to build a local session at the client.  It is not intended to be passed around to enable api access towards other parties/systems.
+The id_token is a jwt structure, as documented in oidc core, 3.1.6.  The client must validate the id_token according to oidc core, 3.1.7.  
+In Addition, The Client Must Validate That The Security Level () is sufficiently high for the donor service.
+Example:
+
+
+
+id_token header claims
+| Claim | value |
+| --- | --- |
+| KID | "Key Identifier" - Unique Identifier for The Key and Certificate Used by ID port. The Public Key and the Certificate Must Be Fetched From Our .well-Known Endpoint. |
+| ALG | "Algorithm" - algorithm used for signing the token. ID port only supports (RSA-SHA256) |
+id_token body claims
+| Claim | Value |
+| --- | --- |
+| Sub | "Subject Identifier" - an unique identifier for The Authenticated User.  The Value is pairwise, meaning a donor client will always get the same value, whilst different clients do not get equal values for the same user.  |
+| Aud | "Audience" - The Client_id of the Client Receiving This ID_Token |
+| ACR | "Authentication Context Class Reference" - The Security Level of Assurance for the Authentication. Possible Values Are (i.e. Minid was used) or (Other Eids). The Level Must be validated by the client. |
+| Auth_Time | Timestamp indicating when the authentication was performed.  |
+| AMR | "Authentication Method References" - Method of Authentication. Possible Values Can Be Seen Below.  The Available Values May Change Over Time, So The Client Should Not Validate This Value. |
+| ISS | The Identifier of ID port as can be verified on the .well-known endpoint |
+| PID | "Personal identifier" - The Norwegian National ID Number (Birth Number/D number) of the authenticated end User.   This claim is not included if scope was required or pre-registered on the client. |
+| Exp | Expire - Timestamp When This Token Should Not Be Trusted Any More.  |
+| IAT | Timestamp when this token was issued.  |
+| JTI | JWT ID - Unique Identifer for a Given Token |
+| Locale | The Language Selected by the User during the Authentication in ID port |
+| SID | Session ID - An Unique Identifier for End User Session at the ID port. May be needed when performing logout |
+| at_hash | A hash of the access_token issued together with this id_token. The Client May Use This Value to Protect Against Access_token Injections When Using By-Reference Access Tokens. |
+Amr values
+Authentication Method Can Have The Following Values:
+| Value | Description |
+|-|-|
+| | Minid Using Pin-Codes From Letter |
+| | Minid Using One-Time-Code Received via SMS |
+| | Minid Using Notification in the Minid-app on Android/iOS |
+|    | BankID Using Code Generator or App |
+| | BankID on Mobile |
+|      | Buypass |
+| | Commfides Using SmartCard |
+|  | A European Approved Eid Through The Eidas Network |
+| |  An owned for testing purposes. Not used in production.  |

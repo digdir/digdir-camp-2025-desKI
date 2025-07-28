@@ -1,0 +1,33 @@
+Title: Phase out endpoints and IP addresses
+Description: Residual API for the contact and reservation register
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_utfasa_endepoint
+
+Phased out endpoint
+The reference service residue
+| Environment | URL |
+ |-|-|
+ | Ver1 | https: //oidc-ver1.difi.no/contactinfo-oAuth2-server/rest/v1/personer |
+ | Ver2 | https: //oidc-ver2.difi.no/contactinfo-oAuth2-server/rest/v1/personer |
+ | YT2 | https: //oidc-yt2.difi.eon.no/contactinfo-oAuth2-server/rest/v1/personer |
+ | Prod | https: //oidc.difi.no/contactinfo-oAuth2-server/rest/v1/personer |
+Lookup by logged in user
+| Environment | URL |
+ |-|-|
+ | Ver1 | https: //oidc-ver1.difi.no/contactinfo-oAuth2-server/rest/v1/person |
+ | YT2 | https: //oidc-yt2.difi.eon.no/contactinfo-oAuth2-server/rest/v1/person |
+Phased out IP addresses
+Production
+| DNS name | IPV4 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ------------------------------- | ----------------------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| kr.digdir.no |  146.192.252.54 | 443 | The lookup service KRR | Phased phase 18.09.2023 | Outbound |
+Test
+| DNS name | IPV4 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ------------------------------- | ----------------------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Krr-ver2.digdir | 146.192.252.152 | 443 | The lookup service KRR | Phased on August 18, 2023 | Outbound |
+| kr-ver1.digdir.no | 146.192.252.121 | 443 | The lookup service KRR | Phase out 31.05.2023 | Outbound |
+Phased swagging
+| Environment | URL |
+|-|-|
+| Ver2 | https: //oidc-ver2.difi.no//contactinfo-oAuth2-server/swagger-ui/index.html |

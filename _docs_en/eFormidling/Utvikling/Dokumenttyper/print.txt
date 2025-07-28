@@ -1,0 +1,161 @@
+Title: "Document Type: Print"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The document type consists of a standard Business Document (SBD) and one or more documents.
+The document type has the identifier.
+
+TOC
+{: toc}
+
+Standard Business Document
+All document types in e -forming follow the standard of addressing information.  consists of a header ()
+And a business message used for document type-specific addressing information.
+The use of the standard is described on the Standard Business Document.
+The document type is addressed from the sender's organization number to the recipient's birth number. If the recipients
+The birth number is unknown this can be left out. In such cases, it is required to explicitly state the recipient's postal address, because
+Otherwise, eFonsling does not have enough information to do address lookups. One can thus use to send physical mail
+to foreign residents and businesses.
+Business message
+The business message is described below.
+
+ (required)
+Defines which attached document is the main document.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Used to identify a responsible unit within a business. In case of sender identifier this must be
+Ordered from Digdir.
+| Legal values | String |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Designation for what kind of print and print type to be selected for this letter.
+| Legal values |  or |
+| Standard value |                |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+A-mail or B-mail.
+| Legal values |  or |
+| Standard value |                       |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Defines how physical mail that is not delivered to the recipient should be handled.
+| Legal values |  or |
+| Standard value |                                 |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Name for the recipient of any return post.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 1 for the recipient of any return mail.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 2 for the recipient of any return post.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 3 for the recipient of any return post.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 4 for the recipient of any return mail.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Postcode for the recipient of any return mail.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Postal location for the recipient of any return post.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Country for recipient of any return mail.
+| Legal values | String |
+| Standard value | Retrieved from the Device Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Name for recipient.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 1 for receiver.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 2 for receiver.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 3 for receiver.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Address line 4 for receiver.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Postal code for recipient.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Postal location for recipient.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Land for recipient.
+| Legal values | String |
+| Standard value | Retrieved from the National Register |
+| Configuration of Standard Value | Not supported |
+
+| Print.mostreer.name | No | Name for recipient.                                                                | String | Retrieved from the National Register | Not supported |
+| Print.marter. address line1 | No | Address line 1 for receiver.                                                      | String | Retrieved from the National Register | Not supported |
+| Print.marter. address line2 | No | Address line 2 for receiver.                                                      | String | Retrieved from the National Register | Not supported |
+| Print.marter. address line3 | No | Address line 3 for receiver.                                                      | String | Retrieved from the National Register | Not supported |
+| Print.marter. address line4 | No | Address line 4 for receiver.                                                      | String | Retrieved from the National Register | Not supported |
+| Print. Recipient.Post number | No | Postal code for recipient.                                                          | String | Retrieved from the National Register | Not supported |
+| Print. Recipient.poststed | No | Postal location for recipient.                                                            | String | Retrieved from the National Register | Not supported |
+| Print. Recipient.Land | No | Land for recipient.                                                                | String | Retrieved from the National Register | Not supported |
+One or more documents
+The types of documents supported depend on the recipient and are not known in advance. This means that attempts to
+Sending documents that are not supported by the recipient fails first upon reception.
+File format that is supported is pdf. Further description can be found on:
+
+Print and Shipment Service (external link)
+
+Enriching and transformation
+The integration point transforms and enriches messages sent by digital mail to residents.
+
+Transformation from print to digital mail to residents
+
+Recommendations by addressing
+In order to reduce the risk of letter mail not reaching the recipient, Posten has made good recommendations on how to address properly, both for recipients in Norway and abroad. It is recommended that all sender companies follow these. Read more on the mail addressing (external link)
+Important notes of error status on print messages:
+Although a printout message has been granted, it can nevertheless fail at a later date. It can happen in the following cases:
+The message fails during the print job itself. This will normally happen within 24 hours after the message has been delivered. Please note that the printing service does not run on holidays and holidays! It may therefore take more than 24 hours for a message to fail in this scenario. 
+The message fails as a result of a return post, ie it cannot be delivered to the physical postal address of the inhabitant. An error status due to return mail will in most cases be returned within a period of two weeks. In rarer cases, it may take up to four weeks for a letter to return. Note that there are only messages with print.Retur.Returhavning set for shredding_med_melding that will receive error status on the return post.
+Sender must be able to handle a message may fail after the status delivered, and it is therefore recommended to check the status for a period after it is marked as delivered.
+Tip: To retrieve more details as to why a message has failed, you can decode the Raw Receipten that comes with the status message. View Raw Receipt
+Next step
+
+Document type under example of a resident's decision

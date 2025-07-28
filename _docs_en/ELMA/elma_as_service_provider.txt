@@ -1,0 +1,95 @@
+Title: Service Provider Manual
+Description: Elma User Manual for Service Providers
+Summary: "Elma User Manual for Service Providers"
+Product: Elma
+Sidebar: elma_sidebar
+redirect_From: /elma_service_provider_user_manual
+
+Updated: 03.04.2023
+Participants
+The Participant Page Shows the Participants Belonging to the Service Provider.
+
+Add Participant
+To add a new participant you can press the "add participant" button. 
+Fill in the Required Information
+
+IF SUCCESSFUL THE PARTICIPANT DETAIL PAGE WILL BE DISPLAYED:
+
+Note that process Dependencies are shown. In a Special Case, When Viewing A 0192 Participant, Profiles 
+Which are Dependencies That Are Profiles on the 9908 Sibling Participant Will Also Be Shown. Those Dependencies 
+Are Not Processes On The 0192 Participant, But Are Still Shown in Elma Web. They are not visible in a SMP lookup. 
+Edit participant
+To edit a participant you can pressure the "edit participant"-button.
+
+Delete Participant
+Two Delete a Participant you should be standing in the same window as above. (Endpoints-> Your endpoint). From Here You Can Click Delete On The Selected Participant to Remove It From Your Endpoint. If you Attempt to Delete a Participant from the Participants View (pressing the home button) you will get an error. This delete button will be remed in a future release as it is not mean to be there.
+
+Access Points
+Here you will see all the access point that are available. 
+
+Applying for An Access Point Agreement
+If you want to use a specific access point, you need to make an agreement with the access point provider.
+This can be initiated by pressing the "Apply for Agreement" -Button on the access point.
+Then you will see a New Agreement Screen. You need to specify which domain the agreement is for. Click Save When You're Done.
+
+After the Agreement is created, you will see something like this: 
+
+Notice That The Agreement is not Active Yet. To Activate the Agreement you need to give the access point provider your Certificate, SO 
+That they can install it in the access point. Then the access Point Will Add the Public Key to the Agreement.
+As the Soon as the public key is added, you as the service provider, will be able to activate the Agreement.  
+Given That The Access Point Provider has Installed the Certificate, then you will see something like this:
+
+You can now activate the agreement so that the participants belonging to the same domain as the agreement will be
+Recipients of the Access Point. Activate the Agreement by pressing the "Activate" -Button and Get The Following Popup:   
+
+Confirm by pressing the "yes, Activate It!"-Button.
+
+
+Access Point Providers
+Here you will see all the access point providers in elma
+
+Click on any one of them and get contact information and which access points they provide. 
+
+
+Processes
+Here you see the different processes currently in use as well as deeprecated ones. 
+By clicking on einher one you can see the document types connected to that process. 
+Only the elma admins and peppol authorities are allowed to add, edit or remove processes. 
+To add a process to a participant you need to go to the edit/add participant menu.
+
+
+Faster
+When you make a new user it will be automatically added to the same service provider you are logged in as. 
+Add/Edit New User
+Make You Fill in All The Fields Before You Click Save.
+
+After you have successfully added a new user you can edit this user, add another or view log of the current added users.
+
+
+Event
+Here you will find all the create, update and delete events to you as an service provider.   
+
+
+Sml Queue
+When Adding or Deleting a Participant There Will Be Sent A Request to Update the SML (Service Metadata locator) accordingly.
+The Requests Will Be Put on a Queue and Processed as Soon as Possible. Typically, Within A Minute. Below is a screenshot
+of the sml queue containing one entry that has not YET been processed.
+
+There Can Be Situations Where The Requests Can't Be Processed. I.E. Due to Planned Maintenance of the Sml Application Server or Network Problems.
+Is such scenarios the operations will fail, but they will automatically be retried later on. The SML Queue Screen Shows The Active Queue.
+Entries That Are Successfully Executed Will Get Status Completed and Will Disappear After Time. 
+Sometimes the same request will fail over and over again pigeon to a specific problem. Then it is important to check the error message.
+You can manually retry the request be pressing the retry-button or delete the sml request by pressing the delete-button.
+
+PEPPOL DIRECTORY QUEUE
+When Adding or Deleting a Participant There Will Be Sent A Request to Update the Peppol Directory Accordingly.
+PEPPOL DIRECTORY REQUIRES THAT A ATTACIPANT IS Registered in the SML.
+The Requests Will Be Put on a Queue and Processed as Soon as Possible. Typically, Within A Minute. Below is a screenshot
+of the sml queue containing one entry that has not YET been processed.
+
+There Can Be Situations Where The Requests Can't Be Processed. I.E. Due to Planned Maintenance of the Peppol Directory Application Server or Network Problems.
+Is such scenarios the operations will fail, but they will automatically be retried later on. The Peppol Directory Queue Screen Shows The Active Queue.
+Entries That Are Successfully Executed Will Get Status Completed and Will Disappear After Time. 
+Sometimes the same request will fail over and over again pigeon to a specific problem. Then it is important to check the error message.
+You can manually retry the request be pressing the retry-button or delete the sml request by pressing the delete-button.
+If you have any questions don't hesitate to contact us elma@digdir.no

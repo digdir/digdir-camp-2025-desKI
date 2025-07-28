@@ -1,0 +1,10 @@
+Title: 20-04 ID port
+Description: 20-04 ID port
+Sidebar: Oidc
+Redirect_From: /20-04_ID port
+
+In this release, the ID port is upgraded to the latest version of Forgerock AM. BankID on mobile is optimized to use server events for the browsers who support this.
+Releasen was production -fed Apr 21, 2020
+New functionality:
+Breeding to AM 6.5 (Shipped)
+The ID port Saml interface should be upgraded to Forgerock AM 6.5

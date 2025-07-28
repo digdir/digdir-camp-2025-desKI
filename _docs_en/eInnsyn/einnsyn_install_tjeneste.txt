@@ -1,0 +1,25 @@
+TITLE: Install E-Insync client as Windows-Service
+Description: Install E-Insync client as Windows-Service
+Summary: "Here you will find information on how to install E-Insyn-Client as Windows Service"
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_install_tjeneste
+
+After you finish editing the e-insight-client.xml file, you must install the service. To do this, you need to open a command window as an administrator. Then navigate to the e-insight folder (eg) and run the following commands. 
+
+e-insight-client.exe install
+e-insight-client.exe start
+
+These commands must be run without any form of slash or hyphen front. Written exactly as in the picture below:
+
+You can check the status of the service by using the following command in the same command window:
+
+e-insight-client.exe status
+
+Verify that the e-insight-client service has started
+Message no.difi.evisyn.Application - Started Application in 7.121 Seconds (JVM Running for 7,951) should be in the e -insight -client.Out log. This indicates that the service has starts and listens to the Inputdirectory folder.
+Verify that the client has processed the files
+In the log file e-insight-client.out there will be messages like these:
+Download as a log file
+
+When uploading, in the integration point log there will be log messages like these:
+Download as a log file

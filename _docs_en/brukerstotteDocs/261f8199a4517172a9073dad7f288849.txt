@@ -1,0 +1,49 @@
+Url: https://eid.difi.no/nb/ recognizable-error-and- and-loses/MAC-OS-x-Safari-firefox-chrome-and-opera
+Title: Mac OS X (Safari, Firefox, Chrome and Opera) | Help sites for common solutions
+
+Mac OS X (Safari, Firefox, Chrome and Opera)
+
+Here you will find instructions for deleting cookies in various browsers on Mac:
+
+Safari
+Start the browser "Safari"
+Click "Safari" in the top left corner
+Select "Empty Log"
+Check that "Empty" is set to "the entire log"
+Click "Delete Log"
+Close browser and open again before trying to log in again 
+Firefox
+Start your browser "Firefox"
+Go on Menu - three horizontal strokes in the top right corner
+Select "Archive"
+Click "History"
+Click "Empty Recently History"
+Make sure the "Delete the time period" is set to "everything"
+Make sure "info capsules" are squatted by
+Click "OK"
+Close browser and open again before trying to log in again
+Chrome
+Start the browser "Chrome"
+Click "Chrome" in the top left corner
+Select "Remove browsing data"
+Check that "time period" is set to "all dates"
+Check that "cookies and other website data" are squatted by
+Click "Delete Data"
+Close browser and open again before trying to log in again
+Opera
+Start the browser "Opera"
+Click "Opera" in the top left corner
+Select "Delete Surfate"
+Check that "time period" is set to "all dates"
+Make sure "Info Caucers and Other Site Data" are squatted by
+Click "Delete Data"
+Close browser and open again before trying to log in again
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

@@ -1,0 +1,147 @@
+Title: How to use the machine gate as API consumer
+Description: Machine gate as API consumer
+Summary: 'API consumers need to create a machine port integration that has the appropriate APIt scope recorded.'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_guide_apikonsument
+
+This document shows the steps that an API consumer must do to use the machine gate.
+Overall procedure for API fuse with machine gate
+A full value chain for API protection with the machine gate consists of the following steps:
+
+API provider is manually assigned an API pre-fix in the machine gate
+API provider creates an API (Scope)
+API provider provides access to a consumer
+Consumer creates a machine gate integration (OAuth2 client) and records the scop to it.
+
+Access is now established.  When the API is to be used run-time, the following steps are carried out:
+
+His consumer Outh2 client requests the token from the machine gate
+The consumer includes token in calling to the API.
+The API provider validates the token, performs any fine-granulated access control and returns requested resource.
+
+Procedure for API consumer
+4. Create an integration in the machine gate
+You must create an integration (a so-called OAuth2 client) in the machine gate.
+The client must authenticate against the machine gate either with a business certificate, or with an asymmetrical key that the consumer himself makes.
+The client must be registered with the following OAuth2 properties:
+| Property | Value |   Explanation |
+|-|-|-|
+| Integration_Type | "Machine Gate" |  This field tells the Norwegian Digitalisation Agency what integration this is.   |
+| token_endpoint_Auth_method | "Private_key_jwt" | The machine gate only accepts certificate and keys, and not client_secret to authenticate clients |
+| Grant_Types | "Urn: IETF: Params: OAuth: Grant-Type: JWT-Bearer" | The machine gate accepts only signed Jwter as Grants.  |
+| Client_id | Auto-assigned | Is set by the Norwegian Digitalisation Agency upon registration |
+| Description |  String | You must enter a good description of the service. This becomes visible to the Directorate of Digitization's personnel.  |
+| Scopes | String, Space separated | One or more API/Scopes as your organization has been granted access to by API provider.
+If you are a supplier who will use APIs that require your customer to actively delegate assigned API access in Altinn, then you need to create a client and put the correct scop on the client. All Scopes that uses Altinn delegation is available if you press "Scopes available to all" when adding scopes to a client.
+Some APIs can be accessed by all the machine gate consumers (so -called whitelisting). It is then not possible to pre -register such scopes on the client.
+It may be a security risk to let the same client access too many APIs, so we recommend that consumers make a new client by posting the configuration for this:
+Registration via the collaborative portal
+You can log in to https://so co -work.digdir.no/ and register the new integration. 
+All organizations that have entered into the Norwegian Digitalisation Agency's terms of use shall have access to the collaborative portal in the test environment.  You must self-register a user with your organization's registered email domain.
+For self-service in production, login with the ID port is required and that authorized person for your organization approves which birth number should have access.
+
+[!!
+
+Record client via self-service API
+In order to register a client through our self-service apia, you must first create a self-service client.  See https://difi.github.io/felleslosinger/oidc_api_admin.html.
+Then you can create the machinery integration as follows:
+`` `
+Post https://api. Cooperation.digdir.no/Clients/
+{
+   "Integration_Type": "Machine Gate",
+    "Client_name": "Oidc_difi_jb_test",
+    "Description": "New Integrajson again.",
+    "Token_endpoint_Auth_method": "Private_key_jwt",
+    "Grant_Types": [
+        "Urn: IETF: Params: OAuth: Grant-Type: JWT-Bearer"
+    ], ],
+    "Scopes": ["Difitest: API3", "Difitest: API4"]
+}
+`` `
+The machine gate will respond with an auto-generated client_id, for example  
+Registering client using your own key
+To avoid spreading the business certificate around to many systems, you can create your own asymmetrical keys related to a single integration.
+This must be done in two steps: First you create a client who in the example above, and then create a key set on this:
+`` `
+Post/Clients/238259D7-F0AB-4BD5-B253-0F0159375096/JWKS
+{
+  "Keys": [
+    {
+      "KTY": "RSA",
+      "E": "Aqab",
+      "Use": "Sig",
+      "Kid": "My_egen_nokkel",
+      "Alg": "Rs256",
+      "N": "LGC-DGNL9L9PCSB6EW5MF23AISS09Q7MXRE9Q9DAZSIN9IJQJQJMKWDYSPOYW3G_RSX2A74CG_Q3ITSSM0CO9IJ0 Lqp8gjoii9i8syi6anbkk6fisr1adzbsggrm1-zmrnvsj811sntdkbgx8zxvrjm4f6d2kwl3Tenv0crrvtpho 0SRMIMKBVBDAWPYQC64SQDVARY6XILPHD-DA2N2N2CL6VRQVNS7DYD8-C2TEYGGB_TASRVSORX9GF5CZ-HLNHF IgG2qqyzaljyfowppg5RYBP9BAWG9VFLLUFD_Y6VVZ0TQVFAYJ67NFZ_W4RXY-MDRGERKHJCQ81GKMVZQ5FQ "
+    }
+  )
+}
+`` `
+The 'Kid' value must be unique among all the machine's customers.
+Registering client as supplier for external delegation
+Suppliers who use external delegation record their integration in the same way as above.
+5: Asking for token
+In the ordinary use phase, the flow is followed below:
+
+sequence chart
+  Note over client: Generate and sign JWT
+  Client ->> Machine Gate: Use JWT to request token
+  Note over the machine gate: Valides business certificate and perform access control
+  Machine gate ->> client: return access_token
+  Client ->> API: Use token against API
+  Note over API: Valider Token
+  API ->> Client: Result of API -Kall
+
+
+The consumer's client requests an access_token from the machinery by generating a JWT-based Tokn request (JWT-Bearer Authorization Grant). If the request is approved, the machine gate will issue an access_token that the consumer can use in calling against API provider.
+Grantet can contain many different claims. These are the most essential:
+| Claim |  Value | Description |
+| --- | --- | --- |
+| Aud | https://maskporten.no/ | Audience - the machine identifier of the machine gate. Value for the relevant environment can be found at .well-known endpoint. |
+| ISS | Client_id | issu - your own client_id.  |
+| Scope | | Space-separated list of scopes as the client requests. |
+| IAT | 1573132283 | Issued that - time for when Jwten was made. Note: UTC time |
+| Exp | 1573132383 | Expiration Time - Time of expiry of Jwten.  Note: Max 120 seconds allowed.  (Exp - IAT <= 120) |
+| JTI | Recommended | JWT ID - Unique ID for this JWT. Note: A JWT cannot be reused.  |
+Feel free to see the complete interface specification for JWT-Grants for supplementary documentation.
+This is how a forcing may look like:
+`` `
+Post /token
+Content-Type: Application/X-WWW-Form-URENCODED
+Grant_Type = URN%3Aietf%3Aparams%3aoAuth%3Agrant-type%3AJWT-Bearer &
+  assertion =
+
+{
+  "Aud": "https://ver2.maskporten.no/",
+  "Scope": "Difitest: Test2",
+  "ISS": "Min_EGEN_CLIENTID",
+  "Exp": 1584693183,
+  "IAT": 1584693063,
+  "JTI": "B1197D5A-0C68-4C4A-A95C-DC07C1194600"
+}
+`` `
+The machine gate will first validate the validity of the JWT. Subsequently, the business certificate (used for signing the JWT) will be validated and if the client has access to the requested resources, an access_token to the client is returned.
+If you are a supplier against an API that requires external delegation, you must include the claim in Grantet. The machine gate will then check against Altinn if you are allowed to act on behalf of the current consumer, for the relevant scop.
+In general, it is security problematic to ask for many scopes in the same token, so we recommend one scope per token.
+6: Sending API calls with token
+The client can now access the API when using the access_tokenet.  How this is done will appear in API provider's documentation, but for a "standard" residual API, the access_tokenet is used as an authorization header, typically as follows:
+
+Most API allows several API calls with the same token, so you do not need to pick up a new token at each calling.
+When the token has expired, the client will typically receive 401 response from the API and rose 5 must be repeated.
+Using delegation via Altinn Authorization
+Use delegation as a consumer
+Authorized employee of API consumer logs into Altinn, chooses to represent the company, seeks up and delegates the API access to the supplier in the Portal solution.  This is documented in more detail at Altinn.
+Note that it is possible for consumer to perform a delegation in Altinn, although API provider has not yet provided consumer access to the scop in the machine gate.
+Using delegation as a supplier
+Supplier integrations that will use external delegation are slightly different from other integrations in the ID port/machine gate, and it is therefore important to get them registered correctly.
+The ID gate/machine gate already has two existing internal delegation mechanisms, which are not compatible with delegation in Altinn. To obtain the correct registration, you must:
+
+For suppliers who use the self -service solution on the collaborative portal, it is important to note that you must create the integration as belonging to yourself, and not choose "on behalf of a customer" or "on behalf of multiple customers".
+For suppliers who use self-service API, they must not use tokens with the scope, but the supplier should therefore not put Client_orgno in the registration call.
+
+When your integration is to request tokens on behalf of consumers, you must provide the consumer's organization number as -claim in JWT -Grantet. The machine gate will then check Altinn, if a valid delegation relationship is found between consumer and supplier for the relevant scope.
+Example of use of Altinn:
+JWT Grant in Request:
+
+that gives response:

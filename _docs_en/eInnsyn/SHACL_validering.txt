@@ -1,0 +1,15 @@
+Title: Shacl Validation
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_Shackl
+
+Validation of Json-LD is done based on Shacl
+The Shacel rules are expressed in the RDF format Turtle. Desser is based on the Noark5 vocabulary.
+The rules, distributed among the object classes in the data model are here
+As validation tools one can use
+* RDF4J's implementation
+* e -insight impementation
+* Online validation
+* Validation by direct integration
+E-insight The implementation was developed early in the e-insight development since Shacl's are relatively new and at the time no time did not exist highly validation engines

@@ -1,0 +1,29 @@
+URL: https://eid.difi.no/nb/lopplaering program
+Title: Training Program | Help sites for common solutions
+
+Training program
+The courses below are developed by the Norwegian Digitalisation Agency.
+
+The training is intended for course leaders and others who want to offer training for people who have not used the Internet so much and want to learn more. You can download and use all the courses for free.
+
+If you need training resources for basic digital competence, you will find this on digidel.no.
+
+Login to public services
+Learn to Create MinID with MinID app
+Learn to Create MinID by scanning QR code
+Learn to Create MinID with the letter code
+Learn to log in to public services with MinID
+Learn to log in to public services with BankID with code chip
+Second course
+Learn to use norge.no
+Choose digital mailbox on norge.no
+Learn to update your contact information
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

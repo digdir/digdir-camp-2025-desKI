@@ -1,0 +1,51 @@
+Title: RAR types in the ID port
+Description: The ID port uses weird for communicating representation conditions
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Oidc_protocol_rar
+
+The ID port uses the standard Rich Authorization Requests (RAR) to structure information on representation conditions, both in requests and tokens. 
+RAR is a new OAuth2 extension for transaction-specific authorizations. Where "Basic" OAuth2 only provides access to a so-called "scope" (text string), weighs weird for access to more extended data models in the form of authorization types. The type of authorization (s) is delivered in the token as a new hierarchical claim Kalla, which in turn is an array of authorization objects, where each object consists of:
+
+
+Standardized Required fields:
+
+ Defines the current authorization type
+
+
+
+Promised data model
+
+For a given, it will be defined and documented a valid valid data model.  The employee ports' data models are defined on this page.  
+
+
+
+Relations between weird and scope
+There is no technical correlation between an oauth2 scope and weird, the two mechanisms are disjunky.  
+Therefore, one cannot assume that a client who has not received a given scope cannot receive a strange structure in the token.
+Access control of RAR types
+It's p.t. No access control of RAR types.  All clients from all customers can submit a RAR structure in the demand for authorization, and it will trigger proxy voter.
+RAR types supported in the ID port
+The following Authorization_Type is supported in the ID port:
+|  |     Depiction |
+|-|-|
+|   | Uses authorizations in Altinn 3 as an authorative source of representation relationship. Altinn3 includes both guardianship and user -controlled authorizations. |
+Data model for proxy ()
+The following Claims can be submitted in Request: 
+| Claim | Cardinality | Description |
+|-|-|-|
+| Permission_roles | Required | An array of which proxy groups are demanded. |
+You will find an overview of available types of the State Civil Administration.  The very detailed coding we use is currently based on the values that the Tax Administration has defined in its information model (Read section 5.20 of the PDF page 79).  In the long term, these will be replaced by the definitions for proxy groups for citizens in Altinn 3.
+Example of Request: 
+
+The response data model contains the same claims as in Request, but in addition it will be handed out:
+| Claim | Description |
+|-|-|-|
+| Authorized_representative | Birth number for proxy (login user) |
+| Authorizer | Birth number for proxy / guardian.  |
+Example of response:
+`` `
+"Authorization_Details": [{{
+    "Type": "Idports: Proxy",
+}]
+`` `

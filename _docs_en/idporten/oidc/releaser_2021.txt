@@ -1,0 +1,18 @@
+Title: 2021
+Description: 2021
+Sidebar: Oidc
+
+| Release | Production Set | Description |
+|-|-|-|
+| 21-01 ID port | Jan 26, 2021 | Refactoring of the functionality in which the inhabitant confirms its contact info at login.  Preparations in the ID port to support app login with MinID. |
+| 21-02 Oidc | Feb 9, 2021 | Collect Memorial Guard |
+| 21-05 Oidc | May 19, 2021 | Refresh-token support for public clients |
+| 21-06 id gate abroad | jun 15, 2021 | The IFBM Korona situation is needed to establish a login solution to helsenorge.no for users who lack F/D number.  |
+| 21-08 ID port | Aug 25, 2021 | Update of Openam |
+| 21-08 Machine Gate | Aug 29, 2021 | Error correction of a memorial leakage and improved stability in integration with Altinn |
+| 21-09 Machine Gate | Oct 26, 2021 | Support for the SEID2 profile for business certificates (ie qualified seals according to Eidas) |
+| 21-10 Employee Gate | Nov 24, 2021 | A first version of the pilot for the employee port |
+| 21-09 minid | Nov 30, 2021 | Support for app-based login instead of SMS.  Refactoring MinID to adapt to the new system architecture project. |
+| 21-11 ID port | Dec 7, 2021 | Transition to OIDC to Eid suppliers in connection with new supplier agreements |
+| Projects 2021 | FY21 Q4 | This "release" contains larger projects and potential pilots that would like to implement in 2020. |
+| Backlog | FY21 Q4 | Backlog contains development measures that have not started yet. |

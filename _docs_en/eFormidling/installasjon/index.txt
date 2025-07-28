@@ -1,0 +1,183 @@
+title: get started with the integration point
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The purpose of this page is to help architects, developers and operating personnel offer the functionality of eFo -mediation.
+
+TOC
+{: toc}
+
+Get started with the integration point
+Emsyring is a flexible network and there are several ways to participate in the network.
+Companies take part in the network with the help of an intermediate product, the integration point, which is installed at business
+or the company's supplier (s). One integration point is linked to a business and can also act on behalf of
+Other businesses. Emypesing can be used for public companies that can be issued a business certificate. IN
+In addition, the business when using e -insight and digital mail for residents can act as a self -defined sub -unit.
+A business may have one integration point for all functionality or distribute the functionality of multiple
+Integration point. One integration point can be configured to support one or more of the following functionality:
+
+inspective
+Case processing and agreed message exchange
+Information and decisions to citizen
+Fix iO message exchange
+
+A business can have one main integration point that can both send and receive per functionality. In addition, can
+The company has several integration points that are configured to just support sending.
+Regardless of what functionality one integration point supports can be made available to business on several
+ways:
+
+The business runs the integration point itself
+A service provider runs the integration point of business
+A service provider runs its own integration point that acts on behalf of the business (and other businesses)
+
+A single integration point can have many consumers as long as each consumer only consumes what belongs to it.
+How can a service provider offer functionality to multiple companies?
+Both the subject system and the integration point are installed and run locally at the individual business:
+
+graph td
+subgraph business a
+  F1 (subject system)
+  I1 (integration point)
+end
+SUBRAPH BUSINESS B
+  F2 (subject system)
+  I2 (integration point)
+end
+F1 -> I1
+F2 -> I2
+
+Professional system runs at a service provider, while the integration point is run at the individual business:
+
+graph td
+subgraph business a
+  I1 (integration point)
+end
+SUBRAPH BUSINESS B
+  I2 (integration point)
+end
+subgraph supplier
+  F (subject system)
+end
+F -> i1
+F -> I2
+
+Professional system and an integration point per business are run at a service provider:
+
+graph td
+subgraph supplier
+  F (subject system)
+  I1 (Integration Point of Business A)
+  I2 (Integration Point Business B)
+end
+F -> i1
+F -> I2
+
+Professional system and a common integration point are run at a service provider:
+
+graph td
+subgraph supplier
+  F (subject system)
+  In (integration point for supplier on behalf of business A and B)
+end
+F -> in
+
+How can a business use functionality from several service providers?
+A single business can use different delivery models for different functionalities:
+
+graph td
+subgraph business
+  F1 (subject system)
+  I1 (integration point)
+end
+F1 -> | Digital mail to residents | I1
+
+Subgraph supplier 1
+F2 (subject system)
+end
+F2 -> | Evisyn | I1
+
+Subgraph supplier 2
+F3 (subject system)
+I2 (integration point for supplier on behalf of business)
+end
+F3 -> | Case Management | I2
+
+
+A business can use several service providers for the same functionality. Business must decide which
+Service provider to receive incoming messages:
+
+graph td
+subgraph business
+  F1 (subject system)
+  I1 (integration point)
+end
+F1 -> | case processing and receive | I1
+
+Subgraph supplier 1
+F2 (subject system)
+I2 (integration point for supplier on behalf of business)
+end
+F2 -> | Case Managable Send | I2
+
+Subgraph supplier 2
+F3 (subject system)
+I3 (integration point for supplier on behalf of business)
+end
+F3 -> | Case Managable Send | I3
+
+
+How can more subject systems share one integration point?
+Several subject systems can share one integration point. It requires each subject system to behave nicely and just consume
+Incoming messages and receipt belonging to the individual subject system. If one of the integration of the subject systems works
+so it reads all incoming messages and receipts this "steal" messages and receipts that really
+Should be treated by the other subject systems.
+
+graph td
+In (integration point)
+F1 (subject system A)
+F2 (subject system B)
+F3 (subject system C)
+F1 -> | Case Management | IN
+F2 -> | Evisyn | IN
+F3 -> | Digital mail to residents | IN
+
+How can the integration point be run?
+The integration point is delivered as a Java archive (JAR) and as a docker image.
+The integration point can be run as a process on Windows or Linux, with internal database and message queue:
+
+graph td
+Subgraph Windows, Linux, El. second
+  subgraph integration point
+    M ("Database (H2 File Database)")
+    A ("message queue (ActiveMQ)")
+  end
+end
+
+The integration point can be run as a process on Windows or Linux, with external database and message queue:
+
+graph td
+M ("Database (MySQL)")
+A ("message queue (ActiveMQ)")
+Subgraph Windows, Linux, El. second
+  In (integration point)
+end
+I -> m
+I -> a
+
+The integration point can be run as a container on a docker platform:
+
+graph td
+Subgraph Docker platform
+  In (integration point)
+  M ("Database (MySQL)")
+  A ("message queue (ActiveMQ)")
+end
+I -> m
+I -> a
+
+When using external database and message queue it is possible to run several integration points in parallel.
+Next step
+
+Prepare installation

@@ -1,0 +1,78 @@
+Title: Server-to-server API authorization with OAUTH2
+Description: Server-to-server API authorization with OAuth2
+Summary: 'The machine gate is used to authorize access to APIs between businesses.  This is based on so-called "server-to-server OAuth2" behavior. '
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine gate_Auth_Server-to-server-oAuth2
+
+Introduction
+The machine gate offers functionality for server-to-server authorization of APIs based on RFC7523 Json Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants.
+
+graph lr
+  Subgraph API provider
+    API
+  end
+  subgraph digdir
+    The machine gate [machine gate]
+  end
+  subgraph consumer
+     new [service]
+  end
+  Machine Gate -> | 2. Exit Token | New
+  New -> | 1. Power access | Machine Gate
+  New -> | 3rd user token towards | API
+
+Consumers and API providers can use this functionality to manage access in cases where the information values the API offers are regulated by a legal basis, and does not require the consent of the user.
+Description of flow
+
+sequence chart
+  Note over client: Generate and sign JWT
+  Client ->> Machine Gate: Use JWT to request token
+  Note over the machine gate: Valides business certificate and perform access control
+  Machine gate ->> client: return access_token
+  Client ->> API: Use token against API
+  API ->> Client: Result of API -Kall
+
+
+In this scenario, a client wants to use a resource (API) offered by a resource server. Access (authorization) of the API is issued by an authorization server, in this case the machine gate. In order to access the resource, the client must request an access_token from the authorization server that the client can then use for access the resource in question.
+
+
+The flow starts with the client having to generate a JWT-based Tokn request (JWT-Bearer Authorization Grant). This contains information on what resources (Scope) the client wants to access and is signed with the client's business certificate.
+
+
+When the authorization server receives the token request, the first will validate the validity of the JWT. Subsequently, the business certificate (used for signing the JWT) will be validated and implicit client authentication on the basis of this.
+
+
+If the authenticated client has access to the requested resources, a self-contained access_token to the client is returned to
+
+
+The client can now access the desired resource when using the access_tokenet.
+
+
+The resource server must now validate the received Access_tokenet locally.
+
+
+If the access_token is valid, the requested resource can be returned to the client.
+
+
+1. Generate JWT
+The client must generate and sign a JWT to request tokens from the authorization server.  For complete documentation, see interface specification for JWT-Grant
+Grantet itself can look like this:
+
+2. Send JWT to /Token- endpoint
+See detailed interface specification of /token-endpoint.
+Example of request:
+`` `
+Post /token
+Content-Type: Application/X-WWW-Form-URENCODED
+Grant_Type = URN%3Aietf%3Aparams%3AOAuth%3Agrant-Type%3AJWT-Bearer & Assertion =
+`` `
+ 
+If the machine gate accepted the request, the client gets an access_token back, the token is bound to the client's organization number.   The token is always a self-contained JWT, and Body will typically look like this after decoding:
+
+Example of Self-Contained Acces Token using Delegation in Altinn:
+Todo:
+Example of generation of JWT for Token request in Java
+Nimbus Jose + JWT is a handy library to handle JWT's in Java, see http://connect2id.com/products/nimbus-jus-jwt
+Rotest see https://github.com/difi/jwt-grant generator for example on how correctly generates such JWT in Java.
+For .net and other platforms give jwt.io a nice overview of available libraries

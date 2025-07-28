@@ -1,0 +1,96 @@
+Title: Authority Requirements and Email Layout
+Description: Authority requirements and email setup
+Summary: ""
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_ Investment Requirements
+
+When an end user orders access requirements for a business, this should be received by e-mail. This e-mail has an explanatory text on which document it has been ordered. Attached. Attached to the email there is an Order.xml file to be imported to the case archive system. Whether this is done automatically or manually is up to each content provider. Subsequently, the file must be processed by archives and answers to the access requirement must be sent to the access to access the e-mail address.
+How does it work?
+When an end-user orders an access requirement, the Directorate of Digitization will generate its e-insight client generate an order and send it to the Directorate of Digitization's integration point. This integration point will thus encrypt, sign and pack the message and then send it via Azure Service Bus to the recipient's integration point. Here it will be decrypted and passed on to the recipient's e-insight client. This will contact an internal SMTP server and ask it to send your order. There will then be an e-mail from this email server, but with the sender e-mail address "no_reply@e insyn.no". This email goes to the address specified on eilsyn.no below. Then the file must be imported into the case archive system. 
+
+If you do not receive the email, you may want to check the spam/junk mail folder.
+By direct integration (without e-insight client)
+Professional system that supports direct integration can retrieve Order.xml directly from the integration point.
+Extended variant of Order.xml
+We have developed two variants of Order.xml. Version 1 is the original and "default". If desirable and support to receive the extended version (version 2), it can be set/changed in the insight Admin by a business administrator:
+
+Version 1 (Example):
+`` `
+xml version = "1.0" Encoding = "UTF-8" Standalone = "Yes"?
+
+http://data.evysyn.no/visjsvskav/3954cfaa-c5FC-4C05-B3A6-9968855A42AF
+21.12.2021
+
+Loremipsum
+lorem@exemple.no
+
+insight@exemple.no
+
+email
+ 
+
+
+olanordmann@gmail.com
+
+
+
+2025/23456
+1
+2171234/21
+Case manager
+
+
+
+
+xml version = "1.0" Encoding = "UTF-8" Standalone = "Yes"?
+
+http://data.evysyn.no/visjsvskav/b05b9fd4-cbda-4e17-9d09-21a889526484
+2021-12-21+01: 00
+ 
+Loremipsum
+987654321
+lorem@exemple.no
+insight@exemple.no
+
+ 
+email
+olanordmann@gmail.com
+
+
+
+
+CB746DA3-41D9-4F29-9895-C62152C207B1
+3AE3E707-A046-4970-9AC7-F8A270A193E5
+
+http://test.evysyn.no/noark5/3056B799-A88E-435B-95FC-4B7621B57D26
+3056B799-A88E-435B-95FC-4B7621B57D26 
+2025/23456
+1
+2171234/21
+Case manager
+device code
+
+
+
+`` `
+Professional system info-ID/Delid is taken from SystemID to "Archive"/"Archive part". These must therefore be included in the original publication/delivery in order for it to be included in the XML. The same applies to the system time on the document. Version 2 is therefore only supported by professional systems that publish on Noark5 XML and JSON-LD format.
+Message flow
+See explanation under the picture.
+
+Click here for larger picture
+
+Archives pick up trigger exports of OEP cases
+Uploading OEP file to file area archives and e -insight clients have access to
+Eyislock client splits up the OEP message to e -insight messages,
+Loading einsysns notification to the integration point
+The integration point makes lookups to find the receiver (Capability lookup)
+Intgration point encrypts, signs and packages of message. Then loads up to the recipient's queue
+The Interegration Point Downloads New Messages from Queue, Wraps, Check Signature, Decrypts Message, Recipient available
+Einsysns application retrieves messages from the integration point, available in the case of an insights search
+Person seeks access
+Authority requirements are uploaded to the integration point
+The integration point makes lookups to find the receiver (Capability lookup)
+The integration point encrypts, signs and packages message. Then loads up to the recipient's queue
+The integration point downloads new messages from queue, unpacking, checking signature, decrypts message, available for the recipient
+e -insight client sends access requirements via the recipient's mail server
+Access requirements are made available in via the recipient's case system/mail server or the like.

@@ -1,0 +1,10 @@
+title: 20-08 mini
+Description: 20-08 minid
+Sidebar: Oidc
+redirect_From: /20-08_minid
+
+Support for manual recognition of foreign users.
+Releasen was production -fed Aug 25, 2020
+New functionality:
+Manual Recognition of Minid Passport (Shipped)
+Minid Passport Users who are not recognized with their D-number automatically against the National Register can now be manually recognized by Digdir personnel.

@@ -1,0 +1,16 @@
+Title: Troubleshooting in KRR
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+Redirect_From: /Krr_ Fault Socking
+
+Often asked questions
+The "prefix" field is empty when I create a new scope.
+If the prefix field is empty, then your business has not created a prefix. Then you will not create a scope. Contact serviceedesk@dir.no.
+The scop I will consume deficiencies when I press "Add Scopes".
+Most likely, API provider has not shared access with the business you represent, or they have provided access to another environment. Contact API provider.
+"New integration" is grayed into the production environment.
+To manage in the production environment, you have to log in with the ID port. This assumes that we have entered your social security number in advance. About "new integration" is still gray after logging in with the ID port. Contact serviceedesk@dir.no
+I see the integrations of a business other than what I expect.
+Access to the collaborative portal and the self-service solution is provided on the basis of your email domain, which in turn is connected to a business on our site.  For large businesses and companies, it may be that email domains are reused across multiple companies. Contact serviceedesk@dir.no.

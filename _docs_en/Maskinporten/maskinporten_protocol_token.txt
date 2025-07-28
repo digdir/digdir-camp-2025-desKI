@@ -1,0 +1,115 @@
+title: "/Token endpoint"
+Description: "This Page Sumarizes The Protocol Options Available for On The /Token Endpoint for the Machine Gate"
+Summary: 'This Page Sumarizes The Protocol Options Available for On The /Token Endpoint for the Machine Gate'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_protocol_token
+
+About
+Using JWT Grants Towards The Endpoint Is Documented In RFC 7523, Section 2.1.
+The 'Aud' Field of the Jwt Must Be Set Equal to the Issuer Identifier of the Machine Gate and Must Only Contain A Single Value. Using the token-endpoint url AS Audience is no Longer valid.
+Request
+The Client Requests a Token by Passing a Jwt Grant to The /Token Endpoint.
+| Header parameters | Value |
+| --- | --- |
+| Http method | Post |
+| Content-Type | Application/X-WWW-Form-Urlencoded |
+The Following Request Body Attributes Shall Be Used When Pass the JWT-Grant:
+| Attribute | Value | Description |
+| --- | --- | --- |
+| Grant_Type |   | Type of Grant The Client is Sending, IE.   |
+| Assertion | String | The JWT Grant |
+There is no need to perform client authentication when using this grant, as the client is implicitly authenticated by the Certificate in the JWT.
+See JWT Grant for Requirements for Constructing the JWT Grant.
+Example Request:
+`` `
+Post /Token http /1.1
+Host: Test.makerport.no
+Content-Type: Application/X-WWW-Form-URENCODED
+assertion =
+& Grant_Type = URN%3Aietf%3Aparams%3aoAuth%3Agrant-type%3ajwt-Bearer
+`` `
+Response
+The response is a set of tokens and associated metadata, and Will Denden upon what was requested.
+| Claim | Description |
+| - |- |
+| access_token | An oauth2 access token, Einher by Reference or as a JWT Depending on which scopes was required and/or client registration properties. |
+| Expires_in | Number of Seconds Until this access_token is no Longer valid |
+| Scope | The List of Scopes Issued in the Access Token. Included for the Convenience for the Client, and Should Not Be Trusted for Access Control Decisions.  |
+Please note that the access token is opaque for the client, and the format may be changed. Thus the client should not inspect/validate the token contents.
+Example Response:
+
+The Access Token
+Machine gate issues only self-contained tokens:
+| Token Type | Description |
+|-|-|
+| By Value | The token is self-contained, meaning it contains all the relevant information about the authorization (client, organization, scope, hourly stamp etc.).  Such tokens Are non-reefocable and should have a short lifetime |
+The token is a jwt with the following structure:
+Access Token Header:
+| Claim | value |
+| --- | --- |
+| KID | "Key Identifier" - Unique Identifier for The Key and Certificate used by machine gate. The Public Key and the Certificate Must Be Fetched From Our .well-Known Endpoint. |
+| ALG | "Algorithm" - algorithm used for signing the token. Machine gate supports, and |
+Access Token Body:
+| Claim | Value | Example |
+| --- | --- | --- |
+| ISS | The Identifier of Machine Gate As Can Be Verified On The .well-Known Endpoint | 
+| Client_id | The Client_id of the Client Who Received This Token. Note that client_ids should in General Not Be Used for Access Control. |
+| Client_amr | How the Client Authenticated It Self Towards Machine Gate | |
+| Consumer | The Organization Number, In ISO6523 Notation, of the Organization Who Is The Legal Consumer of the Token/API.  This value is always present.  In Most Cases, This Organization Will Also Be The Data Controller According To The GDPR. | See Below |
+| Scope | A list of scopes the access_token is bound to.   |
+| Token_Type | Type of token. Only Bearer Supported. | |
+| Exp | Expire - Timestamp When This Token Should Not Be Trusted Any More.  |
+| IAT | Timestamp when this token was issued.  |
+| JTI | JWT ID - Unique Identifer for a Given Token |
+If the token is ISSUED from the skating, The Following Claim is included:
+| Claim | Value | Example |
+| --- | --- | --- |
+| Sub | Token subject minted for use towards saas-service in azure. Sub IS Formatted AS 'org identifier; scope' and conditional access control in azure must be Tailord Accordingly. | |
+If the token was issued to a supplier acting on Behalf of Another Organization, The Token Will Also Include The Following Two Claims:
+| Claim | Value | Example |
+| --- | --- | --- |
+| Supplier | The Organization Number, in ISO6523 Notation, of the Optional Organization which the has delegated to act on Its Behalf Regarding the API Consiction.  In most cases, this is a data processor. | See Below |
+| Delegation_Source |  The OAuth2 Issuer Value of the Legal Authority Where The Organization Performed Delegation of A Given API Access (IE: Scope) to the Organization | 
+If the token is Audience-Restricted, The Following Claim Will Also Be Included:
+| Claim | Value | Example |
+| --- | --- | --- |
+| Aud |  The Target API for this token. Some Resource Servers Require Audience-Restricted Tokens, and the Actual Values to Used Must Be Exchanged Out-of-Band. See Audience Restion for Details. |  |
+If the token is enduser-Restricted, The Following Claim Will Also Be Included:
+| Claim | Value | Example |
+| --- | --- | --- |
+| PID |  The Enduser Subject for this token. Some Resource Servers Require Enduser-Restricted Tokens. A SEE Enduser-Restricion for Details. |  |
+If the token 
+Identifying organizations
+ID port and machine gate use a forward-compatible notation for identifying organizations. This is Because We Expect That The Solutions in the Future Will Be Extended Handle Both Foreign Organizations, Organizations Not Having A Registration In The Unit Register (I.E. "Public Selection") As Well A Sub-Eventies Within An Organization.
+The -claim Identifies The Organization, which the -claim States How This Identifier Is Encoded:
+|  | Description |
+|-|-|
+| ISO6523-actoride-upis | The Organization ID is an ISO6523-formatted string, where the first element can have values from peppols extensions to the Official ICD list from ISO.  The ID can have 2-4 elements, separated by colon.   AS of Jan 2021, Only 0192 IS Supported AS ICD Value (Norwegian Organizations Being Registered in Unit Register) |
+Customer Implementations must be able to act that the authority list and consequently the id formatting may be extended in the future.
+Below is an example for Norwegian Digitalisation Agency:
+
+client_amr
+The Following Values May Be Returned for the -claim.  The Values Are Partly From OAuth Token Endpoint Authentication Methods, Plus Some Custom Claims for Certificate-Based Authentication:
+| Value | Description |
+|-|-|
+| private_key_jwt | A Pre-registered asymmetric Keypair was used. During the registration, a "business certificate" was used to volume the keypair to the organization. |
+| Business Certificate | A Business Certificate according to Soon-to-be-albandoned Norwegian Regulation ("Requirement Preki") was used to authenticate the client.  |
+| Qcforeseal | A Qualified Electronic Seal According To The Eidas Regulation (See Also https://uri.etsi.org/trstsvc/trustedlist/schemerules/euCommon/) |
+| CFORESEAL | A non-qualified Electronic Seal According to the Eidas Regulation |   |
+Access Token Validation
+The Client and Resource Server Must Validate All Responses from the Machine Gate According to the OAuth2 Standards as Well as Best Practice Recommendations from the IETF.
+Access tokens must always be validated by the resource server / API Before Granting Access. Some Key Steps in the Validation Are:
+* verify that the issuer of the token is machine gate ()
+* verify that the token is signed
+* Verify that the signature is created by the signing keys of the machinery published at our /jwks-endpoint
+  * You should cache the signing Keys of the machine gate for Say 24 Hours and avoid calling the /jwks-endpoint for EACH Token Validation.
+* Verify that the token Contains The Expected OAuth2 Scope
+Clients Should Normally Just Pass the Access Token Along to the Resource Server Without Any Processing of It, However IF Any Processing Is Performed, Clients Must Also Perform Such Validation.
+The Following References Are Vital:
+* RFC6819: OAUTH2 Threat Model
+* Draft RFC: OAuth 2.0 Security Best Current Practice
+Developers Integrating Towards Machine Gate Are Expected to Know These Documents and Apply Them in Their Risk Assessments. Our documention will not re-nerate the recommenions in the above documents, but overall we would like to hightlight:
+
+Use a Certified / Well Recognized IAM-Product or OAuth2 Library for the Integration
+Keep Keys / Certificates Safe to Avoid Getting Your Organization Impersonated

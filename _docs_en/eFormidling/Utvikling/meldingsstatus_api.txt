@@ -1,0 +1,52 @@
+Title: Message Status API
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page describes the message status API and patterns of use for this.
+Em shape uses message statuses to support troubleshooting, errors and statistics. This has previously
+been delivered along with log but to ensure reliable handover of message statuses is now established an API
+to receive these.
+The integration point uses the message status service under the hood. There is usually no need to integrate directly
+against the message status service but in some rare cases a business wants to communicate with businesses at
+Emorting without even running an integration point.
+
+graph lr
+I1 ("Integration Point 1")
+I2 ("Integration Point 2")
+I3 ("Integration Point N")
+M ("Message Status Service")
+S ("Statistics")
+F ("Troubleshooting")
+V ("notification")
+
+I1 -> m
+I2 -> m
+I3 -> m
+M -> s
+M -> f
+M -> v
+
+Example of Status Message:
+
+Status messages are delivered over HTTP or Rsocket with OAuth JWT from the machine gate.
+
+Http: 
+RSOCKET: 
+
+Message Status API uses OAuth2 for authorization and expects self -sufficient JWT from the machine gate. JWT requests to
+The machine gate is expected to contain the X5C for the Norwegian Business Certificate (Seidv1 or Seidv2) JWT request
+was signed with.
+
+Machine gate (external link)
+
+Emsyring creates OAuth clients in the machine gate as part of the onboarding process:
+
+The client ID is 
+One or more of the following scope is awarded to the client:
+Move/DPO.Read (e -Designing Message Service)
+Move/DPE.READ (E -Insights messaging service)
+MOVE/DPI.READ (Digital Post to residents)
+Move/Dpf.read (KS Svarut and Replyer)
+Move/DPV.READ (Altinn Digital Post)

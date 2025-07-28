@@ -1,0 +1,14 @@
+Title: 2019
+Description: 2019
+Sidebar: Oidc
+
+| Release | Production Set | Description |
+|-|-|-|
+| 19-01 Oidc | Jan 22, 2019 | API-based self-service of scopes, as well as performance improvements. |
+| 19-03 Oidc | Mar 19, 2019 | Removing support for implicit flow in OIDC |
+| 19-05 Eidas | May 7, 2019 | Support for unambiguous recognition of European users through modernized population register |
+| 19-04 ID port | Jun 6, 2019 | Support for login history and app login with centraized revocation in ID port's user profile |
+| 19-06 Oidc | Jun 11, 2019 | Support for asymmetrical keys.    Support for the Audience limit token. |
+| 19-08 Oidc | Aug 26, 2019 | Launch of the machine gate after the successful pilot period.    Launch of web-based self-service on the collaborative portal. |
+| 19-09 Oidc | Oct 3, 2019 | New access_token format that supports the e-lookup reference architecture, as well as the possibility of whitelisting of access. |
+| 19-11 Oidc | Dec 10, 2019 | The last release before Christmas establishes the machine gate as a self-employed service, and at the same time, in collaboration with Altinn, launches a pilot where customers can delegation allocated API access to subcontractors.    For the OIDC provider, the release primarily contains some performance improvements.  |

@@ -1,0 +1,25 @@
+Url: https://eid.difi.no/nb/Commfides
+Title: Commfides | Help sites for common solutions
+
+Commfides
+Commfides provides access to public services at the highest level of security (level 4).
+
+Commfides e-ID comes as USB stick.
+
+Order commfides
+How to order Commfides
+Login
+How to log in with Commfides
+Problems with login with Commfides
+PIN and PUK codes
+Barring
+How to Sperre Commfides
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

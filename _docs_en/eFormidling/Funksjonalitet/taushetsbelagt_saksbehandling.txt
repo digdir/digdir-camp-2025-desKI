@@ -1,0 +1,66 @@
+title: confidential case handling
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Em shape allows your business to send and receive messages as part of confidential case processing.
+
+TOC
+{: toc}
+
+Introduction
+Confidential case handling is the handling of cases that include confidential information. Confidential
+Information includes:
+
+sensitive personal information
+business secrets
+
+Confidential case processing follows the same flow as regular case processing, but allows the recipient to associate additional access checks on messages to limit access to those who have a service need to read the messages.
+Rules for processing confidential information can be found in the Public Administration Act and the Personal Data Act with
+Adaptations from regulations for various areas such as child welfare. Central requirements include ensuring that the recipient
+Has a service need for processing the information and not to process more information than is necessary. 
+Confidential case processing is represented with the following process for the recipient:
+| Process name | Process identifier |
+| ----------------- | ------------------------------------------------------------- |
+| Confidential | URN: NO: DIFI: Profile: Archive message: Confidential: Ver1.0 |
+Confidential case processing is represented with the following process for sender:
+| Process name | Process identifier |
+| --------------------- | ------------------------------------------------------- |
+| Archive Message response | Urn: No: Difi: Profile: Archive message: Response: Ver1.0 |
+Usually, a business acts both as a sender and the recipient, but it is also possible to act only as a sender.
+Message content
+Corresponds to message content for case handling
+Address messages
+Corresponds to addressing messages for case processing
+Send messages
+Corresponds to send messages for case processing, with some additional requirements.
+Before sending from the subject system, it must be informed that it is important to design the message so that the recipient can easily see what
+The message applies so that it is as easy as possible for the recipient to route the message to the right person in
+The recipient's organization.
+Receive messages
+Corresponds to receive messages for case processing, with some
+Additional requirements.
+Upon receipt to the professional system, the receiving system must ensure the necessary consequence of who can read the message.
+Upon reception to Altinn Digital Post, the necessary concept of who can read the message is ensured. Read more
+on:
+
+Access to confidential post (external link)
+
+Notification
+Corresponds to the case processing, with some additional requirements.
+Upon reception to the subject system, the receiving system must ensure the necessary notification of receiving confidentiality notification so that
+The message does not risk being unread. The notification must be presented so that it will be read. The notification must
+contain a description of what it takes to give access to read the confidential message.
+Upon receipt to Altinn Digital mail, the business is notified of reception of notification. Notification goes to business registered
+Contact information on Altinn. Read more at:
+
+Requirements for notification by confidential post (external link)
+
+Assumptions
+Corresponds to the prerequisites for case handling
+Configuration
+Corresponds to configuration for case processing
+Development
+
+Example of confidential case handling

@@ -1,0 +1,119 @@
+Title: Troubleshooting in the Machine Gate
+Description: Troubleshooting in the Machine Gate
+Summary: 'Here you will find an overview of error messages and what they can mean and how it can be solved'
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+Redirect_From: /Machine Gate_FeSoking
+
+
+
+TOC
+{: toc}
+
+Error messages
+Format
+The machine gate often returns a response with detailed messages about what is wrong.  This should be logged by the client.  The response is in JSON format and contains the attributes:
+
+Error - an OAuth2 Error code that indicates what kind of problem this is.
+Error_description - Detailed information on the specific error situation.
+Error_uri - for some error situations, contains URL aside with troubleshooting help (this page). Some error codes have more details on this page. 
+
+In Error_description, a unique ID is often included that can be used for troubleshooting. Some of these are described on this page.
+Connection
+Connection timeout.
+We know that some customers who run services in Azure sometimes struggle to connect to Machinport.no. This should now be resolved.
+A typical error message may look like this
+"A Connection ATTEMPT FAILED BECAUSE THE CONNECTED PARTY DID NOT PROPERLY Respond After A Period of Time, or Established Connection Failed Because Connected Host Has Failed To Response."
+What has worked for other customers:
+
+
+Switch cough for the application/service that fails to reach machine gate.no
+
+
+Some have also managed to get through by ending the cough and restarting. 
+
+
+Invalid grant
+Error message Invalid_grant means that the machine port cannot process the token request.  Some of the most common error situations are described here.
+MP-100: Invalid assertion. Client authentication failed.
+May be a typo on Clientid.
+Solution: Check that Clientid is correct.
+MP-11: "Invalid Assertion. Client Authentication Failed. Invalid Jwt Claim Aud"
+Error with Audience in JWT-Grant.
+Solution: Check that Audience goes towards the right miles, and without typos.
+MP-12: "Invalid Assertion. Client Authentication Failed. The Jwt Is Signed With An Invalid Certificate."
+Something is wrong with the certificate used.
+Solution Check that a valid business certificate is used. Check that a production certificate is not used in test or test certificate in prod.
+MP-121: "Invalid Assertion. Client Authentication Failed. Expired Key"
+The key posted on the client has expired. Keys have 1 year life from the time they are posted on the client.
+Solution Post New key on the client. Alternatively, you can post the same key again to renew it.
+Invalid Request
+MP-011: Invalid assertion. Invalid parameter value
+May be typos in JWT Grant.
+Solution: Check JWT Grantet for accidental line breaks or other typos.
+"Validation of Jwt Claim Failed: The Consumer_org in Claim and Delegation Scope on Client Is Invalid"
+It is the same organizational number both on the client and in the "Consumer_org" Claimet.
+Solution: Remove the "Consumer_org" claimed
+Bad Request
+MP -200: Invalid Scope -"Token Request Contains Invalid Scopes for Client"
+The scop is not pre -registered on the client used.
+Solution: Check that the scop you are trying to access is registered on the client. Check the writing error request on the scop.
+MP -201: Invalid Scope - "Token Request Contains Scopes Not Allowed for the Machine Gate"
+The client is set up with an integration type that the scop does not accept.
+Solution: Create new client with correct integration type.
+Validation of Jwt Bearer Grant Failed
+MP-012: Grant is used before before
+Grantet is already used.
+Solution: Create new JWT-Grant
+Authentication of Client by JWT FAILED
+MP-100: Client Not Found
+There may be several reasons for this error message. But that means this client is not found at the Audience used. There may be different reasons for it:
+
+Typos on ice sos
+Wrong Issu (should be Clientid)
+Incorrect Audience (eg the client is created in the Ver2 environment, but Audience is set to prod's URL)
+
+Solution: Check that correct clientid is used and that it is used in the same environment as it is created.
+MP-13: JWT IS EXPIRED
+The token has expired. Either it is already used or it is used too late. It may also be that there is too much difference in server watch and machine gate.
+Solution: Generate new token. Synchronize server watch if the difference is too large between server and machine gate.
+MP-122: Invalid JWT. Invalid Organization Number for Client. Does Not Match Certificate orgno
+The business certificate is issued to a different organization number than what owns the client.
+Solution: Use a business certificate issued to the same organization number as the client. Any Create client on the same organization number to which the certificate is issued.
+Validation of jwt failed
+MP-123: Invalid JWT Header X5C
+Possibly errors with the X5C element in the header.
+Solution: Check that the certificate is included as an array of string, and not string.
+MP-124: Invalid JWT Signature
+Certificate error. Check that the certificate has not expired and that a product certificate is used in the production environment, and a test business certificate in the test environments.
+MP-012: Grant is used before before
+This may mean reusing a JTI, so the JWT fires do not have a unique ID.
+Solution: Generate new JWT with new ID. Check that new JTI is generated for each driving.
+MP-301: Unknown Authorization Details Type
+This means that a weird request is made in which an Authorization Detail type is requested that is not supported.
+Solution: Check that a supported Authorization Detail type - check OAuth metadata for supported types.
+MP-302: Unknown Fields in the Authorization Details
+This means that a weird request is made including unknown fields in the Authorization Details.
+Solution: Check that there are no unknown fields in the Authorization Details.
+MP-303: Invalid Authorization Details Values
+This means that one or more of the Veri in Authorization Details in Requesten does not validate.
+Solution: Check that all Request fields have valid values. It will usually be in the error message what value is invalid
+Issue time is after now
+There is too much time difference between our server watch and theirs.
+Solution: Check the clock on server, synchronize by large deviation. We synchronize against the Justervesenet.
+Ban
+MP-250: Consumer has not been granted access to the scope 
+The consumer does not have access to the scop that is asked for access.
+Solution: The consumer must contact API provider to access Scope. Possibly switch to a scope that the consumer has access to.
+MP-251: Consumer has not delegated access to the scope to supplier 
+The consumer has not delegated the right to the supplier in Altinn. Possibly, the wrong right is delegated.
+We also note that delegations performed in Altinn do not apply in Altinn's test environment TT02.
+Solution: Consumer must log into Altinn and delegate the correct right to the supplier.
+Troubleshooting for self -service via web
+Does not find scope in the drop -down list
+API provider has not shared access with your business in the environment you are in.
+Solution: Contact API provider
+"New Integration" will not be available after login with the ID port
+You do not have access to self -service.
+Solution: A person with a role "main administrator" in Altinn for your business must log in and delegate access to you.
+Procedure: Access to production environment

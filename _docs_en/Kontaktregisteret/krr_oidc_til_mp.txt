@@ -1,0 +1,22 @@
+title: from oidc- to machine gate protected endpoint
+Description:
+Summary:
+Sidebar: krr_sidebar
+Product: krr
+redirect_From: /krr_oidc_to_MP
+
+Did a shutdown of its OIDC-protected endpoint on October 04
+F.O.M. 04.10.2023, it is no longer possible to call the lookup service with the OIDC-protected endpoint. Such posts will be rejected.  
+Outdated contact information f. September 27
+27.09.2023, the old machine-protected endpoint was closed to kr.digdir.no. This means that the lookup service with old oidc-protected endpoint oidc.difi.no/idporten-portc provider will provide outdated contact information.
+What needs to be done to migrate to the machine-protected endpoint?
+To migrate from old OIDC-protected endpoint to new machine-protected endpoint, the following must be done:
+
+Update client registration to use new scopes with KRR: -Prefix
+The client must be changed to retrieve tokens from the machine port instead of the ID port Oidc
+Typically by updating URL for the Authorization Server's OAuth2 Metadata- Emblorine Point to https://maskarport.no/.well-known/oAuth-Authorization server
+Possibly by configuring a new Token-Emder point directly (https://maskinporten.no/token) and updating Trust against the machine gate's signing certificate.
+Change API call to go toward new endpoint
+
+What about the test environment (Ver2)?
+Corresponding liquidation takes place for the Ver2 end point on October 03.

@@ -1,0 +1,83 @@
+Title: Suppliers in the ID port/machine gate
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_api_admin_ supplier
+
+Suppliers play an important role in helping public companies use the ID and machinery, and the solutions offer suppliers some extra functionality that will make the administration easy and secure for both customer and supplier.
+Suppliers do not normally have access to the ID port/machine gate on their own behalf. Integration with Gigdir's common solutions should only be done on behalf of customers who have accepted Digdir's terms of use.
+It is important to be aware that "a supplier is not a supplier", ie different suppliers and different utility scenario have different needs.  Typical supplier-use pattern in the ID port/machine gate is:
+- System suppliers who develop professional systems in Sky that the customer's case managers or residents log in.
+- Operating providers performing "pure" basic IT operations of the customer's own systems.
+- Suppliers of "End User Systems" (ie typically apps or PC software) to use public APIs
+-Consultant companies that develop "tailor-made" systems on behalf of a single customer.
+- sector solutions from the public as a health time and feud
+General advice
+We strongly advise against sharing client registrations (with secrets/keys) across multiple installations. If one installation with shared client registration is compromised (for example, Client_Secret on the way), suddenly all shared installations have been compromised and the supplier must immediately update all customer installations.   Then it is much better to have many client registrations, one for each "logical" installation.
+We also recommend using asymmetrical keys for client authentication (private_key_JWT), instead of business certificates or static keys (Client_Secrets). For safety reasons, suppliers should not manage customers' business certificates, as these can potentially provide wide access to other systems beyond the ID port/machinery.
+Digdir expects suppliers to use self-service to manage their customer integrations.  We have web-based self-service If you have a handful of customers, and for larger customers we recommend API-based self-service. The latter is based on a standard RFC7591, and requires the supplier's business certificate for access.
+Especially about data sharing
+The supplier functionality as it is today is mainly adapted to login services, and not data sharing in the ID port or machine gate.
+Since the supplier functionality in the ID port enables the supplier to self-declare that they act on behalf of arbitrary orgno without the customer's explicit consent, for security reasons, it is not opened for a supplier to "inherit" the customer's its allocated access to 3-parties.
+On the other hand, in the machine gate, it is possible for the customer to explicitly delegate API access through Altinn authorization.  Similar functionality is found p.t. Not in the ID port for user-controlled data sharing.
+Different ways of integrating
+1. Onbehalfof in the ID port
+Onbehalfof is an ID port proponary mechanism that allows a supplier to reuse an OIDC integration on behalf of many customers.  
+The pattern best fits where the supplier is in control of the installation (ie the OAuth2 client), typically an installation on its own server in a secured operating environment. It is the supplier who owns the integration (attribute), and the supplier uses its own business certificates and/or client_secret to authenticate against the ID port.
+The supplier must pre-register so-called "onbehalfof" values associated with the customer's orgno, normally 1 value per customer, and must send the correct onbehalfof value Runtime when logging in.  Each OBOF value has its own service owner name and logo that is shown the end user at login. Note that redirect_uri's must be registered at the "mother integration" and not on the onbehalfof.
+In self-service such integrations are created with the choice "on behalf of multiple customers" (via self-service API is used)
+If the supplier needs to use user-controlled data sharing on behalf of the customer, or the integration for other reasons needs to receive access_tokens with scopes owned by 3rd part, the API provider must give the supplier (ie the customer (not the customer) access to the scop, so that the supplier can register the scop of his client.  The API provider must then be aware that the supplier can, onboard's new customers, on which the API provider can prevent this through access management. For this reason, Digdir does not recommend the use of the onbehalfof mechanism in general for user-controlled data sharing. 
+The Onbehalfof mechanism does not work for the machine input integrations.
+2. Independent customer integrations in the ID port
+Some suppliers have for historical reasons systems where they borrow the customer's business certificate to integrate against the ID port, even if it is not recommended.
+These suppliers create an integration per customer (ie own client_id and client authentication), and to make it clear that such integrations belong to a supplier relationship, they are "marked" with the supplier's organization number (attribute).  If the integration uses a business certificate for client authentication, it is the customer's certificate to use, so we recommend asymmetrical keys or client_secrets on these.
+In self-service, such integrations are created with the choice "on behalf of a customer" (via self-service API is used). Digdir is restrictive in assigning this self -service to suppliers.
+
+The supplier must set client_orgno equal to his own customer's organization number.
+The supplier can create integrations on arbitrarily client_orgno
+The supplier's own organization number is automatically set as (based on the business certificate used against the Admin APPY)
+
+If the integration is to use user -controlled data sharing, - in the same way as for Onbehalfof's - API provider must give the supplier's orgno access to the scop, in order for the scop to be registered on the client. Issued Access_tokens will contain both the supplier's and the customer's organization number in respectively.  And the claims. 
+3. Use Redirect-Ui
+Some suppliers choose not to use one of the previous 2 mechanisms, and instead use one integration, with different pre -registered to distinguish between customers. Alternatively, a customer -specific value is shipped (then PKCE must also be used to prevent CSRF or Replay Attack).
+The disadvantage of this pattern is that you cannot have customer-specific service names and logo in the login image and that login is counted and invoiced the supplier and not the customer. Therefore, the pattern is best suited for those who primarily make public clients (typically mobile apps or end user systems installed on PC).
+4. Delegation in Altinn for the Machine Gate
+For data sharing between businesses through the machine gate, it is possible for a customer to explicitly delegate an API access to the supplier, in that the authorized representative logs into Altinn.
+For such integrations, the customer supplier relationship is not pre-registered on client registration via self-service (as for the above options), but is instead checked Runtime instead.
+The functionality is only available for the 3-year scopes that has the field set, ie it is API provider that determines whether Altinn-delegating should be possible.
+Delegation of API access through Altinn does not work in the ID port.
+Examples of use of self -service therapy
+Example of reading Onbehalfof registration:
+Request
+
+Response:
+
+Example of new creating Onbehalfof Registration:
+Request
+`` `
+Post/Clients/Oidc_ Example_ Client/Onbehalof/
+ACCEPT: APPLICATION/JSON
+Authorization: Bearer Token with the Idports: DCR/Onbehalfof: Write>
+{
+    "Onbehalfof": "New_Example_onbehalof",
+    "Display_Name": "Bergen Municipality Kindergarten System"
+    "Orgno": "999888777"
+    "URL": "https://bergen.exemple.no"
+}
+`` `
+Example of changing Onbehalfof registration:
+Request
+`` `
+Put/Clients/Oidc_ Example_ Client/Onbehalof/Example_onbehalof
+Content-Type: Application/Json
+Authorization: Bearer 
+{
+    "Onbehalfof": "Example_onbehalof",
+    "Display_Name": "Modified Display_Name Value"
+    "Orgno": "991825828"
+    "URL": "https://service.exemple.no"
+}
+`` `
+Example of deleting Onbehalfof registration:
+Request
+
+Get response with status code 200, and Tom Body.

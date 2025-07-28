@@ -1,0 +1,219 @@
+Title: Example of installation of the integration point in Azure Kubernetes Service (AKS)
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+redirect_From: /Integration point_aks
+
+The integration point can be run in axis or other cloud platforms that encounter the cubes. Azure Key Vault is an alternative for storing cryptographic keys.
+
+TOC
+{: toc}
+
+Assumptions
+
+
+KUBECTL - https://kubernetes.io/docs/tasks/tools/installkubectl/
+Azure Cli-https://docs.microsoft.com/en-us/cli/azure/install-azure-pli?view=azure-cli-Latest
+Helm - https://helm.sh/
+Azure Key Vault-https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-creadortal
+
+It is also assumed that a resource group, an Azure Kubernetes cluster, and Azure Key Vault. This can be done either via the Azure Web
+Portal, or via Azure Cli as explained here: https://docs.microsoft.com/en-us/azure/aks/kubernetes-walthrough
+Further in the documentation, the resource group, the AKS cluster, and Key Vault will be referred to by name, and respectively.
+Step-by-step
+1. Log into Azure
+
+2. Set up Kibectl to go towards AKS
+
+Verify that kubectl setup is correct:
+
+3. Install database
+Database is installed via Helm.
+
+The PostGresql instance can then be reached from the cluster.
+The installation creates a standard database by name, which will be used further in the guide.
+3.1
+Alternatively, you can create your own database. Export password to environmental variable, and connect:
+
+4. Set up Activemq
+NB - should be set up as persistent volume, not covered by guide
+Example of:
+`` `yaml
+APPERSION: APPS/V1
+Kind: Deployment
+Metadata:
+  Creationtim Stamp: Zero
+  Labels:
+    App: Activemq
+  NAME: ACTIVEMQ
+Spec:
+  Replicas: 1
+  Auditory HistoryLimite: 1
+  Selector:
+    Matchlabels:
+      App: Activemq
+  Strategy: {}
+  Template:
+    Metadata:
+      Creationtim Stamp: Zero
+      Labels:
+        App: Activemq
+    Spec:
+      Containers:
+      - Image: RMOHR/ACTIVEMQ: 5.15.9
+        NAME: ACTIVEMQ
+        Resources: {}
+Status: {}
+
+Apiversion: V1
+Kind: Service
+Metadata:
+  Creationtim Stamp: Zero
+  Labels:
+    App: Activemq
+  NAME: ACTIVEMQ
+Spec:
+  ports:
+  - NAME: 61616-61616
+    port: 61616
+    Protocol: TCP
+    Targetport: 61616
+  Selector:
+    App: Activemq
+  Type: Clusterip
+status:
+  Loadbalancer: {}
+`` `
+Deiployes with:
+
+5. Azure Key Vault and Azure Key Vault Env Injector
+Azure Key Vault can be used to save Secrets. Here we will save the password of the keystor the integration point uses.
+The step assumes that Azure Key Vault is set up in the Azure Portal. Alternatively, it can be created via the following command:
+
+Add Secret for Keystore passwords
+
+To make this Secret as an environmental variable so that it can be supplemented to the integration point, uses
+We akv2k8s (Azure Key Vault to Kubernetes) (https://akv2k8s.io/)
+
+AKV2K8S needs reading access to Azure Key Vault to retrieve Secrets, either via Service Principal or Managed Identity. The cluster in this example was set up with Managed Identity:
+
+Alternatively with Service Principal:
+
+Turn on Env-Injection for Default Namespace
+
+Key Vault Secret's must then be made available to the cluster:
+
+6. Java Keystore
+The keystor itself is stored as a cube secret.
+
+This will be referenced in the deployment point of the integration point.
+7. The integration point
+The following deployment can be used as an example of setting up the integration point with DPO in the staging environment. Note that properties
+Set as environmental variables and must be replaced with own values.
+`` `yaml
+APPERSION: APPS/V1
+Kind: Deployment
+Metadata:
+  Creationtim Stamp: Zero
+  Labels:
+    App: IP staging
+  NAME: IP staging
+Spec:
+  Replicas: 1
+  Selector:
+    Matchlabels:
+      App: IP staging
+  Strategy: {}
+  Auditory HistoryLimite: 3
+  Template:
+    Metadata:
+      Creationtim Stamp: Zero
+      Labels:
+        App: IP staging
+    Spec:
+      Containers:
+      - Image: Digdir/Integration Point: 2.24.1
+        NAME: Integration point
+        Resources: 
+          Limits:
+            Memory: 3072mi
+          Requests:
+            Memory: 2048mi
+        Volume Mounts:
+        - Name: Keystore
+          Mountpath: "/Etc/Keystore"
+          Readonly: True
+        Env:
+        - Name: Spring_profiles_Active
+          Value: "Staging"
+        - Name: Difi_move_org_number
+          Value: "123123123"
+        - Name: Difi_move_org_Kystore_alias
+          Value: "123123123"
+        - NAME: DIFI_MOVE_ORG_KYSTORE_PATH
+          Value: "File: /etc/keystore/keystore.jks"
+        - NAME: DIFI_MOVE_ORG_KYSTORE_PASSWORD
+          Value: "KV-kspass@azurekeyvault"
+        - NAME: DIFI_MOVE_FEATURE_ENABLEDPO
+          Value: "True"
+        - NAME: DIFI_MOVE_FEATURE_ENABLEDPE
+          Value: "False"
+        - NAME: DIFI_MOVE_DPO_USERNAME
+          Value: "Username"
+        - Name: Difi_move_dpo_Password
+          Value: "Password"
+        - Name: Difi_move_nextmove_usedbpersistence
+          Value: "True"
+        - Name: Spring_datasource_url
+          Value: "JDBC: Postgresql: //postgresql.default.svc.cluster.local: 5432/Postgres"
+        - NAME: SPRING_DATASOURCE_USERNAME
+          Value: "Postgres"
+        - Name: Spring_datasource_Password
+          Valuefrom:
+            Secretkeyrf:
+              NAME: POSTGRESQL
+              Key: PostGresql-Password
+        - NAME: Spring_Activeemq_Brokerurl
+          Value: "Tcp: //activemq.default.svc.classer.local: 61616"
+      Volumes:
+      - Name: Keystore
+        Secret:
+          Secretname: Keystore.jks
+          Items:
+          - Key: Keystore.jks
+            Path: Keystore.jks
+Status: {}
+
+Apiversion: V1
+Kind: Service
+Metadata:
+  Creationtim Stamp: Zero
+  Labels:
+    App: IP staging
+  NAME: IP staging
+Spec:
+  ports:
+  - NAME: 9093-9093
+    port: 9093
+    Protocol: TCP
+    Targetport: 9093
+  Selector:
+    App: IP staging
+  Type: Clusterip
+status:
+  Loadbalancer: {}
+`` `
+Deiploy:
+
+The service is set up here with type - port 9093 must be forwarded to get in touch with the service locally:
+`` `console
+$ KUBECTL GET SERVICE IP staging
+NAME TYPE CLUSTER-IP External-IP port (s) age
+IP staging Clusterip 10.0.166.107 9093/TCP 15H
+$ KUBECTL PORT-FORARD SVC/IP staging 9093
+Forwarding from 127.0.0.1:9093 -> 9093
+Forwarding from [:: 1]: 9093 -> 9093
+Action Connection for 9093
+`` `
+The integration point should then be reached at the following address (replace with own external IP):

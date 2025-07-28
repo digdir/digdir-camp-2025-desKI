@@ -136,7 +136,7 @@ class QueryService:
     def _search_docs(self, user_query: str, limit: int = 10):
         user_query = self.llm_service.clean_query(user_query)
 
-        self.chroma_service.switch_collection('dig_docs')
+        self.chroma_service.switch_collection('digdir_docs_en')
         results = self.chroma_service.search(user_query, limit=limit)
 
         return_text = ''

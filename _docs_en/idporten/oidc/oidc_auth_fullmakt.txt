@@ -1,0 +1,149 @@
+Title: Power of Attorney
+Description: Login on behalf of others
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Oidc_Auth_to power
+
+{% Include note.html Content = "Login on behalf of others is beta functionality. We welcome businesses to help us test and improve the functionality through a pilot phase in 2025. Those participating must be prepared for there to be continuous changes in functionality and technical interface." %}
+Background
+There is a great, unmet need for others to represent a citizen using digital services.  Measures related to the establishment of national solutions in the power of attorney are rooted in both the digitization strategy and the National Eid strategy. 
+Based on this background, Digdir wants to test how the ID port can support a national power of attorney, by allowing authorities to log in on behalf of their authorizations to public services.
+Experience with the pilot will include, among other things, as a knowledge base in the study in the power of attorney in the Eid strategy.
+User journey
+The ID port wants the business to implement proxy logging as follows: 
+
+User logs in as himself with a service  
+The service offers the user a separate button to represent someone else
+Service sends a new login request to the ID port where it indicates that this is a proxy logging
+User chooses who they will represent in the ID port's "proxy voter"
+User is logged in in service on behalf of another
+
+We believe it will be the best user experience that logged in the user must be "forced" through two steps: first log in as themselves, then log in on behalf of someone else.  This makes it much clear to the user that you represent someone else. This also means that existing services must be adapted if they want to be expanded with proxy logging.
+The ID port has deliberately chosen not to realize proxy logging by impersonation (ie only "switching birth numbers"), although it may have provided faster prevalent and less need for customization in existing services. We believe that relevant regulations require services to track that actions have been carried out by a proxy and who is the proxy, and then impersonation in the ID port will not be appropriate.
+Who can the citizen represent?
+Logged user cannot choose freely, but must choose an existing proxy relationship.  This proxy relationship must be registered in an external, authorative source.
+During the pilot period 2025, the Guardianship Register of the State Civil Administration, distributed via the National Register, is the available authorative source.  As soon as user -controlled powers for the inhabitant become available in Altinn 3, these will be included in the solution.
+The ID port does not have - and will never get - a separate database of powers.  This means that the administration of authorizations (giving, changing, or withdrawing a power of attorney) should and must take place in the authorative source.
+
+The figure shows the proxy voter in the ID port.  In the long term, the birth number field will be replaced by a list of logged in using its proxy donors.
+The company's obligations by proxy logging
+TBD - will be clarified throughout the pilot period.
+We assume the business must: 
+- even clarify the necessary authority to process personal data related to proxy relationships
+- even clarify which of the structured proxy groups that fit their service
+- implement necessary tracking in own logs (technical and legal) that actions take place in proxy relationships
+Protocol-flow
+
+sequence chart
+
+Participant B AS uses
+Participant C AS SERVICE
+Participant A AS ID port
+Participant S AS National Power Subsection Solution
+
+B->> C: Clicking "Login" on service
+C->> A: /Authorize (redirect)
+Note above A: End user authenticates themselves
+A --- >> C: Redirect with Code
+C->>+A: /Token
+A->>-C: id_token
+Note over B, C: logged in as himself
+
+B->> C: Clicking "represent someone else" on service
+C->> A: /Authorize with required proxy type (redirect)
+A->>+S: Does the login user have requested proxy type (s)?
+S->>-A: List of proxy donors
+Note above A: End user selects a proxy giver
+A --- >> C: Redirect with Code
+C->>+A: /Token
+A->>-C: id_token
+Note above B, C: logged in on behalf of the selected authority giver
+
+The first part of the flow is thus a perfectly normal login in the ID port.  This is documented here
+The second part of the flow, ie the actual proxy login, is realized by the use of the OAuth2 extension Rich Authorization Requests (RAR), and is documented below in 3 steps:
+Step 1: Login Request
+The client must include the claim in the authorization request to trigger proxy logging.  A simplified example is shown here:
+
+-Arrayed a JSON object where the Claim set the ID port tells that a proxy logging is required.  The data model is described in more detail here.
+The Claim is a list of the possible authorizations that the service supports.  Logged in the user must have one or more of these to be allowed to choose a proxy in the proxy voter.  There is thus a logical or between the elements in the list. 
+You will find an overview of available proxy types of the State Civil Administration.  
+Step 2: Authorizing Values
+In normal cases, the user already has an active SSO session in the ID port as a result of the first login as itself.  Therefore, the use will now not have to authenticate again and rather jump directly to the proxy voter.  Here the user must choose who they will represent. 
+The ID gate will check, by calling an authorative source, that the proxy relationship exists and is applicable, so that the logged in the user does not get selected or injected non-existent proxy conditions.
+If the logged user does not have any proxy relationship, the ID port will show an error message, and the user must press "back" in browser to return to the service.
+If logged in the user regrets, they may choose to represent itself.
+When the user has made their selection, Browser will be redirecta back to service in the usual way, with an authorization code ().
+Step 3: Receive the Power Stock
+When the user is Redirecta used to the client, the client retrieves tokens in the usual way, and uses the response to update / change existing local user session in their own service.
+The client finds information about the selected proxy in the attribute:
+Example of token response:
+`` `
+200 ok
+{
+  "Id_token": "Eyjrawqio ...",
+"Access_token": "Eyjrawqio ..."
+  "Token_Type": "Bearer",
+  "Expires_in": 600
+"Scope": "Openid Profile",
+"Authorization_Details": [{{
+    "Type": "Idports: Proxy",
+    "Authorizer": {
+      "Name": "Unsure Ticket Guke",
+      "PID": "28816196088"
+    },
+    "Authorized_representative": {
+      "NAME": "LIVLAD DEDICATED HOUSEBOL
+      "PID": "05895894984"
+    },
+    "Permissions": [{
+      "Owner": "NAV",
+      "Role": "Work"
+    }]
+  }],
+"Refresh_token": "Eyjlbmmio ...",
+  "Refresh_token_Expires_in": 7200,
+}
+`` `
+If the user chooses to represent himself, will contain an empty array :.
+Note: Proxy information is returned directly in the repons, ie on the "outside" of the issued tokens.  This is standard behavior in accordance with the RAR specification, and is analogous to the way a client knows which OAuth2 Scopes as the end user has consented to give to the client.  But in the ID port, we have chosen to also include the power of attorney information in the ID_Token, so that we return a "power-up ID_TOKEN".   This demo service is also available in the production environment
+
+The use of inside an ID_TOK is not described in the RAR specification, as weird is an OAuth2 mechanism and not an OIDC mechanism. The client should preferably use the token response directly (as shown above) to deduct which rights the end user gave to the client.  However, we have chosen to include the power of attorney information also in the ID_TOK because we think it is easier for some customers to retrieve the information from there, and it may also be simpler conceptually to relate to two different types of token to distinguish the context of the login, versus picking up something in response, and something else in the token.
+The "regular" part of the ID_Token will always contain a birth number on the login user (ie points and always on the same physical person whether it is a regular ID_TOKEN or a power of power ID_Token).
+
+Example of proxy id_token: 
+`` `
+{
+  "Sub": "Z9ruqilefxmjobnywa_c75yqmh05ndhjw0rfzujc8m",
+  "AMR": ["Testid"],
+  "ISS": "https://test.idporten.no",
+  "PID": "05895894984",
+...
+   Authorization_Details ": [{
+    "Type": "Idports: Proxy",
+    "Authorizer": {
+      "Name": "Unsure Ticket Guke",
+      "PID": "28816196088"
+    },
+    "Authorized_representative": {
+      "NAME": "LIVLAD DEDICATED HOUSEBOL
+      "PID": "05895894984"
+    },
+    "Permissions": [{
+      "Owner": "NAV",
+      "Role": "Work"
+    }]
+  }],
+}
+`` `
+Data sharing as a proxy
+-Claimet will also be included in the ID port access_tokens.  
+This means that the functionality of proxy logging can also be used to offer an API that requires that logged in with the consumer is a proxy.  The apia only has to validate that the clients of the consumers send access_token with weird, and validate that the RAR element contains required proxy type.
+Note that there is no access control of RAR types.  All clients of all customers can request RAR and get the information in the access_token if the end user chooses this.  API provider must therefore use scopes as a further mechanism if the customer needs to implement access management. 
+Testing
+You can test the solution without creating an integration by using our demo service for authorization.   As of December 2024, you can log in with tenor-user 05895894984 as a proxy, and then choose 28816196088 as a proxy. 
+We recommend using Tenor Testdata search to find test users. Tenor has the opportunity to filter so that you only get guardians from the test people. Look at the JSON model of the guardian to find the birth number of the guardian as well as which guardianship tasks for which the guardian has been authorized.  
+If you want to test the protocol flow in detail, it is better to test with our ordinary demo client.  To trigger proxy voter from here, you must expand the "Authorization Request" field and enter e.g.  in the Authorization_Details field.
+About scopes, weird and sessions
+The central SSO session in the ID port is unaffected by proxy logging.  The RAR element that is added to the proxy login applies only to this one authorization request.  Thus, the central SSO session is not changed to be an "on-weigh-of-session".  If the logged in the user tries to send a new proxy logging, whether it is a new service, or for the same service, will be shown proxy voter again.
+Furthermore, there is no connection or technical dependence between scopes in user -controlled data sharing and weird - the two mechanisms are disjointed. Therefore, an API provider must validate that access_tokens both contains the scopes that may be required and have the necessary weird types. 
+Protocol is the mechanisms of scopes and weird optional "additional information" - the client asks for some scopes and/or some weird elements, but then it is up to the end user if they want to give the client that was put up or just some of it.

@@ -1,0 +1,18 @@
+Title: Well-Known
+Description: Employee gate's Well-Known endpoint
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee gate_wellknown
+
+Well-known endpoint
+Metadata on the employee gate is available on our .Well-Known-End point in accordance with. Openid Connect Discovery.  
+At the end point you will find a link to our JWK endpoint, where the employee gate's signing certificate is published.  We strongly recommend customers to use the endpoint of dynamic self-configuration to ensure continuous service delivery when the employee gate switches signing certificates.
+| Environment | Issu | Issuer metadata |
+| ----- | ------ | ------------- |
+| TEST | | https://test.saksatport.no/.well-known/openid-configuration | 
+| PRO | | https://srdsatporten.no/.well-known/openid-configuration | 
+These metadata should caches in your own solution, typically 24 hours is an appropriate life.
+In particular, note that the endpoints intended for the user's browser have a sub-domain other than the end point for the rear-channel call. 
+You can find the IP address of these environments here
+Other gates
+Note that both the ID port and the machine gate have their own metadata and own signing certificate.

@@ -1,0 +1,22 @@
+Title: Update to new version of e-insight client
+DESCRIPTION: Update to new version of E-Insyn-Client
+Summary: "Here you will find information on how to update to a new version of E-Insyn-Client"
+Sidebar: e -insight_sidebar
+Redirect_From: /E -Insyn_ Oppdatere_The service
+
+Download e-insight client
+To upgrade to a new version of the Esssyn client, you must change the version number in the e-insight-client.xml Fila. Specifically, this line. When making changes to this XML file, you need to reinstall service.  Whether it is a new version or anything else that is changed. 
+After you finish editing the e-insight-client.xml file, you must reinstall the service. To do this, you need to open a command window as an administrator. Then navigate to the e-insight folder (eg) and run the following commands. 
+
+e-insight-client.exe stop
+e-insight-client.exe uninstall
+e-insight-client.exe install
+e-insight-client.exe start
+
+These commands must be run without a slash or hyphen in front. Written exactly as in the picture below:
+
+
+If you use more than 1 e-insight client on the same server, you must also put a sender-owned field in order for addressing to e-insight to be correct. In this field, the same org number that is used in. In many cases, this is the organization's main square number. More information about the Property can be found here
+
+
+Information on upgrading the integration point

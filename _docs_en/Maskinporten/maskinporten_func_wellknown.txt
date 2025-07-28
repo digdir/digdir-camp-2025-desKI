@@ -1,0 +1,18 @@
+Title: Well-Known
+Description: The Well-Known endpoint
+Summary: "Metadata about machine gate is available on our .Well-Known-End point"
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_func_wellknown
+
+Well-known endpoint
+Metadata on machine gate is available on our .Well-Known-End point in accordance with. RFC8414.  
+At the end point you will find a link to our JWK endpoint, where the machine sports signing certificate is published.  We strongly recommend customers to use the endpoint of dynamic self-configuration to ensure continuous service delivery when the machine port switches signing certificate.
+| Environment | URL | Comment |
+|-|-|-|
+| Test | https: //test.maskporten.no/.well-known/oauth-Authorization server | (Ver2.makaskerport.no/ is phase out 10.06.2024)
+| Prod | https: //maskporten.no/.well-known/oauth-Authorization server |
+You must contact the person delivering the API to find out which test environment to connect.
+You can find IP addresses for the environments here.
+The ID port
+Note that the ID port Oidc Provider has its own metadata, which is published here

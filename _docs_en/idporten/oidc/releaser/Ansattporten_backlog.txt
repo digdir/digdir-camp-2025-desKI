@@ -1,0 +1,18 @@
+title: Employee gate backlog
+Description: Employee gate backlog
+Sidebar: Oidc
+Redirect_From: /Employee gate_backlog
+
+Scheduled production setting: 2021-11-23
+New functionality:
+Generic employee logging with Altinn (in Design)
+Introduce a rich organizational voter in the employee gate, where logged in the user can choose which organization they want to represent for the relevant login.
+The services must choose which role/representation from Altinn authorization they need.
+For data sharing scenario, it will also be possible to get access_tokens with the link between logged in user and selected organization.
+Employee gate as a separate IDP (IN DESIGN)
+Establishment of the employee port as its own IDP, without link to the ID port and without SSO.
+Generic employee logging with NAV AA register (under Consideration)
+The organizational selector in the employee gate is expanded to also be able to use the AA register of NAV as a source of employee logging.
+Local speed change of spectator (under Consideration)
+Make it easy for professional users to be able to change the ENDs quickly. Such users have many (potentially several hundred) release, and it will be unanitially redened the entire browser to the employee port every time the user should change the disagreement (especially if the client is a desktop application or spa.
+Instead, the user is given the opportunity to choose in a local GUI Kven of the other possible dispensers one wants to represent.

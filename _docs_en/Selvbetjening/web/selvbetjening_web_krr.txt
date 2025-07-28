@@ -1,0 +1,57 @@
+Title: Self -service of KRR via the collaborative portal
+Description: Self -service of KRR via the collaborative portal
+Sidebar: Self -Service_sidebar
+Product: Self -Service
+redirect_From: /self -service_web_krr
+
+This document shows how you can self -service KRR via the collaborative portal.
+
+
+TOC
+{: toc}
+
+Self -service of krr
+Interior logging (integrations)
+To get to the administration interface for integrations/clients, do the following:
+
+Log in to the collaborative portal.
+Touch "business services" in the left menu.
+Touch "Administration of Services" in the left menu.
+Choose "integrations" in the environment you want to create self -service in.
+
+Create client with access to KRR
+
+Complete the steps in "Login"
+Press "New Integration".
+Select "KRR" from "Difi Service".
+Complete the registration.
+Press "Create" to save.
+
+VideoTutorial: (https://vimeo.com/427689834)
+
+Erase client
+
+Complete the steps in "Login"
+Tap the client to delete.
+Press "Change".
+Tap "Disable" and confirm.
+
+Videotutorial: (https://vimeo.com/427689782)
+
+Maintenance of mercantile data
+Maintenance of notification points is important for us to constantly have updated information on this. Notification point (s) receives emails in critical events in the solution and if nothing has been registered here, you can miss important information.
+To manage mercantile data:
+
+Login to the Collaborative Portal
+Tap the "business services" in the left menu
+Find the client in the list and press it.
+Tap “Edit Integration”
+Enter information and press "Save" when done.
+
+VideoTutorial: (https://vimeo.com/397388041)
+
+Often asked questions
+"New integration" is grayed into the production environment.
+To manage in the production environment, you have to log in with the ID port. This assumes that we have entered your social security number in advance. About "new integration" is still gray after logging in with the ID port. Contact serviceedesk@dir.no
+I see the integrations of a business other than what I expect.
+Access to the collaborative portal and the self-service solution is provided on the basis of your email domain, which in turn is connected to a business on our site.  For large businesses and companies, it may be that email domains are reused across multiple companies. Contact serviceedesk@dir.no.

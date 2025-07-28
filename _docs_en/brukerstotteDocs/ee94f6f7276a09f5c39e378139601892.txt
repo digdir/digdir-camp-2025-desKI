@@ -1,0 +1,86 @@
+URL: https://eid.difi.no/nb/ recognizable-o- and--loses/android-mobil-og-nettbrett-inbygd-Firefox- and-Chrome#main-Connent
+Title: Android mobile and tablet (built-in, Firefox and Chrome) | Help sites for common solutions
+
+Android- mobile and tablet (built-in, Firefox and Chrome)
+
+Here you will find instructions for deleting cookies in various android browsers:
+
+Mobile phone:
+
+Android Mobile - Built -in browser
+
+Start the browser "Internet"
+Click Menu - three horizontal lines down in the right corner
+Select "Settings"
+Select "Personal Browser Data"
+Select "Delete Network Data"
+Check that "inf. Cap. And side data" is squatted by
+Click "Delete"
+Close browser and open again before trying to log in again
+
+
+Android Mobile - Firefox
+
+Start your browser "Firefox"
+Click Menu - three dots down in the right corner
+Select "Settings"
+Select "Delete browser data"
+Make sure "info capsules" are squatted by
+Click "Delete browser data"
+Click "Delete"
+Close browser and open again before trying to log in again
+
+Android Mobile - Chrome
+
+Start the browser "Chrome"
+Click Menu - three horizontal dots in the top right corner
+Select "Settings"
+Select "Privacy and Security"
+Select "Delete browser data"
+Make sure "cookies and data from websites" are squatted by
+Click "Delete Data"
+Click "Empty"
+Close browser and open again before trying to log in again. 
+
+Tablet:
+
+Android tablet - built -in browser
+
+Start the browser "Internet"
+Click Menu- three horizontal strokes in the top right corner
+Select "Settings"
+Select "Privacy and Security"
+Click "Delete Browsing Data"
+Make sure "infr.kaps.and sidedata" is squatted by
+Click "Delete"
+Close browser and open again before trying to log in again
+
+Android tablet - Firefox
+
+Start your browser "Firefox"
+Click Menu - three horizontal dots down in the right corner
+Select "Settings"
+Click "Delete browser data"
+Check that "browsing history and website data" are squatted by
+Click "Delete browser data"
+Click "Delete"
+Close browser and open again before trying to log in again
+
+Android tablet - chrome
+
+Start the browser "Chrome"
+Click Menu -three dots in the top right corner
+Select "Log"
+Click "Delete browser data"
+Make sure "Delete cookies and data from websites" are squatted by
+Click "Delete Data"
+Close browser and open again before trying to log in again
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

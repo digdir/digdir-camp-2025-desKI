@@ -1,0 +1,67 @@
+Title: Transformation from archive message to Best/Edu
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+The table below shows how the integration point transforms incoming messages from the Emsydidling messaging service
+to Best/Edu. The integration point supplements incoming messages with information from configuration, standard values and
+Lookup with third parties.
+| To eFrasing Best/Edu | From eFormidling Message | From configuration | From default value |
+| ----------------------------- | ------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------- |
+|            | Conversation identifier in SBD | - | - |
+|          | - | - |  |
+|            | Organization number for recipients in SBD | - | - |
+|             | Name for the recipient is retrieved from the Device Register | - | - |
+|              | Scope in SBD | - | - |
+|              | Organization number for sender in SBD | - | - |
+|               | Name for the sender is retrieved from the Device Register | - | - |
+|                | Scope in SBD | - | - |
+|                    |                                   | - | - |
+|                   |                         | - | - |
+|                |                             | - | - |
+|                 |                        | - | - |
+|               |                           | - | - |
+|                      |                                  | - | - |
+|                    |                                  | - | - |
+|                  |                                    | - | - |
+|                  |                                | - | During treatment () |
+|                  |                              | - | - |
+|                  |                      | - | - |
+|                      |                      | - | - |
+|                 |                        | - | - |
+|                    |                     | - | - |
+|                   |         | - | - |
+|                 |             | - | - |
+|                   |                   | - | - |
+|                |                  | - | - |
+|                |               | - | Incoming Document () |
+|                 |               | - | - |
+|                  |                 | - | Completed from case manager () |
+|                  |             | - | - |
+|                  |                 | - | - |
+|              |                | - | - |
+|                    |               | - | - |
+|                    |                                   | - | - |
+|                 |                         | - | - |
+|           |     | - | - |
+|         |      | - | - |
+|        |                | - | - |
+|         |                 | - | - |
+|       |                   | - | - |
+|         |                       | - | - |
+|        |         | - | - |
+|         |              | - | - |
+|          |                | - | - |
+|       |  | - | - |
+|       |                 | - | - |
+|      |             | - | - | 
+|       |                      | - | - |
+|          |              | - | - |
+|         |   | - | - |
+|    | Surname for File | - |                                             |
+|     | MIME type for file provided by last name | - | - | 
+|      |                    | - | Production Format () |
+|            | BASE64-CODED Binary Document | - | - |
+Further description of the functionality of Best/Edu can be found at:
+- Best/Edu

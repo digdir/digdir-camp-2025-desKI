@@ -1,0 +1,28 @@
+Url: https://eid.difi.no/nb/buypass-id/mottar-no- not-engangcode-sms-sms#main-conent
+Title: Does not receive a one -time code by SMS | Help sites for common solutions
+
+Not receiving one -time code on sms
+
+If you do not get a disposable code on SMS, try turning on and off your mobile.
+
+If you still do not receive a disposable code by SMS, it may be the wrong mobile number registered.
+
+How to change your mobile number:
+
+Select Buypass ID
+Enter your birth number and password, click "Continue"
+Click "Does Not Receive SMS"
+Select BankID and complete the identification
+Register mobile number and save the changes
+
+Select Buypass ID and log in again.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

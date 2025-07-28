@@ -1,0 +1,15 @@
+Title: 2020
+Description: 2020
+Sidebar: Oidc
+
+| Release | Production Set | Description |
+|-|-|-|
+| 20-01 Oidc | Feb 11, 2020 | Support to limit both scopes and integrations to the machine gate or ID port. |
+| 20-02 Oidc | Mar 4, 2020 | With this release, everyone must scop as a client can request, registered in advance on the client. Introduces new endpoint for event -based notification of revocated authorization. |
+| 20-04 ID port | Apr 21, 2020 | In this release, the ID port is upgraded to the latest version of Forgerock AM.   BankID on mobile is optimized to use server events for the browsers who support this. |
+| 20-04 Oidc | Apr 23, 2020 | Signed authentication requests (pairs and Request Objects).  Production access to self -service through Altinn authorization. |
+| 20-05 ID port | May 19, 2020 | The ID port is expanded with new owned for selected service owners (ie.  New process for online user-creation of MinID based on self-service verification of passports. |
+| 20-06 Machine Gate | Jun 23, 2020 | Maintenance release for machine port |
+| 20-08 minid | Aug 25, 2020 | Support for manual recognition of foreign users.  |
+| 20-09 Oidc | Sep 29, 2020 | Maintenance release with minor error corrections and improvements. |
+| 20-11 Oidc | Dec 10, 2020 | Improvements in access dialog for "User -controlled data sharing" |

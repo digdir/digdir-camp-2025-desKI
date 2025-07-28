@@ -1,0 +1,7 @@
+Title: Employee Gate
+Description: Employee gate
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Antattorten_guide
+
+The documentation of the employee gate has moved here

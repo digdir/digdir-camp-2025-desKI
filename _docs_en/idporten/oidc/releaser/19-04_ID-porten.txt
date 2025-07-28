@@ -1,0 +1,14 @@
+Title: 19-04 ID port
+Description: 19-04 ID port
+Sidebar: Oidc
+Redirect_From: /19-04_ID port
+
+Support for login history and app login with centraized revocation in ID port's user profile
+Releasen was production night Jun 6, 2019
+New functionality:
+API for App logs (Shipped)
+New OAuth2-Protected API in the ID port that makes the resident's long-living app login/authorizations with the possibility of reef.  
+My App logs (Shipped)
+Show its residents' long-lived logins on mobile apps in the ID port's user profile, and associated functionality to be able to withdraw the login if, for example, the phone is stolen.
+Digital Citizen: Login History (Shipped)
+Available resident's latest login through the ID port on an external, OAuth2-protected API, as well as viewing these for the inhabitant of the ID port's user profile.

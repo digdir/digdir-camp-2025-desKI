@@ -1,0 +1,27 @@
+Url: https://eid.difi.no/nb/ennentte-error- and-lodes#main-content
+Title: Known errors and solutions | Help sites for common solutions
+
+Familiar mistakes and solutions
+Here you will find various known errors and solution suggestions
+Delete cookies in browser
+Windows (Internet Explorer, Microsoft Edge, Firefox, Chrome and Opera)
+Mac OS X (Safari, Firefox, Chrome and Opera)
+iOS - iPhone/iPad (Safari and Chrome)
+Android- mobile and tablet (built-in, Firefox and Chrome)
+Error messages
+"System failure"
+"An error has occurred"
+"Service is currently not available"
+"Warning: Your user is closed"
+iOS (iPhone/iPad)
+Allow cookies in safari
+Update of iOS
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

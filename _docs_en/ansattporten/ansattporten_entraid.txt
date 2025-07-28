@@ -1,0 +1,70 @@
+Title: Entra ID in the employee port
+Description: Entra ID in the employee port
+Sidebar: Employee gate
+Product: Employee Gate
+redirect_From: /Employee gate_entraid
+
+{% Include note.html Content = "Entra ID is beta functionality. We welcome businesses to help us test and improve the functionality through a pilot phase in 2025/2026. Those participating must be prepared for there to be continuous changes in functionality and technical interface." %}
+A service owner in the employee port can enable support for a user to log in with his job account from Microsoft to a service.  The employee gate can also enrich a login with the organization number to the account owner (which most often uses its employer). The pilot will also explore whether and possibly how the employee port can help with access management to services.
+Activate entraid for login
+The client must add the value as part of the parameter to the authentication request.  Then Entra ID will appear in the Eid-Selector Eidsports as follows: 
+
+Example of Request (simplified): 
+
+It is the ENTRA settings of the user's organization (Entra Tentant) that determines whether the user is allowed to log in to your service in the employee port or not.  As of spring 2025, all organizations that follow the default settings in Entra will be allowed to log in, but the user must consent the first time.  The Entra administrator can disable such consent, so that the login feels more seamless.   The Entra administrator can also block the estate port if a business will prevent its employees from being able to use services through the employee gate. 
+If the user completes an Entra ID login, the ID_TOKEN that is handed over to the client will contain:
+| Claim | Description |
+| ----- | --------------------- |
+| ACR | Always |
+| AMR | What authentication factors used. The employee gate returns the ACR values it receives from the Microsoft, the prefix. Example of 2-factor authentication: |
+| Email | Email address of authenticated user |
+| NAME | The name of the user as it is registered in the Entra Tenten |
+| Groups | An array with the first 20 AD groups that authenticated user is included in. |  
+Example of id_token in repons: 
+`` `
+{
+  "Kid": "Bdxlewndjlhjpe8ofyymjxrrrkmz71lb8uyddmpiut0",
+  "Alg": "Rs256"
+}
+.
+{
+  "Sub": "_xxxxxx",
+  "ISS": "https://test.lsattport.no",
+"ACR": "Entraid",
+  "AMR": ["Entraid_pwd", "Entraid-MFA"],
+  "Groups": ["83aa7a53 -FF60-47E4-8940-0C73573B0130", "B699BBBBBBBE-DF5B-434A-97CCC-25CC9A92614", ....],
+  "Email": "xxxxx@dir.no",
+  "Name": "Name Name 
+}
+`` `
+Enrich token with organization number
+Based on the email domain of the logged in user, the employee port can also disclose the organization number to the owner of the domain.  The authorative source of organization number is DIGDIR's customer database: All companies that have entered into DIGDIR's terms of use at the same time registered an email domain, and it is this folder that is reused by the employee gate. 
+We are considering functionality to connect users to sub-units based on ad groups, contact us if you have views here.
+The employee gate uses the standard Rich Authorization Requests (RAR) to include information about the end uses its organizational affiliation. RAR type will trigger such enrichment:
+Example of Request (simplified): 
+
+The response data model always contains the same "type" as in Request, but if the user comes from an organization registered as a customer of Digdir, it will also be provided:
+| Claim | Description |
+| ----- | --------------------- |
+| Orgno | Organizational Identifier |
+Example of response:
+
+The organizational identifier follows the ISO6523 standard, where the value 0192 indicates Norwegian organization number.
+Access management
+In the first version, the employee port does not perform any central access management. All users get to log in and will be enriched with the organizational number.
+It is a goal for the pilot to explore how access management can be implemented most effectively, and we want dialogue with businesses on this.
+If the client, or employers who log in, wants to limit who with the employer who can log in to a client, they must p.t. Set up local access management based on AD groups. One must ask all employers to create a dedicated ad group for their service and then exchange the guide who identifies the group.  The employee gate will disseminate user ad groups when logging in. The service owner can then allow list all guides from all employers. 
+Configuration
+Entra is p.t. Supported in the test environment.  We are working on setting up a dedicated entra-volume for a production environment.
+Setup for service owners
+The service owner does not have to do anything in his own Entra-tenant to activate Entra in the employee gate.
+Of course, you must activate entra into your service, and possibly orgno enrichment, as explained above.
+If you want access management, you must implement this yourself, based on the provided AD groups that you are extracting bilaterally with the employers who will log in to you.
+Setup for employers
+The employee gate is implemented as a publisher Verified app. The app registration is in a separate tentant, separated away from Gigdir's ordinary tentant. The app is a so-called Multi-Tent app. This means in practice that login should work "out of the box", and the employee administrator of the employer should normally not have to configure anything in its own ententant.  However, this depends on existing security policy.
+Your employees must consent to the use of the employee gate for the first time, see UNDERSTAND USER AND Admin Consent .You as Entra administrator can disable consent so that the login feels more seamless.  
+You as an Entra administrator can also block the entrance port if a business will prevent its employees from being able to use services through the employee gate. 
+The organization number with your employees is enriched is based on the email domain that you have registered with Digdir when you entered into Digdir's terms of use, see above.
+Testing
+You can test the solution without creating an integration by using our demo service https://emo-lient.test.mutporten.no/.  Add the right ACR value to request and log in with your own AD user.
+Microsoft does not offer its own test environment, so here you have to use your real Entra user, or get your business to set up a dedicated entra-tasting for test purposes.

@@ -1,0 +1,8 @@
+Title: 2018
+Description: 2018
+Sidebar: Oidc
+
+| Release | Production Set | Description |
+|-|-|-|
+| 18-11 Oidc | Nov 13, 2018 | Support for reusable refresh_tokens, as well as improving caching by certificate validation |
+| 18-11 ID port | Nov 20, 2018 | Upgrade to Openam 13.5 |

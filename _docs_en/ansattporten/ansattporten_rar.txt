@@ -1,0 +1,83 @@
+Title: RAR types in the employee port
+Description: Employee gate uses weird for communicating representation conditions
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee gate_rar
+
+The employee gate uses the standard Rich Authorization Requests (RAR) to structure information on representation conditions, both in requests and tokens. 
+RAR is a new OAuth2 extension for transaction-specific authorizations. Where "Basic" OAuth2 only provides access to a so-called "scope" (text string), weighs weird for access to more extended data models in the form of authorization types. The type of authorization (s) is delivered in the token as a new hierarchical claim Kalla, which in turn is an array of authorization objects, where each object consists of:
+
+
+Standardized Required fields:
+
+ Defines the current authorization type
+
+
+
+Promised data model
+
+For a given, it will be defined and documented a valid valid data model.  The employee ports' data models are defined on this page.  
+
+
+
+Relations between weird and scope
+There is no technical correlation between an oauth2 scope and weird, the two mechanisms are disjunky.  
+Therefore, one cannot assume that a client who has not received a given scope cannot receive a strange structure in the token.
+Access control of RAR types
+It's p.t. No access control of RAR types.  All clients from all customers can submit a strange structure in the demand for authorization, and it will trigger organizational voter.
+RAR types supported in the employee gate
+The following Authorization_Type is supported in the employee port:
+|  |     Depiction |
+|-|-|
+|   | Uses Linket Services (Service Code) from Altinn 2 as an authorative source of representation relationship |
+|  | Not in use yet.  Must support the use of Altinn3 resources as an authorative source of representation. See Backlog case |
+|  | Provides the organization number coupling for user logged in with its job account, typically a Microsoft account (Entra ID). See Backlog case |
+It's p.t. Not possible to request different strange type in the same login request. Instead, the client must implement several login buttons in their own solution.
+Data model for Altinn 2 Link Services ()
+Only customers who are the service owner in Altinn can use Altinn authorization as an authorative source.
+If the customer wants to use Altinn 2 Linket Services (Service Code) as an authorative source of representation relationship, the client must state as a strange type. 
+The following Claims can be submitted in Request: 
+| Claim | Cardinality | Description | Validity |
+|-|-|-|-|
+| Resource | Required | Which link service in Altinn is requested. Must be formatted as follows: | Specified per Authorization object |
+| Organization Form | Optional | Limit organizational voter to the end user only selecting main units () or sub -units (). Default then both are possible to choose. | Applies across all authorization objects - must have the same value if specified in multiple authorization objects |
+| Allow_Multiple_organizations | Optional | If so, the end user can choose more companies in the organizational selector. Default is false. | Applies across all authorization objects. Being about TRUE in an authorization object |
+| Allow_Deleted_organizations | Optional | If so organizational voters will show deleted businesses. Default is false. | Valid across all authorization objects - must have the same value if specified in multiple authorization objects |
+| Representation_is_Required | Optional | Require that user must represent a business. Default is false. | Valid across all authorization objects. Being about TRUE in an authorization object |
+Here is a list of all service codes in Altinn 2 
+
+Many of today's standard Altinn roles provide very broad access ("post/archive", "complement/submitter").  This is problematic that they do not follow good data minimization principles, and difficult to keep track of what a given role actually gives access to.  Therefore, we do not offer login on behalf of Altinn roles in the employee gate, the service must specify a link service. 
+
+Example of Request with 2 authorization objects: 
+
+The response data model always contains Claiment "Type" as in Request, but if the user has chosen to represent a business, it will also be handed out:
+| Claim | Description |
+| ----- | --------------------- |
+| Resource | Same as in Request |
+| Resource-Name | Name of sought -after representation relationship |
+| Reportes | Array with selected businesses. |
+| Rights | For each business, an array with rights that logged in the user has for the current service code.  |
+| NAME | For each business, the name of the selected business |
+Example of response:
+
+If several representation conditions have been requested, then one JSON object per link service to which the user is entitled. 
+Test users
+You can test the solution without creating an integration by using our demo service https://emo-lient.test.mutporten.no/.  Here you can also study the protocol flow in detail.   If you want to test organizational voters, you can use in the Authorization_Details field (this service code releases key roles).
+We recommend using Tenor Testdata search to find test users. Tenor has the opportunity to filter so that you only get the general manager from the Test Unit Register. Another advantage of tenor is that only synthetic test data here, so you don't have to risk mixing production and test data.
+
+Note: If the test user does not exist before in Altinn's test environment (typical of synthetic birth numbers), the organizational selector will not work. This is easily solved by logging into TT02 once with the synthetic birth number.
+
+Data model for Altinn 3 resources ()
+TBD
+Data model for the employer's organization number ()
+Based on the email domain of the logged in user, the employee port will disclose the organization number to the owner of the domain.  The data source is p.t. Digdir's customer database, ie all businesses who have entered into Digdir's terms of use will be enriched with organization number.
+The employer's login is usually based on email address as an identifier, which is most often this Microsoft account (Entra ID).
+If the end user has chosen an Eid who does not have an email as an identifier, this strange type may not work, and an empty RAR element will be handed out. 
+P.T. Are there no attributes that can be stated in the request, beyond:
+Example of Request (simplified): 
+
+The response data model always contains Claiment "Type" as in Request, but if the user has chosen to represent a business, it will also be handed out:
+| Claim | Description |
+| ----- | --------------------- |
+| Orgno | Norwegian organization number |
+Example of response:

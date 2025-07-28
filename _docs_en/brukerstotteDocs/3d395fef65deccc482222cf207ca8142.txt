@@ -1,0 +1,30 @@
+Url: https://eid.difi.no/nb/minid/sperring-v-minid
+Title: Sperring of MinID | Help sites for common solutions
+
+Sámegiella
+Blocking minide
+
+If you want to block yourself against the use of MinID, you can do so by submitting this form.
+
+Form you send to:
+Norwegian Digitalisation Agency
+Printer Road 2
+6863 Leikanger
+
+When you block yourself against the use of MinID, it will no longer be possible to create, order or log in with MinID. You will get a receipt that your user is blocked.
+
+A blocked user can be reopened by submitting this form.
+
+NB! Even if you block the use of MinID, you will still be registered in the contact and reservation register. If you want to delete your information from the register, you must submit this form.
+
+If you want to reserve the use of BankID, Buypass and or Commfides, you must contact them directly.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

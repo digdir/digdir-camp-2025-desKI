@@ -1,0 +1,39 @@
+title: authentication
+Description:
+Summary:
+Sidebar: Machine gate_sidebar
+Product: Machine Gate
+redirect_From: /Machine gate_auttentization
+
+Here we have collected some information on authentication in the machine gate.
+
+TOC
+{: toc}
+
+Authentication methods in the machine gate
+Companies can authenticate in the machine gate with a business certificate or asymmetrical keys, which are their business digital ID.
+What is the purpose of a business certificate/keys?
+Virility certificate/keys are used to sign the request against the machinery. The machine gate then checks the validity of the certificate/key. This is described in more detail on JWT Grant since.
+Lifetime and validity for business certificate/keys?
+A key has a maximum of one year of life from the time it is posted. Business certificate has three years of life.
+If a business certificate is used for authentication to our services, it must be a valid Norwegian X.509 certificate.
+Can foreign companies order a business certificate?
+One must be registered in the Norwegian Unit Register to order a business certificate.
+Who can issue business certificates?
+As of today, BuyPass and Commfides are approved by Nkom for unsteading business certificates.
+We refer to Norway's trust list for updated information on who can issue business certificates.
+Link to issuers:
+Buypass: https://www.buypass.no/produkter/skervikkabernssertifier-esegl
+Commfides: https://www.commfides.com/commfides-smakerbuard
+How is asymmetrical keys created?
+There are different software for creating asymmetrical keys. This will not be discussed in the Directorate of Digitization's technical documentation.
+Do you use the same certificate for testing as in production?
+No, in the test environments you have to have a test business certificate. This is also ordered from Buypass and Commfides.
+Buypass: https://www.buypass.no/produkter/skervikkabernssertifier-esegl
+Commfides: https://www.commfides.com/bestilling-vests certificateseid20/
+Can you reuse a business certificate/keys on several clients in the machine gate?
+Yes, you can use the same certificate/key on several clients in the machine gate.
+Does the machine gate support the new SEID 2.0 certificates?
+Yes, the machine gate supports SEID 2.0 certificates from both Buypass and Commfides.
+Management of certificate/keys
+We strongly advise against sharing client registrations (with secrets/keys) across multiple installations. For suppliers and companies with many integrations, also recommend using asymmetrical keys instead of business certificates. For safety reasons, suppliers should not manage customers' business certificate/keys.

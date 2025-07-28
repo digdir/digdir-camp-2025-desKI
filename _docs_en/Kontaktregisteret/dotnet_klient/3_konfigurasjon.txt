@@ -1,0 +1,28 @@
+Title: Configuration
+Description: 
+Summary: ""
+Sidebar: krr_dotnet
+Product: krr
+redirect_From: /krr_configuration
+
+Transport service configuration is initiated with which environment you want to drive towards, a functional test environment or production environment, as well as associated certificate to the given environment. 
+{% highlight charp%}
+Was test environment configuration = new reference service configuration (environmental functional test environment, sender certificates certificates);
+Was production environment configuration = new reference service configuration (environmental production environment, sender's certificates of humance);
+{% Endhighlight%}
+Proxy
+To use Proxy, you put, and in the configuration:
+{% highlight charp%}
+Was configuration = new lookup service configuration (environmental functional test environment, sender Certificate of Humb Print);
+{
+    Proxyhost = "proxyhost",
+    Proxyport = 3333,
+    Proxyscheme = "https"
+};
+{% Endhighlight%}
+On behalf of
+To make a look on behalf of another business, the organization number is set to the given company in:
+{% highlight charp%}
+Was test environment configuration = new reference service configuration (environmental functional test environment, sender certificates certificates);
+Test Environment Configuration.
+{% Endhighlight%}

@@ -1,0 +1,100 @@
+Title: "Standard Business Document (SBD)"
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+Emsyring includes one standard Business Document (SBD) as part of all messages. SBD consists of a header (sbdh) and
+A business message. SBDH contains information for identification, addressing and routing the message.
+The business message contains additional information depending on which document type is sent. Each of
+The document types in e -mediation have an associated business message. Feel free to see the document types in the eFonsening at:
+
+Document types
+
+Feel free to see more about SBD:
+
+Standard Business Document at GS1 (external link)
+
+Example
+Em shape uses a JSON variant of SBD. See the example below:
+
+Standard Business Document Header
+The content of SBDH is described below.
+
+ (voluntary)
+Sender identifier.
+ISO6523 is used for businesses. Only Norwegian organization numbers are supported (International Code Designator
+(ICD) 0192). Identifkators for Norwegian companies are in shape. 
+When sending on behalf of another business, the second business organization number is given instead of
+the business that runs the integration point. For backward compatibility, the syntax is supported
+ Still, even if it is not recommended.
+| Legal values | ISO6523 |
+| Standard value | None |
+| Configuration of Standard Value |  |
+ (required)
+Recipient identifier.
+ISO6523 is used for businesses. Only Norwegian organization numbers are supported (International Code Designator
+(ICD) 0192). Identifkators for Norwegian companies are in shape.
+For residents, birth numbers are used.
+FIKS IO account number is used for FIK's IO receiver.
+| Legal values | ISO6523, Birth Number or Fix IO account number |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Message identifier
+Unique identifier for the message and is used to refer to messages in the interfaces. Folders for Documentidentification.instanceidentifier in SBD. This "replaces" the old conversationid for messages, see info below.
+| Legal values | Uuid |
+| Standard value | Generated if omitted |
+| Configuration of Standard Value | Not supported |
+
+Conversation identifier
+Unique identifier for the conversation, links messages and related receipts together. Folders to Businessscope.instanceidentifier.
+| Legal values | Uuid |
+| Standard value | Generated if omitted |
+| Configuration of Standard Value | Not supported |
+ (required)
+The document type sent. Note which document types a recipient supports a given process with may vary from
+Recipient to the recipient. This information can be found in advance of sending by making a capability post for
+The recipient.
+| Legal values | URI for one of the documentary types supported by eFonsemidling |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+Business notification name. Name for the root item in the business message.
+| Legal values | Must match the last link of the document type URI |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (required)
+The process the message is sent as part of. Note that what processes a recipient supports a given process with may vary
+From the recipient to the recipient. This information can be found in advance of sending by making a capability post for
+The recipient.
+| Legal values | URI for one of the processes supported by eFonsemidling |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Delivery deadline. If delivery receipt is not received from the recipient by the delivery deadline, the message receives
+Error status Lifetime_utlopt. In temporary error situations (such as network problems), messages will be
+Attempted resubmitted with a gradually greater break between the experiments until the delivery deadline has expired. By historical
+Causes are this set high, but it is recommended to consider careful users' need for quick feedback up to
+The four-and-forget strategy is a whole day.
+| Legal values | ISO 8601 computer presentation |
+| Standard value | 24 hours ahead in time |
+| Configuration of Standard Value | difi.move.nextmove.default-tl-hours |
+ (voluntary)
+Sender's reference.
+| Legal values | Uuid (free text is supported for the time being for backwards compatibility) |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+ (voluntary)
+Recipient reference.
+| Legal values | Uuid (free text is supported for the time being for backwards compatibility) |
+| Standard value | None |
+| Configuration of Standard Value | Not supported |
+
+Business message
+The business message contains extra addressing information and instructions depending on the document type.
+SBD (including the business message) is not encrypted so that it can be used for routing and decision -making by
+Processing of the message until reception.
+Each document type has its own business message. See the individual document type for details:
+
+Document types

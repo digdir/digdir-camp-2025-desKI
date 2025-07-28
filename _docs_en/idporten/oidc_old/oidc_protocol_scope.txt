@@ -1,0 +1,108 @@
+Title: "Scope"
+Description: "This page Sumarizes How Outh2 Scopes are used in ID port oidc provider."
+Summary: 'This Page Sumarizes How OAuth2 Scopes Are Used In Id Port Oidc Provider.'
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_scope
+
+The ID Gate and Machine Gate Can Issue Access to Tokens to Scopes Controlled by Difi, As Well as Scopes Controlled by Other Organizations.
+Scope model
+The Following Attributes Are Available for A Scope:
+| Attribute | Cardinality | Description |
+|-|-|-|
+| Prefix | mandatory | A prefix used for namespacing scopes belonging to a certain organization. Manually Assigned by Digdir |
+| Description | mandatory | A Human-Readable Short Description Of The Scope. Shown to the End -us in Consent Dialogue. |
+| Long_description | OPTIONAL | A Longer Human-Readable Description Of The Scope. Supports Basic Markdown Formatting Using Bold, Italic, Paragraphs Break and Links Allowed. Shown to the End -us in Consent Dialogue.
+| Delegation_Source | OPTIONAL | If Set, Allows Consumers Two Delegate A Given Scope Access to A Supplier In A External Autoriative Register of Delegations. Note: This only works in the machine gate, please set accordingly. |
+| Accessible_for_all | Default False | If True, any Consumer Organization Can Register a Client Having This Scope and Get Tokens. |
+| Allowable_integation_Types | OPTIONAL | Array. If Set, Only Clients Having The Same Integration Type (S) Can Get Tokens for This Scope, From The Corresponding Autorization Server |
+| at_max_age | OPTIONAL | If Set, Defines A Maximium Allowable Expires_in for Access Tokens Having This Scope.  If Multiple Scopes Are included into one token, The Lowest Value for AT_MAX_AGE IS Enforced. A Zero Value Means That Lifetime Is Based On The Client Setting Or System Default. |
+| Authorization_max_age | OPTIONAL | If Set, Defines A Maximum Allowable Lifetime for the Authorization / Consent Granted by the End -us to the Client. For the machine-type scopes, this Value Equal to AT_MAX_AGE. A Zero Value Means That Lifetime is Based on the Client Setting or System Default. | 
+| Requires_user_consent | Default False | If True, The Consent Dialogue is Shown to the End User When Performing The Authorization.  |
+| Requires_user_Authentication | Default False | IF True, A Fresh Authentication Must Be Performed by the End-Uuser as Part of the Authorization Even If The She Has An Active SSO session in ID port |
+| Requires_pseudonymous_tokens | Default False | If True, access_tokens Having this scope (and any accompanying id_token) will leave the -claim. |
+| Token_Type | Default Self-Contained | Which Type of Tokens Are Expected by the API: Self-contained or opaque |
+| Visiblity | mandatory | Controls Wher the Scope Appear on the Public Listing of Available Scopes Known to ID port / machine gate |
+| Active | Default True | If False, No Clients are allowed to get tokens Having this scope.  Two Change, Use Delete / Put Operations. (Already Issued Accesses and Client Reqgistrations Are Not Altered by the Delete Operation, Meaning It Is Suitable For Temporary Deactivation of a Scope)
+Example:
+`` `
+{
+    "Name": "Altinn: Serviceowner",
+    "Prefix": "Altinn",
+    "Subscope": "Serviceowner",
+    "Description": "Full Access Scope for the Altinn Service Owner API. Used for Clients Not Specifying Any API Limitations.",
+    "Visibility": "Public",
+    "Token_Type": "Self_contained",
+    "AT_MAX_AGE": 1000,
+    "Requires_user_consent": False,
+    "Requires_user_Authentication": False,
+    "Requires_pseudonymous_tokens": False,
+    "accessible_for_all": false,
+    "Delegation_Source": "https://tt02.altinn.no/",
+    "Allowed_integation_Types": [
+        “the machine gate”
+    )
+    "Last_Updated": "2020-11-03T11: 28: 13.826+01: 00",
+    "CREATED": "2020-11-03T11: 28: 13.826+01: 00",
+    "Owner_orgno": "991825827",
+    "Active": True,
+}
+`` `
+Scope Limitations
+Some Scopes Only Work Towards Machine Gate, Others Only Towards ID Port, While Some Can Be Used for Both. This Depends on the Attribute Registered On The Scope:
+| Allowable Integration Type | Description |
+|-|-|
+| |  An Empty Value Means That Clients of any integration type can get access_tokens containing the scope. | 
+| Machine Gate | Only for server two server integration |
+| API_ Client | For Apis That Require Access_tokens Bound to An Authenticated User, IE: ID Port |
+You Will Not Be Able To Register a Client With A Certain Scope If There Is A Conflict With The Client and The Scope. E.G. You can't add a "Machine Gate" Scope to A "API_CLIENT" Client.
+See Also Client Registration.
+List of Reserved Scopes
+The Following Scopes Triggers Special Behaviour in Id port Oidc Provider.  They can be used by all customers.
+| Scope | Description | Allowed Integration_Types |
+|-|-|-|
+| OpenID | Triggers An OpenID Connect-compliant Authentication | IDPORT, API_ CLIENT |
+| Profile | Gives access to the /Userinfo Endpoint |  IDPORT, API_ CLIENT |
+| no_pid | Triggers a pseudonymous authentication |  IDPORT, API_ CLIENT |
+| Eidas | Include the eidas attributes in the id_token. See Eidas Login |  IDPORT, API_ CLIENT |
+List of Scopes for APIS from Norwegian Digitalisation Agency
+Any Customer Can Self-Service Their Clients With The Following Scopes:
+| Scope | Description | Allowed Integration_Types |
+|-|-|-|
+| KRR: Global/ | Scopes for Global Access to the Contact Registry |  KRR, Machine Gate |
+| KRR: User/ | Scopes Giving Contact Registry Details for the Authenticated User | API_CLIENT |
+| Idports: Authorizations.* | API for authorizations | API_CLIENT |
+| Idports: User.log.read | API for Authentication History | API_CLIENT |
+| Global/Idport.Authlevel.READ | API for Authentication Level of Assurance | Machine gate |
+For The Following Scopes, you need to ash to add them to your client manually:
+| Scope | Description | Allowed Integration_Types |
+|-|-|-|
+| Idports: DCR | Scopes Allowing for Self-Service of ID port integrations | Machine gate |
+| Idports: Scopes | Scopes Allowing for Self-Service of ID port/machinery API Management | Machine gate |
+LIST OF SCOPES FOR APIS FROM 3RD Parties
+ID port and machine gate Protect a Number of Apis from Other Organizations. See The Links Below for the Complete List:
+| URL to List of Scopes | Description |
+|-|-|
+| https://api.so collaboration.digdir.no/scopes/all | A List of Scopes Protected by ID port in Production |
+| https://api.test. Collaboration.digdir.no/scopes/all |  A List of Scopes Protected by ID port in test Environment.  |
+See The Allowed_integation_Type Claim On Each Entry to See IF Any Scope Limitation Applies.
+You need to Ask the Organization Owning the Scope to Grant You Permission to Use These Scopes, Unless the Flag Is Set.  
+Delegation Source
+The Attribute Can Be Set On A Scope in Order to Activate It for External Delegation in E.G. Altinn.
+Scopes Syntax for Scopes Controlled by Third Parties
+Such Scopes Will Always Follow This Syntax:
+
+The is a string which is manually linked to a specific organization.  It may be the organization name, or other suitable value.  An organization may have multiple prefixes.
+The is created by the Owning Organization Itself Using Selfservice.  The ID port place no specific rules on HowscoCopes should be named or structured, as different organizations have vastly different need need to structure their apis. Nevertheless, Some Recommendations Apply:
+
+The Prefix Should Natually Identify The Owning Organization or Its Subsidiary / Application (Example or Organization Number)
+If Multiple Organizations Share The Same Scope, The Prefix Should Identify The Sector ()
+
+
+SUBSCOPE SHOLLD Primarily Identify the Resource and Not The API (OR)
+Subscope Should Contain Various PostFixes to Differentiate Between Read and Write Access to the Resource ()
+Absence of a Postfix Should Normally Only Imply Read Access
+
+
+
+For access to these scopes, you need to contact the organization owning the scope.

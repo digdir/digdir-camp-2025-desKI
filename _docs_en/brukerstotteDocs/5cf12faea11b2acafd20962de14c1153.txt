@@ -1,0 +1,16 @@
+Url: https://eid.difi.no/nb/bankid/bid-og-c-koder
+Title: bid- and c-codes | Help sites for common solutions
+
+Bid- and c-codes
+
+If you get a fault code starting with Bid or C, you must contact your bank.
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

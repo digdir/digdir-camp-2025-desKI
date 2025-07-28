@@ -1,0 +1,27 @@
+Url: https://eid.difi.no/nb/contakt-og-eservation register/datra-contact information-Din-PA-ETT-STATL
+Title: Update your contact information in one place | Help sites for common solutions
+
+Update your contact information in one place
+
+The inhabitants' mobile numbers and e-mail addresses are collected in the contact and reservation register.
+
+The advantage of one joint contact register is that you as a citizen do not need to provide this information to all the various public companies you are in contact with.
+It is you yourself who updates the contact information, and you just need to do it in one place.
+You can choose to register either email or mobile number, or both.
+
+The contact and reservation register is used when logging in with the ID port for various public services. Examples of this may be the filling of the tax return, or when the state and municipality need to notify you electronically about decisions or other important information. Only the state and municipality can use this register. 
+
+The contact and reservation register may contain your mobile number and email address, information about which digital mailbox you have selected, language selection, and whether you are reserved for electronic communication. 
+ 
+
+Here you can log in to check what is registered on you and update your contact information
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

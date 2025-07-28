@@ -1,0 +1,28 @@
+Title: Production
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+By using e -dissemination production environment when, and reached, the integration point of real businesses and residents.
+A business certificate is required to use e -dissemination environment.
+The integration point uses the production environment as standard:
+
+Configuration of environment (production or test)
+
+The following services are used by the integration point production environment and must be able to be reached:
+| DNS name | IPV4 address | Gate | Service | Description | Input/Outgoing Traffic |
+| ----------------------------------------- | ------------------------------------------------------------- | ------- | --------- ----------------------------------------------------------------------------------------------------
+| message exchange.difi.no (phased out) | 139.105.36.173 | 443 | All | eFormidling, various services, address look and more.                                      | Outbound |
+| eformidling.no | 139.105.36.173 | 443 | All | eFormidling, various services, address look and more.                                      | Outbound |
+| Logs.eFormidling.no | 139.105.36.177 | 443 | All | Emsyring, Logging | Outbound |
+| Stream message exchange.difi.no (phased out) | 139.105.36.177 | 443 | All | Emsyring, Logging | Outbound |
+| MachinePorte.no | 139.105.36.164 | 443 | All | Machine gate | Outbound |
+| EFM-DPE-Prod.servicebus.windows.net | 13.74.107.66 13.69.227.68 52.138.226.67 20.82.244.139 | 443 | DPE | Azure Service Bus, HTTP/REST API | Outbound |
+| EFM-DPE-Prod.servicebus.windows.net | 13.74.107.66 13.69.227.68 52.138.226.67 20.82.244.139 | 5671 | DPE | Azure Service Bus, AMQP with TLS | Outbound |
+| Altinn.no | 89.250.123.0 | 443 | DPO/DPV | Altinn dissemination service | Outbound |
+| crl.buypass.no | 185.62.162.145 and 185.62.160.145 | 80 | DPI | Buypass CRL list | Outbound |
+| crl.buypassca.com | 185.62.162.185 and 185.62.160.185 | 80 | DPI | Buypass CRL list SEID2.0 | Outbound |
+| Contact Registeret.no | 139.105.36.169 | 443 | DPI | Contact and Reservation Register (fom. 18.09.2023) | Outbound |
+| Srest.dataplatfor.ms | 51.120.55.214 and 51.107.214.212 | 443 | DPI | Digital mailbox, residual endpoint, access point | Outbound |
+| Svarut.Ks.no | 137.221.25.66 137.221.28.66 | 443 | DPF | KS FIKS MESSAGE SPEAKER | Outbound |

@@ -1,0 +1,36 @@
+title: Frequently asked questions
+Description: Frequently asked questions
+Summary: "Here you often find questions"
+TOC: FALSE
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_guide_faq
+
+General questions
+I don't quite understand this with the client types?
+The client must be either public or confidential. (Is put in the client registration).  If the client wants to use implicit flow (implicit flow) thus respose_Type idtoken token or combinations of these, it must be public.
+If the client wants to use Code Flow, ie Response_Type Code, it must be confidential.
+Authorization Code flow
+spm
+answer
+
+Certificate
+Do we have to acquire a business certificate to establish access to the ID port via OIDC?
+No, but we recommend client authentication based on JWTs signed with business certificates. We support:
+
+Client_Secret_Basic / Client_Secret_Post - client authentication based on Client_Secret
+Private_key_jwt - client authentication based on JWTs signed with business certificates
+https://difi.github.io/idporten-portc documentation/oidc_Auth_codflow.html#-broaden-of-to-token-from-token- endpoint
+
+
+We have chosen client authentication based on JWTs signed with business certificates. Can we use self -generated certificates in the test environment? And how is this in the test environment?
+Self -generated certificates cannot be used in test and production. In the test environment, only the test business certificate can be used.
+Login
+Applies to Redirect back to the site after logging. We are left on the logging screen for the ID port. Believe post_logout_Redirect_uri should be put in the logout supplest. What's wrong?
+After trigging logging, you are sent back to post_logout_redirect_uri. This must be pre-registered in the ID port, it is not enough to just put it in the request. So if you stop on the logging page in the ID port, Post_Redirect_Logout_uri Pi's Client Registration is missing.
+
+We want to establish a service in the test environment. We have three test environment internally. Do we need to establish three clients, or can we register more URIs (Redirect Uri and Post Logout Redirect Uri) on the same client?
+This is up to yourself. Both variants are possible. The easiest thing may be to have more Uri's on the same client.
+
+When I log out via other service (beat), the session consists of us. When I log out with us (without having any active session with you), Redirect does not work back and stays on the side. What's going on?
+If a logger out of service other than its own, the service will receive information via the FrontChannel logout if this is set up and supported by the client. It is no longer available if the session at the ID port is invalidated. About the service then triggers the end session point, we will not find a session with us. We only return to the stated post_logout_Redirect_uri if we get an ID_Token we can see that we have issued and that the session exists and that the client who has got the ID_TOK has pre-registered current post_Logout_Reduirect_RII.

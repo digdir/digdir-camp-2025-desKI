@@ -1,0 +1,10 @@
+Title: OpenID Connect interface (OIDC)
+Description: 
+Summary: 
+Sidebar: Idporten_sidebar
+Product: ID port
+Redirect_From: /Idporten_grensnitt_oidc
+
+The ID port supports OpenID Connect / OAUTH2 as a interface protocol:
+
+OpenID Connect / OAUTH2

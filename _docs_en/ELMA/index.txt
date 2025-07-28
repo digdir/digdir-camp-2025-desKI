@@ -1,0 +1,18 @@
+Title: About Elma
+Description: Elma post description
+Summary: ""
+Sidebar: Main_sidebar
+Product: Elma
+redirect_From: /elma_index
+
+ELMA - Electronic Recipient Record Register is a Norwegian register of companies that can receive document in EHF format.
+All companies that will receive the EHF document must be registered in Elma. ELMA contains information about the company's Internet address
+(access point address) and what type of document the recipient can receive, such as invoice, order, directories, offers and others. The actual consignment occurs
+Via EHF infrastructure/CEF Edelivery (Peppol), which is a standardized way of sending judges' invoices to the public sector.
+Read more about ELMA at the collaborative portal
+Recipients registered in Elma must receive documents from all sender. Sender commits to send in standard format and
+The version listed in Elma. It is the access point supplier that records the recipients in Elma.
+English
+Electronic receiver and address register (ELMA) is the SMP provided by Norwegian Digitalisation Agency for The Norwegian Market. Using elma is free of charge for approved access points in the openpeppol network.
+Approved Access Points May Get Access By Sending an E-mail to serviceedesk@dir.no.
+Information on the collaborative portal

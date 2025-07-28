@@ -1,0 +1,119 @@
+Title: Representation in the Employee Gate
+Description: Employee gate lets users log in on behalf of a business
+Sidebar: Employee gate
+Product: Employee Gate
+Redirect_From: /Employee gate_representation
+
+The employee gate offers enriched authentication, ie that information about the logged user is enriched with a representation relationship/authorization information from an external authorative source.  In the first version of the solution, Altinn is authorized offered as an authorative source.
+You can find more overall information about the employee port by clicking here
+Description of the use scenario
+On this page, we describe how a service can let users choose which business they want to represent.  This scenario builds on regular spot authentication. 
+User journey
+When representation, the user journey is the following:
+
+User click Login button with service. The service requests a type of representation.
+Uses authenticates with Eid through the employee gate.
+User chooses which business will represent.
+User is sent back to the service.
+
+In Step 3. Shows the employee gate, an organizational voter after authentication shows, where the end user must choose which (n) organization will represent. Ho can also choose to represent itself:
+
+If the user has not requested the type of representation, in step 3 will automatically be sent back as itself. (Unless representation_IS_Required is set to true - then an error message will appear that the user has not requested the type of representation). More details about representation_is_required can be found in the overview of supported Claims
+Protocol-flow
+Representation logging is a common authorization code flow in accordance with OAuth2/OIDC where the service in the authorization request includes an addition that requests the type of representation relationship that the user must hold at the authorative source.
+
+sequence chart
+
+Participant B AS uses
+Participant C AS SERVICE
+Participant A AS Employee Gate
+Participant S AS Authorized Source
+
+B->> C: Clicking "Login" on service
+C->> A: /Authorize with representation type (redirect)
+Note above A: End user authenticates themselves
+A->>+S: Has the end user requested the type of representation (s)?
+S->>-A: List of businesses
+Note above A: End user chooses a business
+A --- >> C: Redirect with Code
+C->>+A: /Token
+A->>-C: id_token
+Note over B, C: logged in on behalf of selected business
+
+
+The employee gate uses the standard Rich Authorization Requests (RAR) to structure information on representation conditions, both in requests and tokens.  An overview of the supports of RAR types in the employee gate can be found here
+The client must include the claim in the authorization request to trigger representation logging.  An example is shown here:
+
+(Note that the example is simplified)
+-Arrayed a JSON object in which Claimet tells which authorative source the service wants to use. Different will have their own data models for which other Claims are included in Request and response.  The data models are described here.
+When the user is Redirecta used to the client, the client picks up tokens in the usual way, and uses this to create their own local user session in their own service.
+The client finds information about the chosen representation relationship in the Claim. The claim is both returned directly as part of the token response itself, but is also included in the id_token itself, for the flexible.
+Example of token response:
+`` `
+200 ok
+{
+  "Id_token": "Eyjrawqio ...",
+"Access_token": "Eyjrawqio ..."
+  "Token_Type": "Bearer",
+  "Expires_in": 600
+"Scope": "Openid Profile",
+"Authorization_Details": [{{
+    "Resource": "Urn: Altinn: Resource: 2480: 40",
+    "Type": "Employee Gate: Altinn: Service",
+    "Resource_Name": "Products and services from the Brønnøysund Register",
+    "Reportes": [{
+      "Rights": ["Read", "Archiveddelete", "Archiverad"],
+      "Authority": "ISO6523-actoride-upis",
+      "ID": "0192: 987464291",
+      "Name": "Norwegian Digitalisation Agency Department of Leikanger"
+    }]
+  }],
+"Refresh_token": "Eyjlbmmio ...",
+  "Refresh_token_Expires_in": 7200,
+}
+`` `
+Example of ID_Token with representation information: 
+`` `
+{
+  "Sub": "Z9ruqilefxmjobnywa_c75yqmh05ndhjw0rfzujc8m",
+  "AMR": ["Testid"],
+  "ISS": "https://test.lsattport.no",
+  "PID": "45840375084",
+...
+  "Authorization_Details": [{{
+    "Resource": "Urn: Altinn: Resource: 2480: 40",
+    "Type": "Employee Gate: Altinn: Service",
+    "Resource_Name": "Products and services from the Brønnøysund Register",
+    "Reportes": [{
+      "Rights": ["Read", "Archiveddelete", "Archiverad"],
+      "Authority": "ISO6523-actoride-upis",
+      "ID": "0192: 987464291",
+      "Name": "Norwegian Digitalisation Agency Department of Leikanger"
+    }]
+  }]
+}
+`` `
+Note that the use of inside an ID_TOK is not described in the RAR specification. The client should preferably use the Token response to deduce what rights the end user gave to the client. We have chosen to include it for simplicity.
+Example of token response if user has chosen to represent himself:
+`` `
+200 ok
+{
+  "Id_token": "Eyjrawqio ...",
+"Access_token": "Eyjrawqio ..."
+  "Token_Type": "Bearer",
+  "Expires_in": 600
+"Scope": "Openid Profile",
+"Authorization_Details": [{{
+    "Type": "Employee gate: Altinn: Service"
+  }],
+"Refresh_token": "Eyjlbmmio ...",
+  "Refresh_token_Expires_in": 7200,
+}
+`` `
+Test
+You can test the solution without creating an integration by using our demo service https://emo-lient.test.mutporten.no/.  Here you can also study the protocol flow in detail.   If you want to test organizational voters, you can use in the Authorization_Details field (this service code releases key roles).
+We recommend using Tenor Testdata search to find test users. Tenor has the opportunity to filter so that you only get the general manager from the Test Unit Register. Another advantage of tenor is that only synthetic test data here, so you don't have to risk mixing production and test data.
+
+By using test time as a login method, you do not have to contact Digdir to create and reset test users.  Test time also has an integration towards tenor, so you can get random test people from there.
+
+Note: If the test user does not exist before in Altinn's test environment (typical of synthetic birth numbers), the organizational selector will not work. This is easily solved by logging into TT02 once with the synthetic birth number.

@@ -1,0 +1,51 @@
+title: async/sync
+Description: 
+Summary: ""
+Sidebar: krr_dotnet
+Product: krr
+redirect_From: /krr_async
+
+All the operations/methods of the lookup service have both synchronous and asynchronous methods. Choose the one that fits your application. The client initializes in the same way and only a method is provided that controls whether it is asynchronous or not.
+Asynchronous methods
+The methods that are asynchronously return one of the object the synchronous method returns. You can use the answer directly or wait for the -to be finished in another way. 
+{ % highlight charp %}
+Was configuration = new reference service configuration (environmental functional test environmentalization1, sender Certificate of Humb Print);
+was register = new reference service client (configuration);
+were changes = AWAIT registry.Hentingerasynchronous
+    Information needs. Person,
+    Information needs
+    Information needs
+    Information needs
+    Information needs
+    ));
+// returns task <> 
+was personal identifier = new [] {"08077000292"};
+Task> Persons = Register.hent Personnel Synchronous (Personal Identifier,
+    Information needs
+    Information needs
+    Information needs
+    Information needs
+    ));
+// wait for the task to finish ...
+was print certificate = AWAIT Register.Hentprint Certificate Synchronous ();
+{ % Endhighlight %}
+Synchronous methods
+{% highlight charp%}
+Was configuration = new reference service configuration (environmental functional test environmentalization1, sender Certificate of Humb Print);
+was register = new reference service client (configuration);
+were changes = registry.hent changes (from change number,
+    Information needs. Person,
+    Information needs
+    Information needs
+    Information needs
+    Information needs
+    ));
+was personal identifier = new [] {"08077000292"};
+were persons = register.hentpersons (personal identifier,
+    Information needs
+    Information needs
+    Information needs
+    Information needs
+    ));
+was print certificate = register.hentprint certificate ();
+{ % Endhighlight %}

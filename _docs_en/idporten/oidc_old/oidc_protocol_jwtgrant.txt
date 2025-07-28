@@ -1,0 +1,13 @@
+Title: "Jwt Grant"
+Description: "This page Sumarizes the Protocol Options Availalbe for On Jwt Grants On The /Token Endpoint for Oidc Provider"
+Summary: "This Page Sumarizes The Protocol Options Availalbe for On Jwt Grants On The /Token Endpoint for Oidc Provider"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_protocol_jwtgrant
+
+About
+JWT Grants Are Documented in RFC7523.
+Request
+ID port uses the same grant format as machine gate, with the following exceptions:
+- The -claim (IE external delegation) is not supported.
+- Make Sure The Oidc Provider is Used AS Audience for the Grant, IE: The Claim.

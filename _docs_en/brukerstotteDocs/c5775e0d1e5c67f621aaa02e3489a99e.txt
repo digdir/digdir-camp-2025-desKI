@@ -1,0 +1,23 @@
+URL: https://eid.difi.no/nb/esignering/hvilke-e-id-stotter-electronic signing
+Title: Which E-ID supports electronic signing? | Help sites for common solutions
+
+Which E-ID supports electronic signing?
+
+To sign an electronic document in the signing service, you can choose to sign with different E-ID. Which e-ID you can choose from depends on how high the level of security the sender of the signing assignment requires. When signing through the ID port, the sender may require significantly (level 3) and highest (level 4) security level.
+
+If the highest security level (level 4) you can sign with either BankID, Buypass, Buypass in mobile or Commfides.
+
+In case of a significant level of security (level 3) you can also sign with MinID.
+
+The sender may also require the document to need advanced E-signature. This is the strongest form of signing that the service offers. In these cases, you can either sign with BankID or Buypass. The signing is then done using a separate signing key included in these e-IDs.
+ 
+
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

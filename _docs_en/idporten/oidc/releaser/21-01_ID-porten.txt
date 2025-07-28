@@ -1,0 +1,8 @@
+Title: 21-01 ID port
+Description: 21-01 ID port
+Sidebar: Oidc
+Redirect_From: /21-01_ID port
+
+Refactoring of the functionality in which the inhabitant confirms its contact info at login.
+Preparations in the ID port to support app login with MinID.
+Releasen was production tax Jan 26, 2021

@@ -1,0 +1,20 @@
+Title: Audience restriction
+Description: Audience restriction
+Summary: "Audience restriction of token counteracts the tokens from being abused against other APIs than those intended."
+Sidebar: Oidc
+Product: ID port
+Redirect_From: /Oidc_func_Aud
+
+Audience restriction is relevant where several APIs are secured by the same.  By locking the token to a specific Audience (eg https://api.a.no/), the token cannot be used against other API (https://api.b.no), given that the relevant apis perform the necessary validation.
+The functionality is based on the RFC 8707 Resource Indicators for OAuth2.
+Behavior
+The ID gate and the machine gate offer rudimentary support to the Audience limit Access token: It is the client's responsibility to request an Audience limit to Token, and the client and API provider must agree bilaterally between which values to use.  
+The client requests an audience-limited token by stating a value in the Claim in request.  The ID port/machine gate will then set this value as in the resulting access_tokenet.
+If no one is requested, the access_token will not contain.
+API providers expecting the Audience limit tokens should reject the tokens missing a value.
+The ID gate/machine gate does not provide validation on the value/values requested in addition to being valid URIs.
+Relationship to ID_Token
+ In the id_token, no relationship has in the access_token.  Here we often experience misunderstand.
+
+ In the id_token is always set to Client_i, according to the Oidc Spec.
+ In the access_token, only if the AudiC restriction is actively used and will normally have value equal to URL to the resource server.

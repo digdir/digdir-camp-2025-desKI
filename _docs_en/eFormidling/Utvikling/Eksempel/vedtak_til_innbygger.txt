@@ -1,0 +1,41 @@
+title: Example of decision to citizen
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of a resident. Recipient in the example is a person with birth number
+. It is first made a capacity statement for the citizen because decisions to the citizen are supported by a
+or more messaging services and because the various messaging services support decisions to the citizen through various
+Document types. The sender's system must therefore know which document type to build. In addition, the sender's system must choose
+Which messaging service to be used if more are supported.
+
+TOC
+{: toc}
+
+Send messages
+Look up the recipient's capabilities
+
+Create Standard Business Document (SBD) for message
+If document type digital is supported
+
+The document type Digital supports extensions that can be used by attaching metado files.
+
+If Document Type Digital_DPV is supported
+
+If document type print is supported
+
+Attach the file my.PDF
+
+Send the message from the integration point
+
+Follow the status of the message
+
+Next step
+
+Functional description of decision to citizen
+Document Type Digital
+Document Type Digital DPV
+The document type print
+The interface e -forming 2
+Several examples

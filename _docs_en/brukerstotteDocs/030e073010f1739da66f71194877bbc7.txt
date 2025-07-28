@@ -1,0 +1,19 @@
+Url: https://eid.difi.no/nb/minid/mottar-no-nsvar-i-minid- app#MAIN-ontent
+Title: Does not receive notice in the MinID app | Help sites for common solutions
+
+Sámegiella
+Receives not notice in the MinID app
+If you do not receive notice in the app, you can check the following:
+Have you allowed notifications in the app? You can check this by going to settings on your phone and search for the MinID app.
+Is the app updated to the latest version? 
+Is the phone updated to the latest version? 
+Is your phone connected to the Internet? 
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

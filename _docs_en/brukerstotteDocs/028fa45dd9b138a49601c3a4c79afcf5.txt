@@ -1,0 +1,36 @@
+URL: https://eid.difi.no/nb/minid/hvord-- Register-minid-Us- with-minid-activation letter
+Title: How to Register MinID user for SMS | Help sites for common solutions
+
+Sámegiella
+How to record MinID user for SMS
+
+To register as a mini-user, you need the following:
+
+Birth number or D-number
+Mobile phone and email address
+Minide activation letter
+
+If you are missing a mini -activation letter, you can order it here. MinID activation letter is valid 60 days after ordering.
+
+MinID activation letter is only sent to the address you have registered in the National Register in Norway. If you have both a postal address and a residential address, it will be sent to the postal address.
+
+Normal delivery time for minid activation letters are 10 business days (inside Norway).
+
+Activation code for registration of mini-user can be used in two ways:  
+
+1. You can use your mobile or MinID app to read the QR code 
+2. The letter code can be used by going to this website. There you have to enter the code manually
+
+Fill in activation code from the activation letter/scan QR code
+Fill in the birth number
+Fill in contact information: Email and mobile number. Create a personal password (minimum 8 characters, blend of letters A-Å and numbers 0-9)
+Guide
+Email
+
+brukerstotte@digdir.no
+
+NB! Do not send sensitive information about yourself and your electronic ID by email.
+
+Important links
+Statement
+The service is provided by the Norwegian Digitalisation Agency

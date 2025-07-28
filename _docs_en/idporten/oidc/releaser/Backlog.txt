@@ -1,0 +1,10 @@
+title: backlog
+Description: Backlog
+Sidebar: Oidc
+Redirect_From: /Backlog
+
+Backlog contains development measures that have not started yet.
+Scheduled production setting: FY21 Q4
+New functionality:
+Require resident-bound tokens from the machine gate (Ready to Ship)
+Let an API provider could require the machine gate to issue tokens just limited to a single citizen. This can be useful for API providers who want to limit the risk of token on the way.

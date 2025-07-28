@@ -1,0 +1,248 @@
+title: Automatic upgrade
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+redirect_from:
+- /eformidling_auto_update
+- /eformidling_kosmos_user_guide
+
+The purpose of this page is to make it as easy as possible to install and configure automatic upgrade of the eFormidling integration point.
+
+TOC
+{:toc}
+
+Introduction
+Automatic upgrade of the integration point is done using the support application Kosmos. Kosmos is a Java
+application that can run side by side with the integration point.
+
+Demo of automatic upgrade
+
+Automatic upgrade is roughly as follows:
+
+Compares the current integration point version against the latest available in the Maven repository of Digdir
+
+If a newer version is available, this is downloaded to the client
+The current integration point is attempted to be updated to the downloaded version (If the new version does not start, KOSMOS rolls back)
+
+Prerequisites
+Configuration of automatic upgrade requires:
+
+Installation of the integration point and use of Java
+The support services are available in the integration point
+
+Configuration
+Automatic upgrade of the integration point is configured using a configuration file.
+
+Start by finding the folder where the integration point is installed, for example
+Then download kosmos-local.properties and save in the above folder
+Download kosmos-[version].jar
+Download eFormidling's public key
+
+eFormidling recommends verifying that it is from the Norwegian Directorate for Digitalisation.
+
+How do I verify that the jar file is from the Norwegian Directorate of Digitalisation?
+
+When you are finished, the structure of the area should look like this:
+
+In addition, Kosmos must be run with the necessary permissions to create files and folders in this file area.
+When using Java directly, it is recommended that a background service is configured that starts and stops Kosmos when
+the operating system starts and stops, and that can be started and stopped manually if necessary. Example:
+
+Running Kosmos as a service (Windows)
+, or similar, depending on the distribution (Linux)
+
+It is also possible to start and stop the integration point manually:
+
+Running the integration point from a command window
+
+Minimum configuration
+| Property | Description | Default value |
+|----------------------------------------|-------------------------------------------------------------------------|-------------------------|
+| kosmos.integrationpoint.baseURL | Host and port to your integration point | http://localhost:9093 |
+| difi.move.org.number | Same organization number as in integrationpoint-local.properties | (none) |
+| kosmos.mail.recipient | Receive notifications by email when Kosmos has attempted an update | (none) |
+| kosmos.mail.from | Sender of notifications | (none) |
+| spring.mail.host | Your SMTP server for sending emails | (none) |
+| spring.mail.port | Port used by your SMTP server | (none) |
+| kosmos.verification.publicKeyPaths[0] | The Norwegian Directorate for Digitalisation's public key for verifying the signature on the .jar file | file:eformidling-key.asc |
+Example:
+```
+Replace hosts and ports of URL with the location
+of your integration point.
+kosmos.integrationpoint.baseURL=http://localhost:9093
+Your organisationnumber. Should be the same as in integrationpoint-local.properties
+difi.move.org.number=991825827
+E-mail is optional. Please specify these properties
+to receive e-mails when KOSMOS updates the integration point application.
+kosmos.mail.recipient=someone@yourdomain.no
+kosmos.mail.from=noreply@yourdomain.no
+spring.mail.host=smtp.yourdomain.no
+spring.mail.port=25
+Digitaliseringsdirektoratet public key paths. i.e: file:keyname.asc
+kosmos.verification.publicKeyPaths[0]=file:eformidling-key.asc
+```
+NB!
+If you want to use the integration point with transport security, you must change to
+kosmos.integrationspunkt.baseURL=https://servernavn.no:portnummer.
+See more here: Transport security
+Optional configuration
+Set update time
+Optional
+You can set a time for when the application will try to update the integration point if you do not want to
+use the default values. The default values are at 05:30, 19:30 and 21:30
+Here are some examples showing how to control the time for updating.
+```
+Default value: Checks for update Monday-Friday at 05:30, 19:30 and 21:30.
+kosmos.schedulerCronExpression=0 30 5,19,21 * * MON-FRI
+Checks for update every day at 06:00.
+kosmos.schedulerCronExpression=0 0 6 * * ?
+Checks for updates every day at 23:15.
+kosmos.schedulerCronExpression=0 15 23 ? * *
+Checks for updates every Saturday and Sunday at 12:00.
+kosmos.schedulerCronExpression=0 0 12 ? * SAT,SUN
+Checks for updates every three minutes every hour.
+kosmos.schedulerCronExpression=0 0,3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57 * ? * *
+```
+Block versions
+Optional
+There is functionality to let the application block versions if it is not approved or fails to start. The default value for this is false, but can be enabled by changing properties. It may make sense to use if you want frequent polling on how often the application should check for new versions.
+
+You can remove a blocklisted version by deleting it from the directory. For example, the file name is . This has a default lifetime of 2 hours if enabled, so after the lifetime has expired the application will remove it and try to update again at the next scheduled time.
+Configuration for logging
+Optional
+This is not set as default and must be entered manually
+| Name | Recommended value | Description |
+|------------------------------------|----------------|---------------------------------------------------------------------|
+| logging.level.no.difi.move.kosmos | TRACE | Increase the logging level on KOSMOS to get extra information at startup or troubleshooting. |
+Miscellaneous configuration
+Optional
+| Name | Default value | Description |
+|------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| kosmos.actuator-connect-timeout-in-ms | 5000 | How long KOSMOS waits to connect to the info, health, and shutdown endpoints on the integration point. |
+| kosmos.actuator-read-timeout-in-ms | 5000 | How long KOSMOS waits for a response from the info, health, and shutdown endpoints on the integration point. |
+| kosmos.artifact-id | integration point | The name of the application managed by KOSMOS. |
+| kosmos.blocklist.duration-in-hours | 2 | Lifetime of the blocklist of faulty versions. |
+| kosmos.blocklist.enabled | true | Flag that controls the activation of the blocklist. |
+| kosmos.environment.prefixes-removed-from-child-process | [spring, kosmos] | Prefix for settings that should not be propagated to updated integration points. Causes e.g. spring.mail.host to not be propagated and causes activation of unwanted beans in the integration point. |
+| kosmos.group-id | no.difi.meldingsutveksling | The Maven group ID of the artifact handled by KOSMOS. |
+| kosmos.integrasjonspunkt.baseURL | http://localhost:9093 | The URL the integration point runs on the client. Acts as a shortcut for setting the info, health and shutdownURL settings. Not required in itself, the actuator endpoints can be configured individually. |
+| kosmos.integrasjonspunkt.early-bird | false | Flag that controls activation of early-bird functionality.                                                                                                                                                     |
+| kosmos.integrationpoint.early-bird-version | - | Early-bird version: A newer version than the latest official one. |
+| kosmos.integrationpoint.healthURL | ${kosmos.integrationpoint.baseURL}/manage/health | The health endpoint of the integration point at the client. Tells if the program is working. |
+| kosmos.integrationpoint.home | ${user.dir} | The folder the integration point runs from. The default value is the folder where KOSMOS runs from. See README for configuration needed if they are to be in different folders. |
+| kosmos.integrationpoint.include-log | false | Controls importing of logs from updated integration points. |
+| kosmos.integrationpoint.infoURL | ${kosmos.integrationpoint.baseURL}/manage/info | The info endpoint of the integration point at the client. Provides information about, among other things, the running version of the program. |
+| kosmos.integrationpoint.latest-version | Depends on the profile the application is running with. | Latest official version of the integration point. Overridden by configuration from efm-eureka (Spring Cloud Config Server). |
+| kosmos.integrationpoint.profile | Depends on profile. | Specifies the profile the updated integration point is started with. |
+| kosmos.integrationpoint.shutdownURL | ${kosmos.integrationpoint.baseURL}/manage/shutdown | The shutdown endpoint of the integration point on the client. Useful for stopping outdated versions. |
+| kosmos.launch-poll-interval-in-ms | 1000 | How long KOSMOS waits between each time it asks the health endpoint for status. |
+| kosmos.launch-timeout-in-ms | 100000 | How long KOSMOS waits for information about whether the integration point is running or not. |
+| kosmos.mavenCentral | (https://repo1.maven.org/) | Maven central repository for downloading artifacts. |
+| kosmos.nexus-connect-timeout-in-ms | 5000 | How long KOSMOS waits to connect to the artifact repository. |
+| kosmos.read-timeout-in-ms | 60000 | How long KOSMOS waits for data from the artifact repository. |
+| kosmos.orgnumber | ${difi.move.org.number} | Retrieved from the integration point configuration. |
+| kosmos.scheduler-cron-expression | 0 0 5,19,21 * * MON-FRI | How often KOSMOS runs synchronization. |
+| kosmos.shutdown-retries | 3 | How many times KOSMOS tries to shut down the integration point (in anticipation of the health endpoint not responding) before giving up. |
+| kosmos.verification.publicKeyPaths | [0]=file:${user.dir}/eformidling-key.asc | List of paths to public keys for Digdir's GPG signing certificate. Users download from our documentation, and we recommend that they verify the fingerprint before setting the key in KOSMOS. |
+| spring.config.additional-location | - | Possible to override where the integration-point-local.properties file should be located by setting this value file:%BASE%\integration-point-local.properties |
+How does automatic upgrade work?
+KOSMOS runs periodic checks in the order described here. The setting determines how often this happens.
+Find the current version of the integration point
+The version of the integration point that is possibly running is retrieved from the info endpoint (Spring Boot Actuator) of the running integration point. The URL of the info endpoint is derived from the value of . If KOSMOS does not receive information from the info endpoint, or it does not exist - which is quite possible - we assume that there is no integration point running on the client. The application then continues with the next step.
+Find the latest version of the integration point
+The latest version of the integration point is determined by configurations from efm-eureka, which is our Spring Cloud Config Server application. At each periodic run, KOSMOS will download updated configurations from efm-eureka. The setting specifies the latest official version released by Digdir. There are configurations for dev, test, staging and production profiles, where the latter is relevant in a production environment.
+Early-Bird version
+For internal test environments (which are not yet up and running) and clients who may want to help us with testing, the latest released version can be overridden to the so-called “early-bird version”. These are versions that have been tested to a lesser extent than the latest official version above. Early-bird version can be activated using (true/false). If this is activated, the version in will override . The early-bird version should also be configured using efm-eureka (i.e. without local override at the client).
+Check version compatibility
+Semantic versioning is used in eFormidling. Applications that use this versioning are made available in major, minor and patch versions that are reflected in the name of the distributions in the form of -.., e.g. integration point-1.9.2. Upgrading a major or minor version always involves an increment in the name of the distribution.
+An upgraded major version (e.g. from integration point-1.9.2 to integration point-2.0.0) contains changes that break the previous version. Upgrades of major versions can result in major or minor changes to clients. An example of this could be upgrading the Java version that the integration point runs on, which means that the client must upgrade before the new integration point can be used. To ensure that KOSMOS's automatic upgrade does not cause problems for clients that are not ready for a new major version yet, we have introduced a "seatbelt" in the form of . This value can be set locally on clients, and ensures that KOSMOS does not perform upgrades to a newer major version than the one specified.
+Downloading the latest released version
+The JAR file with the latest integration point version is downloaded to the folder specified in , which has the folder KOSMOS runs from as default. If a previous attempt to start the latest version has failed (i.e. the version is blocklisted), KOSMOS will abort the download and print a message about the case. See more about block- and allow-listing of versions later.
+Artifacts are downloaded from the location specified in the setting . The settings , and further contribute to picking the desired distribution for the client. The download is done from the MavenCentral repository of Digdir, an example can be seen here
+Validation of downloaded artifact
+MD5 and SHA1 checksums are compared after downloading JAR files from the Maven repository.
+Code signing and validation have been introduced. The public part of eFormidling's GPG signing certificate has been made available to customers on maven central . This will be used to verify that the JAR files that are downloaded are signed by Digdir. Users of KOSMOS must download the public key of eFormidling's GPG signing certificate from a secure website (our documentation/HTTPS). The documentation will also contain the fingerprint of the public key. After downloading the public key, users can calculate the fingerprint from the downloaded file and compare it with the published value from Digdir. If the values are the same, they can use the key to verify integration point deployments. The verification is done by deploymanager, and all users need to do is put the key in the same folder as the deploymanager JAR file.
+If the name of the key file has changed, or users want to put the public key in a different folder, they must set a configuration value: . The number in brackets is required because publicKeyPaths is a list - something we use in transition periods when a key is about to expire. Two public keys with their associated fingerprints will then be published in Digdir's documentation, and users must set publicKeyPaths[0] and -[1] to use both to verify integration point deployments.
+Stopping old integration point
+If the validation of the new version passes, any running integration point is stopped via a request to the shutdown endpoint. KOSMOS then checks the health endpoint until status no longer returns “UP” or the operation times out. The settings and play a central role in this functionality. If the integration point does not stop within the resulting window, KOSMOS will log that it could not stop the integration point. The operation will then be aborted, and the integration point will remain in its current state until the next periodic KOSMOS run.
+Starting a new version
+When the previous version is stopped, an attempt will be made to start the new integration point. The new version runs as a child process of KOSMOS, with the profile specified in the setting .
+A relevant setting to mention in this context is , which contains a list of prefixed settings that should not be passed on to the child process - as they may create challenges in the updated integration point. End users should have no relation to this setting, so it is therefore not highlighted.
+The settings and define a window where KOSMOS checks the health endpoint of the newly started integration point. If the health endpoint does not respond within this window, KOSMOS assumes that the update failed. It will then start the previous version, if the client had a running integration point before the update attempt.
+Notifications to users
+If users have set the settings and , KOSMOS will send emails on successful and failed upgrades. Otherwise, the information is available in the application logs, which can be sent to Digdir if the customer wishes.
+Blocklisting of version that did not start
+If the value is 'true', and an attempt to update the integration point fails within the window described in the previous section, the version will be blocklisted. This means that KOSMOS will not attempt to update to this version within a window determined by the setting. At each periodic run, KOSMOS will check the lifetime of a possible blocklisting of the latest version, as described in an earlier section of this document.
+Log from updating integration point
+The integration point logs a lot during startup, which can be useful while trying to set up KOSMOS for the first time. You can set the setting to import the logs from the new integration point into the KOSMOS log. The result is that it becomes a little easier to get hold of the log of the integration point version you are trying to update to, since it is available together with other useful KOSMOS logs. The disadvantage is that there are more logs to deal with, and that there is a risk of double logging if both the integration point and KOSMOS send logs to the same aggregation solution, e.g. logstash. The log lines imported from the integration point will have a recognizable prefix ([INCLUDED]) to distinguish them from KOSMOS lines.
+Allowlisting of version that has been started before
+As a measure to ensure that the application will start the integration point after the application has been shut down, allowlisting was introduced and this creates .allowlisted files. For example, if the application and the integration point are both off, it will not try to update the integration point if a .allowlisted file already exists. This was also a need in a special case where the running version was set and a “latest-version” has been released that has a higher major than what is configured to be supported. After the integration point has started, the application will create this .allowlisted file, this is automatically removed upon upgrade and a new file for the current version is created. The content is the time it was created.
+Run KOSMOS
+Run as Windows service
+We use WinSW as a Windows service wrapper. Follow the standard installation instructions with this configuration file:
+```
+
+Identifier for the service. Should be unique within the Windows system.
+kosmossvc
+Name of the service
+Kosmos ServiceDescription of the service
+Keeps the integration point application up-to-date.
+Path to the executable program to be started.
+java
+-jar %BASE%\kosmos-X.Y.Z.jar --spring.profiles.active=production
+To run with staging profile: Replace 'production' with 'staging' in the line above.
+%BASE%\kosmos-logs
+
+10240
+8
+
+```
+Note that you need to be a local administrator user when installing the service.
+Local property file for KOSMOS
+A file named kosmos-local.properties is needed in the same folder as WinSW. Here is an example of such a file. Replace the values in the settings with the corresponding ones for your organization.
+```
+difi.move.org.number=
+Replace host and port in the URL with the location of your Integration Point:
+kosmos.integrationpoint.baseURL=http://localhost:9093
+Email notification is optional. Specify these settings to receive emails when KOSMOS updates your Integration Point:
+kosmos.mail.recipient=nokon@domenet-ditt.no
+kosmos.mail.from=ikkjesvar@domenet-ditt.no
+spring.mail.host=
+spring.mail.port=
+```
+Other assumptions in the setup in this section
+
+KOSMOS and Integrationpoint JAR files are located in the same folder
+The public key for the GPG signing certificate is located in the same folder
+
+Running KOSMOS and Integrationpoint from different folders
+The recommended setup (requires less configuration) is to have both the KOSMOS and Integrationpoint JAR files in the same folder. If you would prefer to run the applications from different folders, the following settings must be added:
+
+In kosmos-local.properties:
+
+In the XML configuration file for WinSW:
+
+Running KOSMOS on Linux
+You can use the same configuration file as in the previous section. The following files should be in place in the installation folder:
+
+kosmos-local.properties
+kosmos.jar
+integrasjonspunkt-local.properties
+integrasjonspunkt-keystore.jks (the own JKS that Integration Point uses)
+eformidling-key.asc (can be found HERE)
+
+You can choose between running in the current shell or as a task using these commands:
+
+1. Run in the current shell with staging profile:
+
+2. Run as a task with staging profile:
+
+* To run with production profile: Replace 'staging' with 'production' in the lines above.
+When this command is run, the PID of the process is returned. This can be used if you need to stop the process. (Can also be found using htop or top.) The integration point starts as a separate Java process.
+Source code
+The KOSMOS source code is available on GitHub.
+Next steps
+
+Backup (recommended)
+Monitoring (recommended)

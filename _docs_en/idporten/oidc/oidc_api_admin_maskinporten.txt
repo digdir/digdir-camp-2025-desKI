@@ -1,0 +1,96 @@
+Title: "API for administration of APIs / Scopes"
+Description: "API that allows users of the ID port/machine gate to manage API protection"
+Summary: "OAuth2-protected residual interface that allows selected customers to self-administer APIs and access"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_api_admin_maskorten
+
+Introduction
+"Machine Gate" is an OAuth2 Authorization Server (ISSUs) that offers a simple model for API protection based on so-called "2-legged OAuth", see Server-TO server OAUTH2, inspired by Google's System accounts.
+On this page, we document how API providers provide the opportunity to self-service their own API protection.
+Read the integration guide for API providers first.  API consumers should look at the Integrsation Guide for API consumers and self-service API for integrations
+About the self-service apple
+How to access?
+Contact serviceedesk@dir.no to access the API.
+The use of oauth2
+The apia is also secured using itself. Server-to-server OAuth, ie with the use of a business certificate, and the business's administration client must manually be assigned Scopes to access the self-service therapy:
+API providers must have:
+| Scope | Description |
+|-|-|
+| Idports: Scopes.Write | Provides access to create/change APIs, and give/remove access to consumers |
+We require the companies to create their own administrative client that is only allowed to perform self-service.
+Openapi documentation
+The residual interface is documented here.
+Note that you need to manually select the correct spec 'in the upper right corner.  For the machine gate it is "scopes" to look at.
+Description of APIs
+In the Machine Gate context, an API is the same as an OAuth2 scope. Norwegian Digitalisation Agency wants to give API providers great freedom to decide for their own semantics for API protection within the framework of the OAuth2 standards. At the same time, there is a need for some rules to ensure interoperability.  
+The following syntax is used:
+
+There is a text string that is manually assigned to the API provider. An API provider may have several prefix.  Example of prefix may be or. Using organization numbers such as prefix can in many contexts be useful, since it can facilitate automated processes. In other contexts, organization numbers will not be sufficiently granular for large companies.
+
+Subscope should describe the resource as best as possible (or).  
+Subscope may have different postFIX to distinguish on reading and writing access to the resource ()
+Absence of postfix should basically be interpreted as only reading access
+
+
+
+Visibility
+The attribute is used to set the scop's visibility:
+| Value | Description |
+|-|-|
+| Public | The scop is visible to everyone on /scopes /all endpoints.    |
+| Private | The scop is not visible to anyone other than API provider and the consumers that have accessed | Consumer must be told that the scop is available |
+| Interal | Intense Use in Norwegian Digitalisation Agency |   
+Note that there is no integration with the API catalog, so the API provider itself must ensure that the scop does not end up in the API catalog if used.
+Scope restrictions
+The attribute places guidance on the use of a scope. One or more types of integration may be allowed. If this attribute is set, one of the values must include the "machine gate" in order for you to use the scop with a machine gate client.
+Whitelisting of access
+API provider can choose to disable the access control of an API/Scope.  There may be several reasons to use this:
+- API provider wants to perform the access control locally as part of the API instead of the machine gate
+- Apiet is "open" ie everyone should be able to retrieve data, but you want to track who uses it
+To activate this feature, the attribute is set on the current API scop.
+Inactive entities
+To ensure legal logging and statistics, the Directorate of Digitization will never delete scopes and infections (or integrations), but rather disable them at Delete-call.
+Disabled entities will not come up in Get listings as default, but can be retrieved by setting as a query parameter. Disabled entities will not be reactivated by mail and you get 409 Conflict instead.
+1. Create APIs
+Once Prefix has been manually assigned, following operations are available:
+| Operation | Input | Description |
+|-|-|-|
+|| | Open End Point that provides a list of all visible scopes protected by the ID port (possibly filtration) |
+|| | Protected endpoint that lists all scopes for my organization, both public and private |
+| | Prefix, Subscope, Description, Token_ Properties | Creates a new scope (equal to prefix+subscope) |
+|  |   | Get a scope.  |
+|  |  Description, Token_ Properties | Changes a scope. The scope name itself cannot be changed.   |
+|   |   | Disables a scope. (Scopet is retained for consistency in Audit-Log) Consuming access is retained.   |
+We have chosen to add scope as a Query parameter, as there are specific standards that require the use of the slash "/" in the scope definition, and this will be unnecessarily cumbersome for users of the API to support this as part of the PATH component.
+ are technical characteristics that API provider expects/requires. This can be max allowed life, self-contained or not, minimum level of security, etc. This will be implemented ILA. 2019.
+Example of creating scope
+
+2. Access control
+API provider can use the following access management operations:
+| Operation | Input | Description |
+|-|-|-|
+| | Scope | Provides consumer Consumer_orgno access to current scope |
+| | Scope | Removes access The consumer has to scopet |
+||| List all access for given scope |
+Example of providing access
+
+which gives organization number access to the scop.
+Example of viewing access
+Request:
+
+Response:
+
+3. Consumer makes an integration
+The consumer must register an integration (= OAuth2 client) to use the access in question. The consumer can either make a new client, or update an existing one.  In general, we recommend creating a new safety grounds, since clients should not get for wide access (ie too many scopes).  This is done at the ID port's API for self-service of integrations.
+Example of registration
+First, pick up the current client configuration with Get, and are based on it to generate a modified object back:
+`` `
+Put/Clients/IF2018_apikonsument http/1.1
+{
+    ...
+    "Scopes": ["Difi: API3"],
+    ...
+}
+`` `
+(Remove CREATED_DATE, LAST_UPDATED)

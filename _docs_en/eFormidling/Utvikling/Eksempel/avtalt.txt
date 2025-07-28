@@ -1,0 +1,38 @@
+Title: Example of agreed message exchange
+Description: ""
+Summary: ""
+Product: eFormidling
+Sidebar: eFormidling_sidebar
+
+This page shows an example of the agreed message exchange. The recipient of the example is the Directorate for Management and
+Financial management (DFØ) with organization number. Sender and recipient have agreed in between that they should use
+agreed message exchange to communicate. They have also agreed to give the agreed message type identifier
+. Sender must build and send messages with content as agreed for this type of message. Recipient
+must recognize this agreed message type and interpret and process incoming messages of this type as agreed
+between sender and recipient.
+
+TOC
+{: toc}
+
+Send messages
+Create Standard Business Document (SBD) for message
+
+Attach the file my.PDF
+
+Send the message from the integration point
+
+Follow the status of the message
+
+Receive messages
+Check incoming messages
+
+Download message
+
+Erase message
+
+Next step
+
+Functional description of agreed exchange exchange
+The document type agreed
+The interface e -forming 2
+Several examples

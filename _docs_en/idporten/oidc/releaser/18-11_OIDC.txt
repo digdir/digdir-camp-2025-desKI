@@ -1,0 +1,10 @@
+title: 18-11 oidc
+Description: 18-11 Oidc
+Sidebar: Oidc
+Redirect_From: /18-11_oidc
+
+Support for reusable refresh_tokens, as well as improve caching by certificate validation
+Releasen was production -proof Nov 13, 2018
+New functionality:
+Reusable refh_token (shipped)
+Support for a refresh_token to be reused.  Useful in cases where the service is horizontally scaled without the possibility of keeping a synchronized user condition.

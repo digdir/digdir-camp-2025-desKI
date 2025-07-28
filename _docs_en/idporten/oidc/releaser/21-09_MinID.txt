@@ -1,0 +1,11 @@
+title: 21-09 minid
+Description: 21-09 minid
+Sidebar: Oidc
+redirect_From: /21-09_minid
+
+Support for app-based login instead of SMS.
+Refactoring MinID to adapt to the new system architecture project.
+Releasen was production -fed Nov 30, 2021
+New functionality:
+App-based login in MinID (Shipped)
+A pilot where Digdir should test if it is appropriate to replace login with SMS with a mini-app instead.

@@ -1,0 +1,12 @@
+Title: Digdir's Demo-Userstad
+Description: 
+Sidebar: Wallet
+Product: wallet
+redirect_From: /wallet_demo_bruksstad
+
+Digdir's demo-useastad is made to demonstrate some of the evidence that itself makes.  You can also see the protocol flow that has found a city.
+It can p.t. Perform age verification and proxy logging.
+Note that to judge the EU offers a more feature complex demo service here:
+Boundary
+Here you can try our demo-user city: 
+https://emo-ukersted.test.eidas2sandkasse.net/

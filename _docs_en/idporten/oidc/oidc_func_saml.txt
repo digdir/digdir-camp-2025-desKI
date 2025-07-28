@@ -1,0 +1,63 @@
+title: saml
+Description: Saml Protocol in the ID port
+Summary: "The ID port offers simplified support for the SAML protocol"
+Sidebar: Oidc
+Product: ID port
+redirect_From: /oidc_func_saml
+
+Saml in the ID port
+The ID gate began as a pure SAML service in 2010. The OIDC interface was introduced in 2017 and quickly became very popular. The ID port only supports OIDC, but we temporarily offer a simplified SAML interface for customers who cannot use the OIDC interface. The Saml interface is closed down on 01.01.2026
+
+The Saml interface is closed down on 01.01.2026
+
+Collar architecture
+The ID port's SAML support is based on a SAML proxy that translates the customer's SAML messages to the OIDC against the ID port, and Vice Versa.
+
+graph lr
+  Subgraph Norwegian Digitalisation Agency
+    IDP [ID port]
+    Saml [saml-proxy]
+  end
+  subgraph customer
+     SP [SAML service SP]
+     RP [OIDC service RP]
+  end
+  RP-Oidc --- IDP
+  SP-Saml2 --- Saml
+  Saml-Oidc --- IDP
+
+For logging in, the OIDC Protocol folder folds its Authorization Code-Flyt very well against Saml Web Browser SSO with Artifact Resolution Profile.
+
+Environments for saml proxy
+SAML-PROXY is available the production environment and the test environment. Overview of IP addresses
+| Environment | IDP | Domain | Valid to |
+|-|-|-|
+| Prod | https: //saml2.idporten.no/idp7 | saml2.idporten.no | 01.01.2026 (SAML service is closed down) |
+| ~~ Product ~~ |
+| ~~ Producer ~~ |
+| Test | https: //saml2.test.idporten.no/idp6 | saml2.test.idporten.no | 01.01.2026 (SAML service is closed down) |
+| ~~ test ~~ | ~~ https: //saml2.test.idporten.no/idp5~ |
+| ~~ TEST ~~ |
+ID port metadata
+Metadata
+| Environment | IDP | Metadata | Valid to |
+|-|-|-|
+| Prod | https: //saml2.idporten.no/idp7 | https: //saml2.idporten.no/idp7 Signed: https://saml2.idport.no/idp7?sign=true producer01.01.01.2026 (SAML service is closed down) |
+| Test | https: //saml2.test.idporten.no/idp6 | https: //saml2.test.idport.no/idp6 Signed: https: //saml2.test.test.idport.no/idp6? Sign = true | 01.01.2026 |
+Overview metadata
+| Environment | Metadata |
+| Production | https: //saml2.idporten.no |
+| Test | https: //saml2.test.idporten.no |
+Customer's metadata (SP)
+Updating customer metadata is a manuel process at Digdir. Metadata must be sent to servicedesk@dir.no for change. We need metadata with the following content:
+
+entityid
+assertionconsumerurl
+logout-url
+Public key of the business certificate (same certificate for both signing and encryption)
+
+Restrictions in saml-proxy
+SAML-PROXY is not a full-fledged IAM product, but simple proxy in front of the OIDC solution. Among other things, the SAML proxy has the following restrictions:
+
+Only supports artifactresolution (not http-mail binding)
+Contact info from the contact and reservation register cannot be handed out in Assertion

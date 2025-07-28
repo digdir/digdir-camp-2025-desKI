@@ -1,0 +1,45 @@
+title: sample files
+Description:
+Summary:
+Sidebar: e -insight_sidebar
+Redirect_From: /e -insight_ example files
+Basic Journal Post Delivery
+Sample files with only required item
+* Journal mail without full text with shielding - Json -LD
+* Journal mail with full text and archive info - Json -LD
+* Journal mail with shielding - Noark5 -XML
+* Journal mail with full text - Noark5 -XML
+Examples with all fields
+
+
+Meeting Data and Journal Posts - Json -LD
+
+
+Journalpostar - Noark5 -XML
+
+Meeting Data - Noark5 -XML
+
+Meeting publishing JSON-LD compact variant
+Examples for publishing meeting data in JSON-LD compact variant
+* Only meeting information - Json -LD
+* Meeting with a meeting document - Json -LD
+* Meeting with political case and accompanying referenced case/journal entry - Json -LD
+Splitting of noark extracts
+
+Original XML extraction-Noark5-XML
+Journal Post Message - Json -LD
+MEETING REGISTRATION REPORT - JSON -LD
+Meeting Docum Center Registration Report - Json -LD
+
+Deletion
+
+Deletion with several types - Json -LD
+
+
+Variants of json-ld
+
+Sample file expanded JSON-LD variant
+Example file compact Json variant- with minimum Context
+Example file Json-LD compact with several definitions in Context
+
+Conversion between these variants can be performed, among other things. Here: https://json- ld.org/playground/

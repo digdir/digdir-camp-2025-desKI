@@ -1,0 +1,10 @@
+Title: Projects 2021
+Description: Projects 2021
+Sidebar: Oidc
+redirect_From: /projects_2021
+
+This "release" contains larger projects and potential pilots that would like to implement in 2020.
+Releas was production -fed FY21 Q4
+New functionality:
+Procurement New Eid Agreements-The ID port and Esignering (Shipped)
+Today's agreements with the Eid suppliers run until November 2020, and new agreements must be made. The new agreements will be based on requirements that follow from the new regulations for trust services (introduced November 2019).

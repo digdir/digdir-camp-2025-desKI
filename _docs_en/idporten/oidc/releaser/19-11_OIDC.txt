@@ -1,0 +1,30 @@
+title: 19-11 oidc
+Description: 19-11 Oidc
+Sidebar: Oidc
+redirect_From: /19-11_oidc
+
+The last release before Christmas establishes the machine gate as a self-employed service, and at the same time, in collaboration with Altinn, launches a pilot where customers can delegation allocated API access to subcontractors.
+For the OIDC provider, the release primarily contains some performance improvements.
+Releasen was production -made Dec 10, 2019
+New functionality:
+POC: External delegation of API access (Shipped)
+Functionality that allows API consumers to delegate its assigned API access to a system supplier.  Valid delegation must be available for the ID port to issue tokens. The actual delegation action is done by the authority of the business logging into Altinn and performing delegation.
+In 2019, a pilot is realized by the functionalitis.
+The machine gate that owns service (Ready to Ship)
+The machine gate will be established on their own application servers, to disconnect the dependent on the personal login in OIDC provider.
+The measure means that the machine gate is given its own metadata, and customers must ensure that they configure their integrations against the correct "gate".
+Improvements:
+Sperre for the use of # in redirect_uri (PBLEID-18884)
+In accordance with the Outh2-SPEC, it is not allowed to use fragment (hash-sign) in Redirect-Ui's, so we enter the lock in order to register this. 
+https://tools.ietf.org/html/rfc6749#section-3.1.2 win
+  "The Redirection Endpoint Uri [...] must not include a fragment component."
+Publish the list of API-Prefixer as open data (PBLEID-18840)
+It may be useful for others to know what prefix's defined in the ID port/machine gate and the woman who owns.  Therefore, I create an open endpoint "https://intgrason.difi.no/prefix/all" that offers this. 
+Error corrections:
+Auth_Time in the ID token should be set equal to Authninstant from Saml Assertion (PBLEID-18981)
+ In the ID tok, today, the time when the OAuth2 authorization was created.  This will be incorrect if the login is based on an alleiser Ekisistande SSO session from the ID port Saml.  Fixed by setting it similar to "Authninstant" in Authnstatement from Saml2 Assertion.
+Swagger documentation of ClientRequestresource has two illegal Claims (PBLEID-18861)
+OidcclienTex alternalRequestresource has two deficiencies:
+
+Active removed (this is administered by Difi.)
+Clarify that Client_orgno can only be settled by suppliers (ie those who have the idports: dcr.supplier scope)
