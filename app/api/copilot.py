@@ -10,7 +10,7 @@ router = APIRouter(tags=['Copilot'])
 
 # Endpoint for handling copilot queries
 @router.post('/', response_model=StrictChatResponse)
-async def ask_chatbot(req: StrictChatRequest) -> StrictChatResponse:
+async def ask_copilot(req: StrictChatRequest) -> StrictChatResponse:
     qs = QueryService()
     response = qs.run_query(
         user_query=req.question,
