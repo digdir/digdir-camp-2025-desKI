@@ -144,7 +144,7 @@ class LLMService:
     def generate_response_azure(
         self,
         user_query: str,
-        retrieved_context: dict,
+        retrieved_context: str,
         named_endpoint: NamedEndpoint = None,
         previous: Optional[list[str]] = None,
         faq_str: str = None,
@@ -154,6 +154,7 @@ class LLMService:
         Uses Azure model to generate response.
         """
         if not user_query.strip():
+            logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
         logger.info(f'User info: {external_context}')
@@ -168,14 +169,6 @@ class LLMService:
             external_context,
         )
 
-        if not isinstance(prompt, str):
-            logger.error(
-                f'Prompt is not a string. Got type: {type(prompt)} - value: {prompt}'
-            )
-            raise ValueError('Prompt must be a string')
-
-        messages = [{'role': 'user', 'content': prompt}]
-
         system_prompt = PromptFactory.get_system_message(
             named_endpoint or self.named_endpoint
         )
@@ -189,11 +182,11 @@ class LLMService:
                     UserMessage(content=prompt),
                 ],
                 model=self.llm_model_name,
-                messages=messages,
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
             )
         except Exception as e:
+            logger.error(f'Error generating response (Azure): {e}')
             return f'Azure model error: {e}'
 
         # Deepseek models include <think> tags in output – remove them
