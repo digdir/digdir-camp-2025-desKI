@@ -11,6 +11,7 @@ class BaseChatRequest(BaseModel):
     question: str = Field(..., min_length=2, max_length=3000)
     context: Optional[Dict[str, Any]] = None
     previous: Optional[list[str]] = None
+    logs: Optional[str] = Field(..., min_length=2, max_length=5000)
 
 
 # Extended model with input validation for sensitive data

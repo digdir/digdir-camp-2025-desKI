@@ -37,6 +37,7 @@ class PromptFactory:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         if (named_endpoint == NamedEndpoint.BRUKERSTOTTE) or (
             named_endpoint == NamedEndpoint.DEFAULT
@@ -143,6 +144,9 @@ class PromptFactory:
                 Tone: profesjonell, hjelpsom og løysingsorientert. Aldri spekuler. Bruk dokumentasjonen så langt den rekk.
                 
                 Dersom spørsmålet er veldig kort og det er tydelig at det er avhengig av konteksten, bruk det som er gitt i `tidligere samtale` for å gi eit relevant svar.
+                
+                Logger:
+                {logs}
 
                 Tidligere samtale:
                 {previous}
