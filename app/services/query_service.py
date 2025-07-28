@@ -39,7 +39,7 @@ class QueryService:
         from app.services.query_service import QueryService
         from app.models.endpoint_enum import NamedEndpoint (OPTIONAL)
         qs = QueryService()
-        answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.CHATBOT (OPTIONAL)  )
+        answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.BRUKERSTOTTE (OPTIONAL)  )
         print(answer)
     """
 
@@ -68,7 +68,7 @@ class QueryService:
         self,
         user_query: str,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
-        previous: Optional[str] = None,
+        previous: Optional[list[str]] = None,
         external_context: Optional[dict[str, Any]] = None,
         limit: int = 7,
     ) -> str:

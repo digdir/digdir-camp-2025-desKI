@@ -26,7 +26,7 @@ def load_csv_documents(csv_path: str) -> list:
             answer = row['svar']
             doc = Document(
                 page_content=question,
-                metadata={'answer': answer, 'source': '2024sorted_man_7.csv'},
+                metadata={'answer': answer, 'source': '2024sorted_man_7_clean.csv'},
             )
             documents.append(doc)
     print(f'Loaded {len(documents)} Q&A entries from CSV')

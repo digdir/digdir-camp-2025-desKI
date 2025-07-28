@@ -59,7 +59,7 @@ jobs:
           docker compose -f docker-compose.yml up backend -d
           sleep 5
           docker ps
-          docker logs chatbot-api || true
+          docker logs deski-backend || true
 
       - name: Shut down
         run: docker compose -f docker-compose.yml down
