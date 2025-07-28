@@ -9,25 +9,25 @@ from app.models.request_models import StrictChatRequest
 from app.models.response_models import StrictChatResponse
 from app.services.query_service import QueryService
 
-router = APIRouter(tags=['Chatbot'])
+router = APIRouter(tags=['Brukerstotte'])
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 @router.post('/', response_model=StrictChatResponse)
-def ask_chatbot(
+def ask_brukerstotte(
     req: StrictChatRequest,
     qs: QueryService = Depends(get_query_service),
 ) -> StrictChatResponse:
     starttid = time.time()
-    logger.info('⚡ Received chatbot request')
+    logger.info('⚡ Received brukerstotte-request')
 
     response = qs.run_query(
         user_query=req.question,
-        named_endpoint=NamedEndpoint.CHATBOT,
+        named_endpoint=NamedEndpoint.BRUKERSTOTTE,
         previous=req.previous,
     )
 
     logger.info(f'✅ Responded in {time.time() - starttid:.2f}s')
-    return StrictChatResponse(answer=response or 'Hei fra chatbot!', source=None)
+    return StrictChatResponse(answer=response or 'Hei fra brukerstøtte!', source=None)

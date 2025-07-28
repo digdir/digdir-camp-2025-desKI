@@ -25,7 +25,7 @@ response = llm.generate_response_azure("Hva er status på prosjektet?", retrieve
 
 
 class NamedEndpoint(str, Enum):
-    CHATBOT = 'chatbot'
+    BRUKERSTOTTE = 'brukerstotte'
     COPILOT = 'copilot'
     SERVICEDESK = 'servicedesk'
-    DEFAULT = 'chatbot'
+    DEFAULT = 'brukerstotte'
