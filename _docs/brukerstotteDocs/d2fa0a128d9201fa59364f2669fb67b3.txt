@@ -1,0 +1,33 @@
+URL: https://eid.difi.no/nb/id-porten
+Title: ID-Porten | Hjelpesider for fellesløsninger
+
+Sámegiella
+ID-Porten
+ID-porten er en felles innloggingsløsning til offentlige tjenester på internett. ID-porten gir tilgang til over 1000 tjenester fra stat og kommune. ID-porten blir driftet av Digitaliseringsdirektoratet.
+
+For å logge deg inn på tjenester fra stat og kommune på internett må du ha en elektronisk ID (e-ID). En elektronisk ID er viktig for å bekrefte at du er den du utgir deg for å være.
+
+I ID-porten kan du velge mellom ulike alternativ for elektronisk ID: 
+
+MinID
+BankID 
+Buypass
+Commfides
+Ny bruker av offentlige tjenester på nett
+Slik skaffer du deg elektronisk ID
+Hva du kan bruke din elektroniske ID til
+Når MinID ikke er et innloggingsvalg i ID-porten
+Et felles Kontakt- og reservasjonsregister
+Sjekk at du er registrert med riktig mobilnummer og e-post
+For forvaltningen
+Samarbeidsportalen
+Kontaktinformasjon
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

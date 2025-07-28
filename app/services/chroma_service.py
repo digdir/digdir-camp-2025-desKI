@@ -70,7 +70,7 @@ class ChromaService:
     def get_db(self):
         return self.db
 
-    def search(self, query: str, limit: int = 5) -> Optional[dict]:
+    def search(self, query: str, limit: int = 10) -> Optional[dict]:
         """
         Search the ChromaDB for documents similar to the query text.
 
@@ -89,9 +89,11 @@ class ChromaService:
 
         count = len(self.db.get()['documents'])
         logger.info(f'Documents in collection: {count}')
-
-        results = self.db.similarity_search_with_relevance_scores(query, k=limit)
-        logger.info(results)  # [(Document(...), 0.23), ...]
+        query = query.lower()
+        results = self.db.similarity_search_with_relevance_scores(
+            'query: ' + query, k=limit
+        )
+        logger.info(results)
 
         if not results:
             logger.info('No results found for the query.')
@@ -104,10 +106,10 @@ class ChromaService:
             source = doc.metadata.get('source', 'ukjent fil')
             page = doc.metadata.get('page', 'ukjent side')
             used_sources.add(f'{source}, side {page}')
-            combined = f'[Kilde: {source}, side {page}]\n{doc.page_content}'
+            combined = doc.page_content
             combined_chunks.append(combined)
 
-        retrieved_context = '\n\n'.join(combined_chunks)
+        retrieved_context = '\n'.join(combined_chunks)
         return retrieved_context
 
     def add_documents(self, documents: list) -> bool:
@@ -132,3 +134,17 @@ class ChromaService:
         except Exception as e:
             logger.error(f'Error adding documents to ChromaDB: {e}')
             return False
+
+    def switch_collection(self, collection_name: str):
+        """
+        Switch to a different collection. Useful for FAQs vs docs separation.
+        """
+        self.collection_name = collection_name
+        self.db = Chroma(
+            persist_directory=self.persist_directory,
+            embedding_function=self.embedding_model,
+            collection_name=collection_name,
+        )
+        logger.info(
+            f'Switched to collection {collection_name}, docs={len(self.db.get()["documents"])}'
+        )

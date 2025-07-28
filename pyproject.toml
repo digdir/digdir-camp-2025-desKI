@@ -11,5 +11,8 @@ line-ending = "lf"
 select = ["E", "F", "B", "I"]  # Common: pycodestyle, pyflakes, bugbear, isort
 ignore = ["E501"]  # Ignore line length if formatting handles it
 
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends"]
+
 [tool.ruff.lint.isort]
 length-sort = true

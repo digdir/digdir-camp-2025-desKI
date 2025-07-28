@@ -1,0 +1,27 @@
+URL: https://eid.difi.no/nb/kontakt-og-reservasjonsregisteret/oppdater-kontaktinformasjonen-din-pa-ett-sted
+Title: Oppdater kontaktinformasjonen din på ett sted | Hjelpesider for fellesløsninger
+
+Oppdater kontaktinformasjonen din på ett sted
+
+Innbyggerene sine mobilnummer og e-postadresser blir samlet i Kontakt- og reservasjonsregisteret.
+
+Fordelen med ett felles kontaktregister er at du som innbygger ikke trenger å gi denne informasjonen til alle de ulike offentlige virksomhetene du er i kontakt med.
+Det er du selv som oppdaterer kontaktinformasjonen, og du trenger bare gjøre det ett sted.
+Du kan velge å registrere enten e-post eller mobilnummer, eller begge deler.
+
+Kontakt- og reservasjonsregisteret blir brukt når du logger inn med ID-porten til ulike offentlige tjenester. Eksempel på dette kan være utfylling av skattemeldingen, eller når stat og kommune trenger å varsle deg elektronisk om vedtak eller annen viktig informasjon. Det er bare stat og kommune som kan bruke dette registeret. 
+
+Kontakt- og reservasjonsregisteret kan inneholde mobilnummeret ditt og e-postadressen din, opplysninger om hvilken digital postkasse du har valgt, språkvalg, og om du er reservert mot elektronisk kommunikasjon. 
+ 
+
+Her kan du logge inn for å sjekke hva som er registrert på deg og oppdatere kontaktinformasjonen din
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

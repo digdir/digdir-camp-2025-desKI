@@ -1,4 +1,9 @@
 # === Vector db ====
+
+# CHROMA_PATH = 'app/db/chroma_db'
+# COLLECTION_NAME = 'brukerstotte_docs'
+# DATA_PATH = '_docs/brukerstotteDocs'
+
 CHROMA_PATH = 'app/db/chroma_db'
 COLLECTION_NAME = 'dig_docs'
 DATA_PATH = '_docs'
@@ -20,3 +25,4 @@ MAX_NEW_TOKENS = 1024
 TEMPERATURE = 0.7
 TOP_P = 0.9
 DO_SAMPLE = True
+SIMILARITY_THRESHOLD = 0.75

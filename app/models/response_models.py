@@ -8,7 +8,7 @@ from app.utils.desensitize import detect_sensitive_data
 
 # Base model for chat responses
 class BaseChatResponse(BaseModel):
-    answer: str = Field(..., min_length=5, max_length=5000)
+    answer: str = Field(..., min_length=5, max_length=3000)
     source: Optional[str] = None
 
 
