@@ -15,19 +15,19 @@ class PromptFactory:
 
     @staticmethod
     def get_system_message(named_endpoint: NamedEndpoint) -> str:
-     if named_endpoint == NamedEndpoint.SERVICEDESK:
-        # prompt for SERVICEDESK only
-        return (
-            'You are a professional and helpful support assistant for Digdir (the Norwegian Digitalisation Agency). '
-            'You answer questions based strictly on provided documentation. Do not guess or speculate. '
-            "Follow the user's instructions exactly."
-        )
-     else:
-        # Alternative message for other endpoints (customize this as needed)
-        return (
-            'You are a helpful and reliable assistant for Digdir employees and users. '
-            'Respond in the same language as the user. Stay factual and clear.'
-        )
+        if named_endpoint == NamedEndpoint.SERVICEDESK:
+            # prompt for SERVICEDESK only
+            return (
+                'You are a professional and helpful support assistant for Digdir (the Norwegian Digitalisation Agency). '
+                'You answer questions based strictly on provided documentation. Do not guess or speculate. '
+                "Follow the user's instructions exactly."
+            )
+        else:
+            # Alternative message for other endpoints (customize this as needed)
+            return (
+                'You are a helpful and reliable assistant for Digdir employees and users. '
+                'Respond in the same language as the user. Stay factual and clear.'
+            )
 
     @staticmethod
     def get_prompt(
@@ -165,5 +165,3 @@ Svar alltid på det same språket som brukaren spør på (norsk eller engelsk). 
     #         f"DOKUMENTASJON:\n{context}\n\n"
     #         f"SPØRSMÅL:\n{user_query}\n\nSVAR:"
     #     )
-
-

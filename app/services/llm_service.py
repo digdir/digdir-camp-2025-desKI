@@ -157,7 +157,9 @@ class LLMService:
             external_context,
         )
 
-        system_prompt = PromptFactory.get_system_message(named_endpoint or self.named_endpoint)
+        system_prompt = PromptFactory.get_system_message(
+            named_endpoint or self.named_endpoint
+        )
         logger.info('System prompt used: %s', system_prompt)
         logger.info(f'Generated prompt: {prompt}')
 
