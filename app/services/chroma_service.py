@@ -146,5 +146,5 @@ class ChromaService:
             collection_name=collection_name,
         )
         logger.info(
-            f"Switched to collection {collection_name}, docs={len(self.db.get()['documents'])}"
+            f'Switched to collection {collection_name}, docs={len(self.db.get()["documents"])}'
         )
