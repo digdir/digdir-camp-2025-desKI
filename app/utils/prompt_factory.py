@@ -1,5 +1,6 @@
 import json
 from typing import Any, Optional
+from app.config import USE_AZURE
 
 from app.models.endpoint_enum import NamedEndpoint
 
@@ -23,21 +24,44 @@ class PromptFactory:
         if (named_endpoint == NamedEndpoint.CHATBOT) or (
             named_endpoint == NamedEndpoint.DEFAULT
         ):
-            return f"""
-                Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
-                Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
-                Svar kort og tydelig, men med relevante detaljer fra kildene. Ikke gjett.
-                Dersom det ikke står noe i dokumentasjonen, kan du prøve å hjelpe så godt du kan.
-                Vær høflig og serviceinnstilt. Dersom løsningen krever en handling fra Digdir, si at en ansatt må ta tak i det.
+            if USE_AZURE:
+                return f"""
+                    Du er en hjelpsom DigDir-assistent. Du svarer på spørsmål basert på denne dokumentasjonen, men dersom Digdir sin dokumentasjon er tom må du være hyggelig og si at du ikke vet.
+                    Svar på norsk om spørsmålet er på norsk, svar på engelsk om spørsmålet er på engelsk.
+                    Svar kort og tydelig, men med relevante detaljer fra kildene. Ikke gjett.
+                    Dersom det ikke står noe i dokumentasjonen, kan du prøve å hjelpe så godt du kan.
+                    Vær høflig og serviceinnstilt. Dersom løsningen krever en handling fra Digdir, si at en ansatt må ta tak i det.
 
-                Digdir-dokumentasjon:
-                {retrieved_context}
+                    Digdir-dokumentasjon:
+                    {retrieved_context}
 
-                Spørsmål:
-                {user_query}
+                    Spørsmål:
+                    {user_query}
 
-                Svar:
-                """
+                    Svar:
+                    """
+            else:
+                return f"""
+                    You are a helpful Digdir assistant.
+                    Always reply in the same language as the user (Norwegian or English).
+                    If the answer is in the documentation → respond briefly and factually.
+                    If only partial info → respond and add:
+                    "For more details, contact servicedesk@digdir.no."
+                    If no info exists → reply:
+                    "I can't help based on the available documentation. Please contact servicedesk@digdir.no."
+                    If the question is vague → ask for clarification.
+                    If the user wants to talk to a human → say they can contact servicedesk@digdir.no.
+                    Be polite, professional, and do not guess.
+
+                    Digdir-dokumentasjon:
+                    {retrieved_context}
+
+                    Spørsmål:
+                    {user_query}
+
+                    Svar:
+                    """
+
         elif named_endpoint == NamedEndpoint.COPILOT:
             return f"""
                 Du er en faglig støtteassistent for ansatte i Digdir. Du skal gi presise, profesjonelle og konkrete svar basert på tilgjengelig dokumentasjon om Selvbetjening og klientadministrasjon.
