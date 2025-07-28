@@ -80,15 +80,14 @@ class LLMService:
             named_endpoint (NamedEndpoint): Optional; the named endpoint to use for the LLM service. Defaults to NamedEndpoint.DEFAULT.
             use_azure (bool): Optional; whether to use Azure for LLM generation. Defaults to True.
             finetuned_api_url (str): Optional; the URL for the finetuned model API. Defaults to the value in the environment variable 'FINETUNED_MODEL_API'.
-        """
 
+        """
         self.use_azure = use_azure
         self.llm_model_name = llm_model_name
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.max_length = max_length
         self.top_p = top_p
-
         self.named_endpoint = named_endpoint
 
         if self.use_azure:
@@ -108,7 +107,6 @@ class LLMService:
                 api_version='2024-05-01-preview',
                 retry_policy=retry_policy,
             )
-
         else:
             self.finetuned_api_url = finetuned_api_url
 
@@ -133,7 +131,6 @@ class LLMService:
                 faq_str,
                 external_context,
             )
-
         else:
             return self.generate_response_finetuned(
                 user_query,
@@ -153,6 +150,9 @@ class LLMService:
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
+        """
+        Uses Azure model to generate response.
+        """
         if not user_query.strip():
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
@@ -169,11 +169,16 @@ class LLMService:
             external_context,
         )
 
+        system_prompt = PromptFactory.get_system_message(
+            named_endpoint or self.named_endpoint
+        )
+        logger.info('System prompt used: %s', system_prompt)
         logger.info(f'Generated prompt: {prompt}')
 
         try:
             response = self.client.complete(
                 messages=[
+                    SystemMessage(content=system_prompt),
                     UserMessage(content=prompt),
                 ],
                 model=self.llm_model_name,
@@ -184,6 +189,7 @@ class LLMService:
             logger.error(f'Error generating response (Azure): {e}')
             return 'Azure model error'
 
+        # Deepseek models include <think> tags in output – remove them
         if (
             'deepseek' in self.llm_model_name.lower()
             and 'r1' in self.llm_model_name.lower()
@@ -194,6 +200,7 @@ class LLMService:
                 response.choices[0].message.content,
                 flags=re.DOTALL,
             )
+
         return response.choices[0].message.content
 
     def generate_response_finetuned(
@@ -205,6 +212,9 @@ class LLMService:
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
     ) -> str:
+        """
+        Uses finetuned HTTP endpoint to get a response.
+        """
         if not user_query.strip():
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
@@ -220,9 +230,6 @@ class LLMService:
 
         logger.info(f'User info: {external_context}')
         logger.info(f'User Endpoint: {named_endpoint}')
-        prompt = PromptFactory.get_prompt(
-            user_query, retrieved_context, named_endpoint, external_context
-        )
         logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         session = requests.Session()
@@ -242,14 +249,15 @@ class LLMService:
             )
             response.raise_for_status()
             data = response.json()
-
             return data.get('response', '[No response]')
-
         except Exception as e:
             logger.error(f'Error generating response (finetuned): {e}')
             return 'Finetuned-model error'
 
     def clean_query(self, query: str) -> str:
+        """
+        Sends the user query to Azure to clean up formatting and remove noise.
+        """
         logger.info(f'Cleaning query: {query}')
         try:
             response = self.client.complete(
