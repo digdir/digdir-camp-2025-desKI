@@ -7,9 +7,9 @@ from app.exceptions import (
     validation_exception_handler,
     pydantic_validation_exception_handler,
 )
-from app.api.chatbot import router as chatbot
 from app.api.copilot import router as copilot
 from app.api.servicedesk import router as servicedesk
+from app.api.brukerstotte import router as brukerstotte
 from app.dependencies.services import init_services
 
 app = FastAPI()
@@ -30,7 +30,7 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(chatbot, prefix='/chatbot')
+app.include_router(brukerstotte, prefix='/brukerstotte')
 app.include_router(copilot, prefix='/copilot')
 app.include_router(servicedesk, prefix='/servicedesk')
 
