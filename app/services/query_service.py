@@ -112,7 +112,7 @@ class QueryService:
                 previous,
                 faq_str,
                 external_context,
-                logs
+                logs,
             )
 
         except Exception as e:

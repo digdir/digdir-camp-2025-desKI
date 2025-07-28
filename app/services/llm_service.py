@@ -131,7 +131,7 @@ class LLMService:
                 previous,
                 faq_str,
                 external_context,
-                logs
+                logs,
             )
         else:
             return self.generate_response_finetuned(
@@ -141,7 +141,7 @@ class LLMService:
                 previous,
                 faq_str,
                 external_context,
-                logs
+                logs,
             )
 
     def generate_response_azure(
@@ -171,7 +171,7 @@ class LLMService:
             previous,
             faq_str,
             external_context,
-            logs
+            logs,
         )
 
         system_prompt = PromptFactory.get_system_message(
@@ -232,7 +232,7 @@ class LLMService:
             previous,
             faq_str,
             external_context,
-            logs
+            logs,
         )
 
         logger.info(f'User info: {external_context}')
