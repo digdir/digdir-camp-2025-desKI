@@ -1,7 +1,7 @@
 import json
 from typing import Any, Optional
-from app.config import USE_AZURE
 
+from app.config import USE_AZURE
 from app.models.endpoint_enum import NamedEndpoint
 
 
@@ -65,7 +65,7 @@ class PromptFactory:
 
                     Svar:
                     """
-            
+
             else:
                 return f"""
                     You are a helpful Digdir assistant.
@@ -146,7 +146,6 @@ class PromptFactory:
             Svar:
             """
         elif named_endpoint == NamedEndpoint.SERVICEDESK:
-
             if USE_AZURE:
                 return f"""
                     Du er ein hjelpsom og vennleg Digdir-assistent. Du svarer utelukkande basert på dokumentasjonen som er gitt til deg – du skal ikkje gjette eller spekulere.
@@ -188,7 +187,7 @@ class PromptFactory:
 
                     Svar:
                     """
-            
+
             else:
                 return f"""
                     You are a helpful Digdir assistant.
