@@ -5,9 +5,12 @@ from typing import Any, Optional
 
 import requests
 from dotenv import load_dotenv
+from azure.core.pipeline.policies import RetryPolicy
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.inference.models import UserMessage, SystemMessage
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from app.config import (
     TOP_P,
@@ -91,10 +94,19 @@ class LLMService:
         if self.use_azure:
             self.azure_endpoint = azure_endpoint
             self.azure_api_key = os.getenv('AZURE_API_KEY')
+            
+            retry_policy = RetryPolicy()
+            retry_policy.total_retries = 3
+            retry_policy.connect_retries = 2
+            retry_policy.read_retries = 2
+            retry_policy.status_retries = 2
+            retry_policy.backoff_factor = 0.5  
+            
             self.client = ChatCompletionsClient(
                 endpoint=self.azure_endpoint,
                 credential=AzureKeyCredential(self.azure_api_key),
                 api_version='2024-05-01-preview',
+                retry_policy=retry_policy,
             )
 
         else:
@@ -213,8 +225,16 @@ class LLMService:
         )
         logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
+        session = requests.Session()
+        retries = Retry(total=3, backoff_factor=1,
+                        status_forcelist=[429, 502, 503, 504],
+                        allowed_methods=["POST"])
+        adapter = HTTPAdapter(max_retries=retries)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+                
         try:
-            response = requests.post(self.finetuned_api_url, json={'prompt': prompt})
+            response = session.post(self.finetuned_api_url, json={'prompt': prompt},timeout=10)
             response.raise_for_status()
             data = response.json()
 
