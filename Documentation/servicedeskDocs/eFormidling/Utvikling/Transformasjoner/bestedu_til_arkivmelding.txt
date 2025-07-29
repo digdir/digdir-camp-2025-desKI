@@ -1,0 +1,66 @@
+
+title: Transformasjon fra BEST/EDU til arkivmelding
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Tabellen under viser hvordan integrasjonspunktet transformerer utgående meldinger fra BEST/EDU til eFormidlings
+meldingstjeneste. Integrasjonspunktet supplerer innkommende meldinger med opplysninger fra konfigurasjon,
+standardverdier og oppslag hos tredjeparter. Utgående meldinger fra BEST/EDU til KS SvarUt og Altinn Digital Post
+transformeres først til arkivmelding før arkivmelding blir transformert til KS Svarut eller Altinn Digital Post.
+| Fra eFormidling  melding            | Fra eFormidling BEST/EDU          | Fra konfigurasjon                              | Fra standardverdi                                        |
+|---------------------------------------------------|-----------------------------------|------------------------------------------------|----------------------------------------------------------|
+| Meldingsidentifikator i SBD                       |                   | -                                              | Genererer UUID dersom verdien ikke allerede er det       |
+| Konversasjonsidentifikator i SBD                  |                   | -                                              | Genererer UUID dersom verdien ikke allerede er det       |
+| Prosess i SBD                                     | -                                 |        |  |
+| Dokumenttype i SBD                                | -                                 |  |              |
+| Organisasjonsnummer for avsender i SB           D |                     | -                                              | -                                                        |
+| Organisasjonsnummer for mottaker i SBD            |                   | -                                              | -                                                        |
+| Scope  i SBD                          |                       | -                                              | -                                                        |
+| Scope  i SBD                        |                     | -                                              | -                                                        |
+|  i SBD              | -                                 | -                                              | Sikkerhetsnivå hentes fra adresseregisteret              |
+|  i SBD                | -                                 | -                                              |                                        |
+|                                    |                           | -                                              | -                                                        |
+|                          |                          | -                                              | -                                                        |
+|                              |                       | -                                              | -                                                        |
+|                         |                        | -                                              | -                                                        |
+|                            |                      | -                                              | -                                                        |
+|                                   |                             | -                                              | -                                                        |
+|                                   |                           | -                                              | -                                                        |
+|                                     |                         | -                                              | -                                                        |
+|                                 |                         | -                                              | Under behandling ()                                   |
+|                          |                         | -                                              | -                                                        |
+|                               |                         | -                                              | -                                                        |
+|                       |                             | -                                              | -                                                        |
+|                         |                        | -                                              | -                                                        |
+|                     |                           | -                                              | -                                                        |
+|                   |                       | -                                              | -                                                        |
+|           |                          | -                                              | -                                                        |
+|              |                        | -                                              | -                                                        |
+|                |                       | -                                              | Inngående dokument ()                                 |
+|                  |                         | -                                              | Ferdigstilt fra saksbehandler ()                      |
+|              |                         | -                                              | -                                                        |
+|                  |                         | -                                              | -                                                        |
+|                |                     | -                                              | -                                                        |
+|                |                           | -                                              | -                                                        |
+|                    |                           | -                                              | -                                                        |
+|                |                        | -                                              | -                                                        |
+|      |                  | -                                              | -                                                        |
+|          |               | -                                              | -                                                        |
+|               |               | -                                              | -                                                        |
+|                 |               | -                                              | -                                                        |
+|                  |                | -                                              | -                                                        |
+|                    |              | -                                              | -                                                        |
+|      |                | -                                              | -                                                        |
+|                        |                  | -                                              | -                                                        |
+|                   |                 | -                                              | -                                                        |
+|    |              | -                                              | -                                                        |
+|                   |              | -                                              | -                                                        |
+|                     |              | -                                              | -                                                        |
+|             |                 | -                                              | -                                                        |
+|  |                | -                                              | -                                                        |
+|              |             | -                                              | -                                                        |
+|                     |             | -                                              | Produksjonsformat ()                                  |
+Nærmere beskrivelse av funksjonaliteten i BEST/EDU finnes på:
+- BEST/EDU

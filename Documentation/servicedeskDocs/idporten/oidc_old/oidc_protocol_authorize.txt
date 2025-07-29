@@ -1,0 +1,61 @@
+
+title: "/authorize endpoint"
+description: "This page summarizes the protocol options availalbe for on the /authorize endpoint for ID-porten OIDC Provider"
+summary: 'This page summarizes the protocol options availalbe for on the /authorize endpoint for ID-porten OIDC Provider'
+sidebar: oidc
+product: ID-porten
+redirect_from: /oidc_protocol_authorize
+
+About
+The  endpoint is thoroughly documented in OpenID Connect Core, chapter 3.1.2
+{% include note.html content="I 2022 kommer det ikke-bakoverkompatible endringer i ID-porten." %}
+Request
+The client passes an authentication request by redirecting the end user browser user's browser to the /authorize endpoint.
+Supported HTTP headers:
+| Header  | Value |
+| --- | --- |
+|Http method|GET|
+ 
+Supported request attributes:
+| Attribute  | Optionality | Description |
+| --- | --- | --- |
+| response_type | Required | Only  is supported by ID-porten |
+| client_id | Required | ID-porten will provide you with a client-id out-of-band|
+| redirect_uri | Required |The end user will be redirected here after a successful authentication.  Only pre-registered URIs can be used.  |
+| scope |  Required |Whitespace-separated list of requested scopes.  Normally just .  |
+| state | Recommended | Value set by the client and returned in the callback.  Recommended to use to achieve CSRF-protection. Mandatory to use for public clients|
+| nonce | Recommended |Value set by the client and returned in the id-token. Recommended to use to protect from replay attacks. |
+| acr_values | Optional | Requested security level, either  or  .  |
+| response_mode | Optional | Used if you want alternative way of returning the authentication response. We support , and . Note that some of these option may have security implications, and some other conditions may apply.   |
+| ui_locales | Optional | Requested language in the user interface, we support nb, nn, en or se |
+| prompt | Optional | Used to govern end user involvement.  Only  is supported by ID-porten  |
+| code_challenge   | Recommended  | The PKCE  is a calculated value based on .  Mandatory to use for public clients |
+| code_challenge_method   | Recommended   | Algorithm for PKCE. Only  supported.  |
+|login_hint   | Optional   | Set to "eidas:true" to trigger authentication by European users according to eIDAS   |
+|claims   | Optional  | Currently only used for eIDAS|
+|request_uri| Optional | The identifier returned by ID-porten from a PAR request. No other attributes shold then be present |
+Clients are strongly recommended to use state, nonce and PKCE.  In the future, these parameteres will be mandatory to use when the protocol baseline in ID-porten is upgraded from Ouath2.0 to Oauth2.1.
+Sample request
+```
+GET /idporten-oidc-provider/authorize
+scope=openid&
+  acr_values=Level3&
+  client_id=test_rp&
+  redirect_uri=https://eid-exttest.difi.no/idporten-oidc-client/authorize/response&
+  response_type=code&
+  state=my_csrf_protection_value&
+  nonce=some_string_only_used_once&
+  ui_locales=nb
+```
+Sample request when using pushed authorization requests (PAR)
+
+Request using request objects
+The client can pass a request using a using a JWT based request object, as described in OpenID Connect Core, chapter 6.1
+Passing a Request Object by reference (as described in OpenID Connect Core chapter 6.2) is not supported.
+The use of request objects requires use of a predefined public key on the client-registration, see client administration api
+Sampe request using request object
+
+Response
+When the user has performend a successful login, and optionally consented to any scopes requiring such consent, the browser will be redirected back to client.  The redirect will contain the authorization  parameter which is then used when fetching tokens. The code is base64-encoded and URL-safe.
+The  parameter is also included, and MUST be used by the client to detect CSRF attacks.
+Sample response: {#authresponse}

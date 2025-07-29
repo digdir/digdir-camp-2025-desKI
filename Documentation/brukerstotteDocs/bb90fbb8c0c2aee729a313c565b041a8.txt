@@ -1,0 +1,31 @@
+URL: https://eid.difi.no/nb/bankid#main-content
+Title: BankID | Hjelpesider for fellesløsninger
+
+BankID
+BankID gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4).
+
+BankID kan brukes med kodebrikke og BankID med app.
+
+BankID med kodebrikke
+Hvordan bestille BankID
+Hvordan logge inn med BankID med kodebrikke
+BankID med app
+Hvordan komme i gang med BankID med app
+Hvordan logge inn med BankID med app
+Passord og koder
+Engangskode til BankID
+Glemt passord
+Hvordan endre passord
+Sperring av BankID
+Kjente feil og løsninger
+BID- og C-koder
+"Feil data inntastet"
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

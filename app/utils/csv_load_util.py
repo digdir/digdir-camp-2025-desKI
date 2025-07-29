@@ -26,7 +26,7 @@ def load_csv_documents(csv_path: str) -> list:
             answer = row['svar']
             doc = Document(
                 page_content=question,
-                metadata={'answer': answer, 'source': '2024sorted_man_7_clean.csv'},
+                metadata={'answer': answer, 'source': '2024sorted_man_7.csv-clean'},
             )
             documents.append(doc)
     print(f'Loaded {len(documents)} Q&A entries from CSV')
@@ -36,11 +36,13 @@ def load_csv_documents(csv_path: str) -> list:
 chroma = ChromaService()
 
 # Switch to CSV collection
-csv_collection = 'faq_csv'
+csv_collection = 'servicedesk_qna_clean'
 chroma.switch_collection(csv_collection)
 
 # Load and add
-csv_docs = load_csv_documents('./_docs/2024sorted_man_7.csv')
+csv_docs = load_csv_documents(
+    './Documentation/servicedeskQuestions/2024sorted_man_7_clean.csv'
+)
 chroma.add_documents(csv_docs)
 
 logger.info(f'Added {len(csv_docs)} FAQ entries into {csv_collection}')

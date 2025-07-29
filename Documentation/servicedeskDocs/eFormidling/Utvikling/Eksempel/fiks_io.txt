@@ -1,0 +1,37 @@
+
+title: Eksempel på FIKS IO-meldingsutveksling
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden viser et eksempel på FIKS IO-meldingsutveksling. Mottaker i eksempelet er en FIKS IO-konto med id
+. Avsender og mottaker har avtalt seg imellom at de skal bruke
+FIKS IO-meldingsutveksling til å kommunisere. De har videre avtalt å bruke FIKS IO-protokollen
+. Avsender må bygge og sende meldinger med innhold som definert for denne protokollen.
+
+TOC 
+{:toc}
+
+Sende meldinger
+Opprett standard business document (SBD) for meldingen
+
+Legg ved filen message.json
+
+Send meldingen fra integrasjonspunktet
+
+Følg med på status for meldingen
+
+Motta meldinger
+Sjekk innkommende meldinger
+
+Last ned melding
+
+Slett melding
+
+Neste steg
+
+Funksjonell beskrivelse av FIKS IO-medingsutveksling
+Dokumenttypen FIKS IO
+Grensesnittet eFormidling 2
+Flere Eksempler

@@ -1,0 +1,54 @@
+
+title: Eksempel på saksbehandling
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden viser et eksempel på meldingsutveksling i forbindelse med saksbehandling. Mottaker i eksempelet er
+Direktoratet for Forvaltning og Økonomistyring (DFØ) med organisasjonsnummer .
+
+TOC
+{:toc}
+
+Sende meldinger
+Opprett standard business document (SBD) for meldingen
+
+Legg ved filen arkivmelding.xml
+```
+curl -XPUT http://localhost:9093/api/messages/out/93f530e3-0d4f-4273-94cd-e0d64019ea83 \
+-H 'Content-Type: application/json' \
+-H 'Content-Disposition: attachment; name=Arkivmelding; filename=arkivmelding.xml' -d \
+'xml version="1.0" encoding="utf-8"?
+
+SaMock
+3380ed76-5d4c-43e7-aa70-8ed8d97e4835
+2017-05-23T12:46:00
+1
+'
+```
+Legg ved filen my.pdf
+
+NB! Viktig at en laster opp arkivmeldingen før en laster opp vedlegg.
+Send meldingen fra integrasjonspunktet
+
+Følg med på status for meldingen
+
+Motta og slett kvittering
+
+Motta meldinger
+Sjekk innkommende meldinger
+
+Last ned melding
+
+Slett melding
+
+Send kvittering
+
+Neste steg
+
+Funksjonell beskrivelse av Saksbehandling
+Dokumenttypen Arkivmelding
+Grensesnittet eFormidling 2
+Grensesnittet BEST/EDU
+Flere Eksempler

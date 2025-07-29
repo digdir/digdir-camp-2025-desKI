@@ -1,0 +1,15 @@
+
+title: Digital postkasse
+description: Digital postkasse til innbyggere
+product: Digital postkasse
+redirect_from: /digipost_dokumentasjon
+
+Beskrivelse av tjenesten, priser og tilleggstjenester finnes på Samarbeidsportalen
+Dokumentasjon og klienter
+Klientbibliotek .Net
+Klientbibliotek Java 
+Integrasjonsguide/begrepskatalog 
+Hvem kan bruke digital post til innbyggere?
+Offentlige virksomheter som har godtatt Digitaliseringsdirektoratets  bruksvilkår kan ta i bruk denne tjenesten. Se bruksvilkår i Samarbeidsportalen
+Rutine for tilgang
+Følg stegvis veiledning på Samarbeidsportalen
