@@ -7,7 +7,6 @@ from app.config import (
     TEMPERATURE,
     AZURE_ENDPOINT,
     MAX_NEW_TOKENS,
-    FINETUNED_MODEL_API,
 )
 from app.services.llm_service import LLMService
 from app.services.query_service import QueryService
@@ -37,7 +36,6 @@ def init_services():
         azure_endpoint=AZURE_ENDPOINT,
         named_endpoint=None,
         use_azure=USE_AZURE,
-        finetuned_api_url=FINETUNED_MODEL_API,
     )
 
     query_service = QueryService(

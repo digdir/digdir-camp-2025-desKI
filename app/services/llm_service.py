@@ -20,7 +20,7 @@ from app.config import (
     TEMPERATURE,
     AZURE_ENDPOINT,
     MAX_NEW_TOKENS,
-    FINETUNED_MODEL_API,
+    FINETUNED_MODEL_API_MAP,
 )
 from app.models.endpoint_enum import NamedEndpoint
 from app.utils.prompt_factory import PromptFactory
@@ -65,7 +65,6 @@ class LLMService:
         azure_endpoint: str = AZURE_ENDPOINT,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         use_azure: bool = USE_AZURE,
-        finetuned_api_url: str = FINETUNED_MODEL_API,
     ):
         """
         Initializes the LLMService by loading environment variables and setting up the embedding model and ChromaDB.
@@ -107,8 +106,6 @@ class LLMService:
                 api_version='2024-05-01-preview',
                 retry_policy=retry_policy,
             )
-        else:
-            self.finetuned_api_url = finetuned_api_url
 
     def generate_response(
         self,
@@ -225,6 +222,11 @@ class LLMService:
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
 
+        url = FINETUNED_MODEL_API_MAP.get(
+            named_endpoint or self.named_endpoint,
+            'https://finetunes.sandkasse.ai/generate_servicedesk',
+        )
+
         prompt = PromptFactory.get_prompt(
             user_query,
             retrieved_context,
@@ -237,9 +239,6 @@ class LLMService:
 
         logger.info(f'User info: {external_context}')
         logger.info(f'User Endpoint: {named_endpoint}')
-        prompt = PromptFactory.get_prompt(
-            user_query, retrieved_context, named_endpoint, external_context
-        )
         logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         session = requests.Session()
@@ -254,9 +253,7 @@ class LLMService:
         session.mount('https://', adapter)
 
         try:
-            response = session.post(
-                self.finetuned_api_url, json={'prompt': prompt}, timeout=10
-            )
+            response = session.post(url, json={'prompt': prompt}, timeout=60)
             response.raise_for_status()
             data = response.json()
 
