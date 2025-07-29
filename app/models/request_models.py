@@ -22,7 +22,7 @@ class StrictChatRequest(BaseChatRequest):
             # Pydantic captures ValueError as a validation error on the 'question' field
             return remove_sensitive_data(v)
         return v
-    
+
     @field_validator('logs')
     def truncate_logs_if_too_long(cls, v):
         if v is not None and len(v) > 10000:
