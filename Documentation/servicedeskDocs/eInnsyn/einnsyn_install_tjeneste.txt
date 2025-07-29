@@ -1,0 +1,26 @@
+
+title: Installere eInnsyn-klient som Windows-service
+description: Installere eInnsyn-klient som Windows-service
+summary: "Her finner du informasjon om hvordan installere eInnsyn-klient som Windows-service"
+sidebar: einnsyn_sidebar
+redirect_from: /einnsyn_install_tjeneste
+
+Etter du er ferdig å redigere einnsyn-klient.xml-fila må du installere tjenesten. For å gjøre dette må du åpne et kommandovindu som administrator. Deretter navigere til einnsyn-mappen (feks: )og kjøre følgende kommandoer. 
+
+einnsyn-klient.exe install
+einnsyn-klient.exe start
+
+Disse kommandoene må kjøres uten noe form for skråstrek eller bindestrek foran. Skrives nøyaktig som på bildet under:
+
+Du kan sjekke status på tjenesten ved å bruke følgande kommando i samme kommandovindu:
+
+einnsyn-klient.exe status
+
+Verifisere at einnsyn-klient tjenesten har startet
+Meldinga no.difi.einnsyn.Application - Started Application in 7.121 seconds (JVM running for 7.951) bør ligge i einnsyn-klient.out loggen. Denne indikerer at tjenesten har starter og lytter på inputDirectory-mappen.
+Verifisere at klienten har prosessert filene
+I loggfilen einnsyn-klient.out vil det komme meldinger som disse:
+Last ned som loggfil
+
+Ved opplasting vil det i integrasjonspunktloggen  vil det ligge loggmeldinger som disse:
+Last ned som loggfil

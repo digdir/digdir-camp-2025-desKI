@@ -1,0 +1,30 @@
+URL: https://eid.difi.no/nb/commfides/hvordan-logge-inn-med-commfides
+Title: Hvordan logge inn med Commfides | Hjelpesider for fellesløsninger
+
+Hvordan logge inn med Commfides
+
+For å logge inn med Commfides trenger du:
+
+Commfides e-ID
+PIN-kode
+
+Slik logger du inn: 
+
+Gå til den tjenesten du ønsker å logge inn til (f.eks.: www.nav.no, www.altinn.no, www.skatteetaten.no)
+Last ned Commfides plug in
+Velg Commfides
+Sett inn Commfides e-ID
+Skriv inn PIN-kode
+Klikk "Identifiser" og logg inn
+
+Commfides gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4).
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

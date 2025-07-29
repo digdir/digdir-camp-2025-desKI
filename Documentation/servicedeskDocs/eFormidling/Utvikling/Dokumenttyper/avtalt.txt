@@ -1,0 +1,39 @@
+
+title: "Dokumenttype: Avtalt"
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttypen  består av et standard business document (SBD) og eventuelt et eller flere dokument.
+Dokumenttypen har identifikatoren .
+
+TOC
+{:toc}
+
+Standard business document
+Alle dokumenttyper i eFormidling følger standarden  for adresseringsinformasjon.  består av en header ()
+og en forretningsmelding som brukes for dokumenttype-spesifikk adresseringsinformasjon.
+eFormidlings bruk av standarden  er beskrevet på Standard business document.
+Dokumenttypen  adresseres fra avsenders organisasjonsnummer til mottakers organisasjonsnummer.
+Forretningsmeldingen
+Forretningsmeldingen  er beskrevet under.
+
+ (påkrevd)
+Identifikator for en gitt type avtalt melding. Avtales mellom avsender og mottaker. Gjør det mulig for virksomheter å
+skille ulike typer avtalt meldingsutveksling.
+| Lovlige verdier                 | String        |
+| Standard verdi                  | Ingen         |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (påkrevd)
+Innhold for avtalt melding. Hvilket innhold som støttes for en gitt type avtalt melding avtales mellom avsender og
+mottaker. Gjør det mulig for virksomhetene å inkludere nødvendig innhold i forretningsmeldinger.
+| Lovlige verdier                 | Objekt med vilkårlig innhold |
+| Standard verdi                  | Ingen                        |
+| Konfigurasjon av standard verdi | Ikke støttet                 |
+
+Et eller flere dokument
+Hvilke typer dokument som støttes for en gitt type avtalt melding avtales mellom avsender og mottaker.
+Neste steg
+
+Eksempel på avtalt meldingsutveksling

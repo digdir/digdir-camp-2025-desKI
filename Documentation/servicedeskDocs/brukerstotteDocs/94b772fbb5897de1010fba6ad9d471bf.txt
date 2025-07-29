@@ -1,0 +1,27 @@
+URL: https://eid.difi.no/nb/kjente-feil-og-losninger/oppdatering-av-ios#main-content
+Title: Oppdatering av iOS | Hjelpesider for fellesløsninger
+
+Oppdatering av iOS
+
+For å oppdatere iOS enheten din (iPhone eller iPad) kan du gjøre følgende:
+
+Gå inn på "Innstillinger"
+Velg "Generelt"
+Velg "Oppdatering"
+
+Din iPhone eller iPad vil nå søke etter oppdateringer for iOS.
+Om oppdateringer er tilgjengelig vil du få opp valget "Last ned og installer".
+
+ 
+
+ 
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

@@ -1,0 +1,80 @@
+
+title: "Dokumenttype: Digital DPV"
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttypen  består av et standard business document (SBD), et eller flere dokument og eventuelt en eller
+flere utvidelser.
+Dokumenttypen har identifikatoren .
+
+TOC
+{:toc}
+
+Standard business document
+Alle dokumenttyper i eFormidling følger standarden  for adresseringsinformasjon.  består av en header ()
+og en forretningsmelding som brukes for dokumenttype-spesifikk adresseringsinformasjon.
+eFormidlings bruk av standarden  er beskrevet på Standard business document.
+Dokumenttypen  adresseres fra avsenders organisasjonsnummer til mottakers fødselsnummer.
+Forretningsmeldingen
+Forretningsmeldingen  er beskrevet under.
+
+ (påkrevd)
+Tittel for meldingen.
+| Lovlige verdier                 | String        |
+| Standard verdi                  | Ingen         |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (påkrevd)
+Sammendrag for meldingen.
+| Lovlige verdier                 | String       |
+| Standard verdi                  | Ingen        |
+| Konfigurasjon av standard verdi | Ikke støttet |
+ (påkrevd)
+Hovedinnhold for meldingen.
+| Lovlige verdier                 | String       |
+| Standard verdi                  | Ingen        |
+| Konfigurasjon av standard verdi | Ikke støttet |
+ (frivillig)
+Instruksjonen bestemmer om mottaker skal varsles om innkommende post ved mottak eller både ved mottak og en uke etter
+mottak. Les mer på:
+
+Varsel og eventuelt revarsel for Altinn Digital Post (ekstern lenke)
+
+| Lovlige verdier                 |  eller  |
+| Standard verdi                  |                                |
+| Konfigurasjon av standard verdi | Ikke støttet                                         |
+ (frivillig)
+Instruksjonen bestemmer om varsel om innkommende post skal sendes til mottaker med e-post, SMS eller både e-post og
+SMS.
+| Lovlige verdier                 | ,  eller                         |
+| Standard verdi                  |                                              |
+| Konfigurasjon av standard verdi |  |
+ (frivillig)
+Instruksjonen bestemmer hvilken tekst som skal brukes ved varsel til mottaker om innkommende post.
+| Lovlige verdier                 |                                                  |
+| Standard verdi                  |  |                      |
+| Konfigurasjon av standard verdi |                                 |
+ (frivillig)
+Instruksjonen bestemmer hvilken tekst som skal brukes ved varsel til mottaker om innkommende taushetsbelagt post.
+| Lovlige verdier                 |                                                                                                                                                                                                                                                                                                                                                                                           |
+| Standard verdi                  |  |
+| Konfigurasjon av standard verdi |                                                                                                                                                                                                                                                                                                                                                                 |
+ (frivillig)
+Instruksjonen bestemmer hvor mange dager som skal gå før revarsel sendes til mottaker om innkommende post.
+| Lovlige verdier                 | Heltall                     |
+| Standard verdi                  |                          |
+| Konfigurasjon av standard verdi |  |
+
+Et eller flere dokument
+Hvilke typer dokument som støttes avhenger av mottakeren og er ikke kjent på forhånd. Dette medfører at forsøk på å
+sende dokumenter som ikke støttes av mottakeren feiler først ved mottak.
+Filformat som støttes: HTML og vedlegg med vilkårlig format.
+Beriking og transformasjon
+Integrasjonspunktet transformerer og beriker meldinger som sendes med Altinn Digital Post:
+
+Transformasjon fra Digital DPV til Altinn Digital Post
+
+Neste steg
+
+Dokumenttype  under Eksempel på vedtak til innbygger

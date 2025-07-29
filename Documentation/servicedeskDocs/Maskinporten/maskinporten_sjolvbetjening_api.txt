@@ -1,0 +1,110 @@
+
+title: Selvbetjening av Maskinporten via API
+description:  Selvbetjening av Maskinporten via API
+summary: 'Her finn du guidar og tutorials på korleis du kan sjølvbetjene Maskinporten via API'
+sidebar: maskinporten_sidebar
+product: Maskinporten
+redirect_from: /maskinporten_sjolvbetjening_api
+
+Dette dokumentet viser hvordan du kan selvbetjene i Maskinporten som API-tilbyder og API-konsument.
+
+
+TOC
+{:toc}
+
+Innlogging og tilgang
+Tilgang (Administrasjon av API)
+For å kunne bruke selvbetjening via API, så må virksomheten få utdelt en administrasjons-klient fra Digdir. API'et er sikret med oAuth2 med bruk av virksomhetssertifikat. Merk at i testmiljøene må det benyttes gyldig test-virksomhetssertifikat.
+For å administrere API'er må administrasjons-klienten ha tilgang til scopet idporten:scopes.write.
+Ta kontakt med servicedesk@digdir.no for å få tilgang.
+Les også "Grunnleggende prosedyre for API-sikring".
+Opprette API - Oauth2-selvbetjeningsklient
+Dersom du vil automatisere administrasjonen av scopes og tilganger fra egen API management-løsning, må du lage en Oauth2-klient som benytter selvbetjeningsAPIet til Maskinporten.  Se {{site.baseurl}}/docs/idporten/oidc/oidc_api_admin_maskinporten for detaljer.
+Eksempel på å opprette scope
+
+Tilgangsstyring
+Tilgang gis og fjernes ved enkle REST-kall:  
+Eksempel på å gi tilgang
+
+som gir organisasjonsnummer  tilgang til scopet .
+Send DELETE for å trekke tilbake en tilgang.
+Eksempel på å se tilganger
+Request:
+
+Respons:
+
+Vi har valgt å legge scope som query-parameter, da det innen noen sektorer finnes spesifikke standarder som krever bruk av slash "/" i scope-definisjonen, og dette vil bli unødig tungvindt for brukere av APIet å skulle støtte dette som del av path-komponenten.
+Vedlikehald av merkantile data
+Vedlikehold av fakturainformasjon og varslingspunkter er viktig for at vi hele tiden skal ha oppdatert informasjon om dette. Varslingspunkt(er) får eposter ved kritiske hendelser i løsningen og om det ikke er registrert noe her, så kan man gå glipp av viktig informasjon.
+For å administrere merkantile data:
+
+Logg inn på Samarbeidsportalen
+Trykk på "Virksomhetens tjenester" i venstremenyen
+Finn integrasjonen av type "API-tilbyder" og trykk på den.
+Trykk på "Rediger integrasjon"
+Legg inn informasjon og trykk "Lagre" når du er ferdig.
+
+Tutorial:
+Selvbetjening som API-konsument
+For å kunne bruke selvbetjening via API, så må virksomheten få utdelt en administrasjons-klient fra Digdir. API'et er sikret med oAuth2 med bruk av virksomhetssertifikat. Merk at i testmiljøene må det benyttes gyldig test-virksomhetssertifikat.
+For å administrere integrajoner/klienter må administrasjons-klienten ha tilgang til ett eller flere scopes:
+| scope | beskrivelse |
+|-|-|
+|idporten:dcr.read|Gir tilgang til å lese klientregistreringer for klienter bundet mot samme org.nr. som gitt i access_token. Gir også lesetilgang til onbehalfof-registreringer|
+|idporten:dcr.modify|Gir tilgang til å endre klientregistreringer for klienter bundet mot samme org.nr. som gitt i access_token. Gir også lesetilgang til onbehalfof-registreringer|
+|idporten:dcr.write|Gir tilgang til å opprette nye klientregistreringer for klienter bundet mot samme org.nr. som gitt i access_token. Gir også lesetilgang til onbehalfof-registreringer|
+|idporten:dcr/onbehalfof:write|Gir tilgang til å vise, opprette, endre og slette onbehalfofregistreringer tilhørende en gitt klient. Gir ikke mulighet til å endre andre parametere på selve klienten.|
+|idporten:dcr.supplier|Gir leverandører tilgang til å vise, opprette, endre og slette selvstendige OIDC-integrasjoner for andre organisasjoner. Eget org.no blir koblet til disse integrasjonene.  |
+Ta kontakt med servicedesk@digdir.no for å få tilgang.
+Registrere klient
+Registrere klient som bruker virksomhetssertifikat
+For å kunne registrere en klient via vår selvbetjenings-APi, må du først opprette en selvbetjeningsklient.  Se {{site.baseurl}}/docs/idporten/oidc/oidc_api_admin.
+Deretter kan du opprette Maskinporten-integrasjonen slik:
+```
+POST https://api.samarbeid.digdir.no/clients/
+{
+   "integration_type": "maskinporten",
+    "client_name": "oidc_difi_jb_test",
+    "description": "ny integrajson igjen.",
+    "token_endpoint_auth_method": "private_key_jwt",
+    "grant_types": [
+        "urn:ietf:params:oauth:grant-type:jwt-bearer"
+    ],
+    "scopes": [  "difitest:api3", "difitest:api4"]
+}
+```
+Maskinporten vil svare med en auto-generert client_id, for eksempel  
+Registrere klient som bruker egen nøkkel
+For å slippe å spre virksomhetssertifikatet rundt til mange systemer, kan du opprette dine egne asymmetriske nøkler knyttet til en enkelt integrasjon.
+Dette må gjøres i to steg: først oppretter du en klient som i eksempelet over, for så å oppretter du et nøkkel-sett på denne:
+```
+POST /clients/238259d7-f0ab-4bd5-b253-0f0159375096/jwks
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "e": "AQAB",
+      "use": "sig",
+      "kid": "min_egen_nokkel",
+      "alg": "RS256",
+      "n": "lGc-dGnl9l9pCSb6eW5Mf23Aiss09q7Mxre9q9dazSiN9IjQJmkWDySpoYW3g_rSX2a74cg_q3iTSM0Co9iJ0LQp8gjoIi9I8syi6anBKK6fISr1adZbsGGrM1-zMRRNVsJ811snTdkbgx8ZxVRJM4F6D2KwL3TEnv0CRRVtphO0sRmimKBVVBdawPYQC64SQDvARy6xIlPhD-Da2n2Cl6vRQbVns7dYD8-C2TeYGgB_tAsrVSorx9GF5cZ-hlNHfIgg2qQYZzaljyfOWPPG5rybp9bAWg9vFllUFd_Y6vvZ0tqVfAyj67nFz_w4Rxy-MdRgERKHJcq81GkmVzq5fQ"
+    }
+  ]
+}
+```
+'kid'-verdier må være unike innenfor klientens nøkkel-sett. 
+Merk! Det fins ulik programvare for nøkkeloppretting og eksportering av offentleg nøkkel. Dette vil ikke være omtalt i Digdir sin tekniske dokumentasjon.
+Offentleg nøkkel i PEM-format må konverteres til JWK ved hjelp av for eksempel JWK Creator før den kan bli lagt på klienten. 
+Vedlikehald av merkantile data
+Vedlikehold av fakturainformasjon og varslingspunkter er viktig for at vi hele tiden skal ha oppdatert informasjon om dette. Varslingspunkt(er) får eposter ved kritiske hendelser i løsningen og om det ikke er registrert noe her, så kan man gå glipp av viktig informasjon.
+For å administrere merkantile data:
+
+Logg inn på Samarbeidsportalen
+Trykk på "Virksomhetens tjenester" i venstremenyen
+Finn klienten i listen og trykk på den.
+Trykk på "Rediger integrasjon"
+Legg inn informasjon og trykk "Lagre" når du er ferdig.
+
+Tutorial:
+Ofte stillte spørsmål
+Jeg får 401 unauthorized når jeg prøver å poste en endring via API'et.

@@ -1,0 +1,21 @@
+
+title: Ansattporten protokoll
+description: Ansattporten er protokoll-lik med ID-porten
+sidebar: ansattporten
+product: Ansattporten
+redirect_from: /ansattporten_protocol
+
+Ansattporten sin protokoll-støtte er nær identisk med ID-porten sin, og vi henviser til denne.
+Merk spesielt følgende:
+
+Ansattporten bruker RAR for koding av representasjonsforhold. Dette er dokumentert her
+Ansattporten har egne endepunkt.  Se metadata
+
+acr
+Ansattporten støtter flere eID enn ID-porten.  Klienten angir hvilke eIDer den vil motta ved å angi en array av   i autentiseringsforespørselen:
+| acr_values | beskrivelse            |
+| ----- | ---------------------- |
+|     | eID på nivå høgt, som i ID-porten, dvs. BankID, Buypass eller Commfides |
+|     | eID på både nivå høgt og betydeleg, dvs. inkluderer MinID i tillegg til dei på nivå høgt.  |
+|  | Microsoft Entra ID. Se mer informasjon her|
+Av historiske årsaker støtter ansattporten også forkortede -verdier for sikkerhetsnivå (substantial, high). Disse vil bli faset ut, og bør ikke brukes lenger.

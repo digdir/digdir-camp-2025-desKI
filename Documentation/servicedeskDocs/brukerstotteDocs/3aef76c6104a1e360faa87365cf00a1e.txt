@@ -1,0 +1,23 @@
+URL: https://eid.difi.no/nb/minid/minid-brukeren-din-har-en-feiltilstand-som-gjor-du-ikke-kan-logge-inn
+Title: "MinID-brukeren din har en feiltilstand som gjør at du ikke kan logge inn" | Hjelpesider for fellesløsninger
+
+Sámegiella
+"MinID-brukeren din har en feiltilstand som gjør at du ikke kan logge inn"
+
+"MinID-brukeren din har en feiltilstand som gjør at du ikke kan logge inn. Kontakt brukerstøtte for mer informasjon."
+
+Grunner for at du kan få denne feilmeldingen:
+
+Din MinID-bruker har ikke vært i bruk på mer enn 2 år, og har dermed blitt stengt
+Du har selv bedt om at din MinID-bruker blir stengt
+Du har fått et nytt identifikasjonsnummer, og forsøker å logge inn med ditt gamle nummer (du må bestille nytt MinID aktiveirngsbrev til det nye fødselsnummeret ditt)
+Din kontaktinformasjon i Kontakt- og reservasjonsregisteret er fjernet. Du kan lese mer om det her.
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

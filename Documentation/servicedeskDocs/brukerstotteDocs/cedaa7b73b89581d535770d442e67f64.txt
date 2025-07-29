@@ -1,0 +1,27 @@
+URL: https://eid.difi.no/nb/kjente-feil-og-losninger
+Title: Kjente feil og løsninger | Hjelpesider for fellesløsninger
+
+Kjente feil og løsninger
+Her finner du diverse kjente feil og løsningsforslag
+Slette informasjonskapsler i nettleser
+Windows (Internet Explorer, Microsoft Edge, Firefox, Chrome og Opera)
+Mac OS X (Safari, Firefox, Chrome og Opera)
+iOS - iPhone/iPad (Safari og Chrome)
+Android- mobil og nettbrett (Innebygd, Firefox og Chrome)
+Feilmeldinger
+"Systemfeil"
+"En feil har oppstått"
+"Tjenesten er for tiden ikke tilgjengelig"
+"Advarsel: brukeren din er stengt"
+iOS (iPhone/iPad)
+Tillate informasjonskapsler i Safari
+Oppdatering av iOS
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

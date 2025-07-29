@@ -1,0 +1,86 @@
+URL: https://eid.difi.no/nb/kjente-feil-og-losninger/android-mobil-og-nettbrett-innebygd-firefox-og-chrome
+Title: Android- mobil og nettbrett (Innebygd, Firefox og Chrome) | Hjelpesider for fellesløsninger
+
+Android- mobil og nettbrett (Innebygd, Firefox og Chrome)
+
+Her finner du instruks for å slette informasjonskapsler i ulike nettlesere på android:
+
+Mobiltelefon:
+
+Android Mobil – Innebygd nettleser
+
+Start nettleseren "Internett"
+Klikk på meny – tre horisontale streker nede i høyre hjørne
+Velg "Innstillinger"
+Velg "Personlige nettleserdata"
+Velg "Slett nettlesingsdata"
+Kontroller at "Inf.kaps. og sidedata" er huket av
+Klikk på "Slett"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+
+
+Android Mobil – Firefox
+
+Start nettleseren "Firefox"
+Klikk på meny – tre prikker nede i høyre hjørne
+Velg "Innstillinger"
+Velg "Slett nettleserdata"
+Kontroller at "Infokapsler" er huket av
+Klikk på "Slett nettleserdata"
+Klikk på "Slett"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+
+Android Mobil – Chrome
+
+Start nettleseren "Chrome"
+Klikk på meny – tre horisontale prikker oppe i høyre hjørne
+Velg "Innstillinger"
+Velg "Personvern og sikkerhet"
+Velg "Slett nettleserdata"
+Kontroller at "Informasjonskapsler og data fra nettsteder" er huket av
+Klikk på "Slett data"
+Klikk på "Tøm"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt. 
+
+Nettbrett:
+
+Android Nettbrett – Innebygd nettleser
+
+Start nettleseren "Internett"
+Klikk på meny - tre horisontale streker oppe i høyre hjørne
+Velg "Innstillinger"
+Velg "Personvern og sikkerhet"
+Klikk på "Slett nettlesingsdata"
+Kontroller at  "Inf.kaps.og sidedata" er huket av
+Klikk på "Slett"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+
+Android Nettbrett - Firefox
+
+Start nettleseren "Firefox"
+Klikk på meny – tre horisontale prikker nede i høyre hjørne
+Velg "Innstillinger"
+Klikk på "Slett nettleserdata"
+Kontroller at "Nettlesingshistorikk og nettstedsdata" er huket av
+Klikk på "Slett nettleserdata"
+Klikk på "Slett"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+
+Android Nettbrett – Chrome
+
+Start nettleseren "Chrome"
+Klikk på meny - tre prikker oppe i høyre hjørne
+Velg "Logg"
+Klikk på "Slett nettleserdata"
+Kontroller at "Slett informasjonskapsler og data fra nettsteder" er huket av
+Klikk på "Slett data"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

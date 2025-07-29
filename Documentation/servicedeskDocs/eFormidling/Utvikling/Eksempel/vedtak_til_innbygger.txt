@@ -1,0 +1,42 @@
+
+title: Eksempel på vedtak til innbygger
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden viser et eksempel på vedtak til innbygger. Mottaker i eksempelet er en person med fødselsnummer
+. Det gjøres først et kapabilitetsoppslag for innbyggeren fordi vedtak til innbygger støttes av en
+eller flere meldingstjenester og fordi de ulike meldingstjenestene støtter vedtak til innbygger gjennom ulike
+dokumenttyper. Avsenders system må derfor vite hvilke dokumenttype som skal bygges. I tillegg må avsenders system velge
+hvilken meldingstjeneste som skal brukes dersom flere støttes.
+
+TOC
+{:toc}
+
+Sende meldinger
+Slå opp mottakerens kapabiliteter
+
+Opprett standard business document (SBD) for meldingen
+Dersom dokumenttype digital støttes
+
+Dokumenttypen digital støtter utvidelser som kan tas i bruk ved å legge ved metadatafiler.
+
+Dersom dokumenttype digital_dpv støttes
+
+Dersom dokumenttype print støttes
+
+Legg ved filen my.pdf
+
+Send meldingen fra integrasjonspunktet
+
+Følg med på status for meldingen
+
+Neste steg
+
+Funksjonell beskrivelse av Vedtak til Innbygger
+Dokumenttypen Digital
+Dokumenttypen Digital DPV
+Dokumenttypen Print
+Grensesnittet eFormidling 2
+Flere Eksempler

@@ -1,0 +1,26 @@
+URL: https://eid.difi.no/nb/id-porten/slik-skaffer-du-deg-elektronisk-id#main-content
+Title: Slik skaffer du deg elektronisk ID | Hjelpesider for fellesløsninger
+
+Slik skaffer du deg elektronisk ID
+Om du skal få utført tjenester fra stat og kommune på nett, må du ha en elektronisk ID (e-ID) for å kunne logge deg inn. En elektronisk ID er viktig for å bekrefte at du er den du gir deg ut for å være. Du kan velge mellom ulike alternativer for elektronisk ID når du skal logge inn til offentlige tjenester: MinID, BankID, BankID- app, Buypass ID eller Commfides.
+
+MinID er en personlig elektronisk ID som gir tilgang til offentlige tjenester på et betydelig sikkerhetsnivå (nivå 3). MinID, blir utstedt av Digitaliseringsdirektoratet. MinID kan bestilles fra det året du fyller 13 år. Når du oppretter MinID blir du samtidig registrert i kontaktregisteret. Kontaktregisteret blir brukt av stat og kommune til å varsle deg. Derfor må du registrere mobilnummer og e-postadresse. Mer om registrering og innlogging med MinID.
+
+BankID og BankID-app er en personlig elektronisk ID som gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4). BankID blir utstedt av banken din.
+Mer om bestilling og innlogging med BankID.
+
+Buypass ID er en personlig elektronisk ID som gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4). Den blir utstedt av Buypass AS, og blir levert som Buypass ID på smartkort eller som Buypass ID i mobil. 
+Mer om bestilling og innlogging med Buypass ID.
+
+Commfides er en personlig elektronisk ID som gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4). Commfides blir utstedt av Commfides Norge AS, og blir levert som en USB-pinne. Mer om bestilling og innlogging med Commfides.
+ 
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

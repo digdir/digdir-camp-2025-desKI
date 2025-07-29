@@ -1,0 +1,49 @@
+URL: https://eid.difi.no/nb/kjente-feil-og-losninger/mac-os-x-safari-firefox-chrome-og-opera
+Title: Mac OS X (Safari, Firefox, Chrome og Opera) | Hjelpesider for fellesløsninger
+
+Mac OS X (Safari, Firefox, Chrome og Opera)
+
+Her finner du instruks for å slette informasjonskapsler i ulike nettlesere på Mac:
+
+Safari
+Start nettleseren "Safari"
+Klikk på "Safari" oppe i venstre hjørne
+Velg "Tøm logg"
+Kontroller at "Tøm" er satt til "Hele loggen"
+Klikk på "Slett logg"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt 
+Firefox
+Start nettleseren "Firefox"
+Gå på meny - tre horisontale streker oppe i høyre hjørne
+Velg "Arkiv"
+Klikk på "Historikk"
+Klikk på "Tøm nylig historikk"
+Kontroller at "Slett tidsrommet" er satt til "Alt"
+Kontroller at "Infokapsler" er huket av
+Klikk på "Ok"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+Chrome
+Start nettleseren "Chrome"
+Klikk på "Chrome" oppe i venstre hjørne
+Velg "Fjern nettlesingsdata"
+Kontroller at "Tidsperiode" er satt til "Alle datoer"
+Kontroller at "Informasjonskapsler og andre nettstedsdata" er huket av
+Klikk på "Slett data"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+Opera
+Start nettleseren "Opera"
+Klikk på "Opera" oppe i venstre hjørne
+Velg "Slett surfedata"
+Kontroller at "Tidsperiode" er satt til "Alle datoer"
+Kontroller at "Infokapsler og andre nettstedsdata" er huket av
+Klikk på "Slett data"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet
