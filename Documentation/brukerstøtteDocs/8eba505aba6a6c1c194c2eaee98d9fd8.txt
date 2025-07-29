@@ -1,0 +1,18 @@
+URL: https://eid.difi.no/nb/id-porten/nar-minid-ikke-er-et-innloggingsvalg-i-id-porten
+Title: Når MinID ikke er et innloggingsvalg i ID-porten | Hjelpesider for fellesløsninger
+
+Når MinID ikke er et innloggingsvalg i ID-porten
+
+Når du skal logge inn til en tjeneste som krever innlogging på høyeste sikkerhetsnivå (nivå 4), kan du ikke benytte MinID. Dette gjelder for eksempel innlogging til Helse Norge og enkelte tjenester hos Nav.
+
+NB! Det er de som eier tjenesten som bestemmer hvilket sikkerhetsnivå du må benytte.
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

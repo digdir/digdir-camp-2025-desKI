@@ -1,0 +1,33 @@
+URL: https://eid.difi.no/nb/bankid/hvordan-logge-inn-med-bankid-med-kodebrikke#main-content
+Title: Hvordan logge inn med BankID med kodebrikke | Hjelpesider for fellesløsninger
+
+Hvordan logge inn med BankID med kodebrikke
+
+For å logge inn med BankID trenger du:
+
+Fødselsnummer
+Kodegenerator (f.eks. kodebrikke eller kodeapp) fra banken din
+Passord
+
+Gå til den tjenesten du ønsker å logge inn til (f.eks. på: www.nav.no, www.altinn.no, www.skatteetaten.no)
+
+Velg BankID i ID-porten
+Skriv inn fødselsnummer, 11 siffer
+Velg innloggingen "BankID med kodebrikke"
+Skriv inn engangskode fra kodebrikke
+Skriv inn personlig passord
+
+Legg merke til at BankID må være aktivert hos banken din for å bruke den i ID-porten. Du kan aktivere BankID for offentlige tjenester ved å logge inn i nettbanken din, velge BankID i menyen og deretter bestill eller aktiver BankID. Trenger du hjelp til å opprette eller aktivere BankID må du ta kontakt med banken din.
+
+BankID gir tilgang til offentlige tjenester på høyeste sikkerhetsnivå (nivå 4).
+
+Guide
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

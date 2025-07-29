@@ -1,0 +1,34 @@
+URL: https://eid.difi.no/nb/sikkerhet-og-personvern/personvern-og-informasjonskapsler
+Title: Personvern og informasjonskapsler | Hjelpesider for fellesløsninger
+
+Personvern og informasjonskapsler
+
+Formålet med bruk av informasjonskapsler
+Informasjonskapsler (cookies) er små tekstfiler som blir lagret i nettleseren din når du bruker en nettside. I ID-porten bruker vi informasjonskapsler for å håndtere innloggingsøkt, og for lastbalansering av systemet slik at alle brukere blir sikret en best mulig opplevelse.
+
+Hvem behandler opplysningene
+Digitaliseringsdirektoratet er behandlingsansvarlig for personopplysninger som blir behandlet i felles innlogging til offentlige tjenester. Digitaliseringsdirektoratet er også behandlingsansvarlig for opplysninger som brukes for å administrere MinID.
+
+Leverandørene av de elektroniske ID-ene (BankID, Buypass og Commfides) er behandlingsansvarlige for personopplysninger som er nødvendig for å administrere sine innloggingsløsninger.
+
+Hvilke informasjonskapsler blir brukt i ID-porten
+ID-porten bruker fem forskjellige informasjonskapsler for innlogging og autentisering.
+
+Disse informasjonskapslene blir slettet automatisk når du lukker nettleseren din. 
+
+Informasjonskapsler på hjelpesidene eid.difi.no
+Disse nettsidene er ikke en del av innloggingsløsningen, og registrerer ikke personopplysninger knyttet til din e-ID selv om du er innlogget.
+
+Som en viktig del av arbeidet med å lage brukervennlige nettsider, ser vi på brukermønsteret til de som besøker sidene. For å analysere informasjonen, bruker vi analyseverktøyet Google analytics.
+
+Google analytics bruker informasjonskapsler som gir informasjon om den enkelte bruker sine bevegelser på nettsidene. Eksempler på hva statistikken gir oss svar på er hvor mange som besøker ulike sider, hvilke nettsteder brukerne kommer fra og hvilke nettlesere som benyttes. Ingen av informasjonskapslene gjør at vi kan knytte informasjon om din bruk av nettstedet til deg som enkeltperson.
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

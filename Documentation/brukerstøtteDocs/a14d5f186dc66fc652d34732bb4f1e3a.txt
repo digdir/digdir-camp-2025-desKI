@@ -1,0 +1,20 @@
+URL: https://eid.difi.no/nb/esignering/hvordan-kan-jeg-se-om-dokumentet-er-signert-validering
+Title: Hvordan kan jeg se om dokumentet er signert (validering)? | Hjelpesider for fellesløsninger
+
+Hvordan kan jeg se om dokumentet er signert (validering)?
+
+Når du åpner dokumentet med en PDF-leser, eller nettleser vil du kunne se at dokumentet har fått en forside der det står at dokumentet er signert. Der finner du informasjon om når dokumentet er signert, av hvem og med hvilken elektronisk ID. I tillegg er det et vannmerke på hver enkelt side i dokumentet. Du vil få en feilmelding dersom signaturen er ugyldig.
+
+Om du bruker en Adobe reader (PDF-leser) vil du i tillegg til å få opp signaturen på forsiden og vannmerket, kunne få opp et signaturpanel. Der kan du velge å se sertifikatinformasjon om sertifikatet som er brukt til å signere PAdES-dokumentet (det signerte PDF-dokumentet). Om PAdES-signaturen er ugyldig vil du få feilmelding. Ved å åpne det integrerte vedlegget i PAdESen, kan du se personsignaturen i .xml-format (XAdES). I XAdESen finner du både personsignaturen, originaldokumentet som personsignaturen er påført og en ttp-logg (definert under ord og begrep). XAdESen kan åpnes enten i nettleser, eller med notisblokk (Notepad). Har PAdES-dokumentet blitt endret etter signering, vises ikke signaturpanelet og det integrerte XAdES-vedlegget vil være borte, slik at dokumentet validerer som en vanlig PDF (og ikke som PAdES).
+
+Om orginaldokumentet er i .txt, vil det signerte dokumentet kun vises som XAdES.
+
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet
