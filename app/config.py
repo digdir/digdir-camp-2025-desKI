@@ -1,3 +1,5 @@
+from app.models.endpoint_enum import NamedEndpoint
+
 # === Vector db ====
 
 # CHROMA_PATH = 'app/db/chroma_db'
@@ -16,7 +18,10 @@ AZURE_MODEL = 'Llama-4-Maverick-17B-128E-Instruct-FP8'
 USE_AZURE = True
 
 # ==== AIvar API ====:
-FINETUNED_MODEL_API = 'https://finetunes.sandkasse.ai/generate'
+FINETUNED_MODEL_API_MAP = {
+    NamedEndpoint.SERVICEDESK: 'https://finetunes.sandkasse.ai/generate_servicedesk',
+    NamedEndpoint.BRUKERSTOTTE: 'https://finetunes.sandkasse.ai/generate_brukerstotte'
+}
 
 
 # === Modellinnstillinger ===
