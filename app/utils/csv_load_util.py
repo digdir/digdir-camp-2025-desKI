@@ -36,11 +36,11 @@ def load_csv_documents(csv_path: str) -> list:
 chroma = ChromaService()
 
 # Switch to CSV collection
-csv_collection = 'faq_csv'
+csv_collection = 'servicedesk_qna'
 chroma.switch_collection(csv_collection)
 
 # Load and add
-csv_docs = load_csv_documents('./_docs/2024sorted_man_7.csv')
+csv_docs = load_csv_documents('./Documentation/servicedeskQuestions/2024sorted_man_7.csv')
 chroma.add_documents(csv_docs)
 
 logger.info(f'Added {len(csv_docs)} FAQ entries into {csv_collection}')
