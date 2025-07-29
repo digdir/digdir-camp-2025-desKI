@@ -90,10 +90,10 @@ class QueryService:
 
         faq_str = ''
         try:
-            retrieved_context = self._search_docs(user_query, limit)
+            retrieved_context = self._search_docs(user_query, limit, endpoint= named_endpoint)
 
-            if not self.use_azure:
-                retrieved_faq = self._search_faq(user_query, limit)
+            if named_endpoint == NamedEndpoint.SERVICEDESK:
+                retrieved_faq = self._search_faq(user_query, limit, endpoint= named_endpoint)
                 logger.debug(f'Retrieved faq: {retrieved_faq}')
                 faq_str = ''.join(retrieved_faq)
 
@@ -119,13 +119,18 @@ class QueryService:
             logger.error(f' Error generating response from LLM {e}')
             return 'An error occured while generating the response'
 
-    def _search_faq(self, user_query: str, limit: int = 5):
-        self.chroma_service.switch_collection('faq_csv')
-        faq_matches = (
-            self.chroma_service.get_db().similarity_search_with_relevance_scores(
-                user_query, k=limit
-            )
+    def _search_faq(self, user_query: str, limit: int = 5, endpoint: NamedEndpoint = NamedEndpoint.DEFAULT):
+        if endpoint == NamedEndpoint.SERVICEDESK:
+            collection = "servicedesk_qna_clean" if self.use_azure else "servicedesk_qna"
+            self.chroma_service.switch_collection(collection)
+        else:
+            logger.info(f"Ingen FAQ-collection definert for endpoint: {endpoint.name}")
+            return []
+
+        faq_matches = self.chroma_service.get_db().similarity_search_with_relevance_scores(
+            user_query, k=limit
         )
+
         formatted_faq = []
         for doc, score in faq_matches:
             if score >= SIMILARITY_THRESHOLD:
@@ -135,10 +140,13 @@ class QueryService:
 
         return formatted_faq
 
-    def _search_docs(self, user_query: str, limit: int = 10):
-        user_query = self.llm_service.clean_query(user_query)
 
-        self.chroma_service.switch_collection('dig_docs')
+    def _search_docs(self, user_query: str, limit: int = 10, endpoint: NamedEndpoint= NamedEndpoint.DEFAULT):
+        user_query = self.llm_service.clean_query(user_query)
+        if endpoint == NamedEndpoint.BRUKERSTOTTE:
+            self.chroma_service.switch_collection('brukerstotte_docs')
+        else:
+            self.chroma_service.switch_collection('servicedesk_docs')
         results = self.chroma_service.search(user_query, limit=limit)
 
         return_text = ''
