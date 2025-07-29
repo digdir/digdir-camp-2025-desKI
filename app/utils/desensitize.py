@@ -3,8 +3,7 @@ import re
 # Patterns to detect different types of sensitive data
 SENSITIVE_PATTERNS = {
     r'\b\d{11}\b': 'FNR',  # Norwegian national ID
-    r'\b\d{6}[- ]?\d{5}\b': 'DNR',  # D-number
-    r'\b\d{9}\b': 'ORGNR',  # Organization number
+    r'\b\d{6}[- ]?\d{5}\b': 'DNR',  # D-numbers
     r'\b\d{4} \d{2} \d{5}\b': 'ACCOUNT',  # Bank account number
     r'\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b': 'CARD',  # Credit card number
     r'\b[A-Z]{2}\d{6}\b': 'PASSPORT',  # Passport number (simplified)

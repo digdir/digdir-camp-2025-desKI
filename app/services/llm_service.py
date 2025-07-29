@@ -118,6 +118,7 @@ class LLMService:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         """
         Generic interface: picks Azure or finetuned backend based on config.
@@ -130,6 +131,7 @@ class LLMService:
                 previous,
                 faq_str,
                 external_context,
+                logs,
             )
         else:
             return self.generate_response_finetuned(
@@ -139,6 +141,7 @@ class LLMService:
                 previous,
                 faq_str,
                 external_context,
+                logs,
             )
 
     def generate_response_azure(
@@ -149,6 +152,7 @@ class LLMService:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         """
         Uses Azure model to generate response.
@@ -167,6 +171,7 @@ class LLMService:
             previous,
             faq_str,
             external_context,
+            logs,
         )
 
         system_prompt = PromptFactory.get_system_message(
@@ -211,6 +216,7 @@ class LLMService:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         """
         Uses finetuned HTTP endpoint to get a response.
@@ -226,10 +232,14 @@ class LLMService:
             previous,
             faq_str,
             external_context,
+            logs,
         )
 
         logger.info(f'User info: {external_context}')
         logger.info(f'User Endpoint: {named_endpoint}')
+        prompt = PromptFactory.get_prompt(
+            user_query, retrieved_context, named_endpoint, external_context
+        )
         logger.info(f'Generated prompt (first 500 chars): {prompt}')
 
         session = requests.Session()
@@ -249,6 +259,7 @@ class LLMService:
             )
             response.raise_for_status()
             data = response.json()
+
             return data.get('response', '[No response]')
         except Exception as e:
             logger.error(f'Error generating response (finetuned): {e}')

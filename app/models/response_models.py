@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import Field, BaseModel, field_validator
 
-from app.utils.desensitize import detect_sensitive_data
+from app.utils.desensitize import detect_sensitive_data, remove_sensitive_data
 
 
 # Base model for chat responses
@@ -17,8 +17,5 @@ class StrictChatResponse(BaseChatResponse):
     @field_validator('answer')
     def forbid_sensetive_output(cls, v):
         if detect_sensitive_data(v):
-            raise ValueError(
-                'Svaret inneholder sensitiv informasjon. '
-                'Vennligst fjern den eller kontakt kundeservice.'
-            )
+            return remove_sensitive_data(v)
         return v
