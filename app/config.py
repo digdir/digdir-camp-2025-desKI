@@ -5,8 +5,9 @@
 # DATA_PATH = '_docs/brukerstotteDocs'
 
 CHROMA_PATH = 'app/db/chroma_db'
-COLLECTION_NAME = 'dig_docs'
-DATA_PATH = '_docs'
+COLLECTION_NAME = 'servicedesk_docs'
+DATA_PATH = 'Documentation/servicedeskDocs'
+
 
 # ==== Azure ====
 AZURE_ENDPOINT = 'https://digdircamp-resource.services.ai.azure.com/models'
