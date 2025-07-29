@@ -1,3 +1,5 @@
+from app.models.endpoint_enum import NamedEndpoint
+
 # === Vector db ====
 
 # CHROMA_PATH = 'app/db/chroma_db'
@@ -8,6 +10,7 @@ CHROMA_PATH = 'app/db/chroma_db'
 COLLECTION_NAME = 'dig_docs'
 DATA_PATH = '_docs'
 
+
 # ==== Azure ====
 AZURE_ENDPOINT = 'https://digdircamp-resource.services.ai.azure.com/models'
 # Example model, change to the one you want to use
@@ -16,7 +19,10 @@ AZURE_MODEL = 'Llama-4-Maverick-17B-128E-Instruct-FP8'
 USE_AZURE = True
 
 # ==== AIvar API ====:
-FINETUNED_MODEL_API = 'https://finetunes.sandkasse.ai/generate'
+FINETUNED_MODEL_API_MAP = {
+    NamedEndpoint.SERVICEDESK: 'https://finetunes.sandkasse.ai/generate_servicedesk',
+    NamedEndpoint.BRUKERSTOTTE: 'https://finetunes.sandkasse.ai/generate_brukerstotte',
+}
 
 
 # === Modellinnstillinger ===
