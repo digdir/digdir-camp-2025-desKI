@@ -21,7 +21,7 @@ USE_AZURE = True
 # ==== AIvar API ====:
 FINETUNED_MODEL_API_MAP = {
     NamedEndpoint.SERVICEDESK: 'https://finetunes.sandkasse.ai/generate_servicedesk',
-    NamedEndpoint.BRUKERSTOTTE: 'https://finetunes.sandkasse.ai/generate_brukerstotte'
+    NamedEndpoint.BRUKERSTOTTE: 'https://finetunes.sandkasse.ai/generate_brukerstotte',
 }
 
 
