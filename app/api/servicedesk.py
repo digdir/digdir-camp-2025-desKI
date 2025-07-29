@@ -1,33 +1,24 @@
-from fastapi import APIRouter
+from fastapi import Depends, APIRouter
 
 from app.models.endpoint_enum import NamedEndpoint
-from app.services.llm_service import LLMService
+from app.dependencies.services import get_query_service
 from app.models.request_models import StrictChatRequest
 from app.models.response_models import StrictChatResponse
 from app.services.query_service import QueryService
-from app.services.chroma_service import ChromaService
-from app.services.embedding_service import EmbeddingService
 
 router = APIRouter(tags=['Service desk'])
 
 
 @router.post('/', response_model=StrictChatResponse)
-def ask_service_desk(req: StrictChatRequest) -> StrictChatResponse:
-    query = req.question
-
-    chroma = ChromaService()
-    embedding = EmbeddingService()
-    llm = LLMService()
-
-    qs = QueryService(
-        chroma_service=chroma,
-        embedding_service=embedding,
-        llm_service=llm,
-    )
-
+def ask_service_desk(
+    req: StrictChatRequest,
+    qs: QueryService = Depends(get_query_service),
+) -> StrictChatResponse:
     response = qs.run_query(
-        user_query=query,
+        user_query=req.question,
         named_endpoint=NamedEndpoint.SERVICEDESK,
+        previous=req.previous,
+        logs=req.logs,
     )
 
-    return StrictChatResponse(answer=response or 'Noe gikk galt', source=None)
+    return StrictChatResponse(answer=response or 'Hei fra servicedesk!', source=None)

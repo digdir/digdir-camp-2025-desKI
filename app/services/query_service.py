@@ -70,6 +70,7 @@ class QueryService:
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         previous: Optional[list[str]] = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
         limit: int = 7,
     ) -> str:
         """
@@ -111,6 +112,7 @@ class QueryService:
                 previous,
                 faq_str,
                 external_context,
+                logs,
             )
 
         except Exception as e:
