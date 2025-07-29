@@ -40,7 +40,9 @@ csv_collection = 'servicedesk_qna_clean'
 chroma.switch_collection(csv_collection)
 
 # Load and add
-csv_docs = load_csv_documents('./Documentation/servicedeskQuestions/2024sorted_man_7_clean.csv')
+csv_docs = load_csv_documents(
+    './Documentation/servicedeskQuestions/2024sorted_man_7_clean.csv'
+)
 chroma.add_documents(csv_docs)
 
 logger.info(f'Added {len(csv_docs)} FAQ entries into {csv_collection}')
