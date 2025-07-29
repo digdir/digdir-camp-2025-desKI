@@ -20,7 +20,7 @@ from app.config import (
     TEMPERATURE,
     AZURE_ENDPOINT,
     MAX_NEW_TOKENS,
-    FINETUNED_MODEL_API_MAP
+    FINETUNED_MODEL_API_MAP,
 )
 from app.models.endpoint_enum import NamedEndpoint
 from app.utils.prompt_factory import PromptFactory
@@ -215,9 +215,12 @@ class LLMService:
         if not user_query.strip():
             logger.warning('Empty user query provided')
             return 'Please provide a valid question'
-        
-        url = FINETUNED_MODEL_API_MAP.get(named_endpoint or self.named_endpoint, 'https://finetunes.sandkasse.ai/generate_servicedesk')
-        
+
+        url = FINETUNED_MODEL_API_MAP.get(
+            named_endpoint or self.named_endpoint,
+            'https://finetunes.sandkasse.ai/generate_servicedesk',
+        )
+
         prompt = PromptFactory.get_prompt(
             user_query,
             retrieved_context,
