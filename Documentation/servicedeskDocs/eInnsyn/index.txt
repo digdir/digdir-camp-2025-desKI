@@ -1,0 +1,15 @@
+
+title: Om einnsyn
+description: Dokumentasjon for einnsyn
+summary: "Dokumentasjon for einnsyn"
+sidebar: main_sidebar
+redirect_from: /einnsyn_index
+Dette er den tekniske dokumentasjonen for eInnsyn. Formålet er å støtte arkitekter, utviklere og driftspersonell hos
+offentlige virksomheter og deres leverandører i innføring og bruk av eInnsyn.
+
+Teknisk dokumentasjon
+
+Se gjerne Samarbeidsportalen for en helt overordnet ikke-teknisk introduksjon til eInnsyn:
+
+Dette er eInnsyn (ekstern lenke)
+Ta i bruk eInnsyn (ekstern lenke)

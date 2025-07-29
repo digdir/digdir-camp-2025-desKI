@@ -1,0 +1,18 @@
+URL: https://eid.difi.no/nb/kjente-feil-og-losninger/en-feil-har-oppstatt#main-content
+Title: "En feil har oppstått" | Hjelpesider for fellesløsninger
+
+"En feil har oppstått"
+Feilmeldingen "En feil har oppstått" kan komme av at du bruker en favorittlink eller bokmerke for å gå rett til nettsiden.
+Ofte må du slette informasjonskapsler i nettleseren din. Veiledning til hvordan du gjør det finner du her.
+Det kan skyldes en feil i linken du bruker.
+Du kan få feilen om du bruker navigasjonsknappene (frem og tilbake) i nettleseren under innlogging.
+Feilmeldingen vil også oppstå om du har blitt automatisk avlogget grunnet inaktivitet. Du må da starte innloggingen på nytt.
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

@@ -1,0 +1,97 @@
+
+title: Innsynskrav og e-postoppsett
+description: Innsynskrav og e-postoppsett
+summary: ""
+sidebar: einnsyn_sidebar
+redirect_from: /einnsyn_innsynskrav
+
+Når en sluttbruker bestiller innsynskrav til en virksomhet så skal dette mottas på e-post. Denne e-posten har en forklarende tekst på hvilket dokument det er bestillt innsyn i. Vedlagt i e-posten ligger det en order.xml fil som skal importeres til sakarkivsystemet. Om dette skjer automatisk eller manuelt er opp til hver innholdsleverandør. Deretter må filen behandles av arkivar og svar på innsynskravet må sendes ut til innsynskravbestillers e-postadresse.
+Hvordan fungerer det ?
+Når en sluttbruker bestiller et innsynskrav så vil Digitaliseringsdirektoratet sin einnsyn-klient generere en bestilling og sende denne til Digitaliseringsdirektoratet sitt integrasjonspunkt. Dette integrasjonspunktet vil dermed kryptere, signere og pakke meldingen for så å sende denne via Azure Servicebus til mottaker sitt integrasjonspunkt. Her vil det bli dekryptert og sendt videre til mottakers einnsyn-klienten. Denne vil kontakte en intern SMTP-server og be den sende bestillingen. Det vil så gå en e-post fra denne e-postserveren, men med avsender e-postadresse "no_reply@einnsyn.no". Denne e-posten går til den adressen som er angitt på einnsyn.no under . Deretter må filen importeres inn i sakarkivsystemet. 
+
+Om en ikke mottar e-posten, så kan det være lurt å sjekke spam/søppelpost mappen.
+Ved direkteintegrasjon (uten einnsyn-klient)
+Fagsystem som har støtte for direkteintegrasjon kan hente order.xml direkte fra integrasjonspunktet.
+Utvidet variant av order.xml
+Vi har utviklet to varianter av order.xml. Versjon 1 er den originale og "default". Hvis det er ønskelig og støtte for å motta den utvidete versjonen (versjon 2), kan det settes/endres i eInnsyn Admin av en virksomhetsadministrator:
+
+Versjon 1 (eksempel):
+```
+xml version="1.0" encoding="UTF-8" standalone="yes"?
+
+http://data.einnsyn.no/innsynskrav/3954cfaa-c5fc-4c05-b3a6-9968855a42af
+21.12.2021
+
+LoremIpsum
+lorem@eksempel.no
+
+innsyn@eksempel.no
+
+e-post
+ 
+
+
+olanordmann@gmail.com
+
+
+
+2025/23456
+1
+2171234/21
+saksbehandler
+
+
+
+
+xml version="1.0" encoding="UTF-8" standalone="yes"?
+
+http://data.einnsyn.no/innsynskrav/b05b9fd4-cbda-4e17-9d09-21a889526484
+2021-12-21+01:00
+ 
+LoremIpsum
+987654321
+lorem@eksempel.no
+innsyn@eksempel.no
+
+ 
+e-post
+olanordmann@gmail.com
+
+
+
+
+cb746da3-41d9-4f29-9895-c62152c207b1
+3ae3e707-a046-4970-9ac7-f8a270a193e5
+
+http://test.einnsyn.no/noark5/3056b799-a88e-435b-95fc-4b7621b57d26
+3056b799-a88e-435b-95fc-4b7621b57d26 
+2025/23456
+1
+2171234/21
+saksbehandler
+enhetskode
+
+
+
+```
+fagsysteminfo-id/delId er hentet fra SystemID til "arkiv"/"arkivdel". Disse må derfor være inkludert i den opprinnelige publiseringen/avleveringen for at det skal kunne inkluderes i xml'en. Det samme gjelder systemId på dokumentet. Versjon 2 er derfor kun støttet av fagsystemer som publiserer på Noark5 xml og Json-ld format.
+Meldingsflyt
+Se forklaring under bildet.
+
+Trykk her for større bilde
+
+Arkivar henter trigger eksport av oep saker
+Laster opp oep fil til filområde arkivar og eInnsynsklient har tilgang til
+eInnsynsklient splitter opp oep meldingen til eInnsynsmeldinger,
+Laster eInnsysnsmelding til integrasjonspunktet
+Integrasjonspunktet gjør oppslag for å finne mottaker (capability oppslag)
+Intgrasjonspunktet krypterer, signerer og pakker melding. Laster deretter opp til mottakers kø
+Ingegrasjonspunktet laster ned nye meldinger fra kø, pakker opp, sjekker signatur, dekrypterer melding, tilgjengeligjør for mottaker
+eInnsysnsapplikasjon henter meldinger fra integrasjonpunktet, tilgjengeliggjør i eInnsynssøk
+Person søker innsyn
+Innsynskrav lastes opp til integrasjonspunkt
+Integrasjonspunktet gjør oppslag for å finne mottaker (capability oppslag)
+integrasjonspunktet krypterer, signerer og pakker melding. Laster deretter opp til mottakers kø
+Integrasjonspunktet laster ned nye meldinger fra kø, pakker opp, sjekker signatur, dekrypterer melding, tilgjengeliggjør for mottaker
+eInnsynsklient sender innsynskrav via mottakers mailserver
+Innsynskrav tilgjengeliggjøres i via mottakers sakarkvisystem/mailserver e.l.

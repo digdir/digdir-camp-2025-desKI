@@ -1,0 +1,116 @@
+
+title: Logging
+description: 
+summary: ""
+sidebar: krr_dotnet
+product: KRR
+redirect_from: /krr_logging
+
+Generelt
+Klienten bruker Common.Logging API for å abstrahere logging. Det er opp til brukeren å imlementere API med et passende loggrammeverk, men vi viser hvordan dette kan gjøres med Log4Net.
+Loggnivå  vil logge resultat for forespørsler som går bra og de som feiler,  bare for feilede forespørsler eller verre, mens  vil aldri forekomme. Disse loggerne vil være under 
+Implementere Log4Net som logger
+
+Installer Nuget-pakke . Denne vil da også installere avhengighetene  og . Merk at versjoneringen her er litt underlig, men et søk i Nuget Gallery vil f.eks. vise at Log4Net 2.0.3 har pakkenavn Log4net [1.2.13] 2.0.3. Da er det  som skal installeres. 
+Legg merke til hvilken versjon av Log4net som faktisk installeres. Av en eller annen grunn kan det bli 2.0.0 som installeres. Da må versjonen oppdateres til 2.0.3.
+
+En fullstendig App.config med Log4Net-adapter og en :
+{% highlight xml %}
+xml version="1.0" encoding="utf-8" ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endhighlight %}
+Logge forespørsel og respons
+Det er mulig å logge hele forespørsel/respons som blir sendt/mottatt. For å aktivere dette setter du følgende på :
+{% highlight csharp %}
+OppslagstjenesteKonfigurasjon.LoggForespørselOgRespons = true;
+{% endhighlight %}
+Det vil da logges til en logger med navn .
+
+Merk at logging av forespørsel og respons kan gi mye dårligere ytelse. Det er ingen grunn til å logge dette i et produksjonsmiljø.
+
+Eksempel på App.config med Log4Net-adapter. I dette eksempelet er det en logger for vanlig debug-logg samt en logger for forespørsel og response:
+{% highlight xml %}
+xml version="1.0" encoding="utf-8" ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endhighlight %}

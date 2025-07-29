@@ -1,0 +1,18 @@
+
+title: Eksempler
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Eksempler på bruk av eFormidling:
+
+Saksbehandling
+Taushetsbelagt saksbehandling
+Informasjon til innbygger
+Vedtak til innbygger
+Innsynskrav fra eInnsyn
+Journalpost til eInnsyn
+Møte til eInnsyn
+Avtalt meldingsutveksling
+FIKS IO-meldingsutveksling

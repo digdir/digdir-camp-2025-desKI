@@ -1,0 +1,59 @@
+
+title: "Dokumenttype: Arkivmelding-kvittering"
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttypen  består av et standard business document (SBD).
+Dokumenttypen har identifikatoren .
+Dokumenttypen sendes som respons til en arkivmelding.
+Dokumenttypen sendes alltid med prosessen , uavhengig av hvilken
+prosess den opprinnelige arkivmeldingen hadde.
+
+TOC
+{:toc}
+
+Standard business document
+Alle dokumenttyper i eFormidling følger standarden  for adresseringsinformasjon.  består av en header ()
+og en forretningsmelding som brukes for dokumenttype-spesifikk adresseringsinformasjon.
+eFormidlings bruk av standarden  er beskrevet på Standard business document.
+Dokumenttypen  adresseres fra avsenders organisasjonsnummer til mottakers organisasjonsnummer.
+Forretningsmeldingen
+Forretningsmeldingen  er beskrevet under.
+
+ (påkrevd)
+Beskriver hva som er resultatet av meldingen kvitteringen gjelder.
+| Lovlige verdier                 | , ,  og  |
+| Standard verdi                  | (ingen)      |
+| Konfigurasjon av standard verdi | Ikke støttet |
+ (påkrevd)
+Identifikator for meldingen kvitteringen gjelder.
+| Lovlige verdier                 | String       |
+| Standard verdi                  | (ingen)      |
+| Konfigurasjon av standard verdi | Ikke støttet |
+ (frivillig)
+Eventuell kode som utdyper resultatet av meldingen kvitteringen gjelder.
+| Lovlige verdier                 | String        |
+| Standard verdi                  | (ingen)       |
+| Konfigurasjon av standard verdi | Ikke støttet  |
+ (frivillig)
+Eventuell tekst som utdyper resultatet av meldingen kvitteringen gjelder.
+| Lovlige verdier                 | String       |
+| Standard verdi                  | (ingen)      |
+| Konfigurasjon av standard verdi | Ikke støttet |
+
+Beriking og transformasjon
+Når en sender en arkivmelding skal en forvente en arkivmelding-kvittering tilbake. Siden tilsvarende konsept ikke finnes
+i Altinn Digital Post eller KS SvarUt produserer integrasjonspunktet arkivmelding-kvittering i disse tilfellene. Dette
+gjør at avsendersystemet kan ha konsistent oppførsel uavhengig av hvilke meldingstjeneste mottaker nås på.
+Når en mottar en arkivmelding skal en sende en arkivmelding-kvittering tilbake. Siden tilsvarende konsept ikke finnes i
+KS SvarUt vil arkivmelding-kvittering i dette tilfellet ikke bli videreformidlet til mottaker. Dette gjør at
+mottakersystemet kan ha konsistent oppførsel uavhengig av hvilke meldingstjeneste avsender benyttet.
+Ved bruk av integrasjonspunktets grensesnitt  transformerer integrasjonspunktet utgående BEST/EDU AppReceipt
+til arkivmelding-kvittering. 
+Ved bruk av integrasjonspunktets grensesnitt  transformerer integrasjonspunktet innkommende
+arkivmelding-kvittering til BEST/EDU AppReceipt.
+Neste steg
+
+Eksempel på saksbehandling

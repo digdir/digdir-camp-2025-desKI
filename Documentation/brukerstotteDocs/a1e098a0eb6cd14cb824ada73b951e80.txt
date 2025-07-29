@@ -1,0 +1,20 @@
+URL: https://eid.difi.no/nb/buypass-id/hvordan-logge-inn-med-buypass-id-i-mobil-med-passordsms
+Title: Hvordan logge inn med Buypass ID i mobil med passord/SMS | Hjelpesider for fellesløsninger
+
+Hvordan logge inn med Buypass ID i mobil med passord/SMS
+Gå til tjenesten du ønsker å logge inn til (f.eks.: www.nav.no, www.altinn.no, www.skatteetaten.no)
+Velg Buypass ID i ID-porten
+Velg Buypass ID i mobil med passord/SMS
+Skriv inn ditt fødselsnummer (11 siffer), og klikk "Fortsett"
+Skriv passordet ditt og klikk "Fortsett"
+Skriv inn engangskoden du mottar på SMS (6 siffer)
+Guide
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet

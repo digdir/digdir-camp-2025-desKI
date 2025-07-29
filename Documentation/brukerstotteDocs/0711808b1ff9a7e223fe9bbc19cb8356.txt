@@ -1,0 +1,76 @@
+URL: https://eid.difi.no/nb/kjente-feil-og-losninger/windows-internet-explorer-microsoft-edge-firefox-chrome-og-opera#main-content
+Title: Windows (Internet Explorer, Microsoft Edge, Firefox, Chrome og Opera) | Hjelpesider for fellesløsninger
+
+Windows (Internet Explorer, Microsoft Edge, Firefox, Chrome og Opera)
+
+Her finner du instruks for å slette informasjonskapsler i ulike Windows nettlesere:
+
+Internet Explorer
+
+Hurtigsnarvei: Crtl+Shift+Del
+
+Start nettleseren "Internet Explorer"
+Klikk på meny - "Verktøyshjulet" oppe i høyre hjørne
+Velg "Sikkerhet"
+Klikk på "Slett leserlogg"
+Kontroller at "Informasjonskapsler og nettstedsdata" er huket av
+Klikk på "Slett"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+Microsoft Edge
+
+Hurtigsnarvei: Crtl+Shift+Del
+
+Start nettleseren "Microsoft Edge"
+Klikk på meny - tre horisontale prikker oppe i høyre hjørne.
+Velg "Logg"
+Trykk på søppelbøtten 
+Kontroller at "Tidsintervall" er satt til "Alt"
+Kontroller at "Informasjonskapsler og nettstedsdata" er huket av
+Klikk på "Fjern nå"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+Firefox
+
+Hurtigsnarvei: Crtl+Shift+Del
+
+Start nettleseren "Firefox"
+Klikk på meny - tre horisontale streker oppe i høyre hjørne
+Velg "Historikk"
+Klikk på "Tøm nylig historikk"
+Kontroller at "Slett tidsrommet" er satt til "Alt"
+Kontroller at "Infokapsler" er huket av
+Klikk på "Ok"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+Chrome
+
+Hurtigsnarvei: Ctrl+Shift+Del
+
+Start nettleseren "Chrome"
+Klikk på meny - tre vertikale prikker oppe i høyre hjørne
+Velg "Logg"
+Velg "Logg igjen"
+Trykk på "Slett nettlesingsdata"
+Kontroller at "Tidsperiode" er satt til "Alle datoer"
+Kontroller at "Informasjonskapsler og andre nettstedsdata" er huket av
+Klikk på "Slett data"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+Opera
+
+Hurtigsnarvei: Ctrl+Shift+Del
+
+Start nettleseren "Opera"
+Klikk på Opera-ikonet oppe i venstre hjørne
+Velg "Historikk"
+Velg "Slett surfedata"
+Kontroller at "Tidsperiode" er satt til "Alle datoer"
+Kontroller at "Slett infokapsler og andre nettstedsdata" er huket av
+Klikk på "Slett data"
+Lukk nettleser og åpne igjen før du prøver å logge inn på nytt
+E-post
+
+brukerstotte@digdir.no
+
+NB! Ikke send sensitive opplysninger om deg selv og din elektroniske ID på e-post.
+
+Viktige lenker
+Tilgjenglighetserklæring
+Tjenesten er levert av Digitaliseringsdirektoratet
