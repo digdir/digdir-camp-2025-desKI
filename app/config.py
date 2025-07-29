@@ -11,7 +11,6 @@ COLLECTION_NAME = 'servicedesk_docs'
 DATA_PATH = 'Documentation/servicedeskDocs'
 
 
-
 # ==== Azure ====
 AZURE_ENDPOINT = 'https://digdircamp-resource.services.ai.azure.com/models'
 # Example model, change to the one you want to use
