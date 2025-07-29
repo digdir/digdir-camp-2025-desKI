@@ -115,6 +115,7 @@ class LLMService:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         """
         Generic interface: picks Azure or finetuned backend based on config.
@@ -127,6 +128,7 @@ class LLMService:
                 previous,
                 faq_str,
                 external_context,
+                logs,
             )
         else:
             return self.generate_response_finetuned(
@@ -136,6 +138,7 @@ class LLMService:
                 previous,
                 faq_str,
                 external_context,
+                logs,
             )
 
     def generate_response_azure(
@@ -146,6 +149,7 @@ class LLMService:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         """
         Uses Azure model to generate response.
@@ -164,6 +168,7 @@ class LLMService:
             previous,
             faq_str,
             external_context,
+            logs,
         )
 
         system_prompt = PromptFactory.get_system_message(
@@ -208,6 +213,7 @@ class LLMService:
         previous: Optional[list[str]] = None,
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
+        logs: Optional[str] = None,
     ) -> str:
         """
         Uses finetuned HTTP endpoint to get a response.
@@ -228,6 +234,7 @@ class LLMService:
             previous,
             faq_str,
             external_context,
+            logs,
         )
 
         logger.info(f'User info: {external_context}')
