@@ -73,11 +73,11 @@ class PromptFactory:
                     Always reply in the same language as the user (Norwegian or English).
                     If the answer is in the documentation → respond briefly and factually.
                     If only partial info → respond and add:
-                    "For more details, contact servicedesk@digdir.no."
+                    "For more details, contact brukerstotte@digdir.no."
                     If no info exists → reply:
-                    "I can't help based on the available documentation. Please contact servicedesk@digdir.no."
+                    "I can't help based on the available documentation. Please contact brukerstotte@digdir.no."
                     If the question is vague → ask for clarification.
-                    If the user wants to talk to a human → say they can contact servicedesk@digdir.no.
+                    If the user wants to talk to a human → say they can contact brukerstotte@digdir.no.
                     Be polite, professional, and do not guess.
 
                     Digdir-dokumentasjon:
