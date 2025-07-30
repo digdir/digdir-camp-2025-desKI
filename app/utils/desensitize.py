@@ -7,7 +7,6 @@ SENSITIVE_PATTERNS = {
     r'\b\d{4} \d{2} \d{5}\b': 'ACCOUNT',  # Bank account number
     r'\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b': 'CARD',  # Credit card number
     r'\b[A-Z]{2}\d{6}\b': 'PASSPORT',  # Passport number (simplified)
-    r'\b[\wæøåÆØÅ.\- ]{2,},?\s+\d{4,5}\s+[A-ZÆØÅ][\wæøåÆØÅ]+': 'ADDRESS',  # Simplified address
 }
 
 

@@ -112,7 +112,6 @@ class PromptFactory:
                     
                     Spørsmål:
                     {user_query}
-                    
 
                     Svar:
                     """
