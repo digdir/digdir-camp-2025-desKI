@@ -70,7 +70,7 @@ class ChromaService:
     def get_db(self):
         return self.db
 
-    def search(self, query: str, limit: int = 10) -> Optional[dict]:
+    def search(self, query: str, limit: int) -> Optional[dict]:
         """
         Search the ChromaDB for documents similar to the query text.
 
