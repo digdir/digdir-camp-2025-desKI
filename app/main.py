@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import ValidationError
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.api import image_api
 from app.exceptions import (
     validation_exception_handler,

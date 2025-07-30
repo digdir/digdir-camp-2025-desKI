@@ -221,7 +221,7 @@ class PromptFactory:
                     Svar:
                     """
         elif named_endpoint == NamedEndpoint.IMAGE:
-                return f"""
+            return f"""
                     Du er en hjelpsom servicedesk-assistent for Digdir.
 
                     **Mål:**
