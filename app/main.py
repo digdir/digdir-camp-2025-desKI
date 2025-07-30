@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import ValidationError
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.api import image_api
 from app.exceptions import (
     validation_exception_handler,
     pydantic_validation_exception_handler,
@@ -33,6 +33,7 @@ app.add_middleware(
 app.include_router(brukerstotte, prefix='/brukerstotte')
 app.include_router(copilot, prefix='/copilot')
 app.include_router(servicedesk, prefix='/servicedesk')
+app.include_router(image_api.router, prefix='/image')
 
 # Register exception handlers
 app.add_exception_handler(RequestValidationError, validation_exception_handler)

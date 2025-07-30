@@ -65,6 +65,7 @@ class LLMService:
         azure_endpoint: str = AZURE_ENDPOINT,
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         use_azure: bool = USE_AZURE,
+        finetuned_api_url: str = FINETUNED_MODEL_API_MAP,
     ):
         """
         Initializes the LLMService by loading environment variables and setting up the embedding model and ChromaDB.
@@ -116,6 +117,7 @@ class LLMService:
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
         logs: Optional[str] = None,
+        caption: str = None,
     ) -> str:
         """
         Generic interface: picks Azure or finetuned backend based on config.
@@ -129,6 +131,7 @@ class LLMService:
                 faq_str,
                 external_context,
                 logs,
+                caption,
             )
         else:
             return self.generate_response_finetuned(
@@ -139,6 +142,7 @@ class LLMService:
                 faq_str,
                 external_context,
                 logs,
+                caption,
             )
 
     def generate_response_azure(
@@ -150,6 +154,7 @@ class LLMService:
         faq_str: str = None,
         external_context: Optional[dict[str, Any]] = None,
         logs: Optional[str] = None,
+        caption: str = None,
     ) -> str:
         """
         Uses Azure model to generate response.
@@ -169,6 +174,7 @@ class LLMService:
             faq_str,
             external_context,
             logs,
+            caption,
         )
 
         system_prompt = PromptFactory.get_system_message(
