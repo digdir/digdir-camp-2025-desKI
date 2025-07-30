@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Optional
 
-from app.config import SIMILARITY_THRESHOLD
+from app.config import SIMILARITY_THRESHOLD, COLLECTION_NAME_BRUKERSTOTTE, COLLECTION_NAME
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
@@ -90,7 +90,8 @@ class QueryService:
 
         faq_str = ''
         try:
-            retrieved_context = self._search_docs(user_query, limit)
+            retrieved_context = self._search_docs(user_query,named_endpoint, limit)
+
 
             if not self.use_azure:
                 retrieved_faq = self._search_faq(user_query, limit)
@@ -135,10 +136,14 @@ class QueryService:
 
         return formatted_faq
 
-    def _search_docs(self, user_query: str, limit: int = 10):
-        user_query = self.llm_service.clean_query(user_query)
-
-        self.chroma_service.switch_collection('dig_docs')
+    def _search_docs(self, user_query: str, named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT, limit: int = 10):
+        if named_endpoint == NamedEndpoint.BRUKERSTOTTE:
+            self.chroma_service.switch_collection(COLLECTION_NAME_BRUKERSTOTTE)
+        else:
+            user_query = self.llm_service.clean_query(user_query)
+            self.chroma_service.switch_collection(COLLECTION_NAME)
+        
+        logger.debug(f'user_query: {user_query}')
         results = self.chroma_service.search(user_query, limit=limit)
 
         return_text = ''

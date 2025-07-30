@@ -5,15 +5,16 @@
 # DATA_PATH = '_docs/brukerstotteDocs'
 
 CHROMA_PATH = 'app/db/chroma_db'
-COLLECTION_NAME = 'dig_docs'
-DATA_PATH = '_docs'
+COLLECTION_NAME_BRUKERSTOTTE = 'brukerstotte_docs'
+COLLECTION_NAME = 'brukerstotte_docs'
+DATA_PATH = '_docs/brukerstotteDocs'
 
 # ==== Azure ====
 AZURE_ENDPOINT = 'https://digdircamp-resource.services.ai.azure.com/models'
 # Example model, change to the one you want to use
 AZURE_MODEL = 'Llama-4-Maverick-17B-128E-Instruct-FP8'
 
-USE_AZURE = True
+USE_AZURE = False
 
 # ==== AIvar API ====:
 FINETUNED_MODEL_API = 'https://finetunes.sandkasse.ai/generate'
