@@ -1,10 +1,13 @@
+import os
 import logging
 from typing import Any, Optional
 
 from app.config import SIMILARITY_THRESHOLD
+from app.utils.text_utils import strip_markdown
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
+from app.services.caption_service import CaptionService
 from app.services.embedding_service import EmbeddingService
 
 logging.basicConfig(
@@ -39,7 +42,7 @@ class QueryService:
         from app.services.query_service import QueryService
         from app.models.endpoint_enum import NamedEndpoint (OPTIONAL)
         qs = QueryService()
-        answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.BRUKERSTOTTE (OPTIONAL)  )
+        answer = qs.run_query("Hva tilbyr Digdir?", NamedEndpoint.CHATBOT (OPTIONAL)  )
         print(answer)
     """
 
@@ -48,6 +51,7 @@ class QueryService:
         chroma_service: ChromaService,
         embedding_service: EmbeddingService,
         llm_service: LLMService,
+        caption_service: CaptionService,
     ):
         """
         Initializes the QueryService by loading environment variables and setting up the embedding model and ChromaDB.
@@ -63,6 +67,7 @@ class QueryService:
         self.embedding_model = embedding_service.get_model()
         self.llm_service = llm_service
         self.use_azure = llm_service.use_azure
+        self.caption_service = caption_service
 
     def run_query(
         self,
@@ -70,7 +75,6 @@ class QueryService:
         named_endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
         previous: Optional[list[str]] = None,
         external_context: Optional[dict[str, Any]] = None,
-        logs: Optional[str] = None,
         limit: int = 7,
     ) -> str:
         """
@@ -90,14 +94,10 @@ class QueryService:
 
         faq_str = ''
         try:
-            retrieved_context = self._search_docs(
-                user_query, limit, endpoint=named_endpoint
-            )
+            retrieved_context = self._search_docs(user_query, limit)
 
-            if named_endpoint == NamedEndpoint.SERVICEDESK:
-                retrieved_faq = self._search_faq(
-                    user_query, limit, endpoint=named_endpoint
-                )
+            if not self.use_azure:
+                retrieved_faq = self._search_faq(user_query, limit)
                 logger.debug(f'Retrieved faq: {retrieved_faq}')
                 faq_str = ''.join(retrieved_faq)
 
@@ -116,34 +116,19 @@ class QueryService:
                 previous,
                 faq_str,
                 external_context,
-                logs,
             )
 
         except Exception as e:
             logger.error(f' Error generating response from LLM {e}')
             return 'An error occured while generating the response'
 
-    def _search_faq(
-        self,
-        user_query: str,
-        limit: int = 5,
-        endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
-    ):
-        if endpoint == NamedEndpoint.SERVICEDESK:
-            collection = (
-                'servicedesk_qna_clean' if self.use_azure else 'servicedesk_qna'
-            )
-            self.chroma_service.switch_collection(collection)
-        else:
-            logger.info(f'Ingen FAQ-collection definert for endpoint: {endpoint.name}')
-            return []
-
+    def _search_faq(self, user_query: str, limit: int = 5):
+        self.chroma_service.switch_collection('faq_csv')
         faq_matches = (
             self.chroma_service.get_db().similarity_search_with_relevance_scores(
                 user_query, k=limit
             )
         )
-
         formatted_faq = []
         for doc, score in faq_matches:
             if score >= SIMILARITY_THRESHOLD:
@@ -153,17 +138,10 @@ class QueryService:
 
         return formatted_faq
 
-    def _search_docs(
-        self,
-        user_query: str,
-        limit: int = 10,
-        endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
-    ):
+    def _search_docs(self, user_query: str, limit: int = 10):
         user_query = self.llm_service.clean_query(user_query)
-        if endpoint == NamedEndpoint.BRUKERSTOTTE:
-            self.chroma_service.switch_collection('brukerstotte_docs')
-        else:
-            self.chroma_service.switch_collection('servicedesk_docs')
+
+        self.chroma_service.switch_collection('dig_docs')
         results = self.chroma_service.search(user_query, limit=limit)
 
         return_text = ''
@@ -175,3 +153,50 @@ class QueryService:
             return_text += text
 
         return return_text
+
+    def run_image_query(
+        self,
+        image_path: str,
+        user_input: Optional[str] = None,
+        named_endpoint: NamedEndpoint = NamedEndpoint.IMAGE,
+    ) -> tuple[str, list]:
+        """
+        Tar inn et bilde og valgfri tekst (brukerens spørsmål), returnerer LLM-svar og relevante dokumenter.
+        """
+
+        try:
+            caption = self.caption_service.generate(image_path)
+        except Exception:
+            raise
+
+        query = f"""
+         Bildebeskrivelse:
+        {caption.strip()}
+
+        Spørsmål fra bruker:
+        {user_input}
+
+        """.strip()
+
+        try:
+            embedding = self.embedding_service.embed(caption)
+            docs = self.chroma_service.search_by_embedding(embedding)
+
+            self.chroma_service.store_embedding(
+                caption,
+                embedding,
+                metadata={'filename': os.path.basename(image_path), 'caption': caption},
+            )
+
+            llm_response = self.llm_service.generate_response(
+                user_query=query,
+                retrieved_context='\n'.join([doc.page_content for doc in docs]),
+                named_endpoint=named_endpoint,
+                caption=caption,
+            )
+
+            return strip_markdown(llm_response), docs
+
+        except Exception as e:
+            logger.error(f'Feil i run_image_query: {e}')
+            raise

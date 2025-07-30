@@ -3,6 +3,7 @@ from typing import Optional
 
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_core.documents import Document
 from langchain_community.vectorstores import Chroma
 
 from app.config import CHROMA_PATH, COLLECTION_NAME
@@ -112,6 +113,26 @@ class ChromaService:
         retrieved_context = '\n'.join(combined_chunks)
         return retrieved_context
 
+    def search_by_embedding(
+        self, embedding: list[float], limit: int = 3
+    ) -> list[Document]:
+        """
+        Search ChromaDB using an embedding vector directly.
+
+        Args:
+            embedding (list[float]): The embedding vector to search with.
+            limit (int): Number of results to return.
+
+        Returns:
+            list[str]: The most relevant document texts.
+        """
+        try:
+            results = self.db.similarity_search_by_vector(embedding, k=limit)
+            return results  # Ikke bare .page_content – behold Document-objektene
+        except Exception as e:
+            logger.error(f'Error during search_by_embedding: {e}')
+            return []
+
     def add_documents(self, documents: list) -> bool:
         """
         Add a list of documents to the ChromaDB.
@@ -148,3 +169,28 @@ class ChromaService:
         logger.info(
             f'Switched to collection {collection_name}, docs={len(self.db.get()["documents"])}'
         )
+
+    def store_embedding(self, text: str, embedding: list[float], metadata: dict = None):
+        """
+        Store a single embedding and its metadata in ChromaDB.
+        """
+        chroma = ChromaService()
+        doc = Document(page_content=text, metadata=metadata or {})
+        try:
+            chroma.db.add_documents(documents=[doc], embeddings=[embedding])
+            chroma.db.persist()
+            logger.info('Embedding stored successfully.')
+        except Exception as e:
+            logger.error(f'Failed to store embedding: {e}')
+
+    """ fjern etterhvert
+
+    def query_documents(self, embedding: List[float]) -> List[str]:
+    # Gjør faktisk søk i ChromaDB basert på embedding
+        results = self.db.query(
+            query_embeddings=[embedding],
+            n_results=5  # eller det du ønsker
+        )
+        return results['documents'][0]  # Returner dokumenter fra første treff
+
+        """
