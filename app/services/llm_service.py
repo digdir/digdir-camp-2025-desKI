@@ -89,23 +89,22 @@ class LLMService:
         self.top_p = top_p
         self.named_endpoint = named_endpoint
 
-        if self.use_azure:
-            self.azure_endpoint = azure_endpoint
-            self.azure_api_key = os.getenv('AZURE_API_KEY')
+        self.azure_endpoint = azure_endpoint
+        self.azure_api_key = os.getenv('AZURE_API_KEY')
 
-            retry_policy = RetryPolicy()
-            retry_policy.total_retries = 3
-            retry_policy.connect_retries = 2
-            retry_policy.read_retries = 2
-            retry_policy.status_retries = 2
-            retry_policy.backoff_factor = 0.5
+        retry_policy = RetryPolicy()
+        retry_policy.total_retries = 3
+        retry_policy.connect_retries = 2
+        retry_policy.read_retries = 2
+        retry_policy.status_retries = 2
+        retry_policy.backoff_factor = 0.5
 
-            self.client = ChatCompletionsClient(
-                endpoint=self.azure_endpoint,
-                credential=AzureKeyCredential(self.azure_api_key),
-                api_version='2024-05-01-preview',
-                retry_policy=retry_policy,
-            )
+        self.client = ChatCompletionsClient(
+            endpoint=self.azure_endpoint,
+            credential=AzureKeyCredential(self.azure_api_key),
+            api_version='2024-05-01-preview',
+            retry_policy=retry_policy,
+        )
 
     def generate_response(
         self,
