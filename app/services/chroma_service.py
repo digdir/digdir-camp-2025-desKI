@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-from app.config import USE_AZURE, CHROMA_PATH, COLLECTION_NAME
+from app.config import CHROMA_PATH, COLLECTION_NAME
 
 load_dotenv()
 
@@ -82,8 +82,6 @@ class ChromaService:
             Optional[dict]: A dictionary containing the search results.
             Empty if no results found or no query provided.
         """
-        if limit is None:
-            limit = 10 if USE_AZURE else 3
 
         if not query.strip():
             logger.warning('Empty query provided. Returning None.')
