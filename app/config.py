@@ -35,7 +35,7 @@ SIMILARITY_THRESHOLD = 0.75
 
 # === Bilde konfigirasjon ===
 
-
 AZURE_ENDPOINT_IMAGE = 'https://digdircamp-resource.openai.azure.com'
 
 AZURE_API_VERSION_IMAGE = '2024-04-01-preview'
+

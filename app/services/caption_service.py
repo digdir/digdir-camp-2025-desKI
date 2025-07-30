@@ -1,20 +1,24 @@
 import base64
 import logging
 from typing import Optional
+import os, base64, logging, requests
+from dotenv import load_dotenv; load_dotenv()
 
 import requests
 
 from app.config import (
     AZURE_MODEL,
-    AZURE_API_KEY_IMAGE,
     AZURE_ENDPOINT_IMAGE,
     AZURE_API_VERSION_IMAGE,
 )
+
 from app.services.llm_service import LLMService
 from app.services.embedding_service import EmbeddingService
 
+load_dotenv()  
 logger = logging.getLogger(__name__)
 
+AZURE_API_KEY_IMAGE = os.getenv("AZURE_API_KEY_IMAGE")
 
 class CaptionService:
     """
