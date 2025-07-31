@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Optional
 
-from app.config import SIMILARITY_THRESHOLD
+from app.config import USE_AZURE, SIMILARITY_THRESHOLD
 from app.models.endpoint_enum import NamedEndpoint
 from app.services.llm_service import LLMService
 from app.services.chroma_service import ChromaService
@@ -71,7 +71,7 @@ class QueryService:
         previous: Optional[list[str]] = None,
         external_context: Optional[dict[str, Any]] = None,
         logs: Optional[str] = None,
-        limit: int = 7,
+        limit: Optional[int] = None,
     ) -> str:
         """
         Runs a query against the ChromaDB, retrieves relevant document chunks and runs this query to an LLM.
@@ -87,6 +87,9 @@ class QueryService:
         """
 
         # TODO: Add optional log-search-functionality
+
+        if limit is None:
+            limit = 10 if USE_AZURE else 3
 
         faq_str = ''
         try:
@@ -156,7 +159,7 @@ class QueryService:
     def _search_docs(
         self,
         user_query: str,
-        limit: int = 10,
+        limit: int,
         endpoint: NamedEndpoint = NamedEndpoint.DEFAULT,
     ):
         user_query = self.llm_service.clean_query(user_query)
