@@ -88,7 +88,7 @@ class PromptFactory:
 
                     3. Hvis du ikke vet svaret:  
                     → Svar:  
-                    "Jeg kan ikke hjelpe basert på den dokumentasjonen jeg har. Kontakt servicedesk@digdir.no."
+                    "Jeg kan ikke hjelpe basert på den dokumentasjonen jeg har. Kontakt brukerstotte@digdir.no."
 
                     4. Hvis spørsmålet er uklart eller for generelt:  
                     → Be brukeren utdype.
