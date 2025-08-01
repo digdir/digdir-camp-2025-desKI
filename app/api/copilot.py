@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import Depends, APIRouter
 
 from app.models.endpoint_enum import NamedEndpoint
 from app.dependencies.services import get_query_service
