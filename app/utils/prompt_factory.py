@@ -117,7 +117,7 @@ class PromptFactory:
                     """
 
         elif named_endpoint == NamedEndpoint.COPILOT:
-           return f"""
+            return f"""
                 Du er DesKI - fagassistent for Selvbetjening og klientadministrasjon i Digdir. Ekspert på OAuth2, scopes, nøkler og tokens.
 
                 **Svarformat:**

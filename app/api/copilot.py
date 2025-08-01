@@ -8,6 +8,7 @@ from app.services.query_service import QueryService
 
 router = APIRouter(tags=['Copilot'])
 
+
 @router.post('/', response_model=StrictChatResponse)
 def ask_copilot(
     req: StrictChatRequest,
@@ -17,6 +18,6 @@ def ask_copilot(
         user_query=req.question,
         named_endpoint=NamedEndpoint.COPILOT,
         previous=req.previous,
-        external_context=req.context
+        external_context=req.context,
     )
     return StrictChatResponse(answer=response or 'Hei fra copilot!', source=None)
