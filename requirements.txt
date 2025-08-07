@@ -177,7 +177,7 @@ langchain-core==0.3.68
     #   langchain-text-splitters
 langchain-huggingface==0.3.0
     # via -r requirements.in
-langchain-text-splitters==0.3.8
+langchain-text-splitters==0.3.9
     # via
     #   -r requirements.in
     #   langchain
