@@ -204,7 +204,7 @@ msal==1.32.3
     #   msal-extensions
 msal-extensions==1.3.1
     # via azure-identity
-multidict==6.6.3
+multidict==6.6.4
     # via
     #   aiohttp
     #   yarl
