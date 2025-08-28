@@ -1,6 +1,6 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import LoraConfig, get_peft_model, TaskType
 import torch
+from peft import TaskType, LoraConfig, get_peft_model
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Loads a language model and tokenizer from Hugging Face.
 # Applies LoRA if enabled in the config.

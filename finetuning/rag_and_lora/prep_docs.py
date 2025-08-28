@@ -1,13 +1,11 @@
 import os
+
 import chromadb
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
-from typing import List
-from embedding_fn import ChromaCompatibleEmbeddingFunction
 
 # === Importer konfig fra config.py ===
-from config import DATAFOLDER, CHROMA_PATH, COLLECTION_NAME, EMBEDDING_MODEL_NAME
-
+from config import DATAFOLDER, CHROMA_PATH, COLLECTION_NAME
+from embedding_fn import ChromaCompatibleEmbeddingFunction
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # === Initialiser ChromaDB og tekstsplitter ===
 embedding_model = ChromaCompatibleEmbeddingFunction()

@@ -1,8 +1,9 @@
 import sys
+
 sys.path.append("/home/jovyan/digdir-camp-2025-desKI")  # Adjust if needed
 
-from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Loads a LoRA fine-tuned model and runs a simple chatbot.
 # Fetches context, builds a prompt, and generates a response using the local model.

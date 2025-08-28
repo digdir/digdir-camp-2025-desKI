@@ -1,8 +1,9 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from typing import List
+
 import torch
 import chromadb
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from typing import List
 
 # Loads a LoRA fine-tuned model and connects to a ChromaDB vector database.
 # Retrieves relevant document chunks based on a user query, builds a prompt, and generates an answer.
@@ -60,7 +61,7 @@ def hent_kontekst(user_query, n_results=5):
     combined_chunks = []
     used_sources = set()
 
-    for text, meta in zip(texts, metadatas):
+    for text, meta in zip(texts, metadatas, strict=False):
         source = meta.get("source", "ukjent fil").replace("\\", "/")
         page = meta.get("page", "ukjent side")
         used_sources.add(f"{source}, side {page}")

@@ -1,6 +1,6 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModel, PeftConfig
 import torch
+from peft import PeftModel, PeftConfig
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # A simple way to test inference with a LoRA-finetuned model.
 # Loads the model, sends a prompt, and prints the generated response.

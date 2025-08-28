@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from generate_response_service import response_finetuned_servicedesk
+from fastapi.middleware.cors import CORSMiddleware
 from generate_response_bruker import response_finetuned_brukerstotte
+from generate_response_service import response_finetuned_servicedesk
 
 # FastAPI server that exposes endpoints for generating responses using two separate LoRA-finetuned models.
 # One endpoint is for servicedesk prompts, the other for brukerstøtte.

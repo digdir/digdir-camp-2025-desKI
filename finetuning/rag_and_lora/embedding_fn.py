@@ -1,6 +1,8 @@
 from typing import List
-from langchain_community.embeddings import HuggingFaceEmbeddings
+
 from config_rag import EMBEDDING_MODEL_NAME
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
 
 # === Embedding-klassen ===
 class ChromaCompatibleEmbeddingFunction:

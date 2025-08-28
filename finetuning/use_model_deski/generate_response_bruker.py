@@ -1,13 +1,18 @@
-from config import MODEL_PATH_BRUKERSTOTTE, BASE_MODEL_NAME, REPETITION_PENALTY, MAX_LENGTH, MAX_NEW_TOKENS, TEMPERATURE, TOP_P, DO_SAMPLE
-from transformers import AutoTokenizer, AutoModelForCausalLM
 import re
+
 import torch
 from peft import PeftModel
-from config import MODEL_PATH_BRUKERSTOTTE, BASE_MODEL_NAME, REPETITION_PENALTY, MAX_LENGTH, MAX_NEW_TOKENS, TEMPERATURE, TOP_P, DO_SAMPLE
+from config import (
+    TOP_P,
+    DO_SAMPLE,
+    MAX_LENGTH,
+    TEMPERATURE,
+    MAX_NEW_TOKENS,
+    BASE_MODEL_NAME,
+    REPETITION_PENALTY,
+    MODEL_PATH_BRUKERSTOTTE,
+)
 from transformers import AutoTokenizer, AutoModelForCausalLM
-import re
-import torch
-from peft import PeftModel
 
 # Loads a base model and LoRA adapter for the brukerstøtte fine-tuned model.
 # Generates a cleaned response based on input prompt.
