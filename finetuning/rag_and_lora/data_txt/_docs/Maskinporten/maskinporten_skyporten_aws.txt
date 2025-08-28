@@ -1,0 +1,129 @@
+
+title: Skyporten med AWS - Maskinporten for deling av skyressurser
+description:  Skyporten med AWS - Maskinporten for deling av skyressurser
+summary: 'Oppskrift for å benytte Skyporten med AWS'
+sidebar: maskinporten_sidebar
+product: Maskinporten
+redirect_from: /maskinporten_skyporten
+
+
+
+TOC
+{:toc}
+
+For deg som skal tilby via AWS (Amazon Web Services)
+Oppsett
+Prosjektet krever at man har et ekte Maskinporten-token mot det rette miljøet.
+Her er informasjon om hvordan du kommer i gang med Maskinporten.
+Du må også ha en AWS konto, og aws CLI-verktøy installert.
+AWS med Maskinporten som OIDC provider
+På AWS er det OIDC identity providers som brukes for Skyporten sin OIDC-integrasjon.
+Nå følger en oppskrift på hvordan du kan gjøre det. Ta kontakt med oss om du vil ha hjelp til å sette i gang.
+Sett opp AWS på kommandolinjen
+Sett opp AWS CLI.
+Du må også definere et AWS profilnavn, f.eks. 'skyportenprofil'.
+Definer AWS og Maskinporten variabler
+``````bash
+Definer din default AWS region
+export AWS_DEFAULT_REGION=eu-west-1
+Velg profil, må være definert i ~/.aws/config eller lignende
+export AWSPROFILENAME=skyportenprofil
+Finn id for AWS-kontoen din og eksporter den
+export AWS_ACCOUNT=1234567890123
+Velg s3 bøttenavn
+export BUCKET_NAME=skyporten-test-bucket
+Maskinporten sitt test miljø
+export MASKINPORTEN_URL=test.sky.maskinporten.no
+Må matche audience i token som genereres av maskinporten
+export AUDIENCE=https://skyporten.
+Org id for organisasjonen som skal få tilgang til data
+export CONSUMER_ORGID="0192:123456789"
+Maskinporten scopet som gir tilgang
+export MASKINPORTEN_SCOPE="entur:skyporten.demo"
+Navn på AWS rolle som skal opprettes
+export AWS_ROLENAME="skyporten-role"
+Navn på AWS policy som skal opprettes
+export AWS_POLICYNAME="skyporten-s3-policy"
+``````
+Lag OIDC provider json
+Slett provider hvis den allerede finnes:
+
+Obtain the thumbprint of the openid-configuration
+We follow this guide from AWS
+Open https://test.sky.maskinporten.no/.well-known/openid-configuration in a browser.
+
+Copy the jwks_uri.
+Use the OpenSSL command line tool to run the following command:
+
+Save the last certificate
+Copy the certificate (including the -----BEGIN CERTIFICATE----- and -----END CERTIFICATE----- lines) and paste it into a text file. Then save the file with the file name certificate.crt.
+Get thumbprint
+Use the OpenSSL command line tool to run the following command.
+
+Your command window displays the certificate thumbprint, which looks similar to the following example:
+SHA1 Fingerprint=99:0F:41:93:97:2F:2B:EC:F1:2D:DE:DA:52:37:F9:C9:52:F2:0D:9E
+Then remove the colons:
+
+Lag en variabel:
+
+Lag json definisjon for OpenID provider:
+
+Opprett provider
+Next, to create the OpenID Connect (OIDC) provider, use the create-open-id-connect-provider command again,
+this time passing the --cli-input-json parameter to specify your JSON file. The following 
+command uses the --cli-input-json parameter with a JSON file called create-open-id-connect-provider.json
+
+Opprett en tilgangsrolle
+Definisjon av rollen i filen :
+
+Slett gammel attachment, role og policy, om nødvendig:
+```
+export POLICY_ARN="arn:aws:iam::$AWS_ACCOUNT:policy/$AWS_POLICYNAME"
+aws --profile $AWSPROFILENAME iam detach-role-policy --policy-arn "$POLICY_ARN" --role-name $AWS_ROLENAME
+aws --profile $AWSPROFILENAME iam delete-policy --policy-arn $POLICY_ARN
+aws iam --profile $AWSPROFILENAME delete-role --role-name $AWS_ROLENAME
+```
+Rollen opprettes slik:
+
+Expected output:
+
+Opprett en s3-bøtte med en test fil
+
+Push file to s3:
+
+Gi skyporten-rollen lesetilgang til s3-bøtta
+Define policy:
+
+Create policy:
+
+Expected output:
+
+Attach policy to role:
+
+For deg som skal konsumere fra AWS
+Oppsett
+Prosjektet krever at man har et ekte Maskinporten-token mot det rette miljøet.
+Her er informasjon om hvordan du kommer i gang med Maskinporten.
+Her er et node.js eksempel på token-generering for skyporten.
+Autentisering i AWS med Maskinporten
+Definer token som miljøvariabel
+Her foventes det å finne maskinporten-token i full json i . Dette er kan opprettes med et av
+disse kode-eksemplene.
+
+The unpacked token will look something like this:
+
+Authenticate with Maskinporten and copy s3 file
+```
+aws sts assume-role-with-web-identity --duration-seconds 900 --role-session-name $AWS_ROLENAME-session --role-arn "arn:aws:iam::$AWS_ACCOUNT:role/$AWS_ROLENAME" --web-identity-token "$MASKINPORTEN_TOKEN" --output text > sts-token.txt
+read STS_ACCESS_KEY_ID STS_SECRET_ACCESS_KEY STS_SESSION_TOKEN <<< \
+   $(more sts-token.txt | awk '/^CREDENTIALS/ { print $2, $4, $5 }')
+AWS_ACCESS_KEY_ID=$STS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$STS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN=$STS_SESSION_TOKEN aws s3 cp s3://$BUCKET_NAME/foo.txt foo-remote.txt
+```
+Troubleshooting / kjente problemer
+Her er noen kjente problemer man kan støte på:
+Incorrect token audience
+```
+aws sts assume-role-with-web-identity --duration-seconds 900 --role-session-name $AWS_ROLENAME-session --role-arn "arn:aws:iam::$AWS_ACCOUNT:role/$AWS_ROLENAME" --web-identity-token "$MASKINPORTEN_TOKEN"
+An error occurred (InvalidIdentityToken) when calling the AssumeRoleWithWebIdentity operation: Incorrect token audience
+```
+Dette skjer fordi audience i maskinporten token ikke stemmer med verdien i ClientIDList i open id provider json-definisjon.

@@ -1,0 +1,173 @@
+
+title: Innlogging og tilgang til selvbetjening via Samarbeidsportalen
+description:  Innlogging og tilgang til selvbetjening via Samarbeidsportalen
+sidebar: selvbetjening_sidebar
+product: Selvbetjening
+redirect_from: /selvbetjening_web_innlogging
+
+Dette dokumentet viser hvordan du kan logge inn på web-grensesnittet for selvbetjening av Digdirs fellesløsninger på Samarbeidsportalen.
+
+
+TOC
+{:toc}
+
+Innlogging og tilgang
+Innlogging
+Samarbeidsportalen er inngangen til selvbetjeningen på nett. En forutsetning for å ta dette i bruk, er at virksomheten din er registrert hos oss og bruksvilkår er signert. Når du oppretter en bruker så knyttes du til den virksomheten som er registrert med domenet i epost-adressen din. F.eks logger du inn med @digdir.no, så blir du knyttet til Digitaliseringsdirektoratet.
+Opprette bruker
+For å opprette bruker på Samarbeidsportalen. Gjør følgende:
+
+Gå til Min profil
+Trykk på "Registrer deg" i påloggingsvinduet
+Registrer bruker med din jobbadresse
+Bekreft brukeren ved å trykke på lenken som kommer på epost. (NB! Sjekk søppelpost om ikke eposten kommer frem).
+
+Har du allerede en bruker? Logg inn med brukeren din.
+Velge miljø
+På Min profil kan du velge hvilket miljø du vil selvbetjene i.
+Tilgang i testmiljø
+I utgangspunktet har alle brukere som er koblet til en virksomhet, tilgang til selvbetjening i testmiljøene ver1 og ver2. Noen virksomheter har innført restriksjoner og har strengere tilgangsstyring.
+Delegere skriverettigheter i produksjonsmiljø
+Tilgang i produksjon er sikret med ID-porten, og tilgangen må delegeres av en bemyndiget person i virksomheten. (Direktør/Leder/Annen person med rolle "Hovedadministrator" i Altinn).
+Fremgangsmåte for tilgang gjennom Altinn autorisasjon. Den som skal delegere tilgang må ha rolle som hovedadministrator.
+
+Gå til Altinn.no
+Trykk på "Logg inn"
+Velg virksomheten du skal representere
+Trykk på "Profil"
+Trykk på "Andre med rettigheter til virksomheten"
+Legg inn fødselsnummer og etternavn på den som skal få tilgang.
+Søk på "Maskinporten" i søkefeltet på "Gi nye rettigheter"
+Velg "Selvbetjening av integrasjoner i ID-porten/Maskinporten" (Se tabell under for forklaring av rettighetene)
+Trykk på alle rettighetene
+Trykk på "Gi rettigheter"
+
+Tabell for tilgjengelige rettigheter:
+|Rettighet|Funksjon|
+| - | - |
+| Selvbetjening av APIer i ID-porten/Maskinporten | Gir tilgang til å administrasjon og tilgangsstyring av scopes for API-tilbydere |
+| Selvbetjening av integrasjoner i ID-porten/Maskinporten | Gir tilgang til å opprette, endre og slette klienter og integrasjoner mot KRR, ID-porten og Maskinporten |
+| Selvbetjening for leverandører i ID-porten/Maskinporten*| Åpner opp feltet "For en kunde" slik at leverandører kan opprette klienter kunder sine organisajonsnummer |
+*NB! Selvbetjening for leverandører krever "Selvbetjening av integrasjoner..." i tillegg.
+Videotutorial: https://vimeo.com/433540385
+
+Frata skriverettigheter i produksjonsmiljøet
+Fremgangsmåte for å slette tilgang gjennom Altinn autorisasjon. Den som skal delegere tilgang må ha rolle som hovedadministrator.
+
+Gå til Altinn.no
+Trykk på "Logg inn"
+Velg virksomheten du skal representere
+Trykk på "Profil"
+Trykk på "Andre med rettigheter til virksomheten"
+Finn personen du skal frata rettigheter fra
+Trykk på "Gi eller fjerne tilgang"
+Trykk på "Fjern en eller flere rettigheter"
+Trykk på "Fjern" på rettigheten som skal fjernes.
+Trykk på "Ferdig for å bekrefte"
+
+Videotutorial: https://vimeo.com/433540358
+
+Selvbetjening som API-tilbyder
+Forutsetninger
+For å kunne opprette subscopes i Maskinporten, forutsetter det at virksomheten er registrert med et prefix. Prefix må opprettes av Digitaliseringsdirektoratet ved bestilling. For bestilling til testmiljø, send en epost til servicedesk@digdir.no.
+For bestilling til produksjonsmiljøet, send inn skjema:
+Maskinporten - Innhenting av opplysningar.
+Innlogging (Scopes/API'er)
+For å komme til administrasjonsgrensesnittet for API, gjør følgende:
+
+Logg inn på samarbeidsportalen.
+Trykk på "Virksomhetens tjenester" i venstremenyen.
+Trykk på "Administrasjon av tjenester" i venstremenyen.
+Velg "Mine API" i det miljøet du vil opprette scope.
+
+Opprette scopes
+
+Fullfør stegene i "Innlogging"
+Trykk på "Nytt scope".
+Velg prefix og fullfør registrering.
+Trykk "Opprett" for å lagre.
+
+Videotutorial: (https://vimeo.com/427689809)
+
+Tilgangsstyring
+
+Fullfør stegene i "Innlogging"
+Trykk på scopet du skal tilgangsstyre.
+Scroll ned til under konfigurasjonen og trykk "Legg til tilgang".
+Legg inn organisasjonsnummer og trykk "Legg til"
+For å slette en tilgang, trykk på søppelkasse-ikonet til høyre for organisasjonen med tilgang.
+
+Videotutorial: (https://vimeo.com/427689702)
+
+Deaktivere subscopes
+NB! Enn så lenge bør tilganger fjernes før et scope deaktiveres. Om ikke, vil de som har fått tilgang fortsatt få scopet utlistet på sine tilgjengelige scopes.
+
+Fullfør stegene i "Innlogging"
+Trykk på scopet du skal deaktivere.
+Trykk på "Endre"
+Trykk på "Deaktiver" og bekreft at du vil deaktivere.
+
+Videotutorial: (https://vimeo.com/427689583)
+
+Vedlikehald av merkantile data
+Vedlikehold av fakturainformasjon og varslingspunkter er viktig for at vi hele tiden skal ha oppdatert informasjon om dette. Varslingspunkt(er) får eposter ved kritiske hendelser i løsningen og om det ikke er registrert noe her, så kan man gå glipp av viktig informasjon.
+For å administrere merkantile data:
+
+Logg inn på Samarbeidsportalen
+Trykk på "Virksomhetens tjenester" i venstremenyen
+Finn integrasjonen av type "API-tilbyder" og trykk på den.
+Trykk på "Rediger integrasjon"
+Legg inn informasjon og trykk "Lagre" når du er ferdig.
+
+Videotutorial: (https://vimeo.com/397388041)
+
+Selvbetjening som API-konsument
+Innnlogging (Integrasjoner)
+For å komme til administrasjonsgrensesnittet for integrasjoner/klienter, gjør følgende:
+
+Logg inn på samarbeidsportalen.
+Trykk på "Virksomhetens tjenester" i venstremenyen.
+Trykk på "Administrasjon av tjenester" i venstremenyen.
+Velg "Integrasjoner" i det miljøet du vil opprette selvbetjene i.
+
+Opprette klient for å konsumere API
+
+Fullfør stegene i "Innlogging"
+Trykk på "Ny integrasjon".
+Velg "Maskinporten" på "Difi-tjeneste".
+Trykk på "Legg til scopes" for å legge til scopet du skal konsumere. (Dersom scopet ikke ligger i listen, så har ikke API-tilbyder delt tilgang til virksomheten du representerer.)
+Fullfør registreringen.
+Trykk "Opprett" for å lagre.
+
+Videotutorial: (https://vimeo.com/427689834)
+
+Slette klient
+
+Fullfør stegene i "Innlogging"
+Trykk på klienten du skal slette.
+Trykk på "Endre".
+Trykk på "Deaktiver" og bekreft.
+
+Videotutorial: (https://vimeo.com/427689782)
+
+Vedlikehald av merkantile data
+Vedlikehold av fakturainformasjon og varslingspunkter er viktig for at vi hele tiden skal ha oppdatert informasjon om dette. Varslingspunkt(er) får eposter ved kritiske hendelser i løsningen og om det ikke er registrert noe her, så kan man gå glipp av viktig informasjon.
+For å administrere merkantile data:
+
+Logg inn på Samarbeidsportalen
+Trykk på "Virksomhetens tjenester" i venstremenyen
+Finn klienten i listen og trykk på den.
+Trykk på "Rediger integrasjon"
+Legg inn informasjon og trykk "Lagre" når du er ferdig.
+
+Videotutorial: (https://vimeo.com/397388041)
+
+Ofte stillte spørsmål
+"Prefiks" feltet er tomt når jeg skal opprette et nytt scope.
+Om prefiks feltet er tomt, så har ikke virksomheten din fått opprettet et prefiks. Da får du ikke opprette et scope. Ta kontakt med servicedesk@digdir.no.
+Scopet jeg skal konsumere mangler når jeg trykker på "Legg til scopes".
+Mest sannsynlig har ikke API-tilbyder delt tilgang med virksomheten du representerer, eller så har de gitt tilgang i et annet miljø. Kontakt API-tilbyder.
+"Ny integrasjon" er grået ut i produksjonsmiljøet.
+For å administrere i produksjonsmiljøet, så må man logge inn med ID-porten. Dette forutsetter at vi har lagt inn personnummeret ditt på forhånd. Om "Ny integrasjon" fortsatt er grået ut etter innlogging med ID-porten. Kontakt servicedesk@digdir.no
+Jeg ser integrasjonene til en annen virksomhet enn det jeg forventer.
+Tilgang til Samarbeidsportalen og selvbetjeningsløsningen gis på bakgrunn av epost-domenet ditt, som igjen er koblet til en virksomhet på vår side.  For store virksomheter og selskap, så kan det være at det gjenbrukes epost-domene på tvers av flere virksomheter. Ta kontakt med servicedesk@digdir.no.

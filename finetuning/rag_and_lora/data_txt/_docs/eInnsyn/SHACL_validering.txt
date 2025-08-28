@@ -1,0 +1,16 @@
+
+title: SHACL-validering
+description:
+summary:
+sidebar: einnsyn_sidebar
+redirect_from: /einnsyn_shackl
+
+Validering av json-ld blir gjort basert på SHACL
+Shacl-reglane vert uttrykt i rdf-formatet turtle. Desser er basert på Noark5 vokabularet.
+Reglane, fordelt på objekt-klassane i datamodellen ligg her
+Som valideringsverktøy kan ein bruke
+* RDF4j sin implementasjon
+* eInnsyn impementasjon
+* Online validering
+* Validering ved direkteintegrasjon
+eInnsyn implementasjonen vart utvikla tidleg i eInnsyn-utviklinga sidan SHACL-er relativt nytt og på dåverande tidspunkt ikkje eksisterte høveleg valideringsmotorar

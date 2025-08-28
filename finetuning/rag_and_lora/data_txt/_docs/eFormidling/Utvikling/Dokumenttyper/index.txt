@@ -1,0 +1,32 @@
+
+title: Dokumenttyper
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Dokumenttyper som brukes i eFormidling:
+
+Arkivmelding
+Avtalt
+Digital
+Digital DPV
+FIKS IO
+Innsynskrav
+Print
+Publisering
+
+Kvitteringer:
+
+Arkivmelding-kvittering
+eInnsyn-kvittering
+
+Interne kvitteringer:
+
+Status
+
+Standardformater og eFormidlings bruk av disse:
+
+Arkivmelding
+Dokumentpakke
+Standard Business Document (SBD)

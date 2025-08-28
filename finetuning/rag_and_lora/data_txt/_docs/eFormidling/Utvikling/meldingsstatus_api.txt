@@ -1,0 +1,53 @@
+
+title: Meldingsstatus API
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+
+Denne siden beskriver meldingsstatus API og bruksmønstre for dette.
+eFormidling benytter meldingsstatuser for å understøtte feilsøking, varsling av feil og statistikk. Dette har tidligere
+blitt levert sammen med logg, men for å sikre pålitelig overlevering av meldingsstatuser etableres det nå et API
+for å ta imot disse.
+Integrasjonspunktet bruker meldingsstatustjenesten under panseret. Det er vanligvis ikke nødvendig å integrere direkte
+mot meldingsstatustjenesten, men i noen sjeldne tilfeller ønsker en virksomhet å kommunisere med virksomheter på
+eFormidling uten selv å kjøre et integrasjonspunkt.
+
+graph LR
+I1("Integrasjonspunkt 1")
+I2("Integrasjonspunkt 2")
+I3("Integrasjonspunkt N")
+M("Meldingsstatustjenesten")
+S("Statistikk")
+F("Feilsøking")
+V("Varsling")
+
+I1 --> M
+I2 --> M
+I3 --> M
+M --> S
+M --> F
+M --> V
+
+Eksempel på statusmelding:
+
+Statusmeldinger leveres over HTTP eller RSocket med OAuth JWT fra Maskinporten.
+
+HTTP: 
+RSocket: 
+
+Meldingsstatus API bruker OAuth2 for autorisasjon og forventer selvforsynte JWT fra Maskinporten. JWT-forespørsler til
+Maskinporten er forventet å inneholde x5c for det norske virksomhetssertifikatet (SEIDv1 or SEIDv2) JWT-forespørselen
+ble signert med.
+
+Maskinporten (ekstern lenke)
+
+eFormidling oppretter OAuth-klienter i Maskinporten som del av onboarding-prosessen:
+
+Klient-IDen er 
+En eller flere av følgende scope blir tildelt klienten:
+move/dpo.read (eFormidlings meldingstjeneste)
+move/dpe.read (eInnsyns meldingstjeneste)
+move/dpi.read (Digital Post til Innbyggere)
+move/dpf.read (KS SvarUt og SvarInn)
+move/dpv.read (Altinn Digital Post)

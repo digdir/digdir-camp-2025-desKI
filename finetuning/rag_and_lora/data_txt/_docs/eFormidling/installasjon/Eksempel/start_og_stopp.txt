@@ -1,0 +1,139 @@
+
+title: Start og stopp
+description: ""
+summary: ""
+product: eFormidling
+sidebar: eformidling_sidebar
+redirect_from: /eformidling_ip_run
+
+Her er alternative måter en kan bruke til å kjøre integrasjonspunktet og KOSMOS.
+
+TOC
+{:toc}
+
+Integrasjonspunktet
+Det finnes flere måter å kjøre integrasjonspunktet på. Den vi anbefaler for enkel start/stopp i tillegg til tilgangsstyring er å installere integrasjonspunktet som en tjeneste. Her vil vi vise tre forskjellige måter å kjøre integrasjonspunktet på.
+Alt 1: Kjøre integrasjonspunktet som en tjeneste
+Integrasjonspunktet kan også installeres som en tjeneste på server. For å gjøre dette kan en laste ned en tredjepartsprogramvare og sette opp en egen liten config-fil.
+Dokumentasjonen på programvaren du trenger ligger på github. Du trenger to filer: .exe -filen fra dette programmet og en egen .xml-fil for å fortelle .exe -filen hvilke innstillinger som skal brukes. Dette er samme konseptet som einnsyn-klient installasjonen er basert på. 
+
+Last ned Winsw.exe her. Mer informasjon om hvilken versjon du skal velge står her: Supported .NET versions. Om du er usikker på hvilken .NET versjon du har, les her
+Last ned konfigurasjonsfila vår for testmkosmosiljø eller produksjonsmiljø
+Endre navn på .exe fila og xml-filene til de navnene du ønsker. For eksempel integrasjonspunkt-service.exe og integrasjonspunkt-service.xml. (begge må ha samme navn)
+Legg begge disse filene i integrasjonspunktmappa di.
+Endre versjonsnummeret på integrasjonspunkt-%versjonsnr%.jar til å være lik din versjon
+For å installere tjenesten gjør du følgende:
+åpne kommandovindu som administrator og naviger til integrasjonspunktmappa. F.eks. . Kjør så følgende kommando
+  
+
+I denne config-fila er det lagt inn automatisk loggrotering ved 10MB størrelse og 8 filer vil bli beholdt. Dette kan endres til ønsket størrelse ved å endre variabelen.  Om du ikke ønsker loggrotering kan du fjerne hele  fra integrasjonspunkt-service.xml
+Loggene for denne tjenesten vil i utgangspunktet bli skrevet til feks  og filen integrasjonspunkt-service.out. Innholdet i denne er veldig likt innholdet i application.log filen.
+Kjøre med lavest mulige rettigheter
+Vi anbefaler å kjøre integrasjonspunktet med en minste rettighetsbruker. For å endre hvilken bruker som kjører tjenesten ved å høyreklikke på den, velge "properties" og så velge "logg på" fanen. Hvordan opprette en minste rettighetsbruker.
+Loggrullering
+Om integrasjonspunktet ditt er satt opp til å kjøre som en Windows-tjeneste så kan en enkelt også aktivere loggrullering.
+Du kan rotere logger på størrelse og samtidig velge hvor mange en ønsker å ta vare på. standardstørrelsen her er 10MB, denne kan du endre til ønsket størrelse. Antall filer som blir tatt vare på er 8. Dette kan også endres. Sørg for at dette er innenfor  taggen slik som resten av konfigurasjonen.
+
+Ferdig konfigurert ser det feks slik ut:
+
+Oppgradere integrasjonspunkt som kjører som en tjeneste
+Last ned den siste versjon av integrasjonspunkt[versjonsnr].jar filen og legg den i integrasjonspunkt-mappen. Om du har integrasjonspunkt installert som en tjeneste så må du endre versjonsnummer i integrasjonspunkt-service.xml-filen og dermed reinstallere tjenesten.
+I integrasjonspunkt-service.xml-filen er det denne linjen som må oppdateres med korrekt(nytt) versjonsnummer: .
+Når du gjør endringer i versjon / integrasjonspunkt-service.xml fil så må du reinstallere tjenesten. Det gjør du ved å åpne kommandovindu som administrator og navigere til integrasjonspunktmappa. Kjør så følgende kommandoer.
+
+Da er tjenesten reinstallert og restartet.
+Alt 2: Kjøre integrasjonspunktet fra kommandovindu
+Integrasjonspunktet startes fra kommandolinjen med følgende kommandoer for henholdsvis test og produksjon. For å starte integrasjonspunktet kreves visse minimum brukerrettigheter, les mer om dette her. Eller så kan en eventuelt starte kommandovinduet som administrator og dermed også ha rettigheter til å starte det.
+TEST
+
+PROD
+
+Sjekk i nettleser når Integrasjonspunktet har startet, som gir response i form av en wsdl.
+
+For å sjekke helse på integrasjonspunktet
+
+Merk: Om du kjører integrasjonspunktet fra kommandolinjen så må dette vinduet stå åpent. Eventuelt så kan du endre  i kommandoen til . Da vil det kjøre uten kommandovinduet, men du vil måtte lukke det ved å finner prosessen i task manager / oppgavebehandling og stoppe den der. 
+Oppgradere integrasjonspunkt som kjører fra kommandovindu
+Last ned den siste versjon av integrasjonspunkt[versjonsnr].jar filen og legg den i integrasjonspunkt-mappen. Dermed må du bytte ut versjonsnummeret i din oppstartskommando.
+Alt 3: Kjøre via task scheduler med minste rettigheter
+Når en skal starte integrasjonspunktet så kreves det visse rettigheter på denne brukeren for at programmet skal kunne fungere. 
+Opprette Lokal bruker type user:
+%servernavn%\integrasjonspunkt
+Sette rettigheter for bruker i local security policy (deaktivere påloggingsmulighet):
+
+Deny log on locally
+Deny log on thru remote desktop service 
+Deny access to this computer from the network 
+Log on as a batch job (for å kunne kjøre taskscheduler)
+
+Bruker må ha tilgang på mappen der integrasjonspunktfilene ligger
+Egenskaper på mappen
+  * Security:
+    * Legg til integrasjonspunkt brukeren med modify rettigheter
+Bruker må ha modify tilgang på Windows EventLog
+Registry Editor
+  * Permissions på HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog
+  * Legg til integrasjonspunkt brukeren med modify rettigheter på Security "mappe".
+Kjøre kommandoen i "Task Scheduler"
+general:
+user: %servernavn%\integrasjonspunkt
+- Run whether user is logged on or not
+Trigger:
+* At startup
+   * Edit action
+   * Program/script: JAVA
+   * add argument (optional):
+        * -jar integrasjonspunkt-%versjonsnr%.jar 
+   * Start in (optional):
+        * "disk:\mappenavn» til integrasjonspunktet"
+
+Merk: om du skal starte integrasjonspunktet i staging-miljø må du bruke følgende argument i stedet: 
+Oppgradere integrasjonspunkt som kjører via task scheduler
+Last ned den siste versjon av integrasjonspunkt[versjonsnr].jar filen og legg den i integrasjonspunkt-mappen. Dermed må du bytte ut versjonsnummeret i din task. Under argument (optional)
+KOSMOS
+Starte som Windows-teneste
+
+Køyrer du allereie integrasjonspunktet som ei teneste så må denne tenesta stoppes til fordel for KOSMOS slik at det er KOSMOS som styrer oppstart (inkl. ønska versjon) av integrasjonspunktet
+
+Vi har lagt opp til at KOSMOS kan køyrast som ei Windows-teneste vha jar-wrapperen https://github.com/kohsuke/winsw. Følg veiledninga og bruk konfigurasjonen under. Dette er same wrapper som vi har nytta for integrasjonspunktet og einnsyn før. 
+
+Lagre konfigurasjonsfila fila som  og winsw.exe fila endrast til  .
+Om du allereie har integrasjonspunktet som Windows-service så kan du benytte samme .exe fil ved å endre namn frå til dømes:  til . Du treng ikkje  når du bruker KOSMOS, men du må fortsatt ha 
+
+Om du har alt i samme katalog treng du kun endre versjonsnamnet "X.Y.Z" frå følgande konfigurasjon:
+```
+
+ ID of the service. It should be unique accross the Windows system
+kosmossvc
+ Display name of the service 
+Kosmos Service
+ Service description 
+Keeps the integrasjonspunkt application up-to-date.
+ Path to the executable, which should be started 
+java
+-jar %BASE%\kosmos-X.Y.Z.jar --spring.profiles.active=production --spring.config.additional-location=file:%BASE%\integrasjonspunkt-local.properties
+%BASE%\kosmos-logs
+
+10240
+8
+
+
+```
+Last ned konfigurasjonsfila her
+
+Merk: Visst du har mellomrom i mappenamn i stien bør du endre %BASE% til absolutt sti. Døme: C:\"kosmos app"\sti\til\her\kosmos.X.Y.Z.jar
+
+Døme: No bør du ha desse filene i liggande i mappa.
+
+Starte frå kommandolinja
+For å starte frå kommandolinja kan du bruke følgande kommando:
+I produksjon
+
+I staging
+
+Starte i Linux
+For å starte kan ein bruke samme kommando som over, men om ein ynskjer å starte KOSMOS som ei bakgrunnsteneste kan ein legge på ein ampersand på slutten av kommandoen. Her treng du sjølvsagt ikkje wrapper filene som vist på biletet over, men heller ha ein mappestruktur som liknar på dette: 
+
+Døme:
+
+Like etter at kommandoen er eksekvert vil du få returnert ein PID for prosessen. Denne kan nyttast om du treng å stoppe prosessen. Du vil også kunne finne den ved å bruke htop og sjå etter kommandoen, eller i top og stenge ned java prosessen. Integrasjonspunktet startar som eigen Java-prosess. 

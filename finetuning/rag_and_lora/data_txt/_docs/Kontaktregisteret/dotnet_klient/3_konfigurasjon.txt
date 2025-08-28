@@ -1,0 +1,29 @@
+
+title: Konfigurasjon
+description: 
+summary: ""
+sidebar: krr_dotnet
+product: KRR
+redirect_from: /krr_konfigurasjon
+
+OppslagstjenesteKonfigurasjon initieres med hvilket miljø man ønsker å kjøre mot, FunksjoneltTestmiljø eller Produksjonsmiljø, samt tilhørende sertifikat til gitt miljø. 
+{% highlight csharp%}
+var testmiljøKonfigurasjon = new OppslagstjenesteKonfigurasjon(Miljø.FunksjoneltTestmiljø, avsendersertifikatThumbprint);
+var produksjonsmiljøKonfigurasjon = new OppslagstjenesteKonfigurasjon(Miljø.Produksjonsmiljø, avsendersertifikatThumbprint);
+{% endhighlight%}
+Proxy
+For å bruke proxy setter man , og  i konfigurasjonen:
+{% highlight csharp%}
+var konfigurasjon = new OppslagstjenesteKonfigurasjon(Miljø.FunksjoneltTestmiljø, avsendersertifikatThumbprint);
+{
+    ProxyHost = "proxyhost",
+    ProxyPort = 3333,
+    ProxyScheme = "https"
+};
+{% endhighlight%}
+På vegne av
+For å gjøre oppslag på vegne av en annen virksomhet settes organisasjonsnummeret til gitt bedrift i :
+{% highlight csharp%}
+var testmiljøKonfigurasjon = new OppslagstjenesteKonfigurasjon(Miljø.FunksjoneltTestmiljø, avsendersertifikatThumbprint);
+testmiljøKonfigurasjon.SendPåVegneAv = "984661185";
+{% endhighlight%}

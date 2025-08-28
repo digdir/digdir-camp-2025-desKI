@@ -1,0 +1,33 @@
+
+title: Om disse sidene
+description: Om disse sidene
+summary: "Litt meta-info om disse sidene"
+sidebar: oidc
+product: ID-porten
+redirect_from: /oidc_about
+
+Om sidene
+Disse sidene er dokumentasjonen av ID-porten sin OpenID Connect provider.  Dokumentasjonen er åpent tilgjenglig og vedlikeholdes på GitHub-repoet https://github.com/difi/idporten-oidc-dokumentasjon. Issues og pull requests er velkomne!
+Teknisk
+
+Sidene publiseres vha GitHub Pages på https://difi.github.io/idporten-oidc-dokumentasjon/
+Sidene er skrevet i markdown og benytter et tema/layout basert på Jekyll Documentation Theme av Tom Johnson.
+Grafer og sekvensdiagram blir generert direkte i brukers browser, basert på  mermaid.
+Atom med Markdown Preview Enhanced-plugin er anbefalt til å skriving.
+
+Tilpassingar
+For å få ein god arbeidsflyt, har vi gjort følgjande tilpassingar.
+Mermaid i documentation-theme-jekyll
+For å få mermaid-støtte i documentation-theme-jekyll, må følgjande leggast til på høvande plass i  
+```html
+
+
+`  .
+Forhåndsvisning av mermaid i Atom
+For at Markdown Preview Enhanced skal kunne forhåndsvise mermaid-syntax, utan å tulle det til for kramdown hos GitHub pages som samstundes skal prosessere og publisere markdown-fila, må følgande halvgrisete hack inn i parser.js i Atom:
+mermaid")
+    markdown = markdown.replace(/<\/div>/gm, ($0)=> "
+Det gjer ein enklast ved å trykka CTRL+SHIFT+P og søke etter kommandoen "Markdown Preview Enhanced: Extend Parser".
+Du skal altså ikkje skrive  taggen direkte slik som dokumentasjonen til Markdown Preview Enhanced seier.
+Hugse git-passord i Atom
+Køyre  i aktuelt repo.
