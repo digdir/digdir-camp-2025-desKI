@@ -24,7 +24,7 @@ attrs==25.3.0
     # via aiohttp
 azure-ai-inference==1.0.0b9
     # via -r requirements.in
-azure-core==1.35.0
+azure-core==1.38.0
     # via
     #   -r requirements.in
     #   azure-ai-inference
