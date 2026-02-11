@@ -21,7 +21,6 @@ asgiref==3.8.1
     # via opentelemetry-instrumentation-asgi
 attrs==25.3.0
     # via aiohttp
-    # via aiohttp
 azure-ai-inference==1.0.0b9
     # via -r requirements.in
 azure-core==1.35.0
@@ -45,22 +44,21 @@ certifi==2025.6.15
     #   httpx
     #   kubernetes
     #   requests
-cffi==1.17.1
+cffi==2.0.0
     # via cryptography
 charset-normalizer==3.4.2
     # via requests
 chroma-hnswlib==0.7.6
     # via chromadb
 chromadb==0.6.3
-chroma-hnswlib==0.7.6
-    # via chromadb
+    # via langchain-chroma
 click==8.2.1
     # via
     #   typer
     #   uvicorn
 coloredlogs==15.0.1
     # via onnxruntime
-cryptography==45.0.5
+cryptography==46.0.5
     # via
     #   azure-identity
     #   msal
@@ -77,14 +75,7 @@ fastapi==0.115.14
     # via
     #   -r requirements.in
     #   chromadb
-    # via
-    #   -r requirements.in
-    #   chromadb
 filelock==3.18.0
-    # via
-    #   huggingface-hub
-    #   torch
-    #   transformers
     # via
     #   huggingface-hub
     #   torch
@@ -96,9 +87,6 @@ frozenlist==1.7.0
     #   aiohttp
     #   aiosignal
 fsspec==2025.5.1
-    # via
-    #   huggingface-hub
-    #   torch
     # via
     #   huggingface-hub
     #   torch
@@ -132,9 +120,7 @@ huggingface-hub==0.33.4
     # via
     #   langchain-huggingface
     #   sentence-transformers
-    #   sentence-transformers
     #   tokenizers
-    #   transformers
     #   transformers
 humanfriendly==10.0
     # via coloredlogs
@@ -216,8 +202,6 @@ numpy==1.24.4
     # via
     #   -r requirements.in
     #   chroma-hnswlib
-    #   -r requirements.in
-    #   chroma-hnswlib
     #   chromadb
     #   langchain-chroma
     #   langchain-community
@@ -262,14 +246,6 @@ nvidia-nvjitlink-cu12==12.6.85
     #   torch
 nvidia-nvtx-cu12==12.6.77
     # via torch
-    #   scikit-learn
-    #   scipy
-    #   transformers
-nvidia-cublas-cu12==12.6.4.1
-    # via
-    #   nvidia-cudnn-cu12
-    #   nvidia-cusolver-cu12
-    #   torch
 oauthlib==3.3.1
     # via
     #   kubernetes
@@ -280,9 +256,6 @@ opentelemetry-api==1.34.1
     # via
     #   chromadb
     #   opentelemetry-exporter-otlp-proto-grpc
-    #   opentelemetry-instrumentation
-    #   opentelemetry-instrumentation-asgi
-    #   opentelemetry-instrumentation-fastapi
     #   opentelemetry-instrumentation
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
@@ -333,12 +306,10 @@ packaging==24.2
     #   marshmallow
     #   onnxruntime
     #   opentelemetry-instrumentation
-    #   opentelemetry-instrumentation
     #   pytest
     #   transformers
 pillow==11.3.0
     # via sentence-transformers
-    #   transformers
 pluggy==1.6.0
     # via pytest
 posthog==6.0.2
@@ -405,7 +376,6 @@ pyyaml==6.0.2
     #   langchain-community
     #   langchain-core
     #   transformers
-    #   transformers
     #   uvicorn
 regex==2024.11.6
     # via transformers
@@ -423,7 +393,6 @@ requests==2.32.4
     #   requests-mock
     #   requests-oauthlib
     #   requests-toolbelt
-    #   transformers
     #   transformers
 requests-mock==1.12.1
     # via -r requirements.in
@@ -469,16 +438,11 @@ sympy==1.14.0
     # via
     #   onnxruntime
     #   torch
-    # via
-    #   onnxruntime
-    #   torch
 tenacity==9.1.2
     # via
     #   chromadb
     #   langchain-community
     #   langchain-core
-threadpoolctl==3.6.0
-    # via scikit-learn
 threadpoolctl==3.6.0
     # via scikit-learn
 tokenizers==0.21.2
@@ -488,7 +452,6 @@ tokenizers==0.21.2
     #   transformers
 torch==2.7.1
     # via sentence-transformers
-    #   transformers
 tqdm==4.67.1
     # via
     #   chromadb
@@ -499,16 +462,11 @@ transformers==4.53.0
     # via sentence-transformers
 triton==3.3.1
     # via torch
-    #   sentence-transformers
-    #   transformers
-transformers==4.53.0
-    # via sentence-transformers
-triton==3.3.1
-    # via torch
 typer==0.16.0
     # via chromadb
 typing-extensions==4.14.0
     # via
+    #   aiosignal
     #   anyio
     #   azure-ai-inference
     #   azure-core
@@ -525,9 +483,7 @@ typing-extensions==4.14.0
     #   pydantic
     #   pydantic-core
     #   sentence-transformers
-    #   sentence-transformers
     #   sqlalchemy
-    #   torch
     #   torch
     #   typer
     #   typing-inspect
@@ -565,8 +521,3 @@ zstandard==0.23.0
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
-
-python-dotenv
