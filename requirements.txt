@@ -463,7 +463,7 @@ sqlalchemy==2.0.41
     # via
     #   langchain
     #   langchain-community
-starlette==0.46.2
+starlette==0.49.1
     # via fastapi
 sympy==1.14.0
     # via
