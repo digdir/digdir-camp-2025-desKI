@@ -391,7 +391,7 @@ python-dateutil==2.9.0.post0
     # via
     #   kubernetes
     #   posthog
-python-dotenv==1.1.1
+python-dotenv==1.2.2
     # via
     #   dotenv
     #   pydantic-settings
