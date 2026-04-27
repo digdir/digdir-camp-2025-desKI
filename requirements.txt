@@ -409,7 +409,7 @@ pyyaml==6.0.2
     #   uvicorn
 regex==2024.11.6
     # via transformers
-requests==2.32.4
+requests==2.33.0
     # via
     #   -r requirements.in
     #   azure-core
