@@ -486,7 +486,7 @@ tokenizers==0.21.2
     #   chromadb
     #   langchain-huggingface
     #   transformers
-torch==2.7.1
+torch==2.8.0
     # via sentence-transformers
     #   transformers
 tqdm==4.67.1
