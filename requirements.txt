@@ -168,7 +168,7 @@ langchain-chroma==0.2.2
     # via -r requirements.in
 langchain-community==0.3.16
     # via -r requirements.in
-langchain-core==0.3.68
+langchain-core==1.2.22
     # via
     #   langchain
     #   langchain-chroma
