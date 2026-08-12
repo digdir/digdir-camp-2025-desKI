@@ -60,7 +60,7 @@ click==8.2.1
     #   uvicorn
 coloredlogs==15.0.1
     # via onnxruntime
-cryptography==45.0.5
+cryptography==48.0.1
     # via
     #   azure-identity
     #   msal
