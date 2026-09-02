@@ -336,7 +336,7 @@ packaging==24.2
     #   opentelemetry-instrumentation
     #   pytest
     #   transformers
-pillow==11.3.0
+pillow==12.3.0
     # via sentence-transformers
     #   transformers
 pluggy==1.6.0
